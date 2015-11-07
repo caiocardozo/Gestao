@@ -2,7 +2,7 @@
 
 namespace GestaoDDD.Domain.Interfaces.IRepositories
 {
-    public interface IBaseDao<TEntity> where TEntity : class
+    public interface IRepositoryBase<TEntity> where TEntity : class
     {
         void SaveOrUpdate(TEntity obj);
 

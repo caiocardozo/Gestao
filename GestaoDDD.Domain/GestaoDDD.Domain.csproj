@@ -40,8 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Categoria.cs" />
-    <Compile Include="Interfaces\IRepositories\IBaseDao.cs" />
-    <Compile Include="Interfaces\IRepositories\ICategoriaRepositorio.cs" />
+    <Compile Include="Interfaces\IRepositories\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\IRepositories\ICategoriaRepository.cs" />
     <Compile Include="Interfaces\Services\IServiceCategoria.cs" />
     <Compile Include="Interfaces\Services\IServiceBase.cs" />
     <Compile Include="Services\ServiceBase.cs" />

@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace GestaoDDD.Infra.Data.Repository
 {
-    public class BaseDao<TEntity> : IDisposable, IBaseDao<TEntity> where TEntity:class
+    public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
         protected Contexto _context = new Contexto();
 

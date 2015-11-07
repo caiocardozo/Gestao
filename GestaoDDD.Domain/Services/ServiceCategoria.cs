@@ -11,9 +11,9 @@ namespace GestaoDDD.Domain.Services
 {
     public class ServiceCategoria : ServiceBase<Categoria>, IServiceCategoria
     {
-        private readonly ICategoriaRepositorio _categoriaRpp;
+        private readonly ICategoriaRepository _categoriaRpp;
 
-        public ServiceCategoria(ICategoriaRepositorio categoriaRpp)
+        public ServiceCategoria(ICategoriaRepository categoriaRpp)
         :base (categoriaRpp)
         {
             _categoriaRpp = categoriaRpp;  

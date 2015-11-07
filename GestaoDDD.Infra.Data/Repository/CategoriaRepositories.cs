@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GestaoDDD.Infra.Data.Repository
 {
-    public class RCategoria : BaseDao<Categoria>, ICategoriaRepositorio
+    public class CategoriaRepositories : RepositoryBase<Categoria>, ICategoriaRepository
     {
     }
 }

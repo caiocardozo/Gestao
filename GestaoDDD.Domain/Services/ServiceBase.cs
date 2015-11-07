@@ -12,37 +12,42 @@ namespace GestaoDDD.Domain.Services
 {
     public class ServiceBase<TEntity> : IDisposable, IServiceBase<TEntity> where TEntity : class
     {
-        private readonly IBaseDao<TEntity> _repository;
+        //aqui nao pode adicionar uma instancia de repositorio para nao perder a ideia de isolar fazendo assim perde a funcionalidade do dominio
+        private readonly IRepositoryBase<TEntity> _repository;
 
-        public ServiceBase(IBaseDao<TEntity> repository)
+        public ServiceBase(IRepositoryBase<TEntity> repository)
         {
             _repository = repository;
         }
 
-        public void SaveOrUpdate(TEntity obj) 
+        public void Add(TEntity obj)
         {
-            _repository.SaveOrUpdate(obj);
+            _repository.Add(obj);
         }
 
-        public TEntity FindById(int id) 
+        public TEntity GetById(int id)
         {
-            return _repository.FindById(id);
+            return _repository.GetById(id);
         }
 
-        public IEnumerable<TEntity> FindAll() 
+        public IEnumerable<TEntity> GetAll()
         {
-            return _repository.FindAll();
+            return _repository.GetAll();
         }
 
-        public void Delete(TEntity obj) 
+        public void Update(TEntity obj)
         {
-            _repository.Delete(obj);
+            _repository.Update(obj);
         }
 
-        public void Dispose() 
+        public void Remove(TEntity obj)
+        {
+            _repository.Remove(obj);
+        }
+
+        public void Dispose()
         {
             _repository.Dispose();
-
         }
 
     }

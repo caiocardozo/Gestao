@@ -7,7 +7,7 @@ using GestaoDDD.Domain.Entities;
 
 namespace GestaoDDD.Domain.Interfaces.IRepositories
 {
-    public interface ICategoriaRepositorio : IBaseDao<Categoria>
+    public interface ICategoriaRepository : IRepositoryBase<Categoria>
     {
     }
 }
