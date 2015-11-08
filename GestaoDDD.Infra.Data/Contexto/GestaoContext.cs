@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using GestaoDDD.Domain.Entities;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using GestaoDDD.Infra.Data.EntitiesConfig;
+using GestaoDDD.Infra.Data.EntityConfig;
 
-namespace GestaoDDD.Infra.Data.Context
+namespace GestaoDDD.Infra.Data.Contexto
 {
-    public class Contexto : DbContext
+    public class GestaoContext : DbContext
     {
-        public Contexto()
+        public GestaoContext()
             :base("Connection")
         {
 
         }
+
+        #region categoria
         public DbSet<Categoria> Categoria { get; set; }
+        #endregion
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -35,9 +34,11 @@ namespace GestaoDDD.Infra.Data.Context
             modelBuilder.Properties<string>()
                 .Configure(p => p.HasMaxLength(500));
 
-            modelBuilder.Configurations.Add(new CategoriaConfig());
 
+            #region ArquivoConfiguracao
+            modelBuilder.Configurations.Add(new CategoriaConfiguration());
 
+            #endregion
         }
     }
 }

@@ -1,32 +1,27 @@
-﻿using AutoMapper;
-using GestaoDDD.Application.Interface;
+﻿using GestaoDDD.Application.Interface;
+using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
-using GestaoDDD.MVC.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GestaoDDD.MVC.Controllers
 {
     public class CategoriaController : Controller
     {
-        private readonly IAppCategoriaServicos _categoriaApp;
-        public CategoriaController(IAppCategoriaServicos categoriaApp)
+        private readonly ICategoriaAppService _categoriaApp;
+        public CategoriaController(ICategoriaAppService categoriaApp)
         {
             _categoriaApp = categoriaApp;
         }
 
         public ActionResult Index()
         {
-            var CategoriaViewModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.FindAll());
+            var CategoriaViewModel = _categoriaApp.GetAll();
             return View(CategoriaViewModel);
         }
 
         public ActionResult Especiais()
         {
-            var CategoriaViewModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.ObterCategoriasEspeciais());
+            var CategoriaViewModel = _categoriaApp.ObterCategoriasEspeciais();
             return View(CategoriaViewModel);
         }
 
@@ -52,7 +47,7 @@ namespace GestaoDDD.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var Categoria = Mapper.Map<CategoriaViewModel, Categoria>(_Categoria);
-                _categoriaApp.SaveOrUpdate(Categoria);
+                ///_categoriaApp.SaveOrUpdate(Categoria);
                 return RedirectToAction("Index");
             }
             return View(_Categoria);

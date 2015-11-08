@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using GestaoDDD.Domain.Interfaces.Services;
 
 namespace GestaoDDD.Application.Interface
 {
     public interface IAppServiceBase<TEntity> where TEntity : class
     {
-        void SaveOrUpdate(TEntity obj);
+        void Add(TEntity obj);
 
-        TEntity FindById(int id);
+        TEntity GetById(int id);
 
-        IEnumerable<TEntity> FindAll();
+        IEnumerable<TEntity> GetAll();
 
-        void Delete(TEntity obj);
+        void Update(TEntity obj);
+
+        void Remove(TEntity obj);
 
         void Dispose();
     }

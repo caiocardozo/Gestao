@@ -40,13 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Categoria.cs" />
-    <Compile Include="Interfaces\IRepositories\IRepositoryBase.cs" />
-    <Compile Include="Interfaces\IRepositories\ICategoriaRepository.cs" />
-    <Compile Include="Interfaces\Services\IServiceCategoria.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\Repositories\ICategoriaRepository.cs" />
+    <Compile Include="Interfaces\Services\ICategoriaService.cs" />
     <Compile Include="Interfaces\Services\IServiceBase.cs" />
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ServiceCategoria.cs" />
+    <Compile Include="Services\CategoriaService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
+using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
-using GestaoDDD.MVC.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace GestaoDDD.MVC.AutoMapper
+namespace GestaoDDD.Application.AutoMapper
 {
-    public class DomainToViewModelMappingProfile : Profile
+    public class DomainToViewModelMappingProfile: Profile
     {
         public override string ProfileName
         {
