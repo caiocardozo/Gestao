@@ -1,7 +1,6 @@
 ﻿using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.IRepositories;
 using GestaoDDD.Domain.Interfaces.Services;
-using System.Collections.Generic;
 
 namespace GestaoDDD.Domain.Services
 {
@@ -16,11 +15,11 @@ namespace GestaoDDD.Domain.Services
             _categoriarepository = categoriarepository;  
         }
 
-        public IEnumerable<Categoria> ObterCategoriasEspeciais() 
-        {
-            //extender o metodo ao repositorio
-            IEnumerable<Categoria> cat;
-            return cat;
-        }
+        //public IEnumerable<Categoria> ObterCategoriasEspeciais() 
+        //{
+        //    //extender o metodo ao repositorio
+        //    IEnumerable<Categoria> cat;
+        //    return cat;
+        //}
     }
 }

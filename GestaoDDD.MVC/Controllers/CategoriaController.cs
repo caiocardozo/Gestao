@@ -1,100 +1,113 @@
-﻿using GestaoDDD.Application.Interface;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using AutoMapper;
+using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
-using System.Web.Mvc;
 
 namespace GestaoDDD.MVC.Controllers
 {
     public class CategoriaController : Controller
     {
         private readonly ICategoriaAppService _categoriaApp;
+
         public CategoriaController(ICategoriaAppService categoriaApp)
         {
             _categoriaApp = categoriaApp;
         }
 
+
         public ActionResult Index()
         {
-            var CategoriaViewModel = _categoriaApp.GetAll();
-            return View(CategoriaViewModel);
+            //retorna todas as caategorias
+            var categoriaViewModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
+            return View(categoriaViewModel);
         }
 
-        public ActionResult Especiais()
-        {
-            var CategoriaViewModel = _categoriaApp.ObterCategoriasEspeciais();
-            return View(CategoriaViewModel);
-        }
+        //
+        // GET: /Categoria/Details/5
 
-        // GET: Categoria/Details/5
         public ActionResult Details(int id)
         {
-            var Categoria = _categoriaApp.FindById(id);
-            var CategoriaView = Mapper.Map<Categoria, CategoriaViewModel>(Categoria);
-            return View(CategoriaView);
+            return View();
         }
 
-        // GET: Categoria/Create
+        //
+        // GET: /Categoria/Create
+
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Categoria/Create
+        //
+        // POST: /Categoria/Create
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CategoriaViewModel _Categoria)
+        public ActionResult Create(FormCollection collection)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var Categoria = Mapper.Map<CategoriaViewModel, Categoria>(_Categoria);
-                ///_categoriaApp.SaveOrUpdate(Categoria);
+                // TODO: Add insert logic here
+
                 return RedirectToAction("Index");
             }
-            return View(_Categoria);
+            catch
+            {
+                return View();
+            }
         }
 
-        // GET: Categoria/Edit/5
+        //
+        // GET: /Categoria/Edit/5
+
         public ActionResult Edit(int id)
         {
-            var Categoria = _categoriaApp.FindById(id);
-            var CategoriaView = Mapper.Map<Categoria, CategoriaViewModel>(Categoria);
-            return View(CategoriaView);
+            return View();
         }
 
-        // POST: Categoria/Edit/5
+        //
+        // POST: /Categoria/Edit/5
+
         [HttpPost]
-        public ActionResult Edit(CategoriaViewModel _Categoria)
+        public ActionResult Edit(int id, FormCollection collection)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var Categoria = Mapper.Map<CategoriaViewModel, Categoria>(_Categoria);
-                _categoriaApp.SaveOrUpdate(Categoria);
+                // TODO: Add update logic here
+
                 return RedirectToAction("Index");
             }
-            return View(_Categoria);
+            catch
+            {
+                return View();
+            }
         }
 
-        // GET: Categoria/Delete/5
+        //
+        // GET: /Categoria/Delete/5
+
         public ActionResult Delete(int id)
         {
-            var Categoria = _categoriaApp.FindById(id);
-            var CategoriaView = Mapper.Map<Categoria, CategoriaViewModel>(Categoria);
-
-            return View(CategoriaView);
+            return View();
         }
 
-        // POST: Categoria/Delete/5
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmado(int id)
+        //
+        // POST: /Categoria/Delete/5
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
         {
-            var Categoria = _categoriaApp.FindById(id);
-            _categoriaApp.Delete(Categoria);
+            try
+            {
+                // TODO: Add delete logic here
 
-            return RedirectToAction("Index");
-
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
-
-
-
     }
 }

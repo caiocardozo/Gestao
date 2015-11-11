@@ -1,19 +1,18 @@
 ﻿using System.Linq;
 using GestaoDDD.Domain.Interfaces.IRepositories;
-using GestaoDDD.Infra.Data.Context;
+using GestaoDDD.Infra.Data.Contexto;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using GestaoDDD.Infra.Data.Contexto;
 
-namespace GestaoDDD.Infra.Data.Repository
+namespace GestaoDDD.Infra.Data.Repositories
 {
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
       //aqui rabalha com objetos genericos
-        protected IGestaoContexto _db;
+        protected IGestaoContext _db;
 
-        public RepositoryBase(IGestaoContexto gestaoContext)
+        public RepositoryBase(IGestaoContext gestaoContext)
         {
             _db = gestaoContext;
         }

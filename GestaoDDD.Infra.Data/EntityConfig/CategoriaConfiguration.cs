@@ -1,4 +1,5 @@
-﻿using GestaoDDD.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using GestaoDDD.Domain.Entities;
 using System.Data.Entity.ModelConfiguration;
 
 namespace GestaoDDD.Infra.Data.EntityConfig
@@ -7,9 +8,9 @@ namespace GestaoDDD.Infra.Data.EntityConfig
     {
         public CategoriaConfiguration()
         {
-            HasKey(c => c.Id_pk);
-
-            Property(c => c.Nome)
+            HasKey(c => c.cat_Id);
+                
+            Property(c => c.cat_Nome)
                 .IsRequired()
                 .HasMaxLength(200);
         }

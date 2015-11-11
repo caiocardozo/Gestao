@@ -51,13 +51,12 @@
     <Compile Include="Contexto\GestaoContext.cs" />
     <Compile Include="Contexto\IGestaoContext.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\CategoriaRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

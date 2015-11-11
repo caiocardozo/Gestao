@@ -1,9 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-namespace GestaoDDD.Infra.Data.Context
+namespace GestaoDDD.Infra.Data.Contexto
 {
-   public interface IGestaoContexto
+   public interface IGestaoContext
     {
         DbEntityEntry Entry(object entity);
         int SaveChanges();

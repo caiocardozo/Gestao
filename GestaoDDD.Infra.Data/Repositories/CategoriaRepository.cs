@@ -1,14 +1,13 @@
 ﻿using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.IRepositories;
-using GestaoDDD.Infra.Data.Context;
-using GestaoDDD.Infra.Data.Repository;
+using GestaoDDD.Infra.Data.Contexto;
 
 namespace GestaoDDD.Infra.Data.Repositories
 {
     public class CategoriaRepository : RepositoryBase<Categoria>, ICategoriaRepository
     {
 
-        public CategoriaRepository(IGestaoContexto gestaoContexto)
+        public CategoriaRepository(IGestaoContext gestaoContexto)
             : base(gestaoContexto)
         {
         }

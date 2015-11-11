@@ -1,0 +1,65 @@
+﻿html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #fffff;
+  text-align:center;
+}
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+  color: black;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.alturaLogin{
+    padding-top:5%;
+}
+
+.panel-verde {
+  border-color: #469408 !important;
+}
+.panel-verde > .panel-heading {
+  color: #ffffff;
+  background-color: #469408;
+  border-color: #469408;
+}
+.panel-verde > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #469408;
+}
+.panel-verde > .panel-heading .badge {
+  color: #469408;
+  background-color: #ffffff;
+}
+.panel-verde > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #469408;
+}
+.textoRodape {
+    color: #337ab7;
+}
+
+.textoEsqueciSenha {
+    font-weight: bold;
+}
+
+#logoFai{
+    display: none;
+    
+  }

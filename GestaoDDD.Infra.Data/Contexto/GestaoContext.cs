@@ -5,18 +5,17 @@ using GestaoDDD.Infra.Data.EntityConfig;
 
 namespace GestaoDDD.Infra.Data.Contexto
 {
-    public class GestaoContext : DbContext
+    public class GestaoContext : DbContext, IGestaoContext
     {
         public GestaoContext()
-            :base("Connection")
+            : base("ConnectionLocalCaio")
         {
-
         }
 
         #region categoria
         public DbSet<Categoria> Categoria { get; set; }
         #endregion
-        
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

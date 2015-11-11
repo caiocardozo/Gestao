@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace GestaoDDD.Application.AutoMapper
+namespace GestaoDDD.MVC.AutoMapper
 {
     public class AutoMapperConfig
     {

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using GestaoDDD.Domain.Interfaces.Services;
 
 namespace GestaoDDD.Application.Interface
 {

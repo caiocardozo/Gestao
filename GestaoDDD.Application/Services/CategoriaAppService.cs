@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using GestaoDDD.Application.Interface;
-using GestaoDDD.Application.ViewModels;
+﻿using GestaoDDD.Application.Interface;
 using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Services;
 
@@ -19,9 +14,9 @@ namespace GestaoDDD.Application.Services
             _categoriaService = categoriaService;
         }
 
-        public IEnumerable<Categoria> ObterCategoriasEspeciais()
-        {
-            return Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaService.ObterCategoriasEspeciais());
-        }
+        //public IEnumerable<Categoria> ObterCategoriasEspeciais()
+        //{
+        //    return Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaService.ObterCategoriasEspeciais());
+        //}
     }
 }
