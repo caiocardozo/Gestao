@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Express 2013 for Web
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{6FAECE3B-194C-42E6-A660-346F51FF7B09}"
 EndProject
@@ -68,6 +68,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{B12D724F-FAB7-4DA1-8CAC-689149A8277F} = {6FAECE3B-194C-42E6-A660-346F51FF7B09}
 		{70CE68B5-5282-4764-ADF4-F5DAB241BAB4} = {50E7A833-16DE-49A7-B849-E1A86909C8F9}
 		{E9B87B0C-BF28-4ECA-A02B-3BCB1DDCD324} = {50E7A833-16DE-49A7-B849-E1A86909C8F9}
 		{B42D8F2C-BB21-446D-AA22-E1B6F5FB0CD0} = {6FAECE3B-194C-42E6-A660-346F51FF7B09}

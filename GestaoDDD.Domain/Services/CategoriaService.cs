@@ -7,12 +7,12 @@ namespace GestaoDDD.Domain.Services
     public class CategoriaService : ServiceBase<Categoria>, ICategoriaService
     {
 
-        private readonly ICategoriaRepository _categoriarepository;
+        private readonly ICategoriaRepository _categoriaRepository;
 
         public CategoriaService(ICategoriaRepository categoriarepository)
         :base (categoriarepository)
         {
-            _categoriarepository = categoriarepository;  
+            _categoriaRepository = categoriarepository;  
         }
 
         //public IEnumerable<Categoria> ObterCategoriasEspeciais() 
