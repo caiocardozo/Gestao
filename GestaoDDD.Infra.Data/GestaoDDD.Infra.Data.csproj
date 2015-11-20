@@ -53,6 +53,10 @@
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ServicoRepository.cs" />
+    <Compile Include="Repositories\OrcamentoRepository.cs" />
+    <Compile Include="Repositories\PrestadorRepository.cs" />
+    <Compile Include="Repositories\UsuarioRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\CategoriaRepository.cs" />
   </ItemGroup>

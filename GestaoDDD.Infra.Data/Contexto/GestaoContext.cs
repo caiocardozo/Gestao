@@ -12,8 +12,13 @@ namespace GestaoDDD.Infra.Data.Contexto
         {
         }
 
-        #region categoria
+        #region objetos
         public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<Prestador> Prestador { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Orcamento> Orcamento { get; set; }
+        public DbSet<Servico> Servico { get; set; }
+
         #endregion
 
 
