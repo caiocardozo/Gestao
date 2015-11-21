@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
+using System;
+using System.Web.Mvc;
+using System.Linq;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
@@ -29,7 +32,10 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            var categoriaId = Mapper.Map<Categoria, CategoriaViewModel>(_categoriaApp.GetById(id)); 
+            if(categoriaId == null)
+                return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
+            return View(categoriaId);
         }
 
         //
@@ -44,12 +50,14 @@ namespace GestaoDDD.MVC.Controllers
         // POST: /Categoria/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Categoria categoria)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                if (ModelState.IsValid)
+                {
+                    _categoriaApp.SaveOrUpdate(categoria);
+                }
                 return RedirectToAction("Index");
             }
             catch
@@ -63,19 +71,24 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            var categoriaEdit = Mapper.Map<Categoria, CategoriaViewModel>(_categoriaApp.GetById(id));
+            if (categoriaEdit == null)
+                return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
+            return View(categoriaEdit);
         }
 
         //
         // POST: /Categoria/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Categoria categoria)
         {
             try
             {
-                // TODO: Add update logic here
-
+                if (ModelState.IsValid) 
+                {
+                    _categoriaApp.SaveOrUpdate(categoria);
+                }
                 return RedirectToAction("Index");
             }
             catch
@@ -89,19 +102,23 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View();
+            var categoriaId = Mapper.Map<Categoria, CategoriaViewModel>(_categoriaApp.GetById(id));
+            if(categoriaId == null)
+                return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
+            return View(categoriaId);
         }
 
         //
         // POST: /Categoria/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Excluir")]
+        public ActionResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                var categoriaDel = _categoriaApp.GetById(id);
+                _categoriaApp.Remove(categoriaDel);
                 return RedirectToAction("Index");
             }
             catch
@@ -111,3 +128,4 @@ namespace GestaoDDD.MVC.Controllers
         }
     }
 }
+

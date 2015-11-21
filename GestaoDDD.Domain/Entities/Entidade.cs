@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestaoDDD.Domain.Entities
 {
@@ -10,5 +6,11 @@ namespace GestaoDDD.Domain.Entities
     {
         public DateTime data_inclusao { get; set; }
         public DateTime data_alteracao { get; set; }
+
+        public Entidade()
+        {
+            data_alteracao = DateTime.Now;
+            data_inclusao = DateTime.Now;
+        }
     }
 }

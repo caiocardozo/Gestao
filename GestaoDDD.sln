@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDDD.Domain", "GestaoD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDDD.Infra.Data", "GestaoDDD.Infra.Data\GestaoDDD.Infra.Data.csproj", "{55A07FF1-137A-4FA1-AC2C-6A02AC82A29A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2.1 - Ientity", "4.2.1 - Ientity", "{84BD5279-6C9A-4240-B021-C43FD3A64E4E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2.1 - Identity", "4.2.1 - Identity", "{84BD5279-6C9A-4240-B021-C43FD3A64E4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDDD.Infra.Identity", "GestaoDDD.Infra.Identity\GestaoDDD.Infra.Identity.csproj", "{444F7097-3697-4248-A9D3-9FEFDD60B9AE}"
 EndProject

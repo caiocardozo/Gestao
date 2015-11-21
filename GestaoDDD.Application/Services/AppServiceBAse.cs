@@ -14,9 +14,9 @@ namespace GestaoDDD.Application.Services
             _serviceBase = serviceBase;
         }
 
-        public void Add(TEntity obj)
+        public void SaveOrUpdate(TEntity obj)
         {
-            _serviceBase.Add(obj);
+            _serviceBase.SaveOrUpdate(obj);
         }
 
         public TEntity GetById(int id)
@@ -29,10 +29,10 @@ namespace GestaoDDD.Application.Services
             return _serviceBase.GetAll();
         }
 
-        public void Update(TEntity obj)
-        {
-            _serviceBase.Update(obj);
-        }
+        //public void Update(TEntity obj)
+        //{
+        //    _serviceBase.Update(obj);
+        //}
 
         public void Remove(TEntity obj)
         {

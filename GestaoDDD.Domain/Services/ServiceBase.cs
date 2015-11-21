@@ -16,9 +16,9 @@ namespace GestaoDDD.Domain.Services
             _repository = repository;
         }
 
-        public void Add(TEntity obj)
+        public void SaveOrUpdate(TEntity obj)
         {
-            _repository.Add(obj);
+            _repository.SaveOrUpdate(obj);
         }
 
         public TEntity GetById(int id)
@@ -31,10 +31,10 @@ namespace GestaoDDD.Domain.Services
             return _repository.GetAll();
         }
 
-        public void Update(TEntity obj)
-        {
-            _repository.Update(obj);
-        }
+        //public void Update(TEntity obj)
+        //{
+        //    _repository.Update(obj);
+        //}
 
         public void Remove(TEntity obj)
         {

@@ -13,6 +13,5 @@ namespace GestaoDDD.Application.ViewModels
         [MinLength(2, ErrorMessage = "Mínimo {0} caracteres")]
         [DisplayName("Nome")]
         public string cat_Nome { get; set; }
-
     }
 }

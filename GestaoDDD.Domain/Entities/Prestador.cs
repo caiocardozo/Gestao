@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,13 +17,14 @@ namespace GestaoDDD.Domain.Entities
         public string pres_email { get; set; }
         public string pres_telefone_residencial { get; set; }
         public string pres_telefone_celular { get; set; }
-        //public EnumStatus status { get; set; }
-        
+        public EnumStatus status { get; set; }
+
     }
 
-    enum EnumStatus
+    [DataContract]
+    public enum EnumStatus
     {
-        Ativo, 
+        Ativo,
         Inativo,
         Orcamento_bloqueado,
         Orcamento_liberado
