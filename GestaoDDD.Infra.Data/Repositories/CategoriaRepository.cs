@@ -11,5 +11,11 @@ namespace GestaoDDD.Infra.Data.Repositories
             : base(gestaoContexto)
         {
         }
+
+        //retorna todas as cetegorias especias
+        //public string retorna(string id, int numero)
+        //{
+        //    return consulta
+        //}
     }
 }

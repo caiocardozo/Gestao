@@ -23,6 +23,11 @@ namespace GestaoDDD.Infra.Data.Repositories
             _db.SaveChanges();
         }
 
+        public void SaveOrUpdate(TEntity obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public TEntity GetById(int id)
         {
             //retornando um objeto
@@ -53,6 +58,5 @@ namespace GestaoDDD.Infra.Data.Repositories
         {
             throw new NotImplementedException();
         }
-
-    }
+       }
 }

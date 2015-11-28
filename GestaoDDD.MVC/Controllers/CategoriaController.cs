@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
-using System;
-using System.Web.Mvc;
-using System.Linq;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
@@ -110,10 +107,10 @@ namespace GestaoDDD.MVC.Controllers
 
         //
         // POST: /Categoria/Delete/5
-
-        [HttpPost]
-        [HttpPost, ActionName("Excluir")]
-        public ActionResult Delete(int id)
+[HttpPost]
+        //[ActionName("Excluir")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {

@@ -5,4 +5,5 @@ namespace GestaoDDD.Domain.Interfaces.IRepositories
     public interface ICategoriaRepository : IRepositoryBase<Categoria>
     {
     }
-}
+
+    }

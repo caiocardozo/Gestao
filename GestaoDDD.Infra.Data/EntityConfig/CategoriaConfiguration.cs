@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using GestaoDDD.Domain.Entities;
+﻿using GestaoDDD.Domain.Entities;
 using System.Data.Entity.ModelConfiguration;
 
 namespace GestaoDDD.Infra.Data.EntityConfig
