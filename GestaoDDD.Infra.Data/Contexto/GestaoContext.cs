@@ -41,7 +41,10 @@ namespace GestaoDDD.Infra.Data.Contexto
 
             #region ArquivoConfiguracao
             modelBuilder.Configurations.Add(new CategoriaConfiguration());
-
+            modelBuilder.Configurations.Add(new OrcamentoConfiguration());
+            modelBuilder.Configurations.Add(new PrestadorConfiguration());
+            modelBuilder.Configurations.Add(new ServicoConfiguration());
+            modelBuilder.Configurations.Add(new UsuarioConfiguration());
             #endregion
         }
     }

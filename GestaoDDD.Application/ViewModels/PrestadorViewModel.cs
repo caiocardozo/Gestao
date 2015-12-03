@@ -6,6 +6,7 @@ namespace GestaoDDD.Application.ViewModels
 {
     public class PrestadorViewModel
     {
+        [Key]
         public int pres_Id { get; set; }
 
         [Required(ErrorMessage="Preencha o campo nome")]

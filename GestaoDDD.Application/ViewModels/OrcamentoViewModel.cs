@@ -5,6 +5,7 @@ namespace GestaoDDD.Application.ViewModels
 {
     public class OrcamentoViewModel
     {
+        [Key]
         public int orc_Id { get; set; }
 
         [Required(ErrorMessage = "Preencha o endereço do serviço.")]

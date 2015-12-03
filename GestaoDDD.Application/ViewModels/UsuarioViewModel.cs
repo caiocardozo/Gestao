@@ -5,6 +5,7 @@ namespace GestaoDDD.Application.ViewModels
 {
     public class UsuarioViewModel 
     {
+        [Key]
         public int usu_Id { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo de endereço")]
