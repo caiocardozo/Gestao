@@ -160,6 +160,10 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrcamentoController.cs" />
+    <Compile Include="Controllers\PrestadorController.cs" />
+    <Compile Include="Controllers\ServicoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,6 +204,30 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\Prestador\Index.cshtml" />
+    <Content Include="Views\Prestador\Details.cshtml" />
+    <Content Include="Views\Prestador\Create.cshtml" />
+    <Content Include="Views\Prestador\Edit.cshtml" />
+    <Content Include="Views\Prestador\Delete.cshtml" />
+    <Content Include="Views\Servico\Index.cshtml" />
+    <Content Include="Views\Servico\Details.cshtml" />
+    <Content Include="Views\Servico\Create.cshtml" />
+    <Content Include="Views\Servico\Edit.cshtml" />
+    <Content Include="Views\Servico\Delete.cshtml" />
+    <Content Include="Views\Orcamento\Index.cshtml" />
+    <Content Include="Views\Orcamento\Details.cshtml" />
+    <Content Include="Views\Orcamento\Create.cshtml" />
+    <Content Include="Views\Orcamento\Edit.cshtml" />
+    <Content Include="Views\Orcamento\Delete.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Details.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<GestaoDDD.Application.ViewModels.OrcamentoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.orc_endereco_servico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.orc_descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.orc_dias_prazo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.orc_endereco_servico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.orc_descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.orc_dias_prazo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.orc_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.orc_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.orc_Id })
+        </td>
+    </tr>
+}
+
+</table>

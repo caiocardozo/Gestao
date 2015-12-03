@@ -1,0 +1,74 @@
+﻿@model GestaoDDD.Application.ViewModels.PrestadorViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PrestadorViewModel</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pres_nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pres_nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pres_cpf_cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pres_cpf_cnpj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pres_endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pres_endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pres_raio_recebimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pres_raio_recebimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pres_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pres_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pres_telefone_residencial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pres_telefone_residencial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pres_telefone_celular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pres_telefone_celular)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pres_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
