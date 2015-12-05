@@ -15,6 +15,7 @@ namespace GestaoDDD.MVC.AutoMapper
         {
             //mapeia classe para categoria
             Mapper.CreateMap<Categoria, CategoriaViewModel>();
+            Mapper.CreateMap<Servico, ServicoViewModel>();
         }
     }
 }

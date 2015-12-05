@@ -25,7 +25,8 @@ namespace GestaoDDD.Infra.Data.Repositories
 
         public void SaveOrUpdate(TEntity obj)
         {
-            throw new NotImplementedException();
+             _db.Set<TEntity>().Add(obj);
+             _db.SaveChanges();
         }
 
         public TEntity GetById(int id)

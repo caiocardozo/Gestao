@@ -8,10 +8,10 @@ namespace GestaoDDD.Application.Services
     {
         private readonly IServicoService _servicoService;
 
-        public ServicoAppService(IServicoService servicoBase)
-            : base(servicoBase)
+        public ServicoAppService(IServicoService servicoService)
+            : base(servicoService)
         {
-            _servicoService = servicoBase;
+            _servicoService = servicoService;
         }
     }
 }

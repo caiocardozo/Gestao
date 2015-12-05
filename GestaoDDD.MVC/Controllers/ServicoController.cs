@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using GestaoDDD.Application.Interface;
+using GestaoDDD.Application.ViewModels;
+using GestaoDDD.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,18 +12,29 @@ namespace GestaoDDD.MVC.Controllers
 {
     public class ServicoController : Controller
     {
+        private readonly IServicoAppService _servicoApp;
+
+        public ServicoController(IServicoAppService servicoApp)
+        {
+            _servicoApp = servicoApp;
+        }
+
         //
         // GET: /Servico/
         public ActionResult Index()
         {
-            return View();
+            var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
+            return View(servicoViewModel);
         }
 
         //
         // GET: /Servico/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var servicoId = Mapper.Map<Servico, ServicoViewModel>(_servicoApp.GetById(id));
+            if(servicoId == null)
+                return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
+            return View(servicoId);
         }
 
         //
@@ -32,11 +47,14 @@ namespace GestaoDDD.MVC.Controllers
         //
         // POST: /Servico/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Servico servico)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    _servicoApp.SaveOrUpdate(servico);
+                }
 
                 return RedirectToAction("Index");
             }
