@@ -18,6 +18,7 @@ namespace GestaoDDD.Infra.Data.Contexto
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Orcamento> Orcamento { get; set; }
         public DbSet<Servico> Servico { get; set; }
+        public DbSet<ServicoPrestador> ServicoPrestador { get; set; }
 
         #endregion
 
@@ -45,6 +46,7 @@ namespace GestaoDDD.Infra.Data.Contexto
             modelBuilder.Configurations.Add(new PrestadorConfiguration());
             modelBuilder.Configurations.Add(new ServicoConfiguration());
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
+            modelBuilder.Configurations.Add(new ServicoPrestadorConfiguration());
             #endregion
         }
     }

@@ -50,6 +50,7 @@
     <Compile Include="Interface\IOrcamentoAppService.cs" />
     <Compile Include="Interface\IPrestadorAppService.cs" />
     <Compile Include="Interface\IServicoAppService.cs" />
+    <Compile Include="Interface\IServicoPrestadorAppService.cs" />
     <Compile Include="Interface\IUsuarioAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppServiceBase.cs" />
@@ -57,9 +58,11 @@
     <Compile Include="Services\OrcamentoAppService.cs" />
     <Compile Include="Services\PrestadorAppService.cs" />
     <Compile Include="Services\ServicoAppService.cs" />
+    <Compile Include="Services\ServicoPrestadorAppService.cs" />
     <Compile Include="Services\UsuarioAppService.cs" />
     <Compile Include="ViewModels\CategoriaViewModel.cs" />
     <Compile Include="ViewModels\OrcamentoViewModel.cs" />
+    <Compile Include="ViewModels\ServicoPrestadorViewModel.cs" />
     <Compile Include="ViewModels\ServicoViewModel.cs" />
     <Compile Include="ViewModels\UsuarioViewModel.cs" />
     <Compile Include="ViewModels\PrestadorViewModel.cs" />
