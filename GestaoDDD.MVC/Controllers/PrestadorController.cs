@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GestaoDDD.Application.Interface;
+using GestaoDDD.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,11 @@ namespace GestaoDDD.MVC.Controllers
 {
     public class PrestadorController : Controller
     {
+        private readonly IPrestadorAppService _prestadorApp;
+        public PrestadorController(IPrestadorAppService prestadorApp)
+        {
+            _prestadorApp = prestadorApp;
+        }
         //
         // GET: /Prestador/
         public ActionResult Index()
@@ -32,13 +39,15 @@ namespace GestaoDDD.MVC.Controllers
         //
         // POST: /Prestador/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Prestador prestador)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    _prestadorApp.SaveOrUpdate(prestador);
+                }
+                //return RedirectToAction("Index");
             }
             catch
             {

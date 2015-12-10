@@ -1,89 +1,62 @@
 ﻿@model GestaoDDD.Application.ViewModels.PrestadorViewModel
 
 @{
-    ViewBag.Title = "Create";
+    Layout = null;
 }
-
-<h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>PrestadorViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_nome, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_nome)
-                @Html.ValidationMessageFor(model => model.pres_nome)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_cpf_cnpj, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_cpf_cnpj)
-                @Html.ValidationMessageFor(model => model.pres_cpf_cnpj)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_endereco, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_endereco)
-                @Html.ValidationMessageFor(model => model.pres_endereco)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_raio_recebimento, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_raio_recebimento)
-                @Html.ValidationMessageFor(model => model.pres_raio_recebimento)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_email, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_email)
-                @Html.ValidationMessageFor(model => model.pres_email)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_telefone_residencial, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_telefone_residencial)
-                @Html.ValidationMessageFor(model => model.pres_telefone_residencial)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_telefone_celular, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_telefone_celular)
-                @Html.ValidationMessageFor(model => model.pres_telefone_celular)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+@*html*@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <!-- META RESPONSIVA -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- CSS -->
+    <link href="~/Content/Prestador/pagina_captura.css" rel="stylesheet" />
+    <title>Agiliza Orçamentos</title>
+</head>
+<body>
+
+    <!-- BCL ONE -->
+    <section class="bcl-one">
+        <div class="center">
+            <p>em breve você terá <br> muito mais agilidade na hora de <br> <b>buscar orçamentos de forma gratuita e sem compromisso.</b></p>
+        </div>
+    </section>
+    <!-- FIM BCL ONE -->
+    <!-- BCL TWO -->
+    <section class="bcl-two">
+        <div class="center">
+            <section class="col-50">
+                <div class="infos-form">
+                    <h1>você é um profissional e busca novos clientes?</h1>
+                    <p>faça seu cadastro gratuitamente</p>
+
+                    <form action="" method="post" class="frm-contato">
+                        <input required="required" placeholder="Nome" id="pres_nome" name="pres_nome" type="text">
+                        <input type="text" placeholder="CPF/CNPJ" required="required" id="pres_cpf_cnpj" name="pres_cpf_cnpj">
+                        <input type="email" placeholder="E-mail" required="required" id="pres_email" name="pres_email">
+                        <input type="text" placeholder="Celular" required="required" id="pres_telefone_celular" name="pres_telefone_celular">
+                        <input type="submit" value=">> AVANÇAR">
+                    </form>
+                </div>
+            </section>
+            <section class="col-50">
+                <img src="~/Images/Prestador/man.png" alt="" />
+            </section>
+        </div>
+    </section>
+    <!-- FIM BCL TWO -->
+    <footer class="footer">
+        <div class="center">
+            <p><small><b>agiliza orçamentos</b> | <a href="mailto:contato@agilizapracamentos.com.br">contato@agilizapracamentos.com.br</a></small></p>
+        </div>
+    </footer>
+</body>
+</html>
