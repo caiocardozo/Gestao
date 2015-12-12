@@ -7,15 +7,18 @@
 	-o-transition: all .9s ease;
 	transition: all .9s ease;
 	outline: none;
+    
 }
 
-body, html{
+html, body {
 	height: 100%;
 	font-size: 100%;
 	font-family: arial;
 	background-image: url(../Images/Prestador/background.png);  
+    opacity:1;
 	background-size: cover;
 	background-position: center;
+    
 }
 a{text-decoration: none; color: rgba(255,255,255,1);}
 

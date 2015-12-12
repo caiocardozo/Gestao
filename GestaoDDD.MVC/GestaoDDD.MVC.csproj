@@ -218,11 +218,6 @@
     <Content Include="Views\Prestador\Create.cshtml" />
     <Content Include="Views\Prestador\Edit.cshtml" />
     <Content Include="Views\Prestador\Delete.cshtml" />
-    <Content Include="Views\Servico\Index.cshtml" />
-    <Content Include="Views\Servico\Details.cshtml" />
-    <Content Include="Views\Servico\Create.cshtml" />
-    <Content Include="Views\Servico\Edit.cshtml" />
-    <Content Include="Views\Servico\Delete.cshtml" />
     <Content Include="Views\Orcamento\Index.cshtml" />
     <Content Include="Views\Orcamento\Details.cshtml" />
     <Content Include="Views\Orcamento\Create.cshtml" />
@@ -233,6 +228,11 @@
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Servico\Index.cshtml" />
+    <Content Include="Views\Servico\Details.cshtml" />
+    <Content Include="Views\Servico\Create.cshtml" />
+    <Content Include="Views\Servico\Edit.cshtml" />
+    <Content Include="Views\Servico\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
