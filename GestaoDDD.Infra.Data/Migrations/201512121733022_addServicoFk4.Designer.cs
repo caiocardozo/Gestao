@@ -7,13 +7,13 @@ namespace GestaoDDD.Infra.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class alterDomains : IMigrationMetadata
+    public sealed partial class addServicoFk4 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(alterDomains));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addServicoFk4));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512030328596_alterDomains"; }
+            get { return "201512121733022_addServicoFk4"; }
         }
         
         string IMigrationMetadata.Source

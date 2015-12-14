@@ -9,5 +9,7 @@ namespace GestaoDDD.Application.ViewModels
 
         [Required(ErrorMessage="Preencha o campo nome do serviço.")]
         public string serv_nome { get; set; }
+
+        public CategoriaViewModel categoria_Id { get; set; }
     }
 }

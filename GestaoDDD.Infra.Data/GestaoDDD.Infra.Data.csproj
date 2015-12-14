@@ -49,27 +49,28 @@
     <Compile Include="Contexto\GestaoContext.cs" />
     <Compile Include="Contexto\IGestaoContext.cs" />
     <Compile Include="EntityConfig\PrestadorConfiguration.cs" />
+    <Compile Include="EntityConfig\ServicoPrestadorConfiguration.cs" />
     <Compile Include="EntityConfig\UsuarioConfiguration.cs" />
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
-    <Compile Include="Migrations\201512030328596_alterDomains.cs" />
-    <Compile Include="Migrations\201512030328596_alterDomains.Designer.cs">
-      <DependentUpon>201512030328596_alterDomains.cs</DependentUpon>
+    <Compile Include="Migrations\201512121728584_addServicoFk3.cs" />
+    <Compile Include="Migrations\201512121728584_addServicoFk3.Designer.cs">
+      <DependentUpon>201512121728584_addServicoFk3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512121733022_addServicoFk4.cs" />
+    <Compile Include="Migrations\201512121733022_addServicoFk4.Designer.cs">
+      <DependentUpon>201512121733022_addServicoFk4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ServicoPrestadorRepository.cs" />
     <Compile Include="Repositories\ServicoRepository.cs" />
     <Compile Include="Repositories\OrcamentoRepository.cs" />
     <Compile Include="Repositories\PrestadorRepository.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\CategoriaRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512030328596_alterDomains.resx">
-      <DependentUpon>201512030328596_alterDomains.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -81,7 +82,14 @@
       <Name>GestaoDDD.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512121728584_addServicoFk3.resx">
+      <DependentUpon>201512121728584_addServicoFk3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512121733022_addServicoFk4.resx">
+      <DependentUpon>201512121733022_addServicoFk4.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
