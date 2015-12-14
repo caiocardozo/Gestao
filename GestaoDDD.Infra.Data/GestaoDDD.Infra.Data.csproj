@@ -54,10 +54,6 @@
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
-    <Compile Include="Migrations\201512121728584_addServicoFk3.cs" />
-    <Compile Include="Migrations\201512121728584_addServicoFk3.Designer.cs">
-      <DependentUpon>201512121728584_addServicoFk3.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201512121733022_addServicoFk4.cs" />
     <Compile Include="Migrations\201512121733022_addServicoFk4.Designer.cs">
       <DependentUpon>201512121733022_addServicoFk4.cs</DependentUpon>
@@ -83,9 +79,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512121728584_addServicoFk3.resx">
-      <DependentUpon>201512121728584_addServicoFk3.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512121733022_addServicoFk4.resx">
       <DependentUpon>201512121733022_addServicoFk4.cs</DependentUpon>
     </EmbeddedResource>

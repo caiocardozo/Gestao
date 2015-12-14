@@ -5,10 +5,14 @@ namespace GestaoDDD.Domain.Entities
     public class Orcamento : Entidade
     {
         public int orc_Id { get; set; }
-        public string orc_endereco_servico { get; set; }
-        public string orc_descricao { get; set; }
-        public int orc_dias_prazo { get; set; }
-        public EnumFrequencia orc_frequencia_prazo { get; set; }
+
+        public string orc_Endereco_Servico { get; set; }
+
+        public string orc_Descricao { get; set; }
+
+        public int orc_Dias_Prazo { get; set; }
+
+        public EnumFrequencia orc_Frequencia_Prazo { get; set; }
 
     }
 

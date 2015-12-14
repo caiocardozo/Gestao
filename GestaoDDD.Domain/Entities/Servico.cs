@@ -1,11 +1,11 @@
-﻿
-using System.Collections.Generic;
-namespace GestaoDDD.Domain.Entities
+﻿namespace GestaoDDD.Domain.Entities
 {
     public class Servico : Entidade
     {
         public int serv_Id { get; set; }
-        public string serv_nome { get; set; }
-        public Categoria categoria_id { get; set; }
+
+        public string serv_Nome { get; set; }
+
+        public Categoria categoria_Id { get; set; }
     }
 }
