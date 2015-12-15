@@ -54,9 +54,9 @@
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
-    <Compile Include="Migrations\201512121733022_addServicoFk4.cs" />
-    <Compile Include="Migrations\201512121733022_addServicoFk4.Designer.cs">
-      <DependentUpon>201512121733022_addServicoFk4.cs</DependentUpon>
+    <Compile Include="Migrations\201512151937221_caio.cs" />
+    <Compile Include="Migrations\201512151937221_caio.Designer.cs">
+      <DependentUpon>201512151937221_caio.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,8 +79,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512121733022_addServicoFk4.resx">
-      <DependentUpon>201512121733022_addServicoFk4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512151937221_caio.resx">
+      <DependentUpon>201512151937221_caio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

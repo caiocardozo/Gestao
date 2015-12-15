@@ -11,5 +11,10 @@ namespace GestaoDDD.Infra.Data.Contexto
         DbSet<T> Set<T>() where T : class;
 
         DbSet<Categoria> Categoria { get; set; }
+        DbSet<Prestador> Prestador { get; set; }
+        DbSet<Usuario> Usuario { get; set; }
+        DbSet<Orcamento> Orcamento { get; set; }
+        DbSet<Servico> Servico { get; set; }
+        DbSet<ServicoPrestador> ServicoPrestador { get; set; }
     }
 }

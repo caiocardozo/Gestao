@@ -1,15 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using GestaoDDD.Domain.Entities;
 
 namespace GestaoDDD.Application.ViewModels
 {
     public class ServicoViewModel
     {
-        [Key]
+        [ScaffoldColumn(false)]
         public int serv_Id { get; set; }
 
-        [Required(ErrorMessage="Preencha o campo nome do serviço.")]
-        public string serv_nome { get; set; }
+        [DisplayName("Nome do Serviço")]
+        [Required(ErrorMessage = "Preencha o nome do serviço")]
+        [MinLength(4, ErrorMessage = "Nome do serviço deve ter ao menos {0} caracteres")]
+        [MaxLength(100, ErrorMessage = "Nome do Serviço deve conter no maximo {0} caracteres")]
+        public string serv_Nome { get; set; }
 
-        public CategoriaViewModel categoria_Id { get; set; }
+        [DisplayName("Categoria")]
+        [Required(ErrorMessage = "Categoria é obrigatória")]
+        public int cat_Id { get; set; }
+
+        public virtual Categoria Categoria { get; set; }
     }
 }

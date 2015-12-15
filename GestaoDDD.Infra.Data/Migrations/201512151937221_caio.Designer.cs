@@ -7,18 +7,18 @@ namespace GestaoDDD.Infra.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addServicoFk4 : IMigrationMetadata
+    public sealed partial class caio : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addServicoFk4));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(caio));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512121733022_addServicoFk4"; }
+            get { return "201512151937221_caio"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target

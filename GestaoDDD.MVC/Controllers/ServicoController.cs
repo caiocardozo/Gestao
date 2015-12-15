@@ -13,10 +13,12 @@ namespace GestaoDDD.MVC.Controllers
     public class ServicoController : Controller
     {
         private readonly IServicoAppService _servicoApp;
+        private readonly ICategoriaAppService _categoriaApp;
 
-        public ServicoController(IServicoAppService servicoApp)
+        public ServicoController(IServicoAppService servicoApp, ICategoriaAppService categoriaApp)
         {
             _servicoApp = servicoApp;
+            _categoriaApp = categoriaApp;
         }
 
         //
@@ -39,24 +41,30 @@ namespace GestaoDDD.MVC.Controllers
 
         //
         // GET: /Servico/Create
-        public ActionResult Create()
+        public ActionResult Cadastrar()
         {
+            ViewBag.categoria_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
             return View();
         }
 
         //
         // POST: /Servico/Create
         [HttpPost]
-        public ActionResult Create(Servico servico)
+        public ActionResult Cadastrar(ServicoViewModel servico)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _servicoApp.SaveOrUpdate(servico);
+                    var servicoDomain = Mapper.Map<ServicoViewModel, Servico>(servico);
+                    _servicoApp.SaveOrUpdate(servicoDomain);
+                    return RedirectToAction("Index");
                 }
-
-                return RedirectToAction("Index");
+                else
+                {
+                    ViewBag.categoria_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
+                    return View(servico);
+                }
             }
             catch
             {

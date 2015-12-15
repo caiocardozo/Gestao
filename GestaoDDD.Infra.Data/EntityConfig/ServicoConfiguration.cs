@@ -18,6 +18,11 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             Property(c => c.data_Inclusao);
 
+            //mapeia o relacionamento 1 to N Categoria
+            HasRequired(t => t.Categoria)//determina que Categoria é obrigatorio em serviço
+           .WithMany(t => t.Servico)//uma categoria tem varios serviços
+           .HasForeignKey(t => t.cat_Id);//chave estangeira de categoria   
+
            }
     }
 }
