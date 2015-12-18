@@ -11,7 +11,7 @@ namespace GestaoDDD.Application.ViewModels
 
         [DisplayName("Nome do Serviço")]
         [Required(ErrorMessage = "Preencha o nome do serviço")]
-        [MinLength(4, ErrorMessage = "Nome do serviço deve ter ao menos {0} caracteres")]
+        [MinLength(4, ErrorMessage = "Nome do serviço deve ter ao menos {1} caracteres")]
         [MaxLength(100, ErrorMessage = "Nome do Serviço deve conter no maximo {0} caracteres")]
         public string serv_Nome { get; set; }
 

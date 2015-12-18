@@ -34,7 +34,7 @@ namespace GestaoDDD.MVC.Controllers
         public ActionResult Details(int id)
         {
             var servicoId = Mapper.Map<Servico, ServicoViewModel>(_servicoApp.GetById(id));
-            if(servicoId == null)
+            if (servicoId == null)
                 return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
             return View(servicoId);
         }
@@ -43,7 +43,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Servico/Create
         public ActionResult Cadastrar()
         {
-            ViewBag.categoria_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
+            ViewBag.cat_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
             return View();
         }
 
@@ -57,18 +57,18 @@ namespace GestaoDDD.MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     var servicoDomain = Mapper.Map<ServicoViewModel, Servico>(servico);
-                    _servicoApp.SaveOrUpdate(servicoDomain);
+                    _servicoApp.Add(servicoDomain);
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ViewBag.categoria_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
+                    ViewBag.cat_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
                     return View(servico);
                 }
             }
             catch
             {
-                return View();
+                return RedirectToAction("ErroAoCadastrar");
             }
         }
 
@@ -118,6 +118,12 @@ namespace GestaoDDD.MVC.Controllers
             {
                 return View();
             }
+        }
+
+
+        public ActionResult ErroAoCadastrar()
+        {
+            return View();
         }
     }
 }

@@ -6,14 +6,16 @@ namespace GestaoDDD.Domain.Interfaces.Services
     {
         //chamadas genericas repositori base faz crud padrao
 
-        //adiciona no banco de dados o obj
+        //adiciona ou atualiza um objeto no banco de dados
         void SaveOrUpdate(TEntity obj);
+        //adiciona no banco de dados o obj
+        void Add(TEntity obj);
         //seleciona por ID
         TEntity GetById(int id);
         //retorna um Ienumerable
         IEnumerable<TEntity> GetAll();
         //realiza update recebendo objeto
-        //void Update(TEntity obj);
+        void Update(TEntity obj);
         //realiza delete recebendo objeto
         void Remove(TEntity obj);
         //dispose força a implementar 
