@@ -14,10 +14,11 @@ html, body {
 	height: 100%;
 	font-size: 100%;
 	font-family: arial;
-	background-image: url(../Images/Prestador/background.png);  
+	background-image: url(../../Images/Prestador/background.png);  
     opacity:1;
 	background-size: cover;
 	background-position: center;
+    
     
 }
 a{text-decoration: none; color: rgba(255,255,255,1);}
@@ -29,7 +30,8 @@ input:valid{
 /*COLS*/
 .col-50{width: 50%; height: 100%; float: left; position: relative;}
 .col-50 img{
-	width: 94%;
+	width: 93%;
+    opacity:1;
 	position: absolute;
 	bottom: -20px;
 }
@@ -76,6 +78,7 @@ input:valid{
 			}
 				form.frm-contato input[type="submit"]:hover{
 					background-color: #914C4F;
+                    
 				}
 
 /* CENTRAL */
