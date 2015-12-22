@@ -4,7 +4,7 @@ using GestaoDDD.Domain.Entities;
 
 namespace GestaoDDD.Infra.Data.Contexto
 {
-    public interface IGestaoContext
+   public interface IGestaoContext
     {
         DbEntityEntry Entry(object entity);
         int SaveChanges();

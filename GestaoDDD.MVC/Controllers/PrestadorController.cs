@@ -47,7 +47,7 @@ namespace GestaoDDD.MVC.Controllers
                 {
                     _prestadorApp.SaveOrUpdate(prestador);
                 }
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
             catch
             {

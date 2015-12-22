@@ -13,15 +13,17 @@ namespace GestaoDDD.MVC.Controllers
     public class ServicoController : Controller
     {
         private readonly IServicoAppService _servicoApp;
+        private readonly ICategoriaAppService _categoriaApp;
 
-        public ServicoController(IServicoAppService servicoApp)
+        public ServicoController(IServicoAppService servicoApp, ICategoriaAppService categoriaApp)
         {
             _servicoApp = servicoApp;
+            _categoriaApp = categoriaApp;
         }
 
         //
         // GET: /Servico/
-        public ActionResult Index()
+        public ActionResult Index(FormCollection collection)
         {
             var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
             return View(servicoViewModel);
@@ -32,35 +34,41 @@ namespace GestaoDDD.MVC.Controllers
         public ActionResult Details(int id)
         {
             var servicoId = Mapper.Map<Servico, ServicoViewModel>(_servicoApp.GetById(id));
-            if(servicoId == null)
+            if (servicoId == null)
                 return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
             return View(servicoId);
         }
 
         //
         // GET: /Servico/Create
-        public ActionResult Create()
+        public ActionResult Cadastrar(FormCollection collection)
         {
+            ViewBag.cat_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
             return View();
         }
 
         //
         // POST: /Servico/Create
         [HttpPost]
-        public ActionResult Create(Servico servico)
+        public ActionResult Cadastrar(ServicoViewModel servico)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _servicoApp.SaveOrUpdate(servico);
+                    var servicoDomain = Mapper.Map<ServicoViewModel, Servico>(servico);
+                    _servicoApp.Add(servicoDomain);
+                    return RedirectToAction("Index");
                 }
-
-                return RedirectToAction("Index");
+                else
+                {
+                    ViewBag.cat_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
+                    return View(servico);
+                }
             }
             catch
             {
-                return View();
+                return RedirectToAction("ErroAoCadastrar");
             }
         }
 
@@ -110,6 +118,12 @@ namespace GestaoDDD.MVC.Controllers
             {
                 return View();
             }
+        }
+
+
+        public ActionResult ErroAoCadastrar()
+        {
+            return View();
         }
     }
 }

@@ -190,6 +190,7 @@
     <Content Include="Images\front.png" />
     <Content Include="Images\Prestador\background.png" />
     <Content Include="Images\Prestador\man.png" />
+    <Content Include="Scripts\Adicionais\page-prestador.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\v.001.pubxml" />
@@ -228,11 +229,9 @@
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Servico\Cadastrar.cshtml" />
+    <Content Include="Views\Servico\ErroAoCadastrar.cshtml" />
     <Content Include="Views\Servico\Index.cshtml" />
-    <Content Include="Views\Servico\Details.cshtml" />
-    <Content Include="Views\Servico\Create.cshtml" />
-    <Content Include="Views\Servico\Edit.cshtml" />
-    <Content Include="Views\Servico\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

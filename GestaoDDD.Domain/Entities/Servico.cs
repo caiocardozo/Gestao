@@ -6,6 +6,8 @@
 
         public string serv_Nome { get; set; }
 
-        public Categoria categoria_Id { get; set; }
+        public int cat_Id { get; set; }
+        
+        public virtual Categoria Categoria { get; set; }
     }
 }

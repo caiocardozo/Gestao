@@ -6,7 +6,11 @@ namespace GestaoDDD.Application.Interface
     {
         void SaveOrUpdate(TEntity obj);
 
+        void Add(TEntity obj);
+
         TEntity GetById(int id);
+
+        void Update(TEntity obj);
 
         IEnumerable<TEntity> GetAll();
 
