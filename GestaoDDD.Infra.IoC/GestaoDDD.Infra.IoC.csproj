@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{444F7097-3697-4248-A9D3-9FEFDD60B9AE}</ProjectGuid>
+    <ProjectGuid>{644C98A9-DE1F-4300-ABA2-D9BD450D6D6F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GestaoDDD.Infra.Identity</RootNamespace>
-    <AssemblyName>GestaoDDD.Infra.Identity</AssemblyName>
+    <RootNamespace>GestaoDDD.Infra.IoC</RootNamespace>
+    <AssemblyName>GestaoDDD.Infra.IoC</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -66,6 +66,7 @@
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -74,57 +75,44 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    <Reference Include="SimpleInjector, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.3.1.2\lib\net45\SimpleInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.3.1.2\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Twilio.Api, Version=3.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Twilio.4.4.1\lib\3.5\Twilio.Api.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ApplicationRoleManager.cs" />
-    <Compile Include="Configuration\ApplicationSignInManager.cs" />
-    <Compile Include="Configuration\ApplicationUserManager.cs" />
-    <Compile Include="Configuration\EmailService.cs" />
-    <Compile Include="Configuration\SmsService.cs" />
-    <Compile Include="Context\ApplicationDbContext.cs" />
-    <Compile Include="Model\AddPhoneNumberViewModel.cs" />
-    <Compile Include="Model\ApplicationUser.cs" />
-    <Compile Include="Model\ChangePasswordViewModel.cs" />
-    <Compile Include="Model\ConfigureTwoFactorViewModel.cs" />
-    <Compile Include="Model\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="Model\ExternalLoginListViewModel.cs" />
-    <Compile Include="Model\FactorViewModel.cs" />
-    <Compile Include="Model\ForgotPasswordViewModel.cs" />
-    <Compile Include="Model\ForgotViewModel.cs" />
-    <Compile Include="Model\IndexViewModel.cs" />
-    <Compile Include="Model\LoginViewModel.cs" />
-    <Compile Include="Model\ManageLoginsViewModel.cs" />
-    <Compile Include="Model\RegisterViewModel.cs" />
-    <Compile Include="Model\ResetPasswordViewModel.cs" />
-    <Compile Include="Model\RoleViewModel.cs" />
-    <Compile Include="Model\SendCodeViewModel.cs" />
-    <Compile Include="Model\SetPasswordViewModel.cs" />
-    <Compile Include="Model\VerifyCodeViewModel.cs" />
-    <Compile Include="Model\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="BootStrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GestaoDDD.Domain\GestaoDDD.Domain.csproj">
+      <Project>{bdb34e47-03fa-4b92-8e26-589f14e9c512}</Project>
+      <Name>GestaoDDD.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GestaoDDD.Infra.Data\GestaoDDD.Infra.Data.csproj">
+      <Project>{55a07ff1-137a-4fa1-ac2c-6a02ac82a29a}</Project>
+      <Name>GestaoDDD.Infra.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GestaoDDD.Infra.Identity\GestaoDDD.Infra.Identity.csproj">
+      <Project>{444f7097-3697-4248-a9d3-9fefdd60b9ae}</Project>
+      <Name>GestaoDDD.Infra.Identity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

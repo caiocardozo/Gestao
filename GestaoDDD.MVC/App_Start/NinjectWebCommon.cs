@@ -107,7 +107,7 @@ namespace GestaoDDD.MVC.App_Start
             #region Usuario
             kernel.Bind<IUsuarioAppService>().To<UsuarioAppService>();
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
-            kernel.Bind<IUsuarioRepository>().To<USuarioRepository>();
+            kernel.Bind<IUsuarioRepository>().To<UsuarioRepository>();
 
             #endregion
 
