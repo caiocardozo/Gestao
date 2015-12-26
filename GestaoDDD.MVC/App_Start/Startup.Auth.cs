@@ -9,7 +9,7 @@ using Owin;
 using System;
 using System.Web.Mvc;
 
-namespace GestaoDDD.MVC.App_Start
+namespace GestaoDDD.MVC
 {
 	public partial class Startup
 	{
