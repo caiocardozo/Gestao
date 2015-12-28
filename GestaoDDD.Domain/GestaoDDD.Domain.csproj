@@ -51,7 +51,6 @@
     <Compile Include="Interfaces\Repositories\IPrestadorRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IServicoPrestador.cs" />
     <Compile Include="Interfaces\Repositories\IServicoPrestadorRepository.cs" />
     <Compile Include="Interfaces\Repositories\IServicoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IUsuarioRepository.cs" />

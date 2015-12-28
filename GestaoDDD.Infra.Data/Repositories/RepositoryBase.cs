@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using GestaoDDD.Domain.Interfaces.IRepositories;
+using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Infra.Data.Contexto;
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,8 @@ namespace GestaoDDD.Infra.Data.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            // Suppress finalization.
+            GC.SuppressFinalize(this);
         }
        }
 }

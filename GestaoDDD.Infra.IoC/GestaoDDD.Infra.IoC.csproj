@@ -101,6 +101,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GestaoDDD.Application\GestaoDDD.Application.csproj">
+      <Project>{0bf52a42-2baf-4ae0-bfbd-fc2ef1185ee8}</Project>
+      <Name>GestaoDDD.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GestaoDDD.Domain\GestaoDDD.Domain.csproj">
       <Project>{bdb34e47-03fa-4b92-8e26-589f14e9c512}</Project>
       <Name>GestaoDDD.Domain</Name>

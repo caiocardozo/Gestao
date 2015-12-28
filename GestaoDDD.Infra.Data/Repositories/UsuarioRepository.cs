@@ -9,7 +9,7 @@ namespace GestaoDDD.Infra.Data.Repositories
     public class UsuarioRepository : RepositoryBase<Usuario>, IUsuarioRepository
     {
         private readonly GestaoContext _gestaoContext;
-        public UsuarioRepository(IGestaoContext gestaoContexto)
+        public UsuarioRepository(GestaoContext gestaoContexto)
             : base(gestaoContexto)
         {
             _gestaoContext = new GestaoContext();

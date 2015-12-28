@@ -1,6 +1,6 @@
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.Services;
-using GestaoDDD.Domain.Interfaces.IRepositories;
+using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Domain.Interfaces.Services;
 using GestaoDDD.Domain.Services;
 using GestaoDDD.Infra.Data.Contexto;
@@ -8,8 +8,8 @@ using GestaoDDD.Infra.Data.Repositories;
 using GestaoDDD.MVC.App_Start;
 using WebActivatorEx;
 
-[assembly: PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
-[assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
+//[assembly: PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+//[assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
 
 namespace GestaoDDD.MVC.App_Start
 {

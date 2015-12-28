@@ -18,6 +18,8 @@ namespace GestaoDDD.MVC.AutoMapper
             //mapeia de viewModel para classe
             Mapper.CreateMap<CategoriaViewModel, Categoria>();
             Mapper.CreateMap<ServicoViewModel, Servico>();
+            Mapper.CreateMap<UsuarioViewModel, Usuario>();
+            Mapper.CreateMap<OrcamentoViewModel, Orcamento>();
         }
     }
 }

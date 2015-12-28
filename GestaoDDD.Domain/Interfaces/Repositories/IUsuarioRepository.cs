@@ -1,5 +1,5 @@
 ﻿using GestaoDDD.Domain.Entities;
-using GestaoDDD.Domain.Interfaces.IRepositories;
+using GestaoDDD.Domain.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
 

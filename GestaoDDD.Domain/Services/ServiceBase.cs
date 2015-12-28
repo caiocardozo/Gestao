@@ -1,7 +1,7 @@
 ﻿using GestaoDDD.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
-using GestaoDDD.Domain.Interfaces.IRepositories;
+using GestaoDDD.Domain.Interfaces.Repositories;
 
 
 namespace GestaoDDD.Domain.Services

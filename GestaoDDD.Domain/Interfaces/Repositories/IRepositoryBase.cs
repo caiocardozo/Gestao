@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GestaoDDD.Domain.Interfaces.IRepositories
+namespace GestaoDDD.Domain.Interfaces.Repositories
 {
     public interface IRepositoryBase<TEntity> where TEntity : class
     {

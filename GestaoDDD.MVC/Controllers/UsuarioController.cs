@@ -1,4 +1,8 @@
-﻿using GestaoDDD.Domain.Interfaces.Repositories;
+﻿using AutoMapper;
+using GestaoDDD.Application.Interface;
+using GestaoDDD.Application.ViewModels;
+using GestaoDDD.Domain.Entities;
+using GestaoDDD.Domain.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +14,37 @@ namespace GestaoDDD.MVC.Controllers
     [Authorize]
     public class UsuarioController : Controller
     {
-        private readonly IUsuarioRepository _usuarioRepository;
-        public UsuarioController(IUsuarioRepository usuarioRepository)
+        //private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IUsuarioAppService _usuarioAppService;
+        public UsuarioController(IUsuarioAppService usuarioRepository)
         {
-            _usuarioRepository = usuarioRepository;
+            _usuarioAppService = usuarioRepository;
         }
 
         //
         // GET: /Usuario/
         public ActionResult Index()
         {
-            return View(_usuarioRepository.ObterTodos());
+            var usuarioViewModel = Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioViewModel>>(_usuarioAppService.GetAll());
+            return View(usuarioViewModel);
         }
 
         //
         // GET: /Usuario/Details/5
         public ActionResult Details(int id)
         {
-            return View(_usuarioRepository.ObterPorId(id.ToString()));
+            var usuarioId = Mapper.Map<Usuario, UsuarioViewModel>(_usuarioAppService.GetById(id));
+            if(usuarioId == null)
+                return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
+            return View(usuarioId);
         }
 
         public ActionResult DesativarLock(string id)
         {
-            _usuarioRepository.DesativarLock(id);
+            _usuarioAppService.DesativarLock(id);
             return RedirectToAction("Index");
+            //_usuarioRepository.DesativarLock(id);
+            //return RedirectToAction("Index");
         }
 
         //
