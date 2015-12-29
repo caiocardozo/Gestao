@@ -28,8 +28,6 @@ namespace GestaoDDD.Infra.IoC
             container.RegisterPerWebRequest<ApplicationUserManager>();
             container.RegisterPerWebRequest<ApplicationSignInManager>();
 
-            
-
             #region Categoria
             container.RegisterPerWebRequest<ICategoriaRepository, CategoriaRepository>();
             container.RegisterPerWebRequest<ICategoriaAppService, CategoriaAppService>();

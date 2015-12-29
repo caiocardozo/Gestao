@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Entities\Categoria.cs" />
     <Compile Include="Entities\Entidade.cs" />
+    <Compile Include="Entities\Identity\Claims.cs" />
+    <Compile Include="Entities\Identity\Client.cs" />
     <Compile Include="Entities\Orcamento.cs" />
     <Compile Include="Entities\Prestador.cs" />
     <Compile Include="Entities\Servico.cs" />
