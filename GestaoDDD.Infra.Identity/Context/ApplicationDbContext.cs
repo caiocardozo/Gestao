@@ -15,6 +15,7 @@ namespace GestaoDDD.Infra.Identity.Context
         {
         }
 
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
