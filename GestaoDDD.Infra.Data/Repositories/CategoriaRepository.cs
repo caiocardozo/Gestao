@@ -6,7 +6,7 @@ namespace GestaoDDD.Infra.Data.Repositories
 {
     public class CategoriaRepository : RepositoryBase<Categoria>, ICategoriaRepository
     {
-        public CategoriaRepository(IGestaoContext gestaoContexto)
+        public CategoriaRepository(GestaoContext gestaoContexto)
             : base(gestaoContexto)
         {
         }

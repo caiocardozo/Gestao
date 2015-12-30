@@ -7,7 +7,7 @@ namespace GestaoDDD.Infra.Data.Repositories
     public class OrcamentoRepository : RepositoryBase<Orcamento>, IOrcamentoRepository
     {
 
-        public OrcamentoRepository(IGestaoContext gestaoContexto)
+        public OrcamentoRepository(GestaoContext gestaoContexto)
             : base(gestaoContexto)
         {
         }

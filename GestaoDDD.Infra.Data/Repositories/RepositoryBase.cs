@@ -10,9 +10,9 @@ namespace GestaoDDD.Infra.Data.Repositories
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
       //aqui rabalha com objetos genericos
-        protected IGestaoContext _db;
+        protected GestaoContext _db;
 
-        public RepositoryBase(IGestaoContext gestaoContext)
+        public RepositoryBase(GestaoContext gestaoContext)
         {
             _db = gestaoContext;
         }

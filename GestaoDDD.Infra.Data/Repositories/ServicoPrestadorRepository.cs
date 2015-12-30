@@ -11,7 +11,7 @@ namespace GestaoDDD.Infra.Data.Repositories
 {
     public class ServicoPrestadorRepository : RepositoryBase<ServicoPrestador>, IServicoPrestadorRepository
     {
-        public ServicoPrestadorRepository(IGestaoContext gestaoContext)
+        public ServicoPrestadorRepository(GestaoContext gestaoContext)
             :base(gestaoContext)
         {
 

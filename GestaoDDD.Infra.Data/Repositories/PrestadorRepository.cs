@@ -6,8 +6,7 @@ namespace GestaoDDD.Infra.Data.Repositories
 {
     public class PrestadorRepository : RepositoryBase<Prestador>, IPrestadorRepository
     {
-
-        public PrestadorRepository(IGestaoContext gestaoContexto)
+        public PrestadorRepository(GestaoContext gestaoContexto)
             : base(gestaoContexto)
         {
         }
