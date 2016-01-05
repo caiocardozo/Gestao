@@ -104,6 +104,11 @@
     <Compile Include="Configuration\EmailService.cs" />
     <Compile Include="Configuration\SmsService.cs" />
     <Compile Include="Context\ApplicationDbContext.cs" />
+    <Compile Include="Migrations\201512292041175_claims.cs" />
+    <Compile Include="Migrations\201512292041175_claims.Designer.cs">
+      <DependentUpon>201512292041175_claims.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AddPhoneNumberViewModel.cs" />
     <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Model\ChangePasswordViewModel.cs" />
@@ -125,10 +130,20 @@
     <Compile Include="Model\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GestaoDDD.Domain\GestaoDDD.Domain.csproj">
+      <Project>{bdb34e47-03fa-4b92-8e26-589f14e9c512}</Project>
+      <Name>GestaoDDD.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512292041175_claims.resx">
+      <DependentUpon>201512292041175_claims.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

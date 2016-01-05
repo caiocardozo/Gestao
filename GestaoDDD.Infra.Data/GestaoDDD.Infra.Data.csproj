@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Contexto\GestaoContext.cs" />
     <Compile Include="Contexto\IGestaoContext.cs" />
+    <Compile Include="EntityConfig\ClaimsConfiguration.cs" />
+    <Compile Include="EntityConfig\ClientConfiguration.cs" />
     <Compile Include="EntityConfig\PrestadorConfiguration.cs" />
     <Compile Include="EntityConfig\ServicoPrestadorConfiguration.cs" />
     <Compile Include="EntityConfig\UsuarioConfiguration.cs" />

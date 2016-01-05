@@ -6,7 +6,7 @@ namespace GestaoDDD.Infra.Data.Repositories
 {
     public class ServicoRepository : RepositoryBase<Servico>, IServicoRepository
     {
-        public ServicoRepository(IGestaoContext gestaoContexto)
+        public ServicoRepository(GestaoContext gestaoContexto)
             : base(gestaoContexto)
         {
 
