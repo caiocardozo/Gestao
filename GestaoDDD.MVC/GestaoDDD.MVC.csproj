@@ -314,6 +314,9 @@
     <Content Include="Views\Categoria\Editar.cshtml" />
     <Content Include="Views\Categoria\Deletar.cshtml" />
     <Content Include="Views\Categoria\Detalhes.cshtml" />
+    <Content Include="Views\Servico\Detalhes.cshtml" />
+    <Content Include="Views\Servico\Deletar.cshtml" />
+    <Content Include="Views\Servico\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

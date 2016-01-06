@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
@@ -27,13 +28,11 @@ namespace GestaoDDD.MVC.Controllers
         }
 
         //
-        // GET: /Servico/Details/5
-        public ActionResult Detailhes(int id)
+        public ActionResult Detalhes(int id)
         {
-            var servicoId = Mapper.Map<Servico, ServicoViewModel>(_servicoApp.GetById(id));
-            if (servicoId == null)
-                return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
-            return View(servicoId);
+            var servico = _servicoApp.GetById(id);
+            var servicoViewModel = Mapper.Map<Servico, ServicoViewModel>(servico);
+            return View(servicoViewModel);
         }
 
         //
@@ -70,51 +69,63 @@ namespace GestaoDDD.MVC.Controllers
         }
 
         //
-        // GET: /Servico/Edit/5
+        // GET: /Categoria/Edit/5
+
         public ActionResult Editar(int id)
         {
-            return View();
+            ViewBag.cat_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
+            var servico = _servicoApp.GetById(id);
+            var servicoViewModel = Mapper.Map<Servico, ServicoViewModel>(servico);
+            return View(servicoViewModel);
         }
 
         //
-        // POST: /Servico/Edit/5
+        // POST: /Categoria/Edit/5
+
         [HttpPost]
-        public ActionResult Editar(int id, FormCollection collection)
+        public ActionResult Editar(ServicoViewModel servico)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                try
+                {
+                    var servicoViewModel = Mapper.Map<ServicoViewModel, Servico>(servico);
+                    _servicoApp.Update(servicoViewModel);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    //inserir pagina de erro
+                    return RedirectToAction("ErroAoCadastrar");
+                }
             }
-            catch
+            else
             {
-                return View();
+                return View(servico);
             }
         }
 
-        //
-        // GET: /Servico/Delete/5
-        public ActionResult Delete(int id)
+
+        public ActionResult Deletar(int id)
         {
-            return View();
+            var servico = _servicoApp.GetById(id);
+            var servicoViewModel = Mapper.Map<Servico, ServicoViewModel>(servico);
+            return View(servicoViewModel);
+            //if (categoriaId == null)
+            //    return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
+            //return View(categoriaId);
         }
 
         //
-        // POST: /Servico/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // POST: /Categoria/Delete/5
+        [HttpPost, ActionName("Deletar")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmarDeletar(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var servico = _servicoApp.GetById(id);
+            _servicoApp.Remove(servico);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
 
