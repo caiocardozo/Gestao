@@ -1,0 +1,36 @@
+﻿@model GestaoDDD.Application.ViewModels.CategoriaViewModel
+
+@{
+    ViewBag.Title = "Deletar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Deletar Categoria</h2>
+
+<h3>Tem certeza que deseja excluir?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cat_Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cat_Nome)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Deletar" class="btn btn-primary" />
+                <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Categoria")'" />
+            </div>
+        </div>
+    }
+</div>

@@ -2,10 +2,7 @@
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GestaoDDD.MVC.Controllers
@@ -31,7 +28,7 @@ namespace GestaoDDD.MVC.Controllers
 
         //
         // GET: /Servico/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Detailhes(int id)
         {
             var servicoId = Mapper.Map<Servico, ServicoViewModel>(_servicoApp.GetById(id));
             if (servicoId == null)
@@ -74,7 +71,7 @@ namespace GestaoDDD.MVC.Controllers
 
         //
         // GET: /Servico/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Editar(int id)
         {
             return View();
         }
@@ -82,7 +79,7 @@ namespace GestaoDDD.MVC.Controllers
         //
         // POST: /Servico/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Editar(int id, FormCollection collection)
         {
             try
             {

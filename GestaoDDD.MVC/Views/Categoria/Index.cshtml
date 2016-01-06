@@ -1,34 +1,52 @@
 ﻿@model IEnumerable<GestaoDDD.Application.ViewModels.CategoriaViewModel>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-<h2>Index</h2>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-lg-2"><h3>Categorias</h3></div>
+                <div class="col-lg-8">
+                    <form class="navbar-form navbar-left" role="search">
+                        @using (Html.BeginForm("Index", "Categoria"))
+                                          {
+                                        <div class="form-group">
+                                            Busca por Nome : <input type="text" name="nomeBusca" id="nomeBusca" class="form-control" placeholder="E-mail">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Buscar</button>
+                                          }
+                    </form>
+                </div>
+                <div class="col-lg-offset-10">
+                    <a href="~/Categoria/Cadastrar" class="btn btn-info" title="Nova categoria">Nova categoria <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a>
+                </div>
+            </div>
+        </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
+    </div>
+    <div class="row apenasNegrito">
+        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
             @Html.DisplayNameFor(model => model.cat_Nome)
-        </th>
-        <th></th>
-    </tr>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 text-center">
+            @Html.DisplayName("Gerenciar")
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
+                @Html.DisplayFor(modelItem => item.cat_Nome)
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                <a href="~/Categoria/Editar/@item.cat_Id" class="btn btn-primary" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                <a href="~/Categoria/Detalhes/@item.cat_Id" class="btn btn-primary" title="Detalhes"><i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i></a>
+                <a href="~/Categoria/Deletar/@item.cat_Id" class="btn btn-primary" title="Deletar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            </div>
+            <hr/>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.cat_Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.cat_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.cat_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.cat_Id })
-        </td>
-    </tr>
-}
-
-</table>
+    </div>

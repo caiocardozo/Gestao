@@ -104,10 +104,6 @@
     <Compile Include="Configuration\EmailService.cs" />
     <Compile Include="Configuration\SmsService.cs" />
     <Compile Include="Context\ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201512292041175_claims.cs" />
-    <Compile Include="Migrations\201512292041175_claims.Designer.cs">
-      <DependentUpon>201512292041175_claims.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AddPhoneNumberViewModel.cs" />
     <Compile Include="Model\ApplicationUser.cs" />
@@ -139,11 +135,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512292041175_claims.resx">
-      <DependentUpon>201512292041175_claims.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

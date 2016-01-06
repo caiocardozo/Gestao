@@ -143,7 +143,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
       <Private>True</Private>
@@ -256,10 +259,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
-    <Content Include="Views\Categoria\Details.cshtml" />
-    <Content Include="Views\Categoria\Create.cshtml" />
-    <Content Include="Views\Categoria\Edit.cshtml" />
-    <Content Include="Views\Categoria\Delete.cshtml" />
     <Content Include="Views\Prestador\Index.cshtml" />
     <Content Include="Views\Prestador\Details.cshtml" />
     <Content Include="Views\Prestador\Create.cshtml" />
@@ -310,6 +309,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Menu_bak.cshtml" />
     <Content Include="Views\Shared\_Rodape_bak.cshtml" />
+    <Content Include="Views\Categoria\ErroAoCadastrar.cshtml" />
+    <Content Include="Views\Categoria\Cadastrar.cshtml" />
+    <Content Include="Views\Categoria\Editar.cshtml" />
+    <Content Include="Views\Categoria\Deletar.cshtml" />
+    <Content Include="Views\Categoria\Detalhes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

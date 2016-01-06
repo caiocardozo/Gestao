@@ -1,0 +1,28 @@
+﻿@model GestaoDDD.Application.ViewModels.CategoriaViewModel
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Detalhes de categoria</h3>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cat_Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cat_Nome)
+        </dd>
+
+    </dl>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="button" value="Voltar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Categoria")'" />
+    </div>
+</div>
