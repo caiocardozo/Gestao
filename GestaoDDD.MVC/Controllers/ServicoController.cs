@@ -73,9 +73,9 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Editar(int id)
         {
-            ViewBag.cat_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
-            var servico = _servicoApp.GetById(id);
+          var servico = _servicoApp.GetById(id);
             var servicoViewModel = Mapper.Map<Servico, ServicoViewModel>(servico);
+            ViewBag.cat_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome", servico.cat_Id);
             return View(servicoViewModel);
         }
 
@@ -83,6 +83,7 @@ namespace GestaoDDD.MVC.Controllers
         // POST: /Categoria/Edit/5
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Editar(ServicoViewModel servico)
         {
             if (ModelState.IsValid)
