@@ -3,40 +3,25 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Identity Isolation</title>
+    <title>@ViewBag.Title - FAI-UFSCar</title>
+    <link rel="icon" href="~/Content/Imagens/icone.png" />
+    <link href="~/Content/Prestador/pagina_captura.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+   @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Eduardo Pires", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Lista Usuários","Index","Usuarios")</li>
-                    <li><a href="http://eduardopires.net.br/sobre-eduardo-pires/" target="_blank">Sobre o autor</a></li>
-                    <li><a href="http://eduardopires.net.br/category/asp-net-identity/" target="_blank">Artigos sobre Identity</a></li>
-                    <li><a href="http://eduardopires.net.br/cursos/" target="_blank">Cursos</a></li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
+    @*@RenderPage("_Menu.cshtml")*@
+    <div class="container">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>Eduardo Pires - Treinamentos e Consultoria</p>
-        </footer>
+        @Html.Partial("_LoginPartial")
     </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted textoRodape">© 2015 FAI • UFSCar - Departamento de Tecnologia de Informação</p>
+        </div>
+    </footer>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
