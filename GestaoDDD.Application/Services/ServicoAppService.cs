@@ -1,6 +1,7 @@
 ﻿using GestaoDDD.Application.Interface;
 using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Services;
+using System.Collections.Generic;
 
 namespace GestaoDDD.Application.Services
 {

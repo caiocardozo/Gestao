@@ -18,6 +18,11 @@ namespace GestaoDDD.MVC.Controllers
         }
 
 
+        public ActionResult IndexServicos() 
+        {
+            var categoriaViewModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
+            return View(categoriaViewModel);
+        }
         public ActionResult Index()
         {
             //retorna todas as caategorias

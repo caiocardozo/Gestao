@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GestaoDDD.Application.ViewModels.ServicoViewModel>
+    @using GestaoDDD.Application.ViewModels;
+
+
+    @{
+        var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
+    }
+    <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
+    <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
+    @using (Html.BeginForm())
+    {
+        foreach (var cat in ListaCategoria)
+        {
+            @Html.DisplayFor(modelItem => cat.cat_Nome)
+
+            foreach (var item in Model)
+            {
+                if (cat.cat_Id == item.cat_Id)
+                {
+                    <div class="container" id="div_check">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+                                <div class="panel panel-default">
+                                    <!-- List group -->
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            @Html.DisplayFor(modelItem => item.serv_Nome)
+                                            <div class="material-switch pull-right">
+                                                <input id="@item.serv_Id" name="@item.serv_Id" type="checkbox" />
+                                                <label for="@item.serv_Id" class="label-success"></label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            }
+        }
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cadastrar" class="btn btn-primary" onclick="verificar()" />
+            <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Categoria")'" />
+        </div>
+    }

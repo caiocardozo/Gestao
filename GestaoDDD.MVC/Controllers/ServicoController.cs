@@ -21,6 +21,30 @@ namespace GestaoDDD.MVC.Controllers
 
         //
         // GET: /Servico/
+
+        public ActionResult IndexServicosCategorias()
+        {
+            ViewBag.CategoriaModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
+
+
+            var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
+            return View(servicoViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult IndexServicosCategorias(FormCollection collection, ServicoViewModel servico)
+        {
+            try
+            {
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("ErroAoCadastrar");
+            }
+        }
+
+
         public ActionResult Index(FormCollection collection)
         {
             var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());

@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201512291403304_identity.Designer.cs">
       <DependentUpon>201512291403304_identity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601152010450_Atualizar.cs" />
+    <Compile Include="Migrations\201601152010450_Atualizar.Designer.cs">
+      <DependentUpon>201601152010450_Atualizar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ServicoPrestadorRepository.cs" />
@@ -90,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512291403304_identity.resx">
       <DependentUpon>201512291403304_identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601152010450_Atualizar.resx">
+      <DependentUpon>201601152010450_Atualizar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
