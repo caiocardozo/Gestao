@@ -1,0 +1,41 @@
+﻿@model GestaoDDD.Application.ViewModels.ServicoViewModel
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Editar serviço</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.HiddenFor(model => model.serv_Id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.serv_Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.serv_Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.serv_Nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cat_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("cat_Id", null, new { @class = "form-control textoPequeno" })
+                @Html.ValidationMessageFor(model => model.cat_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Servico")'" />
+            </div>
+        </div>
+    </div>
+}

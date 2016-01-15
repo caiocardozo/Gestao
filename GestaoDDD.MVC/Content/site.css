@@ -63,3 +63,7 @@ body > .container {
     display: none;
     
   }
+
+.apenasNegrito {
+    font-weight: bold;
+}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using GestaoDDD.Application.Interface;
@@ -27,101 +28,106 @@ namespace GestaoDDD.MVC.Controllers
         //
         // GET: /Categoria/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Detalhes(int id)
         {
-            var categoriaId = Mapper.Map<Categoria, CategoriaViewModel>(_categoriaApp.GetById(id)); 
-            if(categoriaId == null)
-                return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
-            return View(categoriaId);
+            var categoria = _categoriaApp.GetById(id);
+            var categoriaViewModel = Mapper.Map<Categoria, CategoriaViewModel>(categoria);
+            return View(categoriaViewModel);
         }
 
-        //
-        // GET: /Categoria/Create
-
-        public ActionResult Create()
+        // GET: /Servico/Create
+        public ActionResult Cadastrar(FormCollection collection)
         {
             return View();
         }
 
         //
-        // POST: /Categoria/Create
-
+        // POST: /Servico/Create
         [HttpPost]
-        public ActionResult Create(Categoria categoria)
+        public ActionResult Cadastrar(CategoriaViewModel categoria)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _categoriaApp.SaveOrUpdate(categoria);
+                    var categoriaDomain = Mapper.Map<CategoriaViewModel, Categoria>(categoria);
+                    _categoriaApp.Add(categoriaDomain);
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
+                else
+                {
+                    return View(categoria);
+                }
             }
             catch
             {
-                return View();
+                return RedirectToAction("ErroAoCadastrar");
             }
         }
-
         //
         // GET: /Categoria/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Editar(int id)
         {
-            var categoriaEdit = Mapper.Map<Categoria, CategoriaViewModel>(_categoriaApp.GetById(id));
-            if (categoriaEdit == null)
-                return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
-            return View(categoriaEdit);
+            var categoria = _categoriaApp.GetById(id);
+            var categoriaViewModel = Mapper.Map<Categoria, CategoriaViewModel>(categoria);
+            return View(categoriaViewModel);
         }
 
         //
         // POST: /Categoria/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Categoria categoria)
+        public ActionResult Editar(CategoriaViewModel categoria)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid) 
+                try
                 {
-                    _categoriaApp.SaveOrUpdate(categoria);
-                }
+                    var categoriadomain = Mapper.Map<CategoriaViewModel, Categoria>(categoria);
+                    _categoriaApp.Update(categoriadomain);
                 return RedirectToAction("Index");
-            }
-            catch
+                }
+                catch (Exception)
+                {
+                    //inserir pagina de erro
+                    return RedirectToAction("ErroAoCadastrar");
+                }
+                }
+            else
             {
-                return View();
+                return View(categoria);
             }
         }
 
         //
         // GET: /Categoria/Delete/5
 
-        public ActionResult Delete(int id)
+        public ActionResult Deletar(int id)
         {
-            var categoriaId = Mapper.Map<Categoria, CategoriaViewModel>(_categoriaApp.GetById(id));
-            if(categoriaId == null)
-                return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
-            return View(categoriaId);
+            var categoria = _categoriaApp.GetById(id);
+            var categoriaViewModel = Mapper.Map<Categoria, CategoriaViewModel>(categoria);
+            return View(categoriaViewModel);
+            //if (categoriaId == null)
+            //    return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
+            //return View(categoriaId);
         }
 
         //
         // POST: /Categoria/Delete/5
-[HttpPost]
-        //[ActionName("Excluir")]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Deletar")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmarDeletar(int id)
         {
-            try
-            {
-                var categoriaDel = _categoriaApp.GetById(id);
-                _categoriaApp.Remove(categoriaDel);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var adm_grupo = _categoriaApp.GetById(id);
+            _categoriaApp.Remove(adm_grupo);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult ErroAoCadastrar()
+        {
+            return View();
         }
     }
 }

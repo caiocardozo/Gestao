@@ -78,20 +78,20 @@
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -184,7 +184,7 @@
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
+      <HintPath>..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -198,8 +198,10 @@
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="Controllers\PrestadorController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
@@ -223,24 +225,28 @@
     <Content Include="Content\site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Images\front.png" />
     <Content Include="Images\Prestador\background.png" />
     <Content Include="Images\Prestador\man.png" />
     <Content Include="Scripts\Adicionais\page-prestador.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\v.001.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -253,10 +259,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_EP.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
-    <Content Include="Views\Categoria\Details.cshtml" />
-    <Content Include="Views\Categoria\Create.cshtml" />
-    <Content Include="Views\Categoria\Edit.cshtml" />
-    <Content Include="Views\Categoria\Delete.cshtml" />
     <Content Include="Views\Prestador\Index.cshtml" />
     <Content Include="Views\Prestador\Details.cshtml" />
     <Content Include="Views\Prestador\Create.cshtml" />
@@ -307,6 +309,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Menu_bak.cshtml" />
     <Content Include="Views\Shared\_Rodape_bak.cshtml" />
+    <Content Include="Views\Categoria\ErroAoCadastrar.cshtml" />
+    <Content Include="Views\Categoria\Cadastrar.cshtml" />
+    <Content Include="Views\Categoria\Editar.cshtml" />
+    <Content Include="Views\Categoria\Deletar.cshtml" />
+    <Content Include="Views\Categoria\Detalhes.cshtml" />
+    <Content Include="Views\Servico\Detalhes.cshtml" />
+    <Content Include="Views\Servico\Deletar.cshtml" />
+    <Content Include="Views\Servico\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
