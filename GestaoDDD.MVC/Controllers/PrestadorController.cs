@@ -45,9 +45,9 @@ namespace GestaoDDD.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _prestadorApp.SaveOrUpdate(prestador);
+                  _prestadorApp.SaveOrUpdate(prestador);
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexServicosCategorias", "Servico");
             }
             catch
             {
