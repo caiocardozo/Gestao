@@ -36,6 +36,7 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
+        
         //
         // POST: /Prestador/Create
         [HttpPost]
@@ -46,8 +47,9 @@ namespace GestaoDDD.MVC.Controllers
                 if (ModelState.IsValid)
                 {
                   _prestadorApp.SaveOrUpdate(prestador);
+                  return RedirectToAction("IndexServicosCategorias", "Servico", new { cpf = prestador.pres_Cpf_Cnpj });
                 }
-                return RedirectToAction("IndexServicosCategorias", "Servico");
+                return View();
             }
             catch
             {

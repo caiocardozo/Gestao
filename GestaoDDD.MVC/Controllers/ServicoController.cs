@@ -22,17 +22,17 @@ namespace GestaoDDD.MVC.Controllers
         //
         // GET: /Servico/
 
-        public ActionResult IndexServicosCategorias()
+        public ActionResult IndexServicosCategorias(string cpf)
         {
             ViewBag.CategoriaModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
-
+            ViewBag.Cpf = cpf;
 
             var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
             return View(servicoViewModel);
         }
 
         [HttpPost]
-        public ActionResult IndexServicosCategorias(FormCollection collection, ServicoViewModel servico)
+        public ActionResult IndexServicosCategorias(FormCollection collection, string cpfPrestador)
         {
             try
             {

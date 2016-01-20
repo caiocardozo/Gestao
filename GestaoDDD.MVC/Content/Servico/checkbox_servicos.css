@@ -1,44 +1,84 @@
-﻿.material-switch > input[type="checkbox"] {
-    display: none;   
+﻿
+.checkbox label:after,
+.radio label:after {
+    content: '';
+    display: table;
+    clear: both;
 }
 
-.material-switch > label {
+/*Caxinha do checkbox */
+.checkbox .cr,
+.radio .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: .25em;
+    width: 1.0em;
+    height: 1.0em;
+    float: left;
+    margin-right: .3em;
+    top: 2px;
+}
+
+.radio .cr {
+    border-radius: 50%;
+}
+
+    /*Vezinho do checkbox*/
+    .checkbox .cr .cr-icon,
+    .radio .cr .cr-icon {
+        position: absolute;
+        font-size: .8em;
+        line-height: 0;
+        top: 50%;
+        left: 20%;
+    }
+
+    .radio .cr .cr-icon {
+        margin-left: 0.04em;
+    }
+
+/*Parte de dentro da caixinha do checkbox*/
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    display: none;
+}
+
+    .checkbox label input[type="checkbox"] + .cr > .cr-icon,
+    .radio label input[type="radio"] + .cr > .cr-icon {
+        transform: scale(3) rotateZ(-20deg);
+        opacity: 0;
+        transition: all .3s ease-in;
+    }
+
+    .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+    .radio label input[type="radio"]:checked + .cr > .cr-icon {
+        transform: scale(1) rotateZ(0deg);
+        opacity: 1;
+    }
+
+    .checkbox label input[type="checkbox"]:disabled + .cr,
+    .radio label input[type="radio"]:disabled + .cr {
+        opacity: .5;
+    }
+
+.nome-categoria {
+    color: rgb(209, 49, 55);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.frm-contato input[type="submit"] {
+    background-color: #913034;
+    color: #FFF;
     cursor: pointer;
-    height: 0px;
-    position: relative; 
-    width: 40px;  
+    position:relative;
+    top: 15px;
+
 }
 
-.material-switch > label::before {
-    background: rgb(255, 0, 0);
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    content: '';
-    height: 16px;
-    margin-top: -8px;
-    position:absolute;
-    opacity: 0.3;
-    transition: all 0.4s ease-in-out;
-    width: 40px;
-}
-.material-switch > label::after {
-    background: rgb(255, 255, 255);
-    border-radius: 16px;
-    box-shadow: 0px 0px 5px rgb(255, 0, 0);
-    content: '';
-    height: 24px;
-    left: -4px;
-    margin-top: -8px;
-    position: absolute;
-    top: -4px;
-    transition: all 0.3s ease-in-out;
-    width: 24px;
-}
-.material-switch > input[type="checkbox"]:checked + label::before {
-    background: inherit;
-    opacity: 0.5;
-}
-.material-switch > input[type="checkbox"]:checked + label::after {
-    background: inherit;
-    left: 20px;
-}
+.frm-contato input[type="submit"]:hover {
+        background-color: #000000;
+    }
