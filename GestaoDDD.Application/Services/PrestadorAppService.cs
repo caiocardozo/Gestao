@@ -13,5 +13,9 @@ namespace GestaoDDD.Application.Services
             _prestadorService = prestadorService;
         }
 
+        public Prestador GetPorCpf(string cpf) 
+        {
+            return GetPorCpf(cpf);
+        }
     }
 }

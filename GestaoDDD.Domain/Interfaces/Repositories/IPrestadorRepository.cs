@@ -5,5 +5,6 @@ namespace GestaoDDD.Domain.Interfaces.Repositories
 {
     public interface IPrestadorRepository : IRepositoryBase<Prestador>
     {
+        Prestador GetPorCpf(string cpf);
     }
 }

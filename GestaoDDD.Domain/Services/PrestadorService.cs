@@ -13,5 +13,10 @@ namespace GestaoDDD.Domain.Services
         {
             _prestadorRepository = prestadorRepositorio;
         }
+
+        public Prestador GetPorCpf(string cpf) 
+        {
+            return _prestadorRepository.GetPorCpf(cpf);
+        }
     }
 }

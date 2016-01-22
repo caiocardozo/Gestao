@@ -5,6 +5,7 @@ using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using GestaoDDD.Application.Services;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -12,11 +13,13 @@ namespace GestaoDDD.MVC.Controllers
     {
         private readonly IServicoAppService _servicoApp;
         private readonly ICategoriaAppService _categoriaApp;
+        private readonly PrestadorAppService _prestadorApp;
 
-        public ServicoController(IServicoAppService servicoApp, ICategoriaAppService categoriaApp)
+        public ServicoController(IServicoAppService servicoApp, ICategoriaAppService categoriaApp, PrestadorAppService prestadorApp)
         {
             _servicoApp = servicoApp;
             _categoriaApp = categoriaApp;
+            _prestadorApp = prestadorApp;
         }
 
         //
@@ -76,6 +79,8 @@ namespace GestaoDDD.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    
+                    
                     var servicoDomain = Mapper.Map<ServicoViewModel, Servico>(servico);
                     _servicoApp.Add(servicoDomain);
                     return RedirectToAction("Index");
