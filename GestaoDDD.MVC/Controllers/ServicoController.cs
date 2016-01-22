@@ -13,7 +13,9 @@ namespace GestaoDDD.MVC.Controllers
     {
         private readonly IServicoAppService _servicoApp;
         private readonly ICategoriaAppService _categoriaApp;
-        private readonly PrestadorAppService _prestadorApp;
+        //ta chamando errado Wagner lembra! sempre a interface primeiro aqui embaixo vc chamou a classe direto
+        //private readonly PrestadorAppService _prestadorApp;
+        private readonly IPrestadorAppService _prestadorApp;
 
         public ServicoController(IServicoAppService servicoApp, ICategoriaAppService categoriaApp, PrestadorAppService prestadorApp)
         {
@@ -29,7 +31,8 @@ namespace GestaoDDD.MVC.Controllers
         {
             ViewBag.CategoriaModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
             ViewBag.Cpf = cpf;
-
+            //pronto aqui na esta chamando
+            _prestadorApp.GetPorCpf("2");
             var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
             return View(servicoViewModel);
         }
