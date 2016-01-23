@@ -68,15 +68,14 @@
     <Compile Include="ViewModels\PrestadorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\GestaoDDD.Domain\GestaoDDD.Domain.csproj">
       <Project>{bdb34e47-03fa-4b92-8e26-589f14e9c512}</Project>
       <Name>GestaoDDD.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

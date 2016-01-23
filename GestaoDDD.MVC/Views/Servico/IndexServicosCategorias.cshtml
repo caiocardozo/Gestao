@@ -3,6 +3,7 @@
  
     @{
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
+        var cpfPrestador = ViewBag.Cpf as string;
     }
     <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
     <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
@@ -33,6 +34,7 @@
                     <div class="container row text-left pull-left col-md-2 ">
                         <div class="checkbox ">
                             <label style="text-transform: capitalize">
+                                
                                 <input type="checkbox" value="" id="@item.serv_Id" name="@item.serv_Id">
                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                 @Html.DisplayFor(modelItem => item.serv_Nome)
@@ -43,6 +45,7 @@
 
             }
         }
+        <input type="hidden" value="@cpfPrestador" id="cpfPrestador" name="cpfPrestador"  />
         <div class=" col-md-5 bottom bottom-left frm-contato" style="position:absolute; bottom:100px;" >
             <input type="submit" value="Cadastrar" class="btn btn-group-lg"  onclick="verificar()" />
         </div>
