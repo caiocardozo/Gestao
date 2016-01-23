@@ -15,7 +15,12 @@ namespace GestaoDDD.Application.Services
         public ServicoPrestadorAppService(IServicoPrestadorService servicoPrestService)
             : base(servicoPrestService)
         {
+            _servicoPresService = servicoPrestService;
+        }
 
+        public void SalvarServicosPrestador(IEnumerable<Servico> checkboxes, Prestador prestador) 
+        {
+            _servicoPresService.SalvarServicosPrestador(checkboxes, prestador);
         }
     }
 }

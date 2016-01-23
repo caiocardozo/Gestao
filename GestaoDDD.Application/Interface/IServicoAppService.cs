@@ -6,6 +6,5 @@ namespace GestaoDDD.Application.Interface
 {
     public interface IServicoAppService : IAppServiceBase<Servico>
     {
-       
     }
 }

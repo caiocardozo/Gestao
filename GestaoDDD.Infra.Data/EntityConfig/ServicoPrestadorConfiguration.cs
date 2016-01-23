@@ -8,8 +8,6 @@ namespace GestaoDDD.Infra.Data.EntityConfig
         public ServicoPrestadorConfiguration()
         {
             HasKey(p => p.serv_Pres_Id);
-
-
         }
     }
 }

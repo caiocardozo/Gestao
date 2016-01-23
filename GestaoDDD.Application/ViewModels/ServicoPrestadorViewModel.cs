@@ -11,8 +11,8 @@ namespace GestaoDDD.Application.ViewModels
     public class ServicoPrestadorViewModel 
     {
         [Key]
-        public int serv_prest_Id { get; set; }
         public Prestador prestador_Id { get; set; }
+        [Key]
         public Servico servico_Id { get; set; }
     }
 }

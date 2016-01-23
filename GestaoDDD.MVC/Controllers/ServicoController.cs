@@ -10,14 +10,17 @@ namespace GestaoDDD.MVC.Controllers
 {
     public class ServicoController : Controller
     {
-        private readonly IServicoAppService _servicoApp;
-        private readonly ICategoriaAppService _categoriaApp;
-        private readonly IPrestadorAppService _prestadorApp;
-        public ServicoController(IServicoAppService servicoApp, ICategoriaAppService categoriaApp, IPrestadorAppService prestadorApp)
+        private readonly IServicoAppService _iServicoApp;
+        private readonly ICategoriaAppService _iCategoriaApp;
+        private readonly IPrestadorAppService _iPrestadorApp;
+        private readonly IServicoPrestadorAppService _iServicoPrestadorApp;
+        public ServicoController(IServicoAppService iServicoApp, ICategoriaAppService iCategoriaApp,
+IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestadorApp)
         {
-            _servicoApp = servicoApp;
-            _categoriaApp = categoriaApp;
-            _prestadorApp = prestadorApp;
+            _iServicoApp = iServicoApp;
+            _iCategoriaApp = iCategoriaApp;
+            _iPrestadorApp = iPrestadorApp;
+            _iServicoPrestadorApp = iServicoPrestadorApp;
         }
 
         //
@@ -25,10 +28,10 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult IndexServicosCategorias(string cpf)
         {
-            ViewBag.CategoriaModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
+            ViewBag.CategoriaModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_iCategoriaApp.GetAll());
             ViewBag.Cpf = cpf;
-            _prestadorApp.GetPorCpf("222");
-            var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
+
+            var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_iServicoApp.GetAll());
             return View(servicoViewModel);
         }
 
@@ -37,6 +40,21 @@ namespace GestaoDDD.MVC.Controllers
         {
             try
             {
+                List<Servico> checkboxes = new List<Servico>();
+                foreach (var col in collection)
+                {
+
+                    if (col.ToString() != "cpfPrestador")
+                    {
+                        int servId;
+                        Int32.TryParse(col.ToString(), out servId);
+                        var servico = _iServicoApp.GetById(servId);
+                        checkboxes.Add(servico);
+                    }
+                }
+                var prestador = _iPrestadorApp.GetPorCpf(cpfPrestador);
+
+                _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
                 return RedirectToAction("Index");
             }
             catch
@@ -48,14 +66,14 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Index(FormCollection collection)
         {
-            var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
+            var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_iServicoApp.GetAll());
             return View(servicoViewModel);
         }
 
         //
         public ActionResult Detalhes(int id)
         {
-            var servico = _servicoApp.GetById(id);
+            var servico = _iServicoApp.GetById(id);
             var servicoViewModel = Mapper.Map<Servico, ServicoViewModel>(servico);
             return View(servicoViewModel);
         }
@@ -64,7 +82,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Servico/Create
         public ActionResult Cadastrar(FormCollection collection)
         {
-            ViewBag.cat_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
+            ViewBag.cat_Id = new SelectList(_iCategoriaApp.GetAll(), "cat_Id", "cat_Nome");
             return View();
         }
 
@@ -77,15 +95,15 @@ namespace GestaoDDD.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
-                    
+
+
                     var servicoDomain = Mapper.Map<ServicoViewModel, Servico>(servico);
-                    _servicoApp.Add(servicoDomain);
+                    _iServicoApp.Add(servicoDomain);
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ViewBag.cat_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
+                    ViewBag.cat_Id = new SelectList(_iCategoriaApp.GetAll(), "cat_Id", "cat_Nome");
                     return View(servico);
                 }
             }
@@ -100,9 +118,9 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Editar(int id)
         {
-          var servico = _servicoApp.GetById(id);
+            var servico = _iServicoApp.GetById(id);
             var servicoViewModel = Mapper.Map<Servico, ServicoViewModel>(servico);
-            ViewBag.cat_Id = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome", servico.cat_Id);
+            ViewBag.cat_Id = new SelectList(_iCategoriaApp.GetAll(), "cat_Id", "cat_Nome", servico.cat_Id);
             return View(servicoViewModel);
         }
 
@@ -118,7 +136,7 @@ namespace GestaoDDD.MVC.Controllers
                 try
                 {
                     var servicoViewModel = Mapper.Map<ServicoViewModel, Servico>(servico);
-                    _servicoApp.Update(servicoViewModel);
+                    _iServicoApp.Update(servicoViewModel);
                     return RedirectToAction("Index");
                 }
                 catch (Exception)
@@ -136,7 +154,7 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Deletar(int id)
         {
-            var servico = _servicoApp.GetById(id);
+            var servico = _iServicoApp.GetById(id);
             var servicoViewModel = Mapper.Map<Servico, ServicoViewModel>(servico);
             return View(servicoViewModel);
             //if (categoriaId == null)
@@ -150,8 +168,8 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmarDeletar(int id)
         {
-            var servico = _servicoApp.GetById(id);
-            _servicoApp.Remove(servico);
+            var servico = _iServicoApp.GetById(id);
+            _iServicoApp.Remove(servico);
 
             return RedirectToAction("Index");
         }
