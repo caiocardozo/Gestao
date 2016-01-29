@@ -6,21 +6,12 @@
     <title>@ViewBag.Title - AGILIZA ORÇAMENTOS</title>
     <link rel="icon" href="~/Content/Imagens/icone.png" />
     <link href="~/Content/Prestador/pagina_captura.css" rel="stylesheet" />
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-collapse collapse">
-                @*@Html.Partial("_LoginPartial")*@
-            </div>
-        </div>
-    </div>
 
     @RenderBody()
-    <hr />
+    @*@Html.Partial("_LoginPartial")*@
+
     <footer class="footer" style="position:fixed; bottom:0px;">
         <div class="center">
             <p><small><b>agiliza orçamentos</b> | <a href="mailto:contato@agilizapracamentos.com.br">contato@agilizapracamentos.com.br</a></small></p>
@@ -32,4 +23,3 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-
