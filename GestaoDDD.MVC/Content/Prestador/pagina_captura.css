@@ -87,9 +87,15 @@ input:valid{
 	width: 100%; height: 100%;
 	margin: 0 auto;
 	position: relative;
+    text-align: center;
 }
 
 /* BCL ONE */
+.bcl-four{
+	float: left;
+	position: relative;
+}
+
 .bcl-one{
 	width: 100%; height: 40%;
 	float: left;
@@ -116,6 +122,8 @@ input:valid{
 	position: relative;
 	background-color: rgba(217,67,74,8);
 }
+
+
 
 /*FOOTER*/
 footer.footer{
@@ -144,7 +152,7 @@ footer.footer{
 
 @media screen and (max-width: 800px){
 	.col-50 {width: 100%;}
-	.col-50 img{display: none;}
+    .col-50 img{display: none;} 
 	.infos-form{
 		position: relative;
 		width: 100%;
