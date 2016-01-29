@@ -1,40 +1,47 @@
-﻿@model IEnumerable<GestaoDDD.Application.ViewModels.ServicoViewModel>
+﻿@model IEnumerable<gestaoddd.application.viewmodels.servicoviewmodel>
     @using GestaoDDD.Application.ViewModels;
- 
+
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    @Styles.Render("~/Content/css")
+
     @{
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
-        var cpfPrestador = ViewBag.Cpf as string;
     }
     <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
+    <link href="~/Content/Prestador/pagina_captura.css" rel="stylesheet" />
     <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
 
-    <div class="container pull-left">
+    <div class="container pull-left" id="position-text">
         <p>
             <h4>
                 SELECIONE OS TRABALHOS <br />
                 QUE SUA EMPRESA REALIZA:
             </h4>
         </p>
-       <hr style="color: #000000; ">
+        <hr style="color: #000000; ">
 
     </div>
+
     @using (Html.BeginForm())
-{
-    foreach (var cat in ListaCategoria)
     {
-        <div class="nome-categoria col-md-12 pull-left">
-            &bull;  @Html.DisplayFor(modelItem => cat.cat_Nome)
-        </div>
-
-
-        foreach (var item in Model)
+        foreach (var cat in ListaCategoria)
         {
-            if (cat.cat_Id == item.cat_Id)
+
+            <div class="nome-categoria col-md-12 pull-left" id="position-checkbox">
+                <br />
+                &bull;  @Html.DisplayFor(modelItem => cat.cat_Nome)
+                <hr style="color: #000000;" />
+
+            </div>
+            foreach (var item in Model)
             {
-                    <div class="container row text-left pull-left col-md-2 ">
+                if (cat.cat_Id == item.cat_Id)
+                {
+                    <div class="container row text-left pull-left col-md-2" id="position-checkbox">
                         <div class="checkbox ">
                             <label style="text-transform: capitalize">
-                                
                                 <input type="checkbox" value="" id="@item.serv_Id" name="@item.serv_Id">
                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                 @Html.DisplayFor(modelItem => item.serv_Nome)
@@ -45,9 +52,8 @@
 
             }
         }
-        <input type="hidden" value="@cpfPrestador"  name="cpfPrestador"  />
-        <div class=" col-md-5 bottom bottom-left frm-contato" style="position:absolute; bottom:100px;" >
-            <input type="submit" value="Cadastrar" class="btn btn-group-lg"  onclick="verificar()" />
+        <div class=" col-md-5 bottom bottom-left frm-contato">
+            <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="verificar()" />
         </div>
     }
 
