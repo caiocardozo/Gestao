@@ -201,7 +201,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="Controllers\PrestadorController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
@@ -259,7 +259,6 @@
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout_EP.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Prestador\Index.cshtml" />
     <Content Include="Views\Prestador\Details.cshtml" />
@@ -294,23 +293,17 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Manager\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manager\ChangePassword.cshtml" />
-    <Content Include="Views\Manager\Index.cshtml" />
-    <Content Include="Views\Manager\ManageLogins.cshtml" />
-    <Content Include="Views\Manager\SetPassword.cshtml" />
-    <Content Include="Views\Manager\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\RolesAdmin\Create.cshtml" />
     <Content Include="Views\RolesAdmin\Delete.cshtml" />
     <Content Include="Views\RolesAdmin\Details.cshtml" />
     <Content Include="Views\RolesAdmin\Edit.cshtml" />
     <Content Include="Views\RolesAdmin\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Menu_bak.cshtml" />
-    <Content Include="Views\Shared\_Rodape_bak.cshtml" />
     <Content Include="Views\Categoria\ErroAoCadastrar.cshtml" />
     <Content Include="Views\Categoria\Cadastrar.cshtml" />
     <Content Include="Views\Categoria\Editar.cshtml" />
@@ -321,6 +314,10 @@
     <Content Include="Views\Servico\Editar.cshtml" />
     <Content Include="Views\Categoria\IndexServicos.cshtml" />
     <Content Include="Views\Servico\IndexServicosCategorias.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -350,9 +347,6 @@
       <Project>{644c98a9-de1f-4300-aba2-d9bd450d6d6f}</Project>
       <Name>GestaoDDD.Infra.IoC</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

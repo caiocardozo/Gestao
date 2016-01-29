@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using GestaoDDD.Infra.Identity.Configuration;
 using GestaoDDD.Infra.Identity.Model;
 using Microsoft.AspNet.Identity;
@@ -267,8 +268,8 @@ namespace GestaoDDD.MVC.Controllers
                 return View("Error");
             }
             var userFactors = await _userManager.GetValidTwoFactorProvidersAsync(userId);
-            ///List<SelectListItem> factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            //return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
+            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
 
             return View("Error");
         }
