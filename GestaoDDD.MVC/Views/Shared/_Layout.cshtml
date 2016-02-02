@@ -3,16 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title - AGILIZA ORÇAMENTOS</title>
+    <title>@ViewBag.Title - FAI-UFSCar</title>
     <link rel="icon" href="~/Content/Imagens/icone.png" />
     <link href="~/Content/Prestador/pagina_captura.css" rel="stylesheet" />
 </head>
 <body>
+    @*@RenderPage("_Menu.cshtml")*@
 
     @RenderBody()
     @*@Html.Partial("_LoginPartial")*@
-
-    <footer class="footer" style="position:fixed; bottom:0px;">
+</body>
+    <footer class="footer" style="position:static; bottom: 0px">
         <div class="center">
             <p><small><b>agiliza orçamentos</b> | <a href="mailto:contato@agilizapracamentos.com.br">contato@agilizapracamentos.com.br</a></small></p>
         </div>
@@ -20,6 +21,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Content/css")
     @RenderSection("scripts", required: false)
-</body>
+
 </html>

@@ -1,16 +1,75 @@
-﻿#position-text {
-	position:relative;
-	left: 20%;
-
+﻿*{
+	margin: 0; padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .9s ease;
+	-o-transition: all .9s ease;
+	transition: all .9s ease;
+	outline: none;
     
 }
 
+
+
+html, body {
+	height: 100%;
+	font-size: 100%;
+	font-family: arial;
+    font-size: 14px;
+    background-image: url(../../Images/Prestador/background.png);  
+    opacity:1;
+	background-size: cover;
+	background-position: center;
+    
+     
+}
+
+a{text-decoration: none; color: rgba(255,255,255,1);}
 
 #position-checkbox {
 	position:relative;
     padding-left: 50px;
    
 }
+
+#clear {
+ clear:both;
+}
+
+#conteudo {
+	margin-bottom: 10%;
+	}
+
+
+
+.nome-categoria {
+    color: rgb(209, 49, 55);
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.frm-contato input[type="submit"] {
+    background-color: #913034;
+    color: #FFF;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    margin-left: 0px;
+    margin-right: 0px;
+    left: 47%;
+  
+
+}
+
+.frm-contato input[type="submit"]:hover {
+        background-color: #000000;
+}
+
+
 
 
 .checkbox label:after,
@@ -76,23 +135,18 @@
         opacity: .5;
     }
 
-.nome-categoria {
-    color: rgb(209, 49, 55);
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    position: relative;
-}
-
-.frm-contato input[type="submit"] {
-    background-color: #913034;
-    color: #FFF;
-    cursor: pointer;
-    position:relative;
-    top: 15px;
+@media screen and (max-width: 1000px){
+	
 
 }
 
-.frm-contato input[type="submit"]:hover {
-        background-color: #000000;
-    }
+@media screen and (max-width: 800px){
+	
+}
+
+@media screen and (max-width: 500px){
+ 
+  
+
+}
+

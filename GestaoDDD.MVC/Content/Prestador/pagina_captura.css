@@ -18,8 +18,9 @@ html, body {
     opacity:1;
 	background-size: cover;
 	background-position: center;
+    
+    
 }
-
 a{text-decoration: none; color: rgba(255,255,255,1);}
 
 input:valid{
@@ -32,7 +33,7 @@ input:valid{
 	width: 93%;
     opacity:1;
 	position: absolute;
-	bottom: -20px;
+	bottom: -0px;
 }
 	.infos-form{
 		width: 79%;
@@ -86,7 +87,7 @@ input:valid{
 	width: 100%; height: 100%;
 	margin: 0 auto;
 	position: relative;
-    text-align: center;
+  
 }
 
 /* BCL ONE */
@@ -99,6 +100,7 @@ input:valid{
 	width: 100%; height: 40%;
 	float: left;
 	position: relative;
+    text-align: center;
 }
 	.bcl-one p{
 		width: 50%;
@@ -120,17 +122,23 @@ input:valid{
 	float: left;
 	position: relative;
 	background-color: rgba(217,67,74,8);
+   
+}
+
+#texto-center {
+    text-align:center;
 }
 
 
-
 /*FOOTER*/
-footer.footer{
+footer.footer {
 	width: 100%; height: 10%;
 	float: left;
 	background-color: #913034;
 	position: relative;
 	z-index: 2;
+    text-align: center;
+   
 }
 	footer.footer p{
 		width: 100%;
@@ -139,6 +147,7 @@ footer.footer{
 		text-transform: uppercase;
 		position: relative;
 		top: 50%;
+        font-size: 16px;
 		-webkit-transform: translateY(-50%);
 		-ms-transform: translateY(-50%);
 		-o-transform: translateY(-50%);

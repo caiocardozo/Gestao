@@ -1,4 +1,4 @@
-﻿@model IEnumerable<gestaoddd.application.viewmodels.servicoviewmodel>
+﻿@model IEnumerable<GestaoDDD.Application.ViewModels.ServicoViewModel>
     @using GestaoDDD.Application.ViewModels;
 
     @{
@@ -8,39 +8,47 @@
 
     @{
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
-        var cpfPrestador = ViewBag.Cpf as string;
     }
     <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
-    <link href="~/Content/Prestador/pagina_captura.css" rel="stylesheet" />
     <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
+    <script src="/bundles/modernizr?v="></script>
 
-    <div class="container pull-left" id="position-text">
-        <p>
-            <h4>
-                SELECIONE OS TRABALHOS <br />
-                QUE SUA EMPRESA REALIZA:
-            </h4>
-        </p>
-        <hr style="color: #000000; ">
 
+
+
+    <div class="container" id="position-text">
+        <div class="col-md-12">
+            <p>
+                <h4>
+                    SELECIONE OS TRABALHOS <br />
+                    QUE SUA EMPRESA REALIZA:
+                </h4>
+            </p>
+            <hr style="color: #000000; ">
+        </div>
     </div>
+
+
 
     @using (Html.BeginForm())
     {
         foreach (var cat in ListaCategoria)
         {
 
-            <div class="nome-categoria col-md-12 pull-left" id="position-checkbox">
+            <div class="nome-categoria col-md-12 col-sm-12" id="position-checkbox">
                 <br />
                 &bull;  @Html.DisplayFor(modelItem => cat.cat_Nome)
                 <hr style="color: #000000;" />
 
             </div>
+
+
+
             foreach (var item in Model)
             {
                 if (cat.cat_Id == item.cat_Id)
                 {
-                    <div class="container row text-left pull-left col-md-2" id="position-checkbox">
+                    <div class="container row text-left col-md-3 col-sm-6 col-xs-6" id="position-checkbox">
                         <div class="checkbox ">
                             <label style="text-transform: capitalize">
                                 <input type="checkbox" value="" id="@item.serv_Id" name="@item.serv_Id">
@@ -53,11 +61,12 @@
 
             }
         }
-        <input type="hidden" value="@cpfPrestador" id="cpfPrestador" />
-        <div class=" col-md-5 bottom bottom-left frm-contato">
-            <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="verificar()" />
-        </div>
     }
 
-
+    <input type="hidden" value="@cpfPrestador" id="cpfPrestador"/>
+    <div class="container">
+        <div class="row col-md-12 bottom col-sm-12 frm-contato">
+            <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="verificar()" />
+        </div>
+    </div>
 
