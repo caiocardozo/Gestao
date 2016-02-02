@@ -18,9 +18,8 @@ html, body {
     opacity:1;
 	background-size: cover;
 	background-position: center;
-    
-    
 }
+
 a{text-decoration: none; color: rgba(255,255,255,1);}
 
 input:valid{
