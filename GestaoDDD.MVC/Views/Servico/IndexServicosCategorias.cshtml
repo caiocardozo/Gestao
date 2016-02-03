@@ -8,6 +8,8 @@
 
     @{
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
+        var cpfPrestador = ViewBag.Cpf as string;
+        
     }
     <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
     <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
@@ -61,12 +63,13 @@
 
             }
         }
-    }
-
-    <input type="hidden" value="@cpfPrestador" id="cpfPrestador"/>
+         <input type="hidden" value="@cpfPrestador" name="cpfPrestador"/>
     <div class="container">
         <div class="row col-md-12 bottom col-sm-12 frm-contato">
             <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="verificar()" />
         </div>
     </div>
 
+    }
+
+   
