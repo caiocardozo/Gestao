@@ -1,9 +1,22 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using AutoMapper;
+using GestaoDDD.Application.Interface;
+using GestaoDDD.Application.ViewModels;
+using GestaoDDD.Domain.Entities;
 
 namespace GestaoDDD.MVC.Controllers
 {
     public class OrcamentoController : Controller
     {
+
+        private readonly IOrcamentoAppService _orcamentoApp;
+
+        public OrcamentoController(IOrcamentoAppService orcamentoApp)
+        {
+            _orcamentoApp = orcamentoApp;
+        }
+
         //
         // GET: /Orcamento/
         public ActionResult Index()
@@ -13,81 +26,101 @@ namespace GestaoDDD.MVC.Controllers
 
         //
         // GET: /Orcamento/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Detalhes(int id)
         {
             return View();
         }
 
         //
-        // GET: /Orcamento/Create
-        public ActionResult Create()
+        // GET: /Orcamento/Cadastrar
+        public ActionResult Cadastrar(FormCollection collection)
         {
             return View();
         }
 
         //
-        // POST: /Orcamento/Create
+        // POST: /Orcamento/Cadastrar
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Cadastrar(OrcamentoViewModel orcamento)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    var orcamentoDomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
+                    _orcamentoApp.Add(orcamentoDomain);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(orcamento);
+                }
 
-                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("ErroAoCadastrar");
             }
         }
 
-        //
-        // GET: /Orcamento/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Editar(int id)
         {
-            return View();
+            var orcamento = _orcamentoApp.GetById(id);
+            var orcamentoViewModel = Mapper.Map<Orcamento, OrcamentoViewModel>(orcamento);
+            return View(orcamentoViewModel);
         }
 
         //
-        // POST: /Orcamento/Edit/5
+        // POST: /\Orcamento/Edit/5
+
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Editar(OrcamentoViewModel orcamento)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                try
+                {
+                    var orcamentodomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
+                    _orcamentoApp.Update(orcamentodomain);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    //inserir pagina de erro
+                    return RedirectToAction("ErroAoCadastrar");
+                }
             }
-            catch
+            else
             {
-                return View();
+                return View(orcamento);
             }
         }
 
-        //
-        // GET: /Orcamento/Delete/5
-        public ActionResult Delete(int id)
+
+        public ActionResult Deletar(int id)
         {
-            return View();
+            var orcamento = _orcamentoApp.GetById(id);
+            var orcamentoViewModel = Mapper.Map<Orcamento, OrcamentoViewModel>(orcamento);
+            return View(orcamentoViewModel);
+            
         }
 
         //
         // POST: /Orcamento/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Deletar")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmarDeletar(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var adm_grupo = _orcamentoApp.GetById(id);
+            _orcamentoApp.Remove(adm_grupo);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult ErroAoCadastrar()
+        {
+            return View();
         }
     }
 }

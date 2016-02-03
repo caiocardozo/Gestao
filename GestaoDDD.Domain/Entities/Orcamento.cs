@@ -1,5 +1,5 @@
-﻿
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+
 namespace GestaoDDD.Domain.Entities
 {
     public class Orcamento : Entidade
