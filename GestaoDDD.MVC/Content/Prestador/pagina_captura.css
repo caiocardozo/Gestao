@@ -90,11 +90,6 @@ input:valid{
   
 }
 
-/* BCL ONE */
-.bcl-four{
-	float: left;
-	position: relative;
-}
 
 .bcl-one{
 	width: 100%; height: 40%;
@@ -158,22 +153,39 @@ footer.footer {
 	.center{padding: 0 20px;}
 }
 
-@media screen and (max-width: 800px){
-	.col-50 {width: 100%;}
-    .col-50 img{display: none;} 
-	.infos-form{
-		position: relative;
-		width: 100%;
-		top: 0;
-		-webkit-transform: translateY(0);
-		-ms-transform: translateY(0);
-		-o-transform: translateY(0);
-		transform: translateY(0);
-	}
+
+@media screen and (max-width: 800px) {
+    .col-50 {
+        width: 100%;
+        font-size: 18px;
+    }
+
+        .col-50 img {
+            display: none;
+        }
+
+    .infos-form {
+        position: relative;
+        width: 100%;
+        top: 0;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    .bcl-one p {
+        width: 90%;
+    }
 }
 
 @media screen and (max-width: 500px){
-	.bcl-one p,
+	.bcl-one p {
+        width:90%;
+        font-size: 18px;
+	}
 	.infos-form h1,
-	.infos-form p{font-size: 1rem;}
+	.infos-form p{
+           font-size: 18px;
+    }
 }

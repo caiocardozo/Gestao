@@ -8,8 +8,8 @@
 
     @{
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
+        //Wagner Nogueira 02-02-16
         var cpfPrestador = ViewBag.Cpf as string;
-        
     }
     <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
     <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
@@ -37,7 +37,7 @@
         foreach (var cat in ListaCategoria)
         {
 
-            <div class="nome-categoria col-md-12 col-sm-12" id="position-checkbox">
+            <div class="row nome-categoria col-md-12 col-sm-12 col-xs-12" id="position-checkbox">
                 <br />
                 &bull;  @Html.DisplayFor(modelItem => cat.cat_Nome)
                 <hr style="color: #000000;" />
@@ -50,7 +50,7 @@
             {
                 if (cat.cat_Id == item.cat_Id)
                 {
-                    <div class="container row text-left col-md-3 col-sm-6 col-xs-6" id="position-checkbox">
+                    <div class="container row text-left col-md-3 col-sm-4 col-xs-6" id="position-checkbox">
                         <div class="checkbox ">
                             <label style="text-transform: capitalize">
                                 <input type="checkbox" value="" id="@item.serv_Id" name="@item.serv_Id">
@@ -63,13 +63,13 @@
 
             }
         }
-         <input type="hidden" value="@cpfPrestador" name="cpfPrestador"/>
+    }
+
+    @*02-02-16 Wagner Nogueira*@
+    <input type="hidden" value="@cpfPrestador" id="cpfPrestador" />
     <div class="container">
-        <div class="row col-md-12 bottom col-sm-12 frm-contato">
+        <div class="row col-md-12 bottom col-sm-12 col-xs-12 frm-contato">
             <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="verificar()" />
         </div>
     </div>
 
-    }
-
-   
