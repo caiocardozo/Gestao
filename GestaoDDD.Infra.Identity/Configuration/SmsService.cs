@@ -16,7 +16,7 @@ namespace GestaoDDD.Infra.Identity.Configuration
 
             var client = new TwilioRestClient(accountSid, authToken);
 
-            client.SendMessage("6291501668", message.Destination, message.Body);
+            client.SendMessage("814-350-7742", message.Destination, message.Body);
 
             return Task.FromResult(0);
         }

@@ -35,7 +35,7 @@ namespace GestaoDDD.Infra.Identity.Configuration
             // Configuração de Lockout
             UserLockoutEnabledByDefault = true;
             DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
-            MaxFailedAccessAttemptsBeforeLockout = 5;
+            MaxFailedAccessAttemptsBeforeLockout = 3;
 
             // Providers de Two Factor Autentication
             RegisterTwoFactorProvider("Código via SMS", new PhoneNumberTokenProvider<ApplicationUser>
@@ -56,7 +56,7 @@ namespace GestaoDDD.Infra.Identity.Configuration
             SmsService = new SmsService();
 
             var provider = new DpapiDataProtectionProvider("Agiliza");
-            var dataProtector = provider.Create("ASP.NET Identity");
+            var dataProtector = provider.Create("AGILIZA ORCAMENTOS");
 
             UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtector);
 

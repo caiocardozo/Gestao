@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title - FAI-UFSCar</title>
     <link rel="icon" href="~/Content/Imagens/icone.png" />
-    <link href="~/Content/Prestador/pagina_captura.css" rel="stylesheet" />
+    
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    @*@RenderPage("_Menu.cshtml")*@
+    <div class="navbar navbar-inverse">
+        @Html.Partial("_LoginPartial")
+    </div>
 
     @RenderBody()
-    @*@Html.Partial("_LoginPartial")*@
+    
     </body>
         <footer class="footer" style="position:static; bottom: 0px">
             <div class="center">

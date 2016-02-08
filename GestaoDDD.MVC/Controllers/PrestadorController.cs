@@ -1,5 +1,7 @@
-﻿using GestaoDDD.Application.Interface;
+﻿using AutoMapper;
+using GestaoDDD.Application.Interface;
 using GestaoDDD.Domain.Entities;
+using System.Collections;
 using System.Web.Mvc;
 
 namespace GestaoDDD.MVC.Controllers
@@ -13,8 +15,10 @@ namespace GestaoDDD.MVC.Controllers
         }
         //
         // GET: /Prestador/
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
+            //var prestadorViewModel = Mapper.Map<IEnumerable>
             return View();
         }
         
