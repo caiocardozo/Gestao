@@ -35,7 +35,7 @@ namespace GestaoDDD.Application.ViewModels
         [DisplayName("Telefone residencial.")]
         [DataType(DataType.PhoneNumber)]
         public string pres_telefone_residencial { get; set; }
-        
+
 
         [DisplayName("Telefone celular.")]
         [DataType(DataType.PhoneNumber)]

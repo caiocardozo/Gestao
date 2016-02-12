@@ -1,22 +1,21 @@
 ﻿@model IEnumerable<GestaoDDD.Application.ViewModels.ServicoViewModel>
+
     @using GestaoDDD.Application.ViewModels;
 
     @{
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-    @Styles.Render("~/Content/css")
+    
 
     @{
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
         //Wagner Nogueira 02-02-16
         var cpfPrestador = ViewBag.Cpf as string;
     }
+
     <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
     <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
-    <script src="/bundles/modernizr?v="></script>
-
-
-
+    <script src="~/Scripts/Adicionais/modalServicoPrestador.js"></script>
 
     <div class="container" id="position-text">
         <div class="col-md-12">
@@ -30,8 +29,6 @@
         </div>
     </div>
 
-
-
     @using (Html.BeginForm())
     {
         foreach (var cat in ListaCategoria)
@@ -41,11 +38,7 @@
                 <br />
                 &bull;  @Html.DisplayFor(modelItem => cat.cat_Nome)
                 <hr style="color: #000000;" />
-
             </div>
-
-
-
             foreach (var item in Model)
             {
                 if (cat.cat_Id == item.cat_Id)
@@ -63,13 +56,14 @@
 
             }
         }
-    }
 
-    @*02-02-16 Wagner Nogueira*@
-    <input type="hidden" value="@cpfPrestador" id="cpfPrestador" />
-    <div class="container">
-        <div class="row col-md-12 bottom col-sm-12 col-xs-12 frm-contato">
-            <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="verificar()" />
+
+        @*02-02-16 Wagner Nogueira*@
+        <input type="hidden" value="@cpfPrestador" name="cpfPrestador" />
+        <div class="container">
+            <div class="row col-md-12 bottom col-sm-12 col-xs-12 frm-contato">
+                <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="waitingDialog.show('Salvando o seu cadastro'); setTimeout(function () { waitingDialog.hide(); }, 5000)" />
+            </div>
         </div>
-    </div>
 
+    }

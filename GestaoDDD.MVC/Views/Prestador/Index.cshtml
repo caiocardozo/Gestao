@@ -1,68 +1,67 @@
 ﻿@model IEnumerable<GestaoDDD.Application.ViewModels.PrestadorViewModel>
 
-    
-    @*<h2>Index</h2>
+@{
+    ViewBag.Title = "Index";
+}
 
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.pres_nome)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.pres_cpf_cnpj)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.pres_endereco)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.pres_raio_recebimento)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.pres_email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.pres_telefone_residencial)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.pres_telefone_celular)
-                </th>
-                <th></th>
-            </tr>
+<h2>Index</h2>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pres_nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pres_cpf_cnpj)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pres_endereco)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pres_raio_recebimento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pres_email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pres_telefone_residencial)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pres_telefone_celular)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.pres_Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.pres_Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.pres_Id })
-                    </td>
-                </tr>
-            }
 
-        </table>*@
-   
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pres_nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pres_cpf_cnpj)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.pres_endereco)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.pres_raio_recebimento)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.pres_email)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.pres_telefone_residencial)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.pres_telefone_celular)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pres_nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pres_cpf_cnpj)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.pres_endereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pres_raio_recebimento)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.pres_email)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.pres_telefone_residencial)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.pres_telefone_celular)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.pres_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.pres_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.pres_Id })
+        </td>*@
+    </tr>
+}
+
+</table>
