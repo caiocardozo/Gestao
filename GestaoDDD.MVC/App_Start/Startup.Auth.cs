@@ -22,8 +22,9 @@ namespace GestaoDDD.MVC
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationUserManager>());
-            app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationSignInManager>());
-            app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationRoleManager>());
+            ////
+            //app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationSignInManager>());
+            //app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationRoleManager>());
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
@@ -37,7 +38,7 @@ namespace GestaoDDD.MVC
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                        validateInterval: TimeSpan.FromMinutes(0),
+                        validateInterval: TimeSpan.FromMinutes(5),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
             });
@@ -53,23 +54,23 @@ namespace GestaoDDD.MVC
 
             // Uncomment the following lines to enable logging in with third party login providers
 
-            app.UseMicrosoftAccountAuthentication(
-                clientId: "MYCLIENTID",
-                clientSecret: "MYCLIENTID");
+            //app.UseMicrosoftAccountAuthentication(
+            //    clientId: "MYCLIENTID",
+            //    clientSecret: "MYCLIENTID");
 
-            app.UseTwitterAuthentication(
-               consumerKey: "MYCLIENTID",
-               consumerSecret: "MYCLIENTID");
+            //app.UseTwitterAuthentication(
+            //   consumerKey: "MYCLIENTID",
+            //   consumerSecret: "MYCLIENTID");
 
             app.UseFacebookAuthentication(
-               appId: "MYCLIENTID",
-               appSecret: "MYCLIENTID");
+               appId: "1213099755371227",
+               appSecret: "67c91421c354cdd6272f3c96765d8d53");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "103842386017689616225",
-                ClientSecret = "fc88974c3ea2abc0df457963b7240f4e844e46bd"
-            });
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "103842386017689616225",
+            //    ClientSecret = "fc88974c3ea2abc0df457963b7240f4e844e46bd"
+            //});
 
             var fao = new FacebookAuthenticationOptions
             {
@@ -78,8 +79,7 @@ namespace GestaoDDD.MVC
             };
 
             fao.Scope.Add("email");
-            fao.Scope.Add("publish_actions");
-            fao.Scope.Add("basic_info");
+            fao.Scope.Add("user_friends");
             fao.Scope.Add("public_profile");
 
             fao.Provider = new FacebookAuthenticationProvider()

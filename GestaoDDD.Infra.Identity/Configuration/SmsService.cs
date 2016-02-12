@@ -11,12 +11,12 @@ namespace GestaoDDD.Infra.Identity.Configuration
         {
             if (ConfigurationManager.AppSettings["Internet"] == "true") 
             {
-                const string accountSid = "ACacb7988131e2bfaf4c0d0e346979b937";
-                const string authToken = "f67e112b89b69f93ff67675c653fc340";
+                const string accountSid = "AC118c7ef4f8d25ea1cf3144b5d5b55900";
+                const string authToken = "9e938a4dc40b851ecff0b1c807636aa3";
 
                 var client = new TwilioRestClient(accountSid, authToken);
 
-               var returnMessage = client.SendMessage("+556291501668", message.Destination, message.Body);
+                var returnMessage = client.SendMessage("+15005550000", message.Destination, message.Body);
             }
 
             return Task.FromResult(0);

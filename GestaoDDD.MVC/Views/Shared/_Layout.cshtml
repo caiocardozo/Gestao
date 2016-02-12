@@ -5,26 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title - FAI-UFSCar</title>
     <link rel="icon" href="~/Content/Imagens/icone.png" />
-    
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse">
+    <div class="navbar navbar-inverse" style="position:relative">
         @Html.Partial("_LoginPartial")
     </div>
 
     @RenderBody()
-    
-    </body>
-        <footer class="footer" style="position:static; bottom: 0px">
-            <div class="center">
-                <p><small><b>agiliza orçamentos</b> | <a href="mailto:contato@agilizapracamentos.com.br">contato@agilizapracamentos.com.br</a></small></p>
-            </div>
-        </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @Scripts.Render("~/Content/css")
-        @RenderSection("scripts", required: false)
+</body>
+<footer class="footer" style="position:static; bottom: 0px">
+    <div class="center">
+        <p><small><b>agiliza orçamentos</b> | <a href="mailto:contato@agilizapracamentos.com.br">contato@agilizapracamentos.com.br</a></small></p>
+    </div>
+</footer>
 
-    </html>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/Content/css")
+@Scripts.Render("~/Scripts/jquery-2.1.4.js")
+@Scripts.Render("~/Scripts/jquery-2.1.4.min.js")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+
+@RenderSection("scripts", required: false)
+
+</html>
