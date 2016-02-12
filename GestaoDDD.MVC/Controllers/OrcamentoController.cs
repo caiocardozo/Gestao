@@ -57,9 +57,9 @@ namespace GestaoDDD.MVC.Controllers
                 }
 
             }
-            catch
+            catch(Exception)
             {
-                return RedirectToAction("ErroAoCadastrar");
+               return RedirectToAction("ErroAoCadastrar");
             }
         }
 

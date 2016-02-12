@@ -1,5 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using AutoMapper;
 using GestaoDDD.Application.Interface;
+using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
 using System.Collections;
 using System.Web.Mvc;
@@ -15,94 +18,113 @@ namespace GestaoDDD.MVC.Controllers
         }
         //
         // GET: /Prestador/
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
+        // GET: /Prestador/
         public ActionResult Index()
         {
-            //var prestadorViewModel = Mapper.Map<IEnumerable>
-            return View();
+            var prestadorViewModel = Mapper.Map<IEnumerable<Prestador>, IEnumerable<PrestadorViewModel>>(_prestadorApp.GetAll());
+            return View(prestadorViewModel);
         }
-        
+
         //
         // GET: /Prestador/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Detalhes(int id)
+        {
+            var prestador = _prestadorApp.GetById(id);
+            var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
+            return View(prestadorViewModel);
+        }
+
+        //
+        // GET: /Prestador/Cadastrar
+        public ActionResult Cadastrar(FormCollection collection)
         {
             return View();
         }
 
         //
-        // GET: /Prestador/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        
-        //
-        // POST: /Prestador/Create
+        // POST: /Prestador/Cadastrar
         [HttpPost]
-        public ActionResult Create(Prestador prestador)
+        public ActionResult Cadastrar(PrestadorViewModel prestador)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                  _prestadorApp.SaveOrUpdate(prestador);
-                  return RedirectToAction("IndexServicosCategorias", "Servico", new { cpf = prestador.pres_Cpf_Cnpj });
+                    var prestadorDomain = Mapper.Map<PrestadorViewModel, Prestador>(prestador);
+                    _prestadorApp.Add(prestadorDomain);
+                    return RedirectToAction("Index");
                 }
-                return View();
+                else
+                {
+                    return View(prestador);
+                }
+
             }
-            catch
+            catch (Exception)
             {
-                return View();
+                return RedirectToAction("ErroAoCadastrar");
             }
         }
 
-        //
-        // GET: /Prestador/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Editar(int id)
         {
-            return View();
+            var prestador = _prestadorApp.GetById(id);
+            var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
+            return View(prestadorViewModel);
         }
 
         //
-        // POST: /Prestador/Edit/5
+        // POST: /\Prestador/Edit/5
+
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Editar(PrestadorViewModel prestador)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                try
+                {
+                    var prestadordomain = Mapper.Map<PrestadorViewModel, Prestador>(prestador);
+                    _prestadorApp.Update(prestadordomain);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    //inserir pagina de erro
+                    return RedirectToAction("ErroAoCadastrar");
+                }
             }
-            catch
+            else
             {
-                return View();
+                return View(prestador);
             }
         }
 
-        //
-        // GET: /Prestador/Delete/5
-        public ActionResult Delete(int id)
+
+        public ActionResult Deletar(int id)
         {
-            return View();
+            var prestador = _prestadorApp.GetById(id);
+            var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
+            return View(prestadorViewModel);
+
         }
 
         //
         // POST: /Prestador/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Deletar")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmarDeletar(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var adm_grupo = _prestadorApp.GetById(id);
+            _prestadorApp.Remove(adm_grupo);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult ErroAoCadastrar()
+        {
+            return View();
         }
     }
 }

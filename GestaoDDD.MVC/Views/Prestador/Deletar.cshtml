@@ -1,12 +1,13 @@
 ﻿@model GestaoDDD.Application.ViewModels.PrestadorViewModel
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Deletar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Deletar Prestador</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Tem certeza que deseja excluir?</h3>
 <div>
     <h4>PrestadorViewModel</h4>
     <hr />
@@ -72,9 +73,11 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Deletar" class="btn btn-primary" />
+            <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Prestador")'" />
         </div>
+    </div>
     }
 </div>

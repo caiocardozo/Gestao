@@ -277,11 +277,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
-    <Content Include="Views\Prestador\Index.cshtml" />
-    <Content Include="Views\Prestador\Details.cshtml" />
-    <Content Include="Views\Prestador\Create.cshtml" />
-    <Content Include="Views\Prestador\Edit.cshtml" />
-    <Content Include="Views\Prestador\Delete.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Details.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
@@ -333,6 +328,13 @@
     <Content Include="Views\Orcamento\ErroAoCadastrar.cshtml" />
     <Content Include="Views\Orcamento\Cadastrar.cshtml" />
     <Content Include="Views\Orcamento\Editar.cshtml" />
+    <Content Include="Views\Orcamento\Index.cshtml" />
+    <Content Include="Views\Prestador\Index.cshtml" />
+    <Content Include="Views\Prestador\Detalhes.cshtml" />
+    <Content Include="Views\Prestador\Cadastrar.cshtml" />
+    <Content Include="Views\Prestador\Editar.cshtml" />
+    <Content Include="Views\Prestador\Deletar.cshtml" />
+    <Content Include="Views\Prestador\ErroAoCadastrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
