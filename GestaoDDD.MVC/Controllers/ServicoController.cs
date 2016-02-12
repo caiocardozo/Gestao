@@ -55,7 +55,7 @@ IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestado
                 var prestador = _iPrestadorApp.GetPorCpf(cpfPrestador);
 
                 _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
-                return RedirectToAction("Create", "Prestador");
+                //return RedirectToAction("Create", "Prestador");
             }
             catch
             {
