@@ -5,7 +5,7 @@
     @{
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-    
+
 
     @{
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
@@ -16,7 +16,7 @@
     <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
     <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
     <script src="~/Scripts/Adicionais/modalServicoPrestador.js"></script>
-
+                      <link href="~/Content/Servico/modal_accept.css" rel="stylesheet" />
     <div class="container" id="position-text">
         <div class="col-md-12">
             <p>
@@ -61,8 +61,8 @@
         @*02-02-16 Wagner Nogueira*@
         <input type="hidden" value="@cpfPrestador" name="cpfPrestador" />
         <div class="container">
-            <div class="row col-md-12 bottom col-sm-12 col-xs-12 frm-contato">
-                <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="waitingDialog.show('Salvando o seu cadastro'); setTimeout(function () { waitingDialog.hide(); }, 5000)" />
+            <div class="row col-md-12 bottom col-sm-12 col-xs-12 frm-contato sweet-12">
+                <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="ModalConcluir()" />
             </div>
         </div>
 

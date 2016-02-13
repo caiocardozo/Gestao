@@ -19,7 +19,7 @@ namespace GestaoDDD.MVC.Controllers
         }
         //
         // GET: /Prestador/
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         // GET: /Prestador/
         public ActionResult Index()
         {
@@ -46,15 +46,15 @@ namespace GestaoDDD.MVC.Controllers
         //
         // POST: /Prestador/Cadastrar
         [HttpPost]
-        public ActionResult Cadastrar(PrestadorViewModel prestador)
+        public ActionResult Cadastrar(Prestador prestador)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var prestadorDomain = Mapper.Map<PrestadorViewModel, Prestador>(prestador);
-                    _prestadorApp.Add(prestadorDomain);
-                    return RedirectToAction("Index");
+                    //var prestadorDomain = Mapper.Map<PrestadorViewModel, Prestador>(prestador);
+                    _prestadorApp.SaveOrUpdate(prestador);
+                    return RedirectToAction("IndexServicosCategorias", "Servico", new { cpf = prestador.pres_Cpf_Cnpj }); ;
                 }
                 else
                 {

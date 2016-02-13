@@ -240,6 +240,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Servico\checkbox_servicos.css" />
     <Content Include="Content\Prestador\pagina_captura.css" />
+    <Content Include="Content\Servico\modal_accept.css" />
     <Content Include="Content\site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -247,6 +248,7 @@
     <Content Include="Images\Prestador\background.png" />
     <Content Include="Images\Prestador\man.png" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
+    <Content Include="Scripts\Adicionais\modalServicoPrestador.js" />
     <Content Include="Scripts\Adicionais\page-prestador.js" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

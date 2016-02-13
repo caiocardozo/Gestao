@@ -1,85 +1,48 @@
 ﻿@model GestaoDDD.Application.ViewModels.PrestadorViewModel
 
 @{
-    ViewBag.Title = "Cadastrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Cadastrar</h2>
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>PrestadorViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pres_nome, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_cpf_cnpj, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_endereco, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_endereco, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pres_endereco, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_raio_recebimento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_raio_recebimento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pres_raio_recebimento, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pres_email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_telefone_residencial, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_telefone_residencial, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pres_telefone_residencial, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pres_telefone_celular, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pres_telefone_celular, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pres_telefone_celular, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Prestador")'" />
-            </div>
-        </div>
-    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<title>Agiliza Orçamentos</title>
+
+<link href="~/Content/Prestador/pagina_captura.css" rel="stylesheet" />
+<!-- BCL ONE -->
+@*<div class="navbar  bcl-one">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>*@
+<section class="bcl-one">
+    <div class="center">
+        <p>em breve você terá <br> muito mais agilidade na hora de <br> <b>buscar orçamentos de forma gratuita e sem compromisso.</b></p>
+    </div>
+</section>
+<!-- FIM BCL ONE -->
+<!-- BCL TWO -->
+<section class="bcl-two">
+    <div class="center">
+        <section class="col-50">
+            <div class="infos-form" id="texto-center">
+                <h1>você é um profissional e busca novos clientes?</h1>
+                <p>faça seu cadastro gratuitamente</p>
+                <form action="" method="post" class="frm-contato">
+                    <input required="required" placeholder="Nome" id="pres_nome" name="pres_nome" type="text">
+                    <input type="text" placeholder="CPF/CNPJ" required="required" id="pres_cpf_cnpj" name="pres_cpf_cnpj">
+                    <input type="email" placeholder="E-mail" required="required" id="pres_email" name="pres_email">
+                    <input type="text" placeholder="Celular" required="required" id="pres_telefone_celular" name="pres_telefone_celular">
+                    <input type="submit" class="btn btn-group-lg" value="AVANÇAR">
+                </form>
+            </div>
+        </section>
+        <section class="col-50">
+            <img src="~/Images/Prestador/man.png" alt="" />
+        </section>
+    </div>
+</section>
+<!-- FIM BCL TWO -->
