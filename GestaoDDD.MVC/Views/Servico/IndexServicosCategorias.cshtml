@@ -4,6 +4,7 @@
 
     @{
         Layout = "~/Views/Shared/_Layout.cshtml";
+
     }
 
 
@@ -15,8 +16,11 @@
 
     <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
     <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
-    <script src="~/Scripts/Adicionais/modalServicoPrestador.js"></script>
-                      <link href="~/Content/Servico/modal_accept.css" rel="stylesheet" />
+
+    <link href="~/Content/Servico/modal_accept.css" rel="stylesheet" />
+                      <script src="~/Scripts/Adicionais/modalServicoPrestador.js"></script>
+
+
     <div class="container" id="position-text">
         <div class="col-md-12">
             <p>
@@ -61,9 +65,39 @@
         @*02-02-16 Wagner Nogueira*@
         <input type="hidden" value="@cpfPrestador" name="cpfPrestador" />
         <div class="container">
-            <div class="row col-md-12 bottom col-sm-12 col-xs-12 frm-contato sweet-12">
-                <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="ModalConcluir()" />
+            <div class="row col-md-12 bottom col-sm-12 col-xs-12 frm-contato">
+                <p class="text-center">
+                <a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Cadastrar</a></p>
+
+                <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div id="div-forms">
+                                <form id="register-form" style="display:none;">
+                                    <div class="modal-body">
+                                       <h2>Cadastro realizado com sucesso.</h2>
+                                        <h3>
+                                            Obrigado por optar pelos nossos serviços.
+                                        </h3>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block">Ok</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- End | Register Form -->
+
+                            </div>
+                            <!-- End # DIV Form -->
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     }
+
+
+
+    <!-- END # MODAL LOGIN -->

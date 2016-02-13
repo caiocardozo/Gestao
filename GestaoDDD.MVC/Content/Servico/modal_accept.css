@@ -1,564 +1,147 @@
-﻿@-webkit-keyframes showSweetAlert {
-  0% {
-    transform: scale(0.7);
-    -webkit-transform: scale(0.7);
-  }
-  45% {
-    transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-  }
-  80% {
-    transform: scale(0.95);
-    -webkit-tranform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-  }
+﻿/* #####################################################################
+   #
+   #   Project       : Modal Login with jQuery Effects
+   #   Author        : Rodrigo Amarante (rodrigockamarante)
+   #   Version       : 1.0
+   #   Created       : 07/28/2015
+   #   Last Change   : 08/02/2015
+   #
+   ##################################################################### */
+   
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+* {
+    font-family: 'Roboto', sans-serif;
 }
-@keyframes showSweetAlert {
-  0% {
-    transform: scale(0.7);
-    -webkit-transform: scale(0.7);
-  }
-  45% {
-    transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-  }
-  80% {
-    transform: scale(0.95);
-    -webkit-tranform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-  }
+
+#login-modal .modal-dialog {
+    width: 350px;
 }
-@-webkit-keyframes hideSweetAlert {
-  0% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-  }
-  100% {
-    transform: scale(0.5);
-    -webkit-transform: scale(0.5);
-  }
+
+#login-modal input[type=text], input[type=password] {
+	margin-top: 10px;
 }
-@keyframes hideSweetAlert {
-  0% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-  }
-  100% {
-    transform: scale(0.5);
-    -webkit-transform: scale(0.5);
-  }
+
+#div-login-msg,
+#div-lost-msg,
+#div-register-msg {
+    border: 1px solid #dadfe1;
+    height: 30px;
+    line-height: 28px;
+    transition: all ease-in-out 500ms;
 }
-.showSweetAlert {
-  -webkit-animation: showSweetAlert 0.3s;
-  animation: showSweetAlert 0.3s;
+
+#div-login-msg.success,
+#div-lost-msg.success,
+#div-register-msg.success {
+    border: 1px solid #68c3a3;
+    background-color: #c8f7c5;
 }
-.hideSweetAlert {
-  -webkit-animation: hideSweetAlert 0.2s;
-  animation: hideSweetAlert 0.2s;
+
+#div-login-msg.error,
+#div-lost-msg.error,
+#div-register-msg.error {
+    border: 1px solid #eb575b;
+    background-color: #ffcad1;
 }
-@-webkit-keyframes animateSuccessTip {
-  0% {
-    width: 0;
-    left: 1px;
-    top: 19px;
-  }
-  54% {
-    width: 0;
-    left: 1px;
-    top: 19px;
-  }
-  70% {
-    width: 50px;
-    left: -8px;
-    top: 37px;
-  }
-  84% {
-    width: 17px;
-    left: 21px;
-    top: 48px;
-  }
-  100% {
-    width: 25px;
-    left: 14px;
-    top: 45px;
-  }
+
+#icon-login-msg,
+#icon-lost-msg,
+#icon-register-msg {
+    width: 30px;
+    float: left;
+    line-height: 28px;
+    text-align: center;
+    background-color: #dadfe1;
+    margin-right: 5px;
+    transition: all ease-in-out 500ms;
 }
-@keyframes animateSuccessTip {
-  0% {
-    width: 0;
-    left: 1px;
-    top: 19px;
-  }
-  54% {
-    width: 0;
-    left: 1px;
-    top: 19px;
-  }
-  70% {
-    width: 50px;
-    left: -8px;
-    top: 37px;
-  }
-  84% {
-    width: 17px;
-    left: 21px;
-    top: 48px;
-  }
-  100% {
-    width: 25px;
-    left: 14px;
-    top: 45px;
-  }
+
+#icon-login-msg.success,
+#icon-lost-msg.success,
+#icon-register-msg.success {
+    background-color: #68c3a3 !important;
 }
-@-webkit-keyframes animateSuccessLong {
-  0% {
-    width: 0;
-    right: 46px;
-    top: 54px;
-  }
-  65% {
-    width: 0;
-    right: 46px;
-    top: 54px;
-  }
-  84% {
-    width: 55px;
-    right: 0px;
-    top: 35px;
-  }
-  100% {
-    width: 47px;
-    right: 8px;
-    top: 38px;
-  }
+
+#icon-login-msg.error,
+#icon-lost-msg.error,
+#icon-register-msg.error {
+    background-color: #eb575b !important;
 }
-@keyframes animateSuccessLong {
-  0% {
-    width: 0;
-    right: 46px;
-    top: 54px;
-  }
-  65% {
-    width: 0;
-    right: 46px;
-    top: 54px;
-  }
-  84% {
-    width: 55px;
-    right: 0px;
-    top: 35px;
-  }
-  100% {
-    width: 47px;
-    right: 8px;
-    top: 38px;
-  }
+
+#img_logo {
+    max-height: 100px;
+    max-width: 100px;
 }
-@-webkit-keyframes rotatePlaceholder {
-  0% {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
-  5% {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
-  12% {
-    transform: rotate(-405deg);
-    -webkit-transform: rotate(-405deg);
-  }
-  100% {
-    transform: rotate(-405deg);
-    -webkit-transform: rotate(-405deg);
-  }
+
+/* #########################################
+   #    override the bootstrap configs     #
+   ######################################### */
+
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .8;
 }
-@keyframes rotatePlaceholder {
-  0% {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
-  5% {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
-  12% {
-    transform: rotate(-405deg);
-    -webkit-transform: rotate(-405deg);
-  }
-  100% {
-    transform: rotate(-405deg);
-    -webkit-transform: rotate(-405deg);
-  }
+
+.modal-content {
+    background-color: #ececec;
+    border: 1px solid #bdc3c7;
+    border-radius: 0px;
+    outline: 0;
 }
-.animateSuccessTip {
-  -webkit-animation: animateSuccessTip 0.75s;
-  animation: animateSuccessTip 0.75s;
+
+.modal-header {
+    min-height: 16.43px;
+    padding: 15px 15px 15px 15px;
+    border-bottom: 0px;
 }
-.animateSuccessLong {
-  -webkit-animation: animateSuccessLong 0.75s;
-  animation: animateSuccessLong 0.75s;
+
+.modal-body {
+    position: relative;
+    padding: 5px 15px 5px 15px;
 }
-.icon.success.animate::after {
-  -webkit-animation: rotatePlaceholder 4.25s ease-in;
-  animation: rotatePlaceholder 4.25s ease-in;
+
+.modal-footer {
+    padding: 15px 15px 15px 15px;
+    text-align: left;
+    border-top: 0px;
 }
-@-webkit-keyframes animateErrorIcon {
-  0% {
-    transform: rotateX(100deg);
-    -webkit-transform: rotateX(100deg);
-    opacity: 0;
-  }
-  100% {
-    transform: rotateX(0deg);
-    -webkit-transform: rotateX(0deg);
-    opacity: 1;
-  }
+
+.checkbox {
+    margin-bottom: 0px;
 }
-@keyframes animateErrorIcon {
-  0% {
-    transform: rotateX(100deg);
-    -webkit-transform: rotateX(100deg);
-    opacity: 0;
-  }
-  100% {
-    transform: rotateX(0deg);
-    -webkit-transform: rotateX(0deg);
-    opacity: 1;
-  }
+
+.btn {
+    border-radius: 0px;
 }
-.animateErrorIcon {
-  -webkit-animation: animateErrorIcon 0.5s;
-  animation: animateErrorIcon 0.5s;
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
 }
-@-webkit-keyframes animateXMark {
-  0% {
-    transform: scale(0.4);
-    -webkit-transform: scale(0.4);
-    margin-top: 26px;
-    opacity: 0;
-  }
-  50% {
-    transform: scale(0.4);
-    -webkit-transform: scale(0.4);
-    margin-top: 26px;
-    opacity: 0;
-  }
-  80% {
-    transform: scale(1.15);
-    -webkit-transform: scale(1.15);
-    margin-top: -6px;
-  }
-  100% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-    margin-top: 0;
-    opacity: 1;
-  }
+
+.btn-lg, .btn-group-lg>.btn {
+    border-radius: 0px;
 }
-@keyframes animateXMark {
-  0% {
-    transform: scale(0.4);
-    -webkit-transform: scale(0.4);
-    margin-top: 26px;
-    opacity: 0;
-  }
-  50% {
-    transform: scale(0.4);
-    -webkit-transform: scale(0.4);
-    margin-top: 26px;
-    opacity: 0;
-  }
-  80% {
-    transform: scale(1.15);
-    -webkit-transform: scale(1.15);
-    margin-top: -6px;
-  }
-  100% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-    margin-top: 0;
-    opacity: 1;
-  }
+
+.btn-link {
+    padding: 5px 10px 0px 0px;
+    color: #95a5a6;
 }
-.animateXMark {
-  -webkit-animation: animateXMark 0.5s;
-  animation: animateXMark 0.5s;
+
+.btn-link:hover, .btn-link:focus {
+    color: #2c3e50;
+    text-decoration: none;
 }
-@-webkit-keyframes pulseWarning {
-  0% {
-    border-color: #F8D486;
-  }
-  100% {
-    border-color: #F8BB86;
-  }
+
+.glyphicon {
+    top: 0px;
 }
-@keyframes pulseWarning {
-  0% {
-    border-color: #F8D486;
-  }
-  100% {
-    border-color: #F8BB86;
-  }
-}
-.pulseWarning {
-  -webkit-animation: pulseWarning 0.75s infinite alternate;
-  animation: pulseWarning 0.75s infinite alternate;
-}
-@-webkit-keyframes pulseWarningIns {
-  0% {
-    background-color: #F8D486;
-  }
-  100% {
-    background-color: #F8BB86;
-  }
-}
-@keyframes pulseWarningIns {
-  0% {
-    background-color: #F8D486;
-  }
-  100% {
-    background-color: #F8BB86;
-  }
-}
-.pulseWarningIns {
-  -webkit-animation: pulseWarningIns 0.75s infinite alternate;
-  animation: pulseWarningIns 0.75s infinite alternate;
-}
-.sweet-overlay {
-  background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  display: none;
-  z-index: 1000;
-}
-.sweet-alert {
-  background-color: #ffffff;
-  width: 478px;
-  padding: 17px;
-  border-radius: 5px;
-  text-align: center;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  margin-left: -256px;
-  margin-top: -200px;
-  overflow: hidden;
-  display: none;
-  z-index: 2000;
-}
-@media all and (max-width: 767px) {
-  .sweet-alert {
-    width: auto;
-    margin-left: 0;
-    margin-right: 0;
-    left: 15px;
-    right: 15px;
-  }
-}
-.sweet-alert .icon {
-  width: 80px;
-  height: 80px;
-  border: 4px solid gray;
-  border-radius: 50%;
-  margin: 20px auto;
-  position: relative;
-  box-sizing: content-box;
-}
-.sweet-alert .icon.error {
-  border-color: #d43f3a;
-}
-.sweet-alert .icon.error .x-mark {
-  position: relative;
-  display: block;
-}
-.sweet-alert .icon.error .line {
-  position: absolute;
-  height: 5px;
-  width: 47px;
-  background-color: #d9534f;
-  display: block;
-  top: 37px;
-  border-radius: 2px;
-}
-.sweet-alert .icon.error .line.left {
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-  left: 17px;
-}
-.sweet-alert .icon.error .line.right {
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  right: 16px;
-}
-.sweet-alert .icon.warning {
-  border-color: #eea236;
-}
-.sweet-alert .icon.warning .body {
-  position: absolute;
-  width: 5px;
-  height: 47px;
-  left: 50%;
-  top: 10px;
-  border-radius: 2px;
-  margin-left: -2px;
-  background-color: #f0ad4e;
-}
-.sweet-alert .icon.warning .dot {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  margin-left: -3px;
-  left: 50%;
-  bottom: 10px;
-  background-color: #f0ad4e;
-}
-.sweet-alert .icon.info {
-  border-color: #46b8da;
-}
-.sweet-alert .icon.info::before {
-  content: "";
-  position: absolute;
-  width: 5px;
-  height: 29px;
-  left: 50%;
-  bottom: 17px;
-  border-radius: 2px;
-  margin-left: -2px;
-  background-color: #5bc0de;
-}
-.sweet-alert .icon.info::after {
-  content: "";
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  margin-left: -3px;
-  top: 19px;
-  background-color: #5bc0de;
-}
-.sweet-alert .icon.success {
-  border-color: #4cae4c;
-}
-.sweet-alert .icon.success::before,
-.sweet-alert .icon.success::after {
-  content: '';
-  border-radius: 50%;
-  position: absolute;
-  width: 60px;
-  height: 120px;
-  background: white;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-.sweet-alert .icon.success::before {
-  border-radius: 120px 0 0 120px;
-  top: -7px;
-  left: -33px;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  -webkit-transform-origin: 60px 60px;
-  transform-origin: 60px 60px;
-}
-.sweet-alert .icon.success::after {
-  border-radius: 0 120px 120px 0;
-  top: -11px;
-  left: 30px;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  -webkit-transform-origin: 0px 60px;
-  transform-origin: 0px 60px;
-}
-.sweet-alert .icon.success .placeholder {
-  width: 80px;
-  height: 80px;
-  border: 4px solid rgba(92, 184, 92, 0.2);
-  border-radius: 50%;
-  box-sizing: content-box;
-  position: absolute;
-  left: -4px;
-  top: -4px;
-  z-index: 2;
-}
-.sweet-alert .icon.success .fix {
-  width: 5px;
-  height: 90px;
-  background-color: #ffffff;
-  position: absolute;
-  left: 28px;
-  top: 8px;
-  z-index: 1;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-.sweet-alert .icon.success .line {
-  height: 5px;
-  background-color: #5cb85c;
-  display: block;
-  border-radius: 2px;
-  position: absolute;
-  z-index: 2;
-}
-.sweet-alert .icon.success .line.tip {
-  width: 25px;
-  left: 14px;
-  top: 46px;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-.sweet-alert .icon.success .line.long {
-  width: 47px;
-  right: 8px;
-  top: 38px;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-.sweet-alert .icon.custom {
-  background-size: contain;
-  border-radius: 0;
-  border: none;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-.sweet-alert .btn-default:focus {
-  border-color: #cccccc;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(204, 204, 204, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(204, 204, 204, 0.6);
-}
-.sweet-alert .btn-success:focus {
-  border-color: #4cae4c;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(76, 174, 76, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(76, 174, 76, 0.6);
-}
-.sweet-alert .btn-info:focus {
-  border-color: #46b8da;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(70, 184, 218, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(70, 184, 218, 0.6);
-}
-.sweet-alert .btn-danger:focus {
-  border-color: #d43f3a;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(212, 63, 58, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(212, 63, 58, 0.6);
-}
-.sweet-alert .btn-warning:focus {
-  border-color: #eea236;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(238, 162, 54, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(238, 162, 54, 0.6);
-}
-.sweet-alert button::-moz-focus-inner {
-  border: 0;
+
+.form-control {
+  border-radius: 0px;
 }
