@@ -12,6 +12,36 @@
 <body>
     <div class="navbar navbar-inverse" style="position:relative">
         @Html.Partial("_LoginPartial")
+        @{
+            if (Request.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    <li>@Html.ActionLink("Prestadores", "Index", "Prestador")</li>
+                }
+
+                var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+                var claim = claimsIdentity.FindFirst(c => c.Type == "AdmUsers");
+
+                if (claim != null)
+                {
+                    if (claim.Value == "True")
+                    {
+                        <li>@Html.ActionLink("Admin Users", "Index", "UsersAdmin")</li>
+                    }
+                }
+
+                claim = claimsIdentity.FindFirst(c => c.Type == "AdmClaims");
+                if (claim != null)
+                {
+                    if (claim.Value == "True")
+                    {
+                        <li>@Html.ActionLink("Admin Claims", "Index", "ClaimsAdmin")</li>
+                    }
+                }
+            }
+
+        }
     </div>
 
     @RenderBody()
