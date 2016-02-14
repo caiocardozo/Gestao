@@ -7,6 +7,8 @@
 
     }
 
+  
+
 
     @{
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
@@ -14,15 +16,16 @@
         var cpfPrestador = ViewBag.Cpf as string;
     }
 
+    
     <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
+   
     <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
-
     <link href="~/Content/Servico/modal_accept.css" rel="stylesheet" />
-                      <script src="~/Scripts/Adicionais/modalServicoPrestador.js"></script>
+    <script src="~/Scripts/Adicionais/modalServicoPrestador.js"></script>
 
 
     <div class="container" id="position-text">
-        <div class="col-md-12">
+        <div class="col-md-12" style="margin-top: 15px">
             <p>
                 <h4>
                     SELECIONE OS TRABALHOS <br />
@@ -65,10 +68,14 @@
         @*02-02-16 Wagner Nogueira*@
         <input type="hidden" value="@cpfPrestador" name="cpfPrestador" />
         <div class="container">
-            <div class="row col-md-12 bottom col-sm-12 col-xs-12 frm-contato">
+            <div class="row col-md-12 bottom col-sm-12 col-xs-12">
                 <p class="text-center">
-                <a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Cadastrar</a></p>
+                <a href="#" class="btn btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Cadastrar</a></p>  
 
+                        @*<div class="row col-md-12 bottom col-sm-12 col-xs-12 frm-contato">
+                            <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="verificar()" />
+                        </div>*@
+                 
                 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -82,7 +89,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <div>
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block">Ok</button>
+                                            <button type="submit" class="btn btn-lg btn-block">Ok</button>
                                         </div>
                                     </div>
                                 </form>

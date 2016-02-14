@@ -3,14 +3,20 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title - FAI-UFSCar</title>
+    <title>@ViewBag.Title - Agiliza Orçamentos</title>
     <link rel="icon" href="~/Content/Imagens/icone.png" />
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/Content/_Layout/layout.css" rel="stylesheet" />
+
 </head>
 <body>
-    <div class="navbar navbar-inverse" style="position:relative">
+    <div class="navbar navbar-default" id="navibar">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="color: white" href="#">Agiliza Orçamentos</a>
+        </div>
         @Html.Partial("_LoginPartial")
         @{
             if (Request.IsAuthenticated)

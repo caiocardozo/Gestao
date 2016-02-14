@@ -8,11 +8,9 @@
    #
    ##################################################################### */
    
-@import url(http://fonts.googleapis.com/css?family=Roboto);
 
-* {
-    font-family: 'Roboto', sans-serif;
-}
+
+
 
 #login-modal .modal-dialog {
     width: 350px;
@@ -85,7 +83,7 @@
 
 .modal-content {
     background-color: #ececec;
-    border: 1px solid #bdc3c7;
+    border: 1px solid #913034;
     border-radius: 0px;
     outline: 0;
 }
@@ -99,6 +97,7 @@
 .modal-body {
     position: relative;
     padding: 5px 15px 5px 15px;
+    text-align: center;
 }
 
 .modal-footer {
@@ -113,6 +112,8 @@
 
 .btn {
     border-radius: 0px;
+    color:  #913034;
+
 }
 
 .btn:focus,
@@ -122,19 +123,35 @@
 .btn:active.focus,
 .btn.active.focus {
     outline: none;
+   
+    
 }
 
 .btn-lg, .btn-group-lg>.btn {
     border-radius: 0px;
+     color: #FFF;
+     background-color: #913034;
+     border: 1px solid #913034;
+     position: relative;
+     margin-bottom: 40px;
+     margin-top: 40px;
+     margin-left: 0px;
+     margin-right: 0px;
+     border-radius: 5px;
+
 }
+
+.btn-lg:hover {
+    color: black;
+}
+
+
 
 .btn-link {
     padding: 5px 10px 0px 0px;
-    color: #95a5a6;
 }
 
 .btn-link:hover, .btn-link:focus {
-    color: #2c3e50;
     text-decoration: none;
 }
 
