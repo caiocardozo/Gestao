@@ -56,17 +56,9 @@
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
-    <Compile Include="Migrations\201512151937221_caio.cs" />
-    <Compile Include="Migrations\201512151937221_caio.Designer.cs">
-      <DependentUpon>201512151937221_caio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512291403304_identity.cs" />
-    <Compile Include="Migrations\201512291403304_identity.Designer.cs">
-      <DependentUpon>201512291403304_identity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601152010450_Atualizar.cs" />
-    <Compile Include="Migrations\201601152010450_Atualizar.Designer.cs">
-      <DependentUpon>201601152010450_Atualizar.cs</DependentUpon>
+    <Compile Include="Migrations\201602170015261_migracao.cs" />
+    <Compile Include="Migrations\201602170015261_migracao.Designer.cs">
+      <DependentUpon>201602170015261_migracao.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,14 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512151937221_caio.resx">
-      <DependentUpon>201512151937221_caio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512291403304_identity.resx">
-      <DependentUpon>201512291403304_identity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601152010450_Atualizar.resx">
-      <DependentUpon>201601152010450_Atualizar.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602170015261_migracao.resx">
+      <DependentUpon>201602170015261_migracao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

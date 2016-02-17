@@ -1,15 +1,18 @@
 namespace GestaoDDD.Infra.Data.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Contexto.GestaoContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<GestaoDDD.Infra.Data.Contexto.GestaoContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Contexto.GestaoContext context)
+        protected override void Seed(GestaoDDD.Infra.Data.Contexto.GestaoContext context)
         {
             //  This method will be called after migrating to the latest version.
 

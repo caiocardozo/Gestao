@@ -15,8 +15,27 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             Property(c => c.orc_Dias_Prazo);
 
-            Property(c => c.orc_Endereco_Servico)
-                .HasMaxLength(200);
+            Property(c => c.orc_Endereco)
+                .HasMaxLength(200)
+                .IsRequired();
+
+            Property(c => c.orc_numero)
+                .IsRequired();
+
+            Property(c => c.orc_bairro)
+               .HasMaxLength(100)
+               .IsRequired();
+
+            Property(c => c.orc_cidade)
+               .HasMaxLength(100)
+               .IsRequired();
+
+            Property(c => c.orc_cep)
+               .HasMaxLength(9)
+               .IsRequired();
+
+            Property(c => c.orc_referencia)
+               .HasMaxLength(150);
 
             Property(c => c.orc_Frequencia_Prazo);
 
