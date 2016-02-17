@@ -1,0 +1,36 @@
+﻿
+
+
+.center { 
+    text-align: center;
+}
+
+.form-group {
+    text-align: right;
+}
+
+h2, h4 {
+    text-align: center;
+}
+
+.botao {
+    text-align: center;
+    padding: 5px;
+    
+}
+
+.links a {
+
+    color: black; 
+}
+
+.links a:hover {
+   color: #913034;
+   text-decoration: none;
+}
+
+footer.footer {
+    position: absolute;
+}
+
+
