@@ -52,9 +52,15 @@ namespace GestaoDDD.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //var prestadorDomain = Mapper.Map<PrestadorViewModel, Prestador>(prestador);
-                    _prestadorApp.SaveOrUpdate(prestador);
-                    return RedirectToAction("IndexServicosCategorias", "Servico", new { cpf = prestador.pres_Cpf_Cnpj }); ;
+                   // _prestadorApp.SaveOrUpdate(prestador);
+                    //Wagner Nogueira 17-02-16
+                    //return RedirectToAction("IndexServicosCategorias", "Servico", new { cpf = prestador.pres_Cpf_Cnpj }); ;
+                    return RedirectToAction("ServicosCategorias", "Servico", 
+                        new { cpf = prestador.pres_Cpf_Cnpj,
+                              nome = prestador.pres_Nome,
+                              email = prestador.pres_Email,
+                              celular = prestador.pres_Telefone_Celular
+                        }); 
                 }
                 else
                 {

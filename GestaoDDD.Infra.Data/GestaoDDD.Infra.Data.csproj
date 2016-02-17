@@ -56,9 +56,9 @@
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
-    <Compile Include="Migrations\201602170015261_migracao.cs" />
-    <Compile Include="Migrations\201602170015261_migracao.Designer.cs">
-      <DependentUpon>201602170015261_migracao.cs</DependentUpon>
+    <Compile Include="Migrations\201602172228385_attdb.cs" />
+    <Compile Include="Migrations\201602172228385_attdb.Designer.cs">
+      <DependentUpon>201602172228385_attdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602170015261_migracao.resx">
-      <DependentUpon>201602170015261_migracao.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602172228385_attdb.resx">
+      <DependentUpon>201602172228385_attdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

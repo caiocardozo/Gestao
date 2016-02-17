@@ -325,7 +325,7 @@
     <Content Include="Views\Servico\Detalhes.cshtml" />
     <Content Include="Views\Servico\Deletar.cshtml" />
     <Content Include="Views\Servico\Editar.cshtml" />
-    <Content Include="Views\Servico\IndexServicosCategorias.cshtml" />
+    <Content Include="Views\Servico\ServicosCategorias.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
