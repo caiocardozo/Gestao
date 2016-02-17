@@ -369,7 +369,8 @@ namespace GestaoDDD.MVC.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Prestador");
         }
 
         //
@@ -426,7 +427,8 @@ namespace GestaoDDD.MVC.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Prestador");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

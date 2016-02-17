@@ -15,8 +15,7 @@
 html, body {
 	height: 100%;
 	font-size: 100%;
-	font-family: arial;
-    font-size: 14px;
+	font-family: arial;  
     background-image: url(../../Images/Prestador/background.png);  
     opacity:1;
 	background-size: cover;
@@ -31,6 +30,10 @@ a{text-decoration: none; color: rgba(255,255,255,1);}
 	position:relative;
     padding-left: 50px;
    
+}
+
+.checkbox {
+    font-size: 14px;
 }
 
 #clear {
@@ -51,7 +54,7 @@ a{text-decoration: none; color: rgba(255,255,255,1);}
     position: relative;
 }
 
-.frm-contato input[type="submit"] {
+.frm-contato {
     background-color: #913034;
     color: #FFF;
     cursor: pointer;
@@ -136,7 +139,7 @@ a{text-decoration: none; color: rgba(255,255,255,1);}
     }
 
 @media screen and (max-width: 1000px){
-	
+	.center{padding: 0 20px;}
 
 }
 

@@ -1,0 +1,25 @@
+﻿.row {
+    text-align: center;
+    vertical-align: central;
+}
+
+*{
+	margin: 0; padding: 0;
+
+    
+}
+
+
+.links a {
+
+    color: black; 
+}
+
+.links a:hover {
+   color: #913034;
+   text-decoration: none;
+}
+
+footer.footer {
+    position: absolute;
+}

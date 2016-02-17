@@ -2,66 +2,79 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
+@{
+    if (Model.Count() == 0)
+    {
+        <div class="alert alert-danger" role="alert">Nenhum prestador cadastrado.</div>
+    }
+    else
+    {
+        <p>
+            @Html.ActionLink("Cadastrar Novo", "Cadastrar")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.pres_nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pres_cpf_cnpj)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pres_endereco)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pres_raio_recebimento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pres_email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pres_telefone_residencial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pres_telefone_celular)
+                </th>
+                <th></th>
+            </tr>
 
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pres_nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pres_cpf_cnpj)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pres_endereco)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pres_raio_recebimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pres_email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pres_telefone_residencial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pres_telefone_celular)
+                    </td>
+                    <td>
+                        <a href="~/Prestador/Editar/@item.pres_Id" class="btn btn-primary" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                        <a href="~/Prestador/Detalhes/@item.pres_Id" class="btn btn-primary" title="Detalhes"><i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i></a>
+                        <a href="~/Prestador/Deletar/@item.pres_Id" class="btn btn-primary" title="Deletar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                    </td>
+                </tr>
+            }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.pres_nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pres_cpf_cnpj)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.pres_endereco)
-        </th>*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.pres_raio_recebimento)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.pres_email)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.pres_telefone_residencial)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.pres_telefone_celular)
-        </th>
-        <th></th>
-    </tr>
+        </table>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.pres_nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pres_cpf_cnpj)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.pres_endereco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pres_raio_recebimento)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.pres_email)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.pres_telefone_residencial)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.pres_telefone_celular)
-        </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.pres_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.pres_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.pres_Id })
-        </td>*@
-    </tr>
+    }
 }
-
-</table>

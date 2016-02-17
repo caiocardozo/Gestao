@@ -7,18 +7,18 @@ namespace GestaoDDD.Infra.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class identity : IMigrationMetadata
+    public sealed partial class migracao : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(identity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(migracao));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512291403304_identity"; }
+            get { return "201602170015261_migracao"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

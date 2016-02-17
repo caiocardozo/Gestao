@@ -1,14 +1,15 @@
 ﻿@model GestaoDDD.Application.ViewModels.PrestadorViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
     <h4>PrestadorViewModel</h4>
-	<hr />
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.pres_nome)
@@ -68,7 +69,8 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.pres_Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="button" value="Voltar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Prestador")'" />
+    </div>
+</div>
