@@ -2,6 +2,14 @@
 	height: 100%;
 }
 
+* {
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-transition: all .9s ease;
+	-o-transition: all .9s ease;
+	transition: all .9s ease;
+}
+
 
 a{text-decoration: none; color: rgba(255,255,255,1);}
 

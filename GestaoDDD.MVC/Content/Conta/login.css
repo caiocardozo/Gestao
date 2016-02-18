@@ -1,12 +1,51 @@
 ﻿.row {
     text-align: center;
     vertical-align: central;
+    width: 100%;
 }
 
 *{
-	margin: 0; padding: 0;
+	margin: 0; padding: 0;  
+}
 
-    
+
+
+footer.footer {
+    position: absolute;
+    width: 100%;
+}
+
+/* Botao */
+
+.btn1 {
+    text-align: center;
+}
+
+.botao {
+    padding: 10px;
+    background-color: #913034;
+    border-radius: 5px;
+    color: #FFF;
+    cursor: pointer;
+    position: relative;
+    border-color: none;
+    border: none;
+}
+
+.botao:hover {
+    background-color: #000000;
+}
+
+/* Fim Botao*/
+
+#navibar {
+    background: #913034;
+    border-color: #913034;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px;
+    color: white;
+   
 }
 
 

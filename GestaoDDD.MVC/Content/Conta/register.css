@@ -13,11 +13,28 @@ h2, h4 {
     text-align: center;
 }
 
-.botao {
+/* botao */
+
+.btn1 {
     text-align: center;
-    padding: 5px;
-    
 }
+
+.botao {
+    padding: 10px;
+    background-color: #913034;
+    border-radius: 5px;
+    color: #FFF;
+    cursor: pointer;
+    position: relative;
+    border-color: none;
+    border: none;
+}
+
+.botao:hover {
+    background-color: #000000;
+}
+
+/* Fim Botao */
 
 .links a {
 
