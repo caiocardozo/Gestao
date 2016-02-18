@@ -50,4 +50,17 @@ footer.footer {
     position: absolute;
 }
 
+@media screen and (max-width: 990px) {
+    .form-group {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 500px){
+	
+    .form-group {
+            text-align: center;
+    }
+}
+
 
