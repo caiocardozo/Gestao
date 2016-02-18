@@ -15,39 +15,32 @@
 <body>
     <div class="navbar navbar-default" id="navibar">
         <div class="navbar-header">
-            <a class="navbar-brand" style="color: white" href="#">Agiliza Orçamentos</a>
-        </div>
-        @Html.Partial("_LoginPartial")
-        @{
-            if (Request.IsAuthenticated)
-            {
-                if (User.IsInRole("Admin"))
-                {
-                    <li>@Html.ActionLink("Prestadores", "Index", "Prestador")</li>
-                }
+            <a class="navbar-brand" style="color: #ffffff" href="~/Prestador/Cadastrar">Agiliza Orçamentos</a>
 
-                var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
-                var claim = claimsIdentity.FindFirst(c => c.Type == "AdmUsers");
 
-                if (claim != null)
+            @{
+                if (Request.IsAuthenticated)
                 {
-                    if (claim.Value == "True")
+                    if (User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Admin Users", "Index", "UsersAdmin")</li>
-                    }
-                }
+                        <div class="btn btn-group">
+                            <a class="btn" href="#" data-toggle="dropdown">
+                                Administrar
+                            </a>
 
-                claim = claimsIdentity.FindFirst(c => c.Type == "AdmClaims");
-                if (claim != null)
-                {
-                    if (claim.Value == "True")
-                    {
-                        <li>@Html.ActionLink("Admin Claims", "Index", "ClaimsAdmin")</li>
+                            <ul class="dropdown-menu">
+                                <li>
+                                   <a href="#"> @Html.ActionLink("Prestadores", "Index", "Prestador")</a>
+                                </li>
+                            </ul>
+                        </div>
+                        
                     }
                 }
             }
+        </div>
+        @Html.Partial("_LoginPartial")
 
-        }
     </div>
 
     @RenderBody()

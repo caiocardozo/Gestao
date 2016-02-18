@@ -62,15 +62,16 @@ namespace GestaoDDD.MVC
             //   consumerKey: "MYCLIENTID",
             //   consumerSecret: "MYCLIENTID");
 
-            app.UseFacebookAuthentication(
-               appId: "1213099755371227",
-               appSecret: "67c91421c354cdd6272f3c96765d8d53");
+            //app.UseFacebookAuthentication(
+            //   appId: "1213099755371227",
+            //   appSecret: "67c91421c354cdd6272f3c96765d8d53");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
             //    ClientId = "103842386017689616225",
             //    ClientSecret = "fc88974c3ea2abc0df457963b7240f4e844e46bd"
             //});
+
 
             var fao = new FacebookAuthenticationOptions
             {
