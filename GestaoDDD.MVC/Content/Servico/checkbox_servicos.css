@@ -64,12 +64,17 @@ a{text-decoration: none; color: rgba(255,255,255,1);}
     margin-left: 0px;
     margin-right: 0px;
     left: 47%;
+    cursor: pointer;
+    border-color: none;
+    border: none;
   
 
 }
 
+
 .frm-contato input[type="submit"]:hover {
         background-color: #000000;
+        color: #FFF;
 }
 
 
@@ -137,6 +142,7 @@ a{text-decoration: none; color: rgba(255,255,255,1);}
     .radio label input[type="radio"]:disabled + .cr {
         opacity: .5;
     }
+
 
 @media screen and (max-width: 1000px){
 	.center{padding: 0 20px;}
