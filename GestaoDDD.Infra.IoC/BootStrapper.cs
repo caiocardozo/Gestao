@@ -63,6 +63,12 @@ namespace GestaoDDD.Infra.IoC
             container.RegisterPerWebRequest<IServicoPrestadorAppService, ServicoPrestadorAppService>();
             container.RegisterPerWebRequest<IServicoPrestadorService, ServicoPrestadorService>();
             #endregion
+
+            #region ComoFunciona
+            container.RegisterPerWebRequest<IComoFuncionaRepository, ComoFuncionaRepository>();
+            container.RegisterPerWebRequest<IComoFuncionaAppService, ComoFuncionaAppService>();
+            container.RegisterPerWebRequest<IComoFuncionaService, ComoFuncionaService>();
+            #endregion
         } 
     }
 }

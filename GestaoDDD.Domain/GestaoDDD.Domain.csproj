@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Categoria.cs" />
+    <Compile Include="Entities\ComoFunciona.cs" />
     <Compile Include="Entities\Entidade.cs" />
     <Compile Include="Entities\Identity\Claims.cs" />
     <Compile Include="Entities\Identity\Client.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Entities\Servico.cs" />
     <Compile Include="Entities\ServicoPrestador.cs" />
     <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Interfaces\Repositories\IComoFuncionaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IOrcamentoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPrestadorRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
@@ -57,12 +59,14 @@
     <Compile Include="Interfaces\Repositories\IServicoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IUsuarioRepository.cs" />
     <Compile Include="Interfaces\Services\ICategoriaService.cs" />
+    <Compile Include="Interfaces\Services\IComoFuncionaService.cs" />
     <Compile Include="Interfaces\Services\IOrcamentoService.cs" />
     <Compile Include="Interfaces\Services\IPrestadorService.cs" />
     <Compile Include="Interfaces\Services\IServiceBase.cs" />
     <Compile Include="Interfaces\Services\IServicoPrestadorService.cs" />
     <Compile Include="Interfaces\Services\IServicoService.cs" />
     <Compile Include="Interfaces\Services\IUsuarioService.cs" />
+    <Compile Include="Services\ComoFuncionaService.cs" />
     <Compile Include="Services\OrcamentoService.cs" />
     <Compile Include="Services\PrestadorService.cs" />
     <Compile Include="Services\ServiceBase.cs" />

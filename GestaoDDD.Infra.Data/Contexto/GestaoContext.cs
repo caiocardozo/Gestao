@@ -19,6 +19,7 @@ namespace GestaoDDD.Infra.Data.Contexto
         public DbSet<Orcamento> Orcamento { get; set; }
         public DbSet<Servico> Servico { get; set; }
         public DbSet<ServicoPrestador> ServicoPrestador { get; set; }
+        public DbSet<ComoFunciona> ComoFunciona { get; set; }
 
         #endregion
 
