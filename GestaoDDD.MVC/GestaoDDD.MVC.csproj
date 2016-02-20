@@ -245,6 +245,8 @@
     <Content Include="Content\Prestador\pagina_captura.css" />
     <Content Include="Content\Servico\modal_accept.css" />
     <Content Include="Content\site.css" />
+    <Content Include="Content\_ExternalLoginsListPartial\loginExternal.css" />
+    <Content Include="Content\_ExternalLoginsListPartial\loginsExternos.css" />
     <Content Include="Content\_Layout\layout.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -252,6 +254,7 @@
     <Content Include="Images\Prestador\background.png" />
     <Content Include="Images\Prestador\man.png" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
+    <Content Include="Scripts\Adicionais\loginsExternos.js" />
     <Content Include="Scripts\Adicionais\modalServicoPrestador.js" />
     <Content Include="Scripts\Adicionais\page-prestador.js" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -269,6 +272,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\LoginsExternos.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
