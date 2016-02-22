@@ -113,9 +113,7 @@ namespace GestaoDDD.MVC.Controllers
             var categoria = _categoriaApp.GetById(id);
             var categoriaViewModel = Mapper.Map<Categoria, CategoriaViewModel>(categoria);
             return View(categoriaViewModel);
-            //if (categoriaId == null)
-            //    return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
-            //return View(categoriaId);
+            
         }
 
         //
