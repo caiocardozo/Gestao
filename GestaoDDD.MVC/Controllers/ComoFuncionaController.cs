@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
+using GestaoDDD.Domain.Entities;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -117,6 +118,7 @@ namespace GestaoDDD.MVC.Controllers
 
                 var adm_grupo = _comoFuncionaAppService.GetById(id);
                 _comoFuncionaAppService.Remove(adm_grupo);
+                return RedirectToAction("Index");
             }
             catch
             {
