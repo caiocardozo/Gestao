@@ -9,7 +9,6 @@ using Owin;
 using System;
 using System.Web.Mvc;
 using Microsoft.Owin.Security.Facebook;
-using Microsoft.Owin.Security.Google;
 using System.Threading.Tasks;
 
 namespace GestaoDDD.MVC
