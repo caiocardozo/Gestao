@@ -7,7 +7,7 @@ namespace GestaoDDD.Application.ViewModels
     {
         [Key]
         public int cf_Id { get; set; }
-       
+
         [DisplayName("Ordem")]
         public int cf_Ordem { get; set; }
 
@@ -17,5 +17,5 @@ namespace GestaoDDD.Application.ViewModels
         [DisplayName("Informação")]
         public string cf_Informacao { get; set; }
     }
-    }
 }
+

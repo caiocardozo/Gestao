@@ -8,7 +8,7 @@ namespace GestaoDDD.Domain.Services
     {
         private readonly IComoFuncionaRepository _comoFuncionaRepository;
         
-        ComoFuncionaService(IComoFuncionaRepository comoFuncionaRepository)
+        public ComoFuncionaService(IComoFuncionaRepository comoFuncionaRepository)
             : base(comoFuncionaRepository)
         {
             _comoFuncionaRepository = comoFuncionaRepository;
