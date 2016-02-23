@@ -49,7 +49,6 @@ namespace GestaoDDD.MVC.Controllers
             {
                 if (ModelState.IsValid) 
                 {
-
                     var comoFunc = Mapper.Map<ComoFuncionaViewModel, ComoFunciona>(comoFuncVm);
                     _comoFuncionaAppService.Add(comoFunc);
                     return RedirectToAction("Index");

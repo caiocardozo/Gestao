@@ -1,4 +1,5 @@
-﻿using GestaoDDD.Domain.Interfaces.Repositories;
+﻿using GestaoDDD.Domain.Entities;
+using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Domain.Interfaces.Services;
 
 namespace GestaoDDD.Domain.Services
