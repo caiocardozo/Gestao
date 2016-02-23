@@ -346,11 +346,15 @@
     <Content Include="Views\Orcamento\Cadastrar.cshtml" />
     <Content Include="Views\Orcamento\Editar.cshtml" />
     <Content Include="Views\Orcamento\Deletar.cshtml" />
+    <Content Include="Views\ComoFunciona\Index.cshtml" />
+    <Content Include="Views\ComoFunciona\Details.cshtml" />
+    <Content Include="Views\ComoFunciona\Create.cshtml" />
+    <Content Include="Views\ComoFunciona\Edit.cshtml" />
+    <Content Include="Views\ComoFunciona\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\ComoFunciona\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
