@@ -20,6 +20,7 @@ namespace GestaoDDD.Infra.Data.Contexto
         public DbSet<Servico> Servico { get; set; }
         public DbSet<ServicoPrestador> ServicoPrestador { get; set; }
         public DbSet<ComoFunciona> ComoFunciona { get; set; }
+        public DbSet<Pessoa> Pessoa { get; set; }
 
         #endregion
 
@@ -48,6 +49,7 @@ namespace GestaoDDD.Infra.Data.Contexto
             modelBuilder.Configurations.Add(new ServicoConfiguration());
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
             modelBuilder.Configurations.Add(new ServicoPrestadorConfiguration());
+            modelBuilder.Configurations.Add(new PessoaConfiguration());
             #endregion
         }
     }

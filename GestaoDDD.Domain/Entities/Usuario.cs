@@ -31,6 +31,8 @@ namespace GestaoDDD.Domain.Entities
         public virtual int AccessFailedCount { get; set; }
 
         public virtual string UserName { get; set; }
+
+        public virtual Pessoa Pessoa { get; set; }
     }
 
     //public class Usuario : Entidade

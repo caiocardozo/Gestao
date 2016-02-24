@@ -16,5 +16,6 @@ namespace GestaoDDD.Infra.Data.Contexto
         DbSet<Orcamento> Orcamento { get; set; }
         DbSet<Servico> Servico { get; set; }
         DbSet<ServicoPrestador> ServicoPrestador { get; set; }
+        DbSet<Usuario> Pessoa { get; set; }
     }
 }

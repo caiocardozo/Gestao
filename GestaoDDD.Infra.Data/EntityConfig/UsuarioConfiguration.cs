@@ -22,6 +22,10 @@ namespace GestaoDDD.Infra.Data.EntityConfig
                 .HasMaxLength(256);
 
             ToTable("AspNetUsers");
+
+            /// MAPEAMENTO DE UM PARA UM
+            HasRequired(p => p.Pessoa)
+                .WithRequiredPrincipal(p => p.Usuario);
         }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="Interface\IAppServiceBase.cs" />
     <Compile Include="Interface\IComoFuncionaAppService.cs" />
     <Compile Include="Interface\IOrcamentoAppService.cs" />
+    <Compile Include="Interface\IPessoaAppService.cs" />
     <Compile Include="Interface\IPrestadorAppService.cs" />
     <Compile Include="Interface\IServicoAppService.cs" />
     <Compile Include="Interface\IServicoPrestadorAppService.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Services\CategoriaAppService.cs" />
     <Compile Include="Services\ComoFuncionaAppService.cs" />
     <Compile Include="Services\OrcamentoAppService.cs" />
+    <Compile Include="Services\PessoaAppService.cs" />
     <Compile Include="Services\PrestadorAppService.cs" />
     <Compile Include="Services\ServicoAppService.cs" />
     <Compile Include="Services\ServicoPrestadorAppService.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="ViewModels\CategoriaViewModel.cs" />
     <Compile Include="ViewModels\ComoFuncionaViewModel.cs" />
     <Compile Include="ViewModels\OrcamentoViewModel.cs" />
+    <Compile Include="ViewModels\PessoaViewModel.cs" />
     <Compile Include="ViewModels\ServicoPrestadorViewModel.cs" />
     <Compile Include="ViewModels\ServicoViewModel.cs" />
     <Compile Include="ViewModels\UsuarioViewModel.cs" />
