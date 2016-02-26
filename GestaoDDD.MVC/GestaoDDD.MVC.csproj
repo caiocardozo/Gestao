@@ -249,9 +249,13 @@
     <Content Include="Content\_ExternalLoginsListPartial\loginExternal.css" />
     <Content Include="Content\_ExternalLoginsListPartial\loginsExternos.css" />
     <Content Include="Content\_Layout\layout.css" />
+    <Content Include="Content\_Layout\layout2.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\front.png" />
+    <Content Include="Images\Home\facebook.png" />
+    <Content Include="Images\Home\instagram.png" />
+    <Content Include="Images\Home\logo.png" />
     <Content Include="Images\Prestador\background.png" />
     <Content Include="Images\Prestador\man.png" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
@@ -351,6 +355,7 @@
     <Content Include="Views\ComoFunciona\Create.cshtml" />
     <Content Include="Views\ComoFunciona\Edit.cshtml" />
     <Content Include="Views\ComoFunciona\Delete.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

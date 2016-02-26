@@ -2,6 +2,11 @@
     ViewBag.Title = "Bem vindos";
 }
 
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
 
 <div class="jumbotron">
     <h1>ASP.NET Identity</h1>
@@ -9,7 +14,7 @@
     <p><a href="http://eduardopires.net.br/category/asp-net-identity/" class="btn btn-primary btn-lg">Veja Mais &raquo;</a></p>
 </div>
 
-<div class="row">
+
     <div class="col-md-4">
         <h2>Desacoplado</h2>
         <p>
@@ -30,4 +35,3 @@
             Para obter total desacoplamento foi necessário injetar as dependências através de DI, foi utilizado o SimpleInjector. Apesar de obter uma boa abstração o Identity possui um forte acoplamento ao MVC e impõe o uso de algumas referências na camada de apresentação, porém sem causar problemas.
         </p>
     </div>
-</div>
