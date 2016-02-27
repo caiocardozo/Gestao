@@ -25,7 +25,6 @@ namespace GestaoDDD.Domain.Entities
        public string pes_cidade { get; set; }
 
        public string pes_cep { get; set; }
-
        
        public virtual Usuario Usuario { get; set; }
 

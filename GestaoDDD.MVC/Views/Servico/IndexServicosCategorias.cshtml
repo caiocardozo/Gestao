@@ -14,6 +14,9 @@
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
         //Wagner Nogueira 02-02-16
         var cpfPrestador = ViewBag.Cpf as string;
+        var nome = ViewBag.Nome as string;
+        var email = ViewBag.Email as string;
+        var celular = ViewBag.Celular as string;
     }
 
     
@@ -67,6 +70,9 @@
 
         @*02-02-16 Wagner Nogueira*@
         <input type="hidden" value="@cpfPrestador" name="cpfPrestador" />
+    <input type="hidden" value="@nome" name="nome" />
+    <input type="hidden" value="@email" name="email" />
+    <input type="hidden" value="@celular" name="celular" />
         <div class="container">
             <div class="row col-md-12 bottom col-sm-12 col-xs-12">
                 <p class="text-center">

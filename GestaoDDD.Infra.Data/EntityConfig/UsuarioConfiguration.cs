@@ -26,6 +26,11 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             /// MAPEAMENTO DE UM PARA UM
             HasRequired(p => p.Pessoa)
                 .WithRequiredPrincipal(p => p.Usuario);
+
+            
+                
+
+            
         }
     }
 }

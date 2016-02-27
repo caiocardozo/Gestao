@@ -26,17 +26,20 @@ IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestado
         //
         // GET: /Servico/
 
-        public ActionResult IndexServicosCategorias(string cpf)
+        public ActionResult IndexServicosCategorias(string cpf, string nome, string celular, string email)
         {
             ViewBag.CategoriaModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_iCategoriaApp.GetAll());
             ViewBag.Cpf = cpf;
+            ViewBag.Nome = nome;
+            ViewBag.Celular = celular;
+            ViewBag.Email = email;
 
             var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_iServicoApp.GetAll());
             return View(servicoViewModel);
         }
 
         [HttpPost]
-        public ActionResult IndexServicosCategorias(FormCollection collection, string cpfPrestador)
+        public ActionResult IndexServicosCategorias(FormCollection collection, string cpfPrestador, string nome, string celular, string email)
         {
             try
             {
@@ -52,9 +55,14 @@ IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestado
                         checkboxes.Add(servico);
                     }
                 }
-                var prestador = _iPrestadorApp.GetPorCpf(cpfPrestador);
+                //var prestador = _iPrestadorApp.GetPorCpf(cpfPrestador);
+                var pts = new Prestador();
+                pts.pres_Cpf_Cnpj = cpfPrestador;
+                pts.pres_Nome = nome;
+                pts.pres_Telefone_Celular = celular;
+                pts.pres_Email = email;
 
-                _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
+                _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, pts);
                 return RedirectToAction("Cadastrar", "Prestador");
             }
             catch

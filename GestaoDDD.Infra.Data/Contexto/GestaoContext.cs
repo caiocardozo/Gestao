@@ -50,6 +50,7 @@ namespace GestaoDDD.Infra.Data.Contexto
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
             modelBuilder.Configurations.Add(new ServicoPrestadorConfiguration());
             modelBuilder.Configurations.Add(new PessoaConfiguration());
+            modelBuilder.Configurations.Add(new ComoFuncionaConfiguration());
             #endregion
         }
     }

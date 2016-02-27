@@ -40,6 +40,12 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(p => p.pes_cep)
                 .HasMaxLength(9);
 
+            //HasRequired(p => p.Pessoa)
+            //   .WithRequiredPrincipal(p => p.Usuario);
+
+            //HasRequired(p => p.Usuario).WithRequiredPrincipal(s => s.Pessoa); Wagner 
+            
+
             
         }
     }
