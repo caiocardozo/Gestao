@@ -11,8 +11,12 @@
 
     <link href="~/Content/_Layout/layout2.css" rel="stylesheet" />
 
+   
+
 </head>
 <body>
+   
+
     <nav class="navbar navbar-default" id="navibar">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -63,11 +67,49 @@
         </div>
     </nav>
 
+   
+
+    <div class="menunavegacao col-md-12" id="teste">
+        <div class="row logomenu col-md-4 col-sm-4 col-sm-12">
+            <img src="~/Images/Home/logomenu.png">
+        </div>
+        <div class="navbarmenu col-md-7">
+            <nav class="navbar navbar-findcond" id="teste">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#teste">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+             
+                    </div>
+                    <div class="collapse navbar-collapse" id="teste">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="active"><a href="#">Início <span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="#">Orçamentos <span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="#">Serviços <span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="#">Como Funciona <span class="sr-only">(current)</span></a></li>
+                        </ul>
+                      
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        <div class="row redessociaistopo col-md-1 col-sm-2">
+            <span><a href="#"><img src="~/Images/Home/instagram2.png" id="redessociais"></a></span>
+            <span><a href="#"><img src="~/Images/Home/facebook2.png" id="redessociais"></a></span>
+        </div>
+
+    </div>
+
 
     @RenderBody()
 
 </body>
-       <div class="prefooter col-md-12">
+       <div class="prefooter col-md-6">
            <section class="row logorodape col-md-4 col-sm-4">
                <img src="~/Images/Home/logo.png">
            </section>
@@ -92,6 +134,8 @@
     </div>
 </footer>
 
+
+
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/Content/css")
@@ -102,6 +146,8 @@
 
 
 @RenderSection("scripts", required: false)
+
+
 
 </html>
 

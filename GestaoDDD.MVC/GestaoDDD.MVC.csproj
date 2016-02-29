@@ -254,8 +254,11 @@
     <Content Include="Global.asax" />
     <Content Include="Images\front.png" />
     <Content Include="Images\Home\facebook.png" />
+    <Content Include="Images\Home\facebook2.png" />
     <Content Include="Images\Home\instagram.png" />
+    <Content Include="Images\Home\instagram2.png" />
     <Content Include="Images\Home\logo.png" />
+    <Content Include="Images\Home\logomenu.png" />
     <Content Include="Images\Prestador\background.png" />
     <Content Include="Images\Prestador\man.png" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
