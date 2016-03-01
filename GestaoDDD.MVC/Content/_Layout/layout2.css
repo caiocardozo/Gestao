@@ -30,6 +30,9 @@ a:hover {
 
 /* MENU NAVEGAÇÃO */
 
+.menunavegacao {
+    background-color: #eee;
+}
 
 
 
@@ -74,6 +77,8 @@ nav.navbar-findcond span.badge.new { background: rgba(255, 0, 0, 0.8); color: #f
 		    top: 0;
 		    z-index: 99;
 		}
+
+
 
 /* END MENU NAVEGAÇÃO */
 

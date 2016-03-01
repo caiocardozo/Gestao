@@ -8,10 +8,22 @@
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
 
     <link href="~/Content/_Layout/layout2.css" rel="stylesheet" />
 
-   
+    <script>
+		$(function(){
+			var div = $('#menuHeader');
+			$(window).scroll(function () {
+				if ($(this).scrollTop() > 50) {
+					div.addClass("menu-fixo");
+				} else {
+					div.removeClass("menu-fixo");
+				}
+			});
+		});
+    </script>
 
 </head>
 <body>
@@ -69,12 +81,12 @@
 
    
 
-    <div class="menunavegacao col-md-12" id="teste">
+    <div class="menunavegacao col-md-12" id="menuHeader">
         <div class="row logomenu col-md-4 col-sm-4 col-sm-12">
             <img src="~/Images/Home/logomenu.png">
         </div>
         <div class="navbarmenu col-md-7">
-            <nav class="navbar navbar-findcond" id="teste">
+            <nav class="navbar navbar-findcond">
                 <div class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#teste">
