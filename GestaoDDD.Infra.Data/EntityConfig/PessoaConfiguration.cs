@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
 using GestaoDDD.Domain.Entities;
-using GestaoDDD.Domain.Services;
 
 namespace GestaoDDD.Infra.Data.EntityConfig
 {
@@ -43,13 +37,6 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(p => p.pes_cep)
                 .HasMaxLength(9);
 
-            //HasRequired(p => p.Pessoa)
-            //   .WithRequiredPrincipal(p => p.Usuario);
-
-            //HasRequired(p => p.Usuario).WithRequiredPrincipal(s => s.Pessoa); Wagner 
-            
-
-            
         }
     }
 }
