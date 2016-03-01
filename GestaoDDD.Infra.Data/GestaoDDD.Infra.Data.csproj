@@ -58,6 +58,11 @@
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
+    <Compile Include="Migrations\201603010140183_teste.cs" />
+    <Compile Include="Migrations\201603010143035_teste2.cs" />
+    <Compile Include="Migrations\201603010143035_teste2.Designer.cs">
+      <DependentUpon>201603010143035_teste2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ComoFuncionaRepository.cs" />
@@ -79,6 +84,11 @@
       <Project>{bdb34e47-03fa-4b92-8e26-589f14e9c512}</Project>
       <Name>GestaoDDD.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603010143035_teste2.resx">
+      <DependentUpon>201603010143035_teste2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -15,6 +15,9 @@ namespace GestaoDDD.Infra.Data.EntityConfig
         {
             HasKey(p => p.usu_id);
 
+            Property(p => p.usu_id)
+                .HasMaxLength(128);
+
             Property(p => p.pes_nome)
                 .IsRequired()
                 .HasMaxLength(150);
