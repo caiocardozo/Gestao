@@ -9,21 +9,11 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/Adicionais/menufixo.js"></script>
 
     <link href="~/Content/_Layout/layout2.css" rel="stylesheet" />
 
-    <script>
-		$(function(){
-			var div = $('#menuHeader');
-			$(window).scroll(function () {
-				if ($(this).scrollTop() > 50) {
-					div.addClass("menu-fixo");
-				} else {
-					div.removeClass("menu-fixo");
-				}
-			});
-		});
-    </script>
+  
 
 </head>
 <body>
@@ -81,7 +71,7 @@
 
    
 
-    <div class="menunavegacao col-md-12" id="menuHeader">
+    <div class="menunavegacao col-md-12 col-sm-12 col-xs-12" id="menuHeader">
         <div class="row logomenu col-md-4 col-sm-4 col-sm-12">
             <img src="~/Images/Home/logomenu.png">
         </div>
@@ -110,7 +100,7 @@
             </nav>
 
         </div>
-        <div class="row redessociaistopo col-md-1 col-sm-2">
+        <div class="redessociaistopo col-md-1 col-sm-2">
             <span><a href="#"><img src="~/Images/Home/instagram2.png" id="redessociais"></a></span>
             <span><a href="#"><img src="~/Images/Home/facebook2.png" id="redessociais"></a></span>
         </div>

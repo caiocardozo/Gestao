@@ -8,6 +8,9 @@
 	-webkit-transition: all .9s ease;
 	-o-transition: all .9s ease;
 	transition: all .9s ease;
+    margin:0px;
+    padding: 0px; 
+
 }
 
 a {
@@ -176,6 +179,9 @@ footer.footer {
 
 @media screen and (max-width: 1000px){
 	
+        .redessociaistopo img {
+            display: none;
+        }
 }
 
 
