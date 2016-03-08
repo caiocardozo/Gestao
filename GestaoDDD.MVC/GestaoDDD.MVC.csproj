@@ -243,6 +243,7 @@
     <Content Include="Content\Conta\login.css" />
     <Content Include="Content\Conta\register.css" />
     <Content Include="Content\Home\index.css" />
+    <Content Include="Content\IndiqueProfissional\indiqueprofissional.css" />
     <Content Include="Content\Servico\checkbox_servicos.css" />
     <Content Include="Content\Prestador\pagina_captura.css" />
     <Content Include="Content\Servico\modal_accept.css" />
