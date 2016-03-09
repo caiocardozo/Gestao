@@ -12,7 +12,7 @@ namespace GestaoDDD.MVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Prestador", action = "Cadastrar", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
             //a rota tava Prestador, create.

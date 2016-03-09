@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Agiliza Orçamentos</title>
     <link rel="icon" href="~/Content/Imagens/icone.png" />
+
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
     <link href="~/Content/_Layout/layout.css" rel="stylesheet" />
@@ -22,8 +26,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" style="color: white" href="#">Agiliza Orçamentos</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
 
                 @Html.Partial("_LoginPartial")
                 @{
@@ -58,10 +62,10 @@
                 }
             </div>
         </div>
-        </nav>
+    </nav>
 
 
-        @RenderBody()
+    @RenderBody()
 
 </body>
 <footer class="footer" style="bottom: 0px">

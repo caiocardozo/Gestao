@@ -1,18 +1,21 @@
 ﻿@model GestaoDDD.Application.ViewModels.OrcamentoViewModel
 
 @{
-    ViewBag.Title = "Cadastrar";
+ 
     Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
 }
 
-<h2>Cadastrar</h2>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
+<script src="~/Scripts/Adicionais/mapa.js"></script>
+<script src="~/Scripts/jquery-ui.custom.min.js"></script>
+<link href="~/Content/Orcamento/mapa.css" rel="stylesheet" />
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>OrcamentoViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -76,6 +79,18 @@
                 @Html.ValidationMessageFor(model => model.orc_dias_prazo, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div>
+            <label for="txtEndereco">Endereço Teste para o mapa:</label>
+            <input type="text" id="txtEndereco" name="txtEndereco" />
+        </div>
+        <div id="mapa" style="height: 500px; width: 500px">
+        </div>
+        <div>
+            <input type="button" id="btnEndereco" name="btnEndereco" value="Mostrar no mapa" />
+        </div>
+        <input type="hidden" id="txtLatitude" name="txtLatitude" />
+        <input type="hidden" id="txtLongitude" name="txtLongitude" />
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

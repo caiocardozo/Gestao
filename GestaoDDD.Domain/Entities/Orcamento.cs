@@ -22,6 +22,9 @@ namespace GestaoDDD.Domain.Entities
 
         public int orc_Dias_Prazo { get; set; }
 
+        public string orc_latitude { get; set; }
+        public string orc_longitude { get; set; }
+
         public EnumFrequencia orc_Frequencia_Prazo { get; set; }
 
     }

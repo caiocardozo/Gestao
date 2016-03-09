@@ -58,10 +58,9 @@
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
-    <Compile Include="Migrations\201603010140183_teste.cs" />
-    <Compile Include="Migrations\201603010143035_teste2.cs" />
-    <Compile Include="Migrations\201603010143035_teste2.Designer.cs">
-      <DependentUpon>201603010143035_teste2.cs</DependentUpon>
+    <Compile Include="Migrations\201603061451554_gerarCampos.cs" />
+    <Compile Include="Migrations\201603061451554_gerarCampos.Designer.cs">
+      <DependentUpon>201603061451554_gerarCampos.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,8 +85,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603010143035_teste2.resx">
-      <DependentUpon>201603010143035_teste2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603061451554_gerarCampos.resx">
+      <DependentUpon>201603061451554_gerarCampos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

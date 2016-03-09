@@ -55,6 +55,17 @@ namespace GestaoDDD.Application.ViewModels
 
         [DisplayName("Frequência")]
         [Required(ErrorMessage = "Preencha a frequência do prazo")]
+
+        //[DisplayName("Latitude")]
+        //[Required(ErrorMessage = "Aponte seu endereço no mapa para que gere o valor da latitude.")]
+        [Display(AutoGenerateField= false)]
+        public string  orc_latitude { get; set; }
+
+        //[DisplayName("Longitude")]
+        //[Required(ErrorMessage = "Aponte seu endereço no mapa para que gere o valor da longitude.")]
+        [Display(AutoGenerateField = false)]
+        public string orc_longitude { get; set; }
+
         public EnumFrequencia orc_frequencia_prazo { get; set; }
 
     }
