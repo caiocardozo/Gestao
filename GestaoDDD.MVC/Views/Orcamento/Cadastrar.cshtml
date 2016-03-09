@@ -1,102 +1,270 @@
 ﻿@model GestaoDDD.Application.ViewModels.OrcamentoViewModel
 
 @{
- 
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    //Layout = null;
+    ViewBag.Title = "Cadastrar";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
-<script src="~/Scripts/Adicionais/mapa.js"></script>
-<script src="~/Scripts/jquery-ui.custom.min.js"></script>
-<link href="~/Content/Orcamento/mapa.css" rel="stylesheet" />
+<link href="~/Content/Orcamento/orcamento.css" rel="stylesheet" />
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.orc_Endereco, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.orc_Endereco, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.orc_Endereco, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.orc_numero, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.orc_numero, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.orc_numero, "", new { @class = "text-danger" })
-            </div>
-        
-            @Html.LabelFor(model => model.orc_cep, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.orc_cep, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.orc_cep, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="container">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.orc_bairro, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.orc_bairro, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.orc_bairro, "", new { @class = "text-danger" })
-            </div>
+    <div class="row banner col-md-12">
+        <div class="row banner-texto-esquerda col-md-6 pull-left">
+            <h1>ORÇAMENTOS</h1>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.orc_cidade, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.orc_cidade, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.orc_cidade, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.orc_referencia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.orc_referencia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.orc_referencia, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.orc_descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.orc_descricao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.orc_descricao, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.orc_dias_prazo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.orc_dias_prazo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.orc_dias_prazo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div>
-            <label for="txtEndereco">Endereço Teste para o mapa:</label>
-            <input type="text" id="txtEndereco" name="txtEndereco" />
-        </div>
-        <div id="mapa" style="height: 500px; width: 500px">
-        </div>
-        <div>
-            <input type="button" id="btnEndereco" name="btnEndereco" value="Mostrar no mapa" />
-        </div>
-        <input type="hidden" id="txtLatitude" name="txtLatitude" />
-        <input type="hidden" id="txtLongitude" name="txtLongitude" />
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Orcamento")'" />
-            </div>
+        <div class="row banner-texto-direita col-md-6 pull-right">
+            <h3>
+                Muito mais agilidade</p>
+                na hora de buscar orçamentos</p>
+                de forma online e gratuita
+            </h3>
         </div>
     </div>
-}
+    <div class="row banner-baixo col-md-12 center-block">
+        <div class="row texto-bannerbaixo col-md-12">
+            Você é um profissional e <b>busca novos clientes?</b>
+            <button type="button" class="btn">Cadastre-se</button>
+        </div>
+    </div>
+    <div class="row texto-body col-md-12">
+        <h3><b>Solicite orçamentos grátis</b></h3>
+        Aqui você encontra os melhores profissionais e empresas da sua região e recebe até 4 orçamentos de forma gratuita para comparar e escolher a melhor opção.
+    </div>
+
+    <div class="row corpo col-md-12">
+
+        <div class="row informacoes col-md-5">
+
+            <div class="row informacoes-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/lupa.png" />
+                </div>
+                <div class="row texto-icones col-md-8 col-xs-8">
+                    <hr id="linha" />
+                    Busque o tipo de serviço que você está procurando.
+                </div>
+            </div>
+
+            <div class="row informacoes-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/orcamentos.png" />
+                </div>
+                <div class="row texto-icones col-md-8 col-xs-8">
+                    <hr id="linha" />
+                    Receba até 4 orçamentos grátis e sem compromisso.
+                </div>
+            </div>
+
+            <div class="row informacoes-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/profissional.png" />
+                </div>
+                <div class="row texto-icones col-md-8 col-xs-8">
+                    <hr id="linha" />
+                    Compare e escolha a melhor opção.
+                </div>
+            </div>
+
+            <div class="row">
+                <hr id="linha2" />
+            </div>
+
+            <div class="row vantagens-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/check.png" />
+                </div>
+                <div class="row texto-vantagens col-md-8 col-xs-8">
+                    Encontre os melhores profissionais.
+                </div>
+            </div>
+
+            <div class="row vantagens-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/check.png" />
+                </div>
+                <div class="row texto-vantagens col-md-8 col-xs-8">
+                    Orçamentos grátis e sem compromisso.
+                </div>
+            </div>
+
+            <div class="row vantagens-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/check.png" />
+                </div>
+                <div class="row texto-vantagens col-md-8 col-xs-8">
+                    Economize tempo e dinheiro.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row formulario col-md-7">
+
+            </br>
+            <h4><b>SEU PEDIDO</b></h4>
+            </br>
+
+            <div class="form-group">
+                <label for="descricao">Escreva detalhadamente o serviço que você precisa:</label>
+                <textarea class="form-control" rows="8" id="descricao"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="sel1">Quando você quer começar o trabalho:</label>
+                <select class="form-control" id="sel1">
+                    <option> </option>
+                    <option>Agora</option>
+                    <option>Daqui uma semana</option>
+                    <option>Daqui um mês</option>
+                    <option>Ainda não sabe</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="sel2">Selecione a categoria de serviço:</label>
+                <select class="form-control" id="sel2">
+                    <option> </option>
+                    <option>Categoria 1</option>
+                    <option>Categoria 2</option>
+                    <option>Categoria 3</option>
+                    <option>Categoria 4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="sel3">Especifique o serviço:</label>
+                <select class="form-control" id="sel3">
+                    <option> </option>
+                    <option>Especificação 1</option>
+                    <option>Especificação 2</option>
+                    <option>Especificação 3</option>
+                    <option>Especificação 4</option>
+                </select>
+            </div>
+
+            </br>
+            <h4><b>SEUS DADOS</b></h4>
+            </br>
+
+            <div class="form-group">
+                <label for="nome">Seu Nome:</label>
+                <input type="text" class="form-control" id="nome">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="text" class="form-control" id="email">
+            </div>
+
+
+            <div class="row form-group col-md-6 col-sm-6">
+                <label for="telefone">Telefone:</label>
+                <input type="text" class="form-control" id="telefone">
+            </div>
+
+            <div class="form row form-group col-md-6 col-sm-6">
+                <label for="cep">CEP:</label>
+                <input type="text" class="form-control" id="cep">
+            </div>
+
+            <div class="checkbox col-md-6">
+                <label><input type="checkbox" value="">Li e aceito as condições.</label>
+            </div>
+
+            <div class="row col-md-6">
+                <input type="submit" class="btn btn-enviar" />
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>OrcamentoViewModel</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.orc_Endereco, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.orc_Endereco, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.orc_Endereco, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orc_numero, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.orc_numero, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.orc_numero, "", new { @class = "text-danger" })
+                </div>
+
+                @Html.LabelFor(model => model.orc_cep, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.orc_cep, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.orc_cep, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orc_bairro, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.orc_bairro, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.orc_bairro, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orc_cidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.orc_cidade, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.orc_cidade, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orc_referencia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.orc_referencia, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.orc_referencia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orc_descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.orc_descricao, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.orc_descricao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orc_dias_prazo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.orc_dias_prazo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.orc_dias_prazo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                    <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Orcamento")'" />
+                </div>
+            </div>
+        </div>
+    }*@
+
+

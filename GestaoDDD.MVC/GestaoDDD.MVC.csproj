@@ -244,6 +244,7 @@
     <Content Include="Content\Conta\register.css" />
     <Content Include="Content\Home\index.css" />
     <Content Include="Content\IndiqueProfissional\indiqueprofissional.css" />
+    <Content Include="Content\Orcamento\orcamento.css" />
     <Content Include="Content\Servico\checkbox_servicos.css" />
     <Content Include="Content\Prestador\pagina_captura.css" />
     <Content Include="Content\Servico\modal_accept.css" />
@@ -275,6 +276,10 @@
     <Content Include="Images\Home\Profissionais\printores.png" />
     <Content Include="Images\Home\Profissionais\reforma.png" />
     <Content Include="Images\Home\Profissionais\reparos.png" />
+    <Content Include="Images\Orcamento\check.png" />
+    <Content Include="Images\Orcamento\lupa.png" />
+    <Content Include="Images\Orcamento\orcamentos.png" />
+    <Content Include="Images\Orcamento\profissional.png" />
     <Content Include="Images\Prestador\background.png" />
     <Content Include="Images\Prestador\man.png" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
