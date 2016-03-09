@@ -6,10 +6,11 @@ namespace GestaoDDD.Infra.Data.Repositories
 {
     public class OrcamentoRepository : RepositoryBase<Orcamento>, IOrcamentoRepository
     {
-
-        public OrcamentoRepository(GestaoContext gestaoContexto)
-            : base(gestaoContexto)
+        private readonly GestaoContext _dbContext;
+        public OrcamentoRepository(GestaoContext dbContext)
+            : base(dbContext)
         {
+            _dbContext = dbContext;
         }
     }
 }

@@ -69,6 +69,14 @@ namespace GestaoDDD.Infra.IoC
             container.RegisterPerWebRequest<IComoFuncionaAppService, ComoFuncionaAppService>();
             container.RegisterPerWebRequest<IComoFuncionaService, ComoFuncionaService>();
             #endregion
+
+            #region IndiqueProfissional
+            container.RegisterPerWebRequest<IIndiqueProfissionalRepository, IndiqueProfissionalRepository>();
+            container.RegisterPerWebRequest<IIndiqueProfissionalAppService, IndiqueProfissionalAppService>();
+            container.RegisterPerWebRequest<IIndiqueProfissionalService, IndiqueProfissionalService>();
+            #endregion
+
+
         } 
     }
 }

@@ -22,6 +22,7 @@ namespace GestaoDDD.MVC.AutoMapper
             Mapper.CreateMap<OrcamentoViewModel, Orcamento>();
             Mapper.CreateMap<PrestadorViewModel, Prestador>();
             Mapper.CreateMap<ComoFuncionaViewModel, ComoFunciona>();
+            Mapper.CreateMap<IndiqueProfissionalViewModel, IndiqueProfissional>();
         }
     }
 }

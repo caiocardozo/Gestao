@@ -21,6 +21,7 @@ namespace GestaoDDD.Infra.Data.Contexto
         public DbSet<ServicoPrestador> ServicoPrestador { get; set; }
         public DbSet<ComoFunciona> ComoFunciona { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }
+        public DbSet <IndiqueProfissional> IndiqueProfissional { get; set; }
 
         #endregion
 
@@ -51,6 +52,7 @@ namespace GestaoDDD.Infra.Data.Contexto
             modelBuilder.Configurations.Add(new ServicoPrestadorConfiguration());
             modelBuilder.Configurations.Add(new PessoaConfiguration());
             modelBuilder.Configurations.Add(new ComoFuncionaConfiguration());
+            modelBuilder.Configurations.Add(new IndiqueProfissionalConfiguration());
             #endregion
         }
     }
