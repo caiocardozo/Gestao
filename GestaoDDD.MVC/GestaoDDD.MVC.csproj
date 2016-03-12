@@ -220,6 +220,7 @@
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\ComoFuncionaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IndiqueProfissionalController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="Controllers\PrestadorController.cs" />
@@ -244,6 +245,7 @@
     <Content Include="Content\Conta\register.css" />
     <Content Include="Content\Home\index.css" />
     <Content Include="Content\IndiqueProfissional\indiqueprofissional.css" />
+    <Content Include="Content\Orcamento\mapa.css" />
     <Content Include="Content\Orcamento\orcamento.css" />
     <Content Include="Content\Servico\checkbox_servicos.css" />
     <Content Include="Content\Prestador\pagina_captura.css" />

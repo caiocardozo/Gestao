@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using GestaoDDD.Application.Interface;
+using GestaoDDD.Application.ViewModels;
+using GestaoDDD.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,18 +12,26 @@ namespace GestaoDDD.MVC.Controllers
 {
     public class IndiqueProfissionalController : Controller
     {
-        //
-        // GET: /IndiqueProfissional/
+        private readonly IIndiqueProfissionalAppService _iIndiqueAppService;
+
+        public IndiqueProfissionalController(IIndiqueProfissionalAppService iIdProfAppService)
+        {
+            _iIndiqueAppService = iIdProfAppService;
+                
+        }
         public ActionResult Index()
         {
-            return View();
+            var indiqueVm = Mapper.Map<IEnumerable<IndiqueProfissional>, IEnumerable<IndiqueProfissionalViewModel>>(_iIndiqueAppService.GetAll());
+            return View(indiqueVm);
         }
 
         //
         // GET: /IndiqueProfissional/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var indique = _iIndiqueAppService.GetById(id);
+            var indiqueVm = Mapper.Map<IndiqueProfissional, IndiqueProfissionalViewModel>(indique);
+            return View(indiqueVm);
         }
 
         //
@@ -32,17 +44,25 @@ namespace GestaoDDD.MVC.Controllers
         //
         // POST: /IndiqueProfissional/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(IndiqueProfissionalViewModel indiqueProf)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var indiqueDomain = Mapper.Map<IndiqueProfissionalViewModel, IndiqueProfissional>(indiqueProf);
+                    _iIndiqueAppService.Add(indiqueDomain);
+                    return RedirectToAction("Index");
+                }
+                else 
+                {
+                    return View(indiqueProf);
+                }
+                
             }
             catch
             {
-                return View();
+                return RedirectToAction("ErroAoCadastrar");
             }
         }
 
@@ -50,23 +70,33 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /IndiqueProfissional/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var indique = _iIndiqueAppService.GetById(id);
+            var indiqueVm = Mapper.Map<IndiqueProfissional, IndiqueProfissionalViewModel>(indique);
+            return View(indiqueVm);
         }
 
         //
         // POST: /IndiqueProfissional/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(IndiqueProfissionalViewModel indiqueProf)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    var indiqueDomain = Mapper.Map<IndiqueProfissionalViewModel, IndiqueProfissional>(indiqueProf);
+                    _iIndiqueAppService.Add(indiqueDomain);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(indiqueProf);
+                }
 
-                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("ErroAoCadastrar");
             }
         }
 
@@ -74,17 +104,22 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /IndiqueProfissional/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var indique = _iIndiqueAppService.GetById(id);
+            var indiqueVm = Mapper.Map<IndiqueProfissional, IndiqueProfissionalViewModel>(indique);
+            return View(indiqueVm);
         }
 
         //
         // POST: /IndiqueProfissional/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmarDelete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                var indiqueDel = _iIndiqueAppService.GetById(id);
+                _iIndiqueAppService.Remove(indiqueDel);
 
                 return RedirectToAction("Index");
             }
@@ -93,5 +128,11 @@ namespace GestaoDDD.MVC.Controllers
                 return View();
             }
         }
+
+        public ActionResult ErroAoCadastrar()
+        {
+            return View();
+        }
+
     }
 }

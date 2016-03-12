@@ -1,4 +1,6 @@
-﻿body { overflow-x: hidden; }
+﻿body {
+    overflow-x: hidden;
+}
 
 .corpo {
     margin-left: 1%;
@@ -7,11 +9,10 @@
 /* Banner Padrão e Secundário */
 
 .banner {
-    background-image: url(../../Images/Home/banner.png);  
+    background-image: url(../../Images/Home/banner.png);
     background-size: cover;
     background-position: center;
     margin: 0px;
-    
 }
 
 
@@ -24,44 +25,36 @@
     text-align: center;
     text-shadow: 2px 2px black;
     margin-left: 1%;
-    
 }
 
 .banner-texto-direita {
-     vertical-align: central;
-     font-family: Arial;
-     color: white;
-     text-align: right;
-     text-shadow: 2px 2px black;
-     margin-top: 5%;
-     margin-bottom: 5%;
-     
-    
+    vertical-align: central;
+    font-family: Arial;
+    color: white;
+    text-align: right;
+    text-shadow: 2px 2px black;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .btn {
     background-color: #ad2323;
     margin: 20px;
     border-bottom-color: black;
-    
-    
 }
 
-.btn:focus {
-    box-shadow: rgba (0,0,0,4);
-   
-    outline: 0;
-}
+    .btn:focus {
+        box-shadow: rgba (0,0,0,4);
+        outline: 0;
+    }
 
 .banner-baixo {
     background-color: #f56a6a;
     color: white;
     text-align: center;
-    
 }
 
 .texto-bannerbaixo {
-    
     vertical-align: center;
     margin-top: 10px;
     font-size: 18px;
@@ -76,8 +69,7 @@
     margin-bottom: 4%;
 }
 
-.texto-icones { 
-    
+.texto-icones {
 }
 
 .texto-vantagens {
@@ -86,10 +78,9 @@
 
 .icones {
     text-align: center;
-   
 }
 
- #linha {
+#linha {
     color: #ad2323;
     border: 2px solid;
     border-color: #ad2323;
@@ -100,7 +91,7 @@
     border-radius: 2px;
 }
 
-  #linha2 {
+#linha2 {
     color: #ad2323;
     border: 2px solid;
     border-color: #ad2323;
@@ -112,14 +103,14 @@
     margin-bottom: 10%;
 }
 
- .informacoes-linha {
-     margin-bottom: 10%;
- }
+.informacoes-linha {
+    margin-bottom: 10%;
+}
 
- .vantagens-linha {
-     margin-top: 2%;
-     margin-bottom: 2%;
- }
+.vantagens-linha {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
 
 /* Fim Corpo da página */
 
@@ -140,14 +131,35 @@
     margin: 20px;
     border-bottom-color: black;
     color: white;
-    margin-left: 85%; 
+    margin-left: 85%;
 }
 
-.btn-enviar:focus {
-    box-shadow: rgba (0,0,0,4);
-   
-    outline: 0;
+    .btn-enviar:focus {
+        box-shadow: rgba(0,0,0,4);
+        outline: 0;
+    }
+
+
+.btn-marcamapa {
+    position: relative;
+    background-color: #ad2323;
+    margin: 0px;
+    border-bottom-color: black;
+    color: white;
+    margin-left: 75%;
+    bottom: 50px;
 }
+
+.map-mapa {
+    bottom:30px;
+    height: 350px; 
+    width: 600px
+}
+    .btn-marcamapa:focus {
+        box-shadow: rgba(0,0,0,4);
+        outline: 0;
+    }
+
 
 .checkbox {
     margin-top: 20px;

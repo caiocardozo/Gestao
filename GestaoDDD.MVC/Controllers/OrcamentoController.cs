@@ -4,6 +4,7 @@ using AutoMapper;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
+using System.Collections.Generic;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -11,16 +12,22 @@ namespace GestaoDDD.MVC.Controllers
     {
 
         private readonly IOrcamentoAppService _orcamentoApp;
+        private readonly ICategoriaAppService _categoriaApp;
+        private readonly IServicoAppService _servicoApp;
 
-        public OrcamentoController(IOrcamentoAppService orcamentoApp)
+        public OrcamentoController(IOrcamentoAppService orcamentoApp, ICategoriaAppService categoriaApp, IServicoAppService servicoApp)
         {
             _orcamentoApp = orcamentoApp;
+            _categoriaApp = categoriaApp;
+            _servicoApp = servicoApp;
         }
 
         //
         // GET: /Orcamento/
         public ActionResult Index()
         {
+            
+
             return View();
         }
 
@@ -35,6 +42,9 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Orcamento/Cadastrar
         public ActionResult Cadastrar(FormCollection collection)
         {
+            ViewBag.CategoriaVm = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
+            ViewBag.ServicoVm = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
+            
             return View();
         }
 

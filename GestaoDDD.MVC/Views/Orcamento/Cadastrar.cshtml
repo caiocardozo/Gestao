@@ -1,12 +1,21 @@
 ﻿@model GestaoDDD.Application.ViewModels.OrcamentoViewModel
 
+@using GestaoDDD.Application.ViewModels;
 @{
-    ViewBag.Title = "Cadastrar";
     Layout = "~/Views/Shared/_Layout2.cshtml";
+
+    var lstCategoria = ViewBag.CategoriaVm as IEnumerable<CategoriaViewModel>;
+    var lstServico = ViewBag.ServicoVm as IEnumerable<ServicoViewModel>;
+
+
 }
 
 <link href="~/Content/Orcamento/orcamento.css" rel="stylesheet" />
 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
+<script src="~/Scripts/Adicionais/mapa.js"></script>
+<script src="~/Scripts/jquery-ui.custom.min.js"></script>
+@*<link href="~/Content/Orcamento/mapa.css" rel="stylesheet" />*@
 
 <div class="container">
 
@@ -124,25 +133,31 @@
 
             <div class="form-group">
                 <label for="sel2">Selecione a categoria de serviço:</label>
-                <select class="form-control" id="sel2">
+                <select class="form-control" id="sel2" style="text-transform: capitalize">
                     <option> </option>
-                    <option>Categoria 1</option>
-                    <option>Categoria 2</option>
-                    <option>Categoria 3</option>
-                    <option>Categoria 4</option>
+                    @foreach (var categoria in lstCategoria)
+                    {
+                        <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
+                    }
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="sel3">Especifique o serviço:</label>
-                <select class="form-control" id="sel3">
+                <select class="form-control" id="sel3" style="text-transform: capitalize">
                     <option> </option>
-                    <option>Especificação 1</option>
-                    <option>Especificação 2</option>
-                    <option>Especificação 3</option>
-                    <option>Especificação 4</option>
+                    @foreach (var servico in lstServico)
+                    {
+                        <option value="@servico.serv_Id" style="text-transform: capitalize">@servico.serv_Nome</option>
+                    }
                 </select>
             </div>
+            <div class="form-group">
+                <label>Endereço a realizar o serviço:</label>
+                <input type="text" id="txtEndereco" name="txtEndereco" class="form-control" style="width:450px;" />
+            </div>
+            <input type="button" class="btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
+            <div id="mapa" class="map-mapa"></div>
 
             </br>
             <h4><b>SEUS DADOS</b></h4>
@@ -184,87 +199,3 @@
 
 
 </div>
-
-
-
-
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>OrcamentoViewModel</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.orc_Endereco, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.orc_Endereco, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.orc_Endereco, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.orc_numero, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.orc_numero, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.orc_numero, "", new { @class = "text-danger" })
-                </div>
-
-                @Html.LabelFor(model => model.orc_cep, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.orc_cep, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.orc_cep, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.orc_bairro, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.orc_bairro, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.orc_bairro, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.orc_cidade, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.orc_cidade, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.orc_cidade, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.orc_referencia, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.orc_referencia, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.orc_referencia, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.orc_descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.orc_descricao, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.orc_descricao, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.orc_dias_prazo, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.orc_dias_prazo, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.orc_dias_prazo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                    <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Orcamento")'" />
-                </div>
-            </div>
-        </div>
-    }*@
-
-

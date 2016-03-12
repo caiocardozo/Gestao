@@ -122,8 +122,8 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmarDeletar(int id)
         {
-            var adm_grupo = _categoriaApp.GetById(id);
-            _categoriaApp.Remove(adm_grupo);
+            var catDelete = _categoriaApp.GetById(id);
+            _categoriaApp.Remove(catDelete);
 
             return RedirectToAction("Index");
         }
