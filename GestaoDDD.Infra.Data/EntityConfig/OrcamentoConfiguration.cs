@@ -9,39 +9,45 @@ namespace GestaoDDD.Infra.Data.EntityConfig
         {
             HasKey(c => c.orc_Id);
 
-            Property(c => c.orc_Descricao)
+            Property(c => c.orc_descricao)
+                .IsRequired()
+                .HasMaxLength(500);
+
+            Property(c => c.orc_endereco)
+                .IsRequired();
+
+            Property(c => c.orc_prazo)
+                .IsRequired();
+
+            Property(c => c.orc_nome_solicitante)
+                .IsRequired()
+                .HasMaxLength(200);
+
+            Property(c => c.orc_email_solicitante)
                 .HasMaxLength(200)
                 .IsRequired();
 
-            Property(c => c.orc_Dias_Prazo);
-
-            Property(c => c.orc_Endereco)
-                .HasMaxLength(200)
+            Property(c => c.orc_telefone_solicitante)
                 .IsRequired();
 
-            Property(c => c.orc_numero)
-                .IsRequired();
+            Property(c => c.orc_endereco_solicitante)
+                .HasMaxLength(200);
 
-            Property(c => c.orc_bairro)
-               .HasMaxLength(100)
-               .IsRequired();
+            HasRequired(c => c.categoria_id)
+                .WithRequiredDependent(c => c.Orcamento);
 
-            Property(c => c.orc_cidade)
-               .HasMaxLength(100)
-               .IsRequired();
+            HasRequired(c => c.servico_id)
+                .WithRequiredDependent(c => c.Orcamento);
 
-            Property(c => c.orc_cep)
-               .HasMaxLength(9)
-               .IsRequired();
+            Property(c => c.orc_latitude);
 
-            Property(c => c.orc_referencia)
-               .HasMaxLength(150);
-
-            Property(c => c.orc_Frequencia_Prazo);
+            Property(c => c.orc_longitude);
 
             Property(c => c.data_Alteracao);
 
             Property(c => c.data_Inclusao);
+
+
         }
     }
 }

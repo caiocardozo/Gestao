@@ -15,7 +15,6 @@ namespace GestaoDDD.MVC.Controllers
         private readonly ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             _userManager = userManager;

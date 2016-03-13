@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201603121435370_att.Designer.cs">
       <DependentUpon>201603121435370_att.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603122210380_atualizarOrcamento.cs" />
+    <Compile Include="Migrations\201603122210380_atualizarOrcamento.Designer.cs">
+      <DependentUpon>201603122210380_atualizarOrcamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ComoFuncionaRepository.cs" />
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603121435370_att.resx">
       <DependentUpon>201603121435370_att.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603122210380_atualizarOrcamento.resx">
+      <DependentUpon>201603122210380_atualizarOrcamento.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

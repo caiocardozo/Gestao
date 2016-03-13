@@ -6,35 +6,18 @@ namespace GestaoDDD.Domain.Entities
     {
         public int orc_Id { get; set; }
 
-        public string orc_Endereco { get; set; }
-
-        public int orc_numero { get; set; }
-
-        public string orc_bairro { get; set; }
-
-        public string orc_cidade { get; set; }
-
-        public string orc_cep { get; set; }
-
-        public string orc_referencia { get; set; }
-
-        public string orc_Descricao { get; set; }
-
-        public int orc_Dias_Prazo { get; set; }
-
+        public string orc_descricao { get; set; }
+        public string orc_endereco { get; set; }
+        public string orc_prazo { get; set; }
+        public virtual Categoria categoria_id { get; set; }
+        public virtual Servico servico_id { get; set; }
+        public string orc_nome_solicitante { get; set; }
+        public string orc_email_solicitante { get; set; }
+        public string orc_telefone_solicitante { get; set; }
+        public string orc_endereco_solicitante { get; set; }
         public string orc_latitude { get; set; }
         public string orc_longitude { get; set; }
 
-        public EnumFrequencia orc_Frequencia_Prazo { get; set; }
-
     }
-
-    [DataContract]
-    public enum EnumFrequencia
-    {
-        Dias,
-        Mês,
-        Ano
-    };
 
 }

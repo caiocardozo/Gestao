@@ -114,84 +114,93 @@
             </br>
             <h4><b>SEU PEDIDO</b></h4>
             </br>
-
-            <div class="form-group">
-                <label for="descricao">Escreva detalhadamente o serviço que você precisa:</label>
-                <textarea class="form-control" rows="8" id="descricao"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="sel1">Quando você quer começar o trabalho:</label>
-                <select class="form-control" id="sel1">
-                    <option> </option>
-                    <option>Agora</option>
-                    <option>Daqui uma semana</option>
-                    <option>Daqui um mês</option>
-                    <option>Ainda não sabe</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="sel2">Selecione a categoria de serviço:</label>
-                <select class="form-control" id="sel2" style="text-transform: capitalize">
-                    <option> </option>
-                    @foreach (var categoria in lstCategoria)
-                    {
-                        <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
-                    }
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="sel3">Especifique o serviço:</label>
-                <select class="form-control" id="sel3" style="text-transform: capitalize">
-                    <option> </option>
-                    @foreach (var servico in lstServico)
-                    {
-                        <option value="@servico.serv_Id" style="text-transform: capitalize">@servico.serv_Nome</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Endereço a realizar o serviço:</label>
-                <input type="text" id="txtEndereco" name="txtEndereco" class="form-control" style="width:450px;" />
-            </div>
-            <input type="button" class="btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
-            <div id="mapa" class="map-mapa"></div>
-
-            </br>
-            <h4><b>SEUS DADOS</b></h4>
-            </br>
-
-            <div class="form-group">
-                <label for="nome">Seu Nome:</label>
-                <input type="text" class="form-control" id="nome">
-            </div>
-
-            <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="text" class="form-control" id="email">
-            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
 
-            <div class="row form-group col-md-6 col-sm-6">
-                <label for="telefone">Telefone:</label>
-                <input type="text" class="form-control" id="telefone">
-            </div>
+                @Html.ValidationSummary(true)
 
-            <div class="form row form-group col-md-6 col-sm-6">
-                <label for="cep">CEP:</label>
-                <input type="text" class="form-control" id="cep">
-            </div>
+                <div class="form-group">
+                    <label for="descricao">Escreva detalhadamente o serviço que você precisa:</label>
+                    <textarea class="form-control" rows="8" id="orc_descricao" name="orc_descricao"></textarea>
+                </div>
 
-            <div class="checkbox col-md-6">
-                <label><input type="checkbox" value="">Li e aceito as condições.</label>
-            </div>
+                <div class="form-group">
+                    <label for="sel1">Quando você quer começar o trabalho:</label>
+                    <select class="form-control" id="sel1" name="orc_prazo">
+                        <option> </option>
+                        <option>Agora</option>
+                        <option>Daqui uma semana</option>
+                        <option>Daqui um mês</option>
+                        <option>Ainda não sabe</option>
+                    </select>
+                </div>
 
-            <div class="row col-md-6">
-                <input type="submit" class="btn btn-enviar" />
-            </div>
+                <div class="form-group">
+                    <label for="sel2">Selecione a categoria de serviço:</label>
+                    <select class="form-control" id="sel2" name="" style="text-transform: capitalize">
+                        <option> </option>
+                        @foreach (var categoria in lstCategoria)
+                        {
+                            <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
+                        }
+                    </select>
+                </div>
 
+                <div class="form-group">
+                    <label for="sel3">Especifique o serviço:</label>
+                    <select class="form-control" id="sel3" style="text-transform: capitalize">
+                        <option> </option>
+                        @foreach (var servico in lstServico)
+                        {
+                            <option value="@servico.serv_Id" style="text-transform: capitalize">@servico.serv_Nome</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Endereço a realizar o serviço:</label>
+                    <input type="text" id="orc_Endereco" name="orc_Endereco" class="form-control" style="width:450px;" />
+                </div>
+                <input type="button" class="btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
+                <div id="mapa" class="map-mapa"></div>
+                <input type="hidden" id="orc_latitude" name="orc_latitude" />
+                <input type="hidden" id="orc_longitude" name="orc_longitude" />
+
+
+                @*</br>*@
+                <h4><b>SEUS DADOS</b></h4>
+                @*</br>*@
+
+                <div class="form-group">
+                    <label for="nome">Seu Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="orc_nome_solicitante">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="text" class="form-control" id="orc_email_solicitante" name="orc_email_solicitante">
+                </div>
+
+
+                <div class="row form-group col-md-6 col-sm-6">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" class="form-control" id="orc_telefone_solicitante" name="orc_telefone_solicitante">
+                </div>
+
+                <div class="form row form-group col-md-6 col-sm-6">
+                    <label for="cep">Endereço:</label>
+                    <input type="text" class="form-control" id="orc_endereco_solicitante" name="orc_endereco_solicitante">
+                </div>
+
+                <div class="checkbox col-md-6">
+                    <label><input type="checkbox" value="">Li e aceito as condições.</label>
+                </div>
+
+                <div class="row col-md-6">
+                    <input type="submit" class="btn btn-enviar" />
+                </div>
+            }
         </div>
 
     </div>

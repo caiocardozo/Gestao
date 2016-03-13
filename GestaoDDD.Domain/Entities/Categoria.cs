@@ -9,6 +9,8 @@ namespace GestaoDDD.Domain.Entities
         public string cat_Nome { get; set; }
 
         public ICollection<Servico> Servico { get; set; }
+
+        public virtual Orcamento Orcamento { get; set; }
     }
 }
  

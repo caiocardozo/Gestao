@@ -286,6 +286,7 @@
     <Content Include="Images\Prestador\man.png" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
     <Content Include="Scripts\Adicionais\loginsExternos.js" />
+    <Content Include="Scripts\Adicionais\mapa.js" />
     <Content Include="Scripts\Adicionais\menufixo.js" />
     <Content Include="Scripts\Adicionais\modalServicoPrestador.js" />
     <Content Include="Scripts\Adicionais\page-prestador.js" />
@@ -383,6 +384,7 @@
     <Content Include="Views\ComoFunciona\Edit.cshtml" />
     <Content Include="Views\ComoFunciona\Delete.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Orcamento\CadastrarTeste.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

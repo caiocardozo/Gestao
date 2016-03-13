@@ -33,9 +33,9 @@ $(document).ready(function () {
 					var latitude = results[0].geometry.location.lat();
 					var longitude = results[0].geometry.location.lng();
 		
-					$('#txtEndereco').val(results[0].formatted_address);
-					$('#txtLatitude').val(latitude);
-                   	$('#txtLongitude').val(longitude);
+					$('#orc_Endereco').val(results[0].formatted_address);
+					$('#orc_latitude').val(latitude);
+                   	$('#orc_longitude').val(longitude);
 		
 					var location = new google.maps.LatLng(latitude, longitude);
 					marker.setPosition(location);
@@ -48,10 +48,10 @@ $(document).ready(function () {
 	
 	$("#btnEndereco").click(function() {
 		if($(this).val() != "")
-			carregarNoMapa($("#txtEndereco").val());
+			carregarNoMapa($("#orc_Endereco").val());
 	})
 	
-	$("#txtEndereco").blur(function() {
+	$("#orc_Endereco").blur(function() {
 		if($(this).val() != "")
 			carregarNoMapa($(this).val());
 	})
@@ -60,15 +60,15 @@ $(document).ready(function () {
 		geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {  
-					$('#txtEndereco').val(results[0].formatted_address);
-					$('#txtLatitude').val(marker.getPosition().lat());
-					$('#txtLongitude').val(marker.getPosition().lng());
+					$('#orc_Endereco').val(results[0].formatted_address);
+					$('#orc_latitude').val(marker.getPosition().lat());
+					$('#orc_longitude').val(marker.getPosition().lng());
 				}
 			}
 		});
 	});
 	
-	$("#txtEndereco").autocomplete({
+	$("#orc_Endereco").autocomplete({
 		source: function (request, response) {
 			geocoder.geocode({ 'address': request.term + ', Brasil', 'region': 'BR' }, function (results, status) {
 				response($.map(results, function (item) {
@@ -82,8 +82,8 @@ $(document).ready(function () {
 			})
 		},
 		select: function (event, ui) {
-			$("#txtLatitude").val(ui.item.latitude);
-    		$("#txtLongitude").val(ui.item.longitude);
+			$("#orc_latitude").val(ui.item.latitude);
+    		$("#orc_longitude").val(ui.item.longitude);
 			var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
 			marker.setPosition(location);
 			map.setCenter(location);
@@ -94,9 +94,9 @@ $(document).ready(function () {
 	$("form").submit(function(event) {
 		event.preventDefault();
 		
-		var endereco = $("#txtEndereco").val();
-		var latitude = $("#txtLatitude").val();
-		var longitude = $("#txtLongitude").val();
+		var endereco = $("#orc_Endereco").val();
+		var latitude = $("#orc_latitude").val();
+		var longitude = $("#orc_longitude").val();
 		
 		alert("Endereço: " + endereco + "\nLatitude: " + latitude + "\nLongitude: " + longitude);
 	});

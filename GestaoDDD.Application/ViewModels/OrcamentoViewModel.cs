@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using GestaoDDD.Domain.Entities;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
@@ -10,71 +11,43 @@ namespace GestaoDDD.Application.ViewModels
         [ScaffoldColumn(true)]
         public int orc_Id { get; set; }
 
-        [DisplayName("Endereço")]
-        [Required(ErrorMessage = "Preencha o endereço do serviço.")]
-        [MaxLength(200, ErrorMessage = "Tamanho máximo de {0} caracteres.")]
-        [MinLength(10, ErrorMessage = "Tamanho minímo de {0} caracteres.")]
-        public string orc_Endereco { get; set; }
-
-        [DisplayName("Número")]
-        [Required(ErrorMessage = "Preencha o número.")]
-        public int orc_numero { get; set; }
-
-        [DisplayName("Bairro")]
-        [Required(ErrorMessage = "Preencha o bairro.")]
-        [MaxLength(100, ErrorMessage = "Tamanho máximo de {0} caracteres.")]
-        [MinLength(3, ErrorMessage = "Tamanho minímo de {0} caracteres.")]
-        public string orc_bairro { get; set; }
-
-        [DisplayName("Cidade")]
-        [Required(ErrorMessage = "Preencha a cidade.")]
-        [MaxLength(100, ErrorMessage = "Tamanho máximo de {0} caracteres.")]
-        [MinLength(3, ErrorMessage = "Tamanho minímo de {0} caracteres.")]
-        public string orc_cidade { get; set; }
-
-        [DisplayName("CEP")]
-        [Required(ErrorMessage = "Preencha o CEP.")]
-        [MaxLength(9, ErrorMessage = "Tamanho máximo de {0} caracteres.")]
-        [MinLength(9, ErrorMessage = "Tamanho minímo de {0} caracteres.")]
-        public string orc_cep { get; set; }
-
-        [DisplayName("Referência")]
-        [MaxLength(150, ErrorMessage = "Tamanho máximo de {0} caracteres.")]
-        [MinLength(3, ErrorMessage = "Tamanho minímo de {0} caracteres.")]
-        public string orc_referencia { get; set; }
-
-        [DisplayName("Descrição")]
         [Required(ErrorMessage = "Preencha uma breve descrição")]
         [MaxLength(250, ErrorMessage = "Tamanho máximo de {0} caracteres.")]
         [MinLength(10, ErrorMessage = "Tamanho minímo de {0} caracteres.")]
         public string orc_descricao { get; set; }
 
-        [DisplayName("Prazo")]
-        [Required(ErrorMessage = "Preencha os dias de prazo")]
-        public int orc_dias_prazo { get; set; }
+        [Required(ErrorMessage = "Preencha o endereço do serviço.")]
+        [MaxLength(200, ErrorMessage = "Tamanho máximo de {0} caracteres.")]
+        [MinLength(10, ErrorMessage = "Tamanho minímo de {0} caracteres.")]
+        public string orc_Endereco { get; set; }
+        
+        [Required(ErrorMessage = "Preencha o prazo do serviço.")]
+        public string orc_prazo { get; set; }
 
-        [DisplayName("Frequência")]
-        [Required(ErrorMessage = "Preencha a frequência do prazo")]
+        [Required(ErrorMessage = "Selecione a categoria que pertence este orçamento.")]
+        public virtual Categoria categoria_id { get; set; }
 
-        //[DisplayName("Latitude")]
-        //[Required(ErrorMessage = "Aponte seu endereço no mapa para que gere o valor da latitude.")]
+        [Required(ErrorMessage = "Selecione a que servico pertence este orçamento.")]
+        public virtual Servico servico_id { get; set; }
+
+        [Required(ErrorMessage = "Preencha o campo nome.")]
+        public string orc_nome_solicitante { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Preencha o campo email.")]
+        public string orc_email_solicitante { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [Required(ErrorMessage = "Preencha o campo telefone.")]
+        public string orc_telefone_solicitante { get; set; }
+
+        public string orc_endereco_solicitante { get; set; }
+
         [Display(AutoGenerateField= false)]
         public string  orc_latitude { get; set; }
 
-        //[DisplayName("Longitude")]
-        //[Required(ErrorMessage = "Aponte seu endereço no mapa para que gere o valor da longitude.")]
         [Display(AutoGenerateField = false)]
         public string orc_longitude { get; set; }
 
-        public EnumFrequencia orc_frequencia_prazo { get; set; }
-
     }
-
-    [DataContract]
-    public enum EnumFrequencia
-    {
-        Dias,
-        Mês,
-        Ano
-    };
 }

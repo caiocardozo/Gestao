@@ -26,7 +26,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Orcamento/
         public ActionResult Index()
         {
-            
+
 
             return View();
         }
@@ -40,18 +40,28 @@ namespace GestaoDDD.MVC.Controllers
 
         //
         // GET: /Orcamento/Cadastrar
-        public ActionResult Cadastrar(FormCollection collection)
+        public ActionResult Cadastrar()
         {
             ViewBag.CategoriaVm = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
             ViewBag.ServicoVm = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
-            
+
             return View();
         }
+
+
+        public ActionResult CadastrarTeste()
+        {
+            ViewBag.CategoriaVm = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
+            ViewBag.ServicoVm = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
+
+            return View();
+        }
+
 
         //
         // POST: /Orcamento/Cadastrar
         [HttpPost]
-        public ActionResult Cadastrar(OrcamentoViewModel orcamento)
+        public ActionResult Cadastrar(OrcamentoViewModel orcamento, string txtLatitude, string txtLongitude)
         {
             try
             {
@@ -67,9 +77,9 @@ namespace GestaoDDD.MVC.Controllers
                 }
 
             }
-            catch(Exception)
+            catch (Exception)
             {
-               return RedirectToAction("ErroAoCadastrar");
+                return RedirectToAction("ErroAoCadastrar");
             }
         }
 
@@ -112,7 +122,7 @@ namespace GestaoDDD.MVC.Controllers
             var orcamento = _orcamentoApp.GetById(id);
             var orcamentoViewModel = Mapper.Map<Orcamento, OrcamentoViewModel>(orcamento);
             return View(orcamentoViewModel);
-            
+
         }
 
         //
@@ -133,4 +143,5 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
     }
+
 }

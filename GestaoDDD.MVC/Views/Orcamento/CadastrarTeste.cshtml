@@ -1,0 +1,100 @@
+﻿@model GestaoDDD.Application.ViewModels.OrcamentoViewModel
+
+@{
+    ViewBag.Title = "CadastrarTeste";
+}
+
+<h2>CadastrarTeste</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>OrcamentoViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orc_descricao, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orc_descricao)
+                @Html.ValidationMessageFor(model => model.orc_descricao)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orc_Endereco, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orc_Endereco)
+                @Html.ValidationMessageFor(model => model.orc_Endereco)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orc_prazo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orc_prazo)
+                @Html.ValidationMessageFor(model => model.orc_prazo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orc_nome_solicitante, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orc_nome_solicitante)
+                @Html.ValidationMessageFor(model => model.orc_nome_solicitante)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orc_email_solicitante, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orc_email_solicitante)
+                @Html.ValidationMessageFor(model => model.orc_email_solicitante)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orc_telefone_solicitante, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orc_telefone_solicitante)
+                @Html.ValidationMessageFor(model => model.orc_telefone_solicitante)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orc_endereco_solicitante, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orc_endereco_solicitante)
+                @Html.ValidationMessageFor(model => model.orc_endereco_solicitante)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orc_latitude, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orc_latitude)
+                @Html.ValidationMessageFor(model => model.orc_latitude)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orc_longitude, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orc_longitude)
+                @Html.ValidationMessageFor(model => model.orc_longitude)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
