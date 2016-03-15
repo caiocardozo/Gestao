@@ -61,7 +61,7 @@ namespace GestaoDDD.MVC.Controllers
         //
         // POST: /Orcamento/Cadastrar
         [HttpPost]
-        public ActionResult Cadastrar(OrcamentoViewModel orcamento, string txtLatitude, string txtLongitude)
+        public ActionResult Cadastrar(OrcamentoViewModel orcamento)
         {
             try
             {

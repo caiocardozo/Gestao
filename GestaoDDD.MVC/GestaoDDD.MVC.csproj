@@ -385,6 +385,11 @@
     <Content Include="Views\ComoFunciona\Delete.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Orcamento\CadastrarTeste.cshtml" />
+    <Content Include="Views\IndiqueProfissional\Create.cshtml" />
+    <Content Include="Views\IndiqueProfissional\Delete.cshtml" />
+    <Content Include="Views\IndiqueProfissional\Details.cshtml" />
+    <Content Include="Views\IndiqueProfissional\Edit.cshtml" />
+    <Content Include="Views\IndiqueProfissional\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

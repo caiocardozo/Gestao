@@ -63,13 +63,13 @@
     <Compile Include="Migrations\201603061451554_gerarCampos.Designer.cs">
       <DependentUpon>201603061451554_gerarCampos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603121435370_att.cs" />
-    <Compile Include="Migrations\201603121435370_att.Designer.cs">
-      <DependentUpon>201603121435370_att.cs</DependentUpon>
+    <Compile Include="Migrations\201603150038498_att.cs" />
+    <Compile Include="Migrations\201603150038498_att.Designer.cs">
+      <DependentUpon>201603150038498_att.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603122210380_atualizarOrcamento.cs" />
-    <Compile Include="Migrations\201603122210380_atualizarOrcamento.Designer.cs">
-      <DependentUpon>201603122210380_atualizarOrcamento.cs</DependentUpon>
+    <Compile Include="Migrations\201603150110578_att2.cs" />
+    <Compile Include="Migrations\201603150110578_att2.Designer.cs">
+      <DependentUpon>201603150110578_att2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,11 +98,11 @@
     <EmbeddedResource Include="Migrations\201603061451554_gerarCampos.resx">
       <DependentUpon>201603061451554_gerarCampos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603121435370_att.resx">
-      <DependentUpon>201603121435370_att.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603150038498_att.resx">
+      <DependentUpon>201603150038498_att.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603122210380_atualizarOrcamento.resx">
-      <DependentUpon>201603122210380_atualizarOrcamento.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603150110578_att2.resx">
+      <DependentUpon>201603150110578_att2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

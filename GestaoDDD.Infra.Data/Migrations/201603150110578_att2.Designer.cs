@@ -7,13 +7,13 @@ namespace GestaoDDD.Infra.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class att : IMigrationMetadata
+    public sealed partial class att2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(att));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(att2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603121435370_att"; }
+            get { return "201603150110578_att2"; }
         }
         
         string IMigrationMetadata.Source

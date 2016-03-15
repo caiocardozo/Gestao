@@ -24,12 +24,6 @@ namespace GestaoDDD.Application.ViewModels
         [Required(ErrorMessage = "Preencha o prazo do serviço.")]
         public string orc_prazo { get; set; }
 
-        [Required(ErrorMessage = "Selecione a categoria que pertence este orçamento.")]
-        public virtual Categoria categoria_id { get; set; }
-
-        [Required(ErrorMessage = "Selecione a que servico pertence este orçamento.")]
-        public virtual Servico servico_id { get; set; }
-
         [Required(ErrorMessage = "Preencha o campo nome.")]
         public string orc_nome_solicitante { get; set; }
 
@@ -49,5 +43,7 @@ namespace GestaoDDD.Application.ViewModels
         [Display(AutoGenerateField = false)]
         public string orc_longitude { get; set; }
 
+        public virtual Categoria categoria_id { get; set; }
+        public virtual Servico servico_id { get; set; }
     }
 }

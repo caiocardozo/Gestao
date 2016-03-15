@@ -7,13 +7,13 @@ namespace GestaoDDD.Infra.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class atualizarOrcamento : IMigrationMetadata
+    public sealed partial class att : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(atualizarOrcamento));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(att));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603122210380_atualizarOrcamento"; }
+            get { return "201603150038498_att"; }
         }
         
         string IMigrationMetadata.Source

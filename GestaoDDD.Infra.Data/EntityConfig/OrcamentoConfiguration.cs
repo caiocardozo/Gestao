@@ -34,7 +34,7 @@ namespace GestaoDDD.Infra.Data.EntityConfig
                 .HasMaxLength(200);
 
             HasRequired(c => c.categoria_id)
-                .WithRequiredDependent(c => c.Orcamento);
+                .WithRequiredPrincipal(c => c.Orcamento);
 
             HasRequired(c => c.servico_id)
                 .WithRequiredDependent(c => c.Orcamento);
