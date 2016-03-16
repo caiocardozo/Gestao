@@ -1,54 +1,47 @@
 ﻿@model IEnumerable<GestaoDDD.Application.ViewModels.ServicoViewModel>
+
+    @using GestaoDDD.Application.ViewModels;
+
     @{
-        ViewBag.Title = "Index";
-        Layout = "~/Views/Shared/_Layout.cshtml";
+        Layout = "~/Views/Shared/_Layout2.cshtml";
+        var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
     }
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="col-lg-2"><h3>Serviços</h3></div>
-                <div class="col-lg-8">
-                    <form class="navbar-form navbar-left" role="search">
-                        @using (Html.BeginForm("Index", "Servicos"))
-                        {
-                            <div class="form-group">
-                                Busca por Nome : <input type="text" name="nomeBusca" id="nomeBusca" class="form-control" placeholder="E-mail">
-                            </div>
-                            <button type="submit" class="btn btn-success">Buscar</button>
-                        }
-                    </form>
-                </div>
-                <div class="col-lg-offset-10">
-                    <a href="~/Servico/Cadastrar" class="btn btn-info" title="Nova Serviço">Novo Serviço <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a>
-                </div>
-            </div>
-        </div>
-        <div class="row apenasNegrito">
-            <div class="col-lg-4 col-md-3 col-sm-4 col-xs-6">
-                @Html.DisplayNameFor(model => model.serv_Nome)
-            </div>
-            <div class="col-lg-5 col-md-3 col-sm-4 col-xs-6">
-                @Html.DisplayNameFor(model => model.cat_Id)
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-            </div>
-        </div>
 
-            @foreach (var item in Model)
+
+    <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
+    <link href="~/Content/Servico/modal_accept.css" rel="stylesheet" />
+
+    <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            <input type="text" id="pesquisa" name="pesquisa" class="form-control" placeholder="Pesquisar Serviços">
+        </div>
+        <button type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
+    </form>
+
+    @using (Html.BeginForm())
+    {
+        foreach (var cat in ListaCategoria)
+        {
+
+            <div class="row nome-categoria col-md-12 col-sm-12 col-xs-12" id="position-checkbox">
+                <br />
+                &bull;  @Html.DisplayFor(modelItem => cat.cat_Nome)
+                <hr style="color: #000000;" />
+            </div>
+            foreach (var item in Model)
             {
+                if (cat.cat_Id == item.cat_Id)
+                {
+                    <div class="container row text-left col-md-3 col-sm-4 col-xs-6" id="position-checkbox">
+                        <div class="checkbox">
+                            <label style="text-transform: capitalize">
+                                @Html.DisplayFor(modelItem => item.serv_Nome)
+                            </label>
+                        </div>
+                    </div>
+                }
 
-                <div class="col-lg-4 col-md-3 col-sm-4 col-xs-6">
-                    @Html.DisplayFor(modelItem => item.serv_Nome)
-                </div>
-                <div class="col-lg-5 col-md-3 col-sm-4 col-xs-6">
-                    @Html.DisplayFor(modelItem => item.Categoria.cat_Nome)
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                    <a href="~/Servico/Editar/@item.serv_Id" class="btn btn-primary" title="Editar"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                    <a href="~/Servico/Detalhes/@item.serv_Id" class="btn btn-primary" title="Detalhes"><i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i></a>
-                    <a href="~/Servico/Deletar/@item.serv_Id" class="btn btn-primary" title="Deletar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                </div>
-                <hr/>
             }
-        </div>
-  
+        }
+    }
+

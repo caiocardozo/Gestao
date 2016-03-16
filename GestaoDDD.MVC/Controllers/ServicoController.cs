@@ -5,6 +5,7 @@ using GestaoDDD.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace GestaoDDD.MVC.Controllers
         private readonly IPrestadorAppService _iPrestadorApp;
         private readonly IServicoPrestadorAppService _iServicoPrestadorApp;
         public ServicoController(IServicoAppService iServicoApp, ICategoriaAppService iCategoriaApp,
-IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestadorApp)
+            IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestadorApp)
         {
             _iServicoApp = iServicoApp;
             _iCategoriaApp = iCategoriaApp;
@@ -26,7 +27,7 @@ IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestado
         //
         // GET: /Servico/
 
-        public ActionResult IndexServicosCategorias(string cpf, string nome, string celular, string email)
+        public ActionResult ServicosCategorias(string cpf, string nome, string celular, string email)
         {
             ViewBag.CategoriaModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_iCategoriaApp.GetAll());
             ViewBag.Cpf = cpf;
@@ -39,7 +40,7 @@ IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestado
         }
 
         [HttpPost]
-        public ActionResult IndexServicosCategorias(FormCollection collection, string cpfPrestador, string nome, string celular, string email)
+        public ActionResult ServicosCategorias(FormCollection collection, string cpfPrestador, string nome, string celular, string email)
         {
             try
             {
@@ -72,9 +73,25 @@ IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestado
         }
 
 
-        public ActionResult Index(FormCollection collection)
+        public ActionResult Index(string pesquisa, string Filtro)
         {
+            if (pesquisa == null)
+            {
+                pesquisa = Filtro;
+            }
+
+            ViewBag.Filtro = pesquisa;
+
+            
             var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_iServicoApp.GetAll());
+
+            if (!string.IsNullOrEmpty(pesquisa))
+            {
+                servicoViewModel = servicoViewModel.Where(s => s.serv_Nome.ToUpper().Contains(pesquisa.ToUpper()));
+            }
+
+            ViewBag.CategoriaModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_iCategoriaApp.GetAll());
+
             return View(servicoViewModel);
         }
 
