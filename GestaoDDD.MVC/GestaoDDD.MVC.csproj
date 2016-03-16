@@ -241,6 +241,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ComoFunciona\comofunciona.css" />
     <Content Include="Content\Conta\login.css" />
     <Content Include="Content\Conta\register.css" />
     <Content Include="Content\Home\index.css" />
