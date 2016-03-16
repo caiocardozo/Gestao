@@ -3,7 +3,7 @@ var map;
 var marker;
 
 function initialize() {
-	var latlng = new google.maps.LatLng(-18.8800397, -47.05878999999999);
+    var latlng = new google.maps.LatLng(-16.6868912, -49.264794300000005);
 	var options = {
 		zoom: 5,
 		center: latlng,

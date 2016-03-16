@@ -1,39 +1,76 @@
 ﻿@model IEnumerable<GestaoDDD.Application.ViewModels.ComoFuncionaViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Create";
+}
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.cf_Ordem)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cf_Informacao)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.cf_Ordem)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cf_Informacao)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.cf_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.cf_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.cf_Id })
-        </td>
-    </tr>
-}
-
-</table>
+<link href="~/Content/ComoFunciona/comofunciona.css" rel="stylesheet" />
+<div class="container">
+    <div class="row banner col-md-12">
+        <div class="row banner-texto-esquerda col-md-6 pull-left">
+            <h1>COMO FUNCIONA</h1>
+        </div>
+        <div class="row banner-texto-direita col-md-6 pull-right">
+            <h3>
+                Muito mais agilidade</p>
+                na hora de buscar orçamentos</p>
+                de forma online e gratuita
+            </h3>
+        </div>
+    </div>
+    <div class="row banner-baixo col-md-12 center-block">
+        <div class="row texto-bannerbaixo col-md-12">
+            Você é um profissional e <b>busca novos clientes?</b>
+            <button type="button" class="btn">Cadastre-se</button>
+        </div>
+    </div>
+    <div class="row texto-body col-md-12 center">
+        <h3><b>Como funciona?</b></h3>
+        <br />
+        <b>Utilizar o Agiliza Orçamentos é muito fácil:</b>
+        <br /><br />
+        <p />
+        01 - Você preenche o formulário com os dados do serviço que precisa e suas informações pessoais.
+        <p />
+        02 - Iremos selecionar os melhores profissionais da sua região e em seguida eles entrarão em contato com você.
+        <p />
+        03 - Após receber os orçamentos solicitados você compara e escolhe a melhor opção.
+        <p />
+    </div>
+    <div class="row informacoes col-md-12">
+        <div class="row informacoes-linha col-md-4">
+            <div class="row icones col-md-4 col-xs-4">
+                <img src="~/Images/Orcamento/lupa.png" />
+            </div>
+            <div class="row texto-icones col-md-8 col-xs-8">
+                <hr id="linha" />
+                Busque o tipo de serviço que você está procurando.
+            </div>
+        </div>
+        <div class="row informacoes-linha col-md-4">
+            <div class="row icones col-md-4 col-xs-4">
+                <img src="~/Images/Orcamento/orcamentos.png" />
+            </div>
+            <div class="row texto-icones col-md-8 col-xs-8">
+                <hr id="linha" />
+                Receba até 4 orçamentos grátis e sem compromisso.
+            </div>
+        </div>
+        <div class="row informacoes-linha col-md-4">
+            <div class="row icones col-md-4 col-xs-4">
+                <img src="~/Images/Orcamento/profissional.png" />
+            </div>
+            <div class="row texto-icones col-md-8 col-xs-8">
+                <hr id="linha" />
+                Compare e escolha a melhor opção.
+            </div>
+        </div>
+        <div class="row botao-solicitar col-md-12">
+            <a href="~/Orcamento/Cadastrar" type="button" class="btn btn-solicitar">Solicitar Orçamentos Grátis</a>
+        </div>
+    </div>
+</div>

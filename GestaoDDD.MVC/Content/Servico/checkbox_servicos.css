@@ -10,6 +10,9 @@
     
 }
 
+body {
+    
+}
 
 
 html, body {
@@ -20,8 +23,7 @@ html, body {
     opacity:1;
 	background-size: cover;
 	background-position: center;
-    
-     
+    overflow-x: hidden;
 }
 
 a{text-decoration: none; color: rgba(255,255,255,1);}
