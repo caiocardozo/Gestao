@@ -16,7 +16,30 @@
 <script src="~/Scripts/Adicionais/mapa.js"></script>
 <script src="~/Scripts/jquery-ui.custom.min.js"></script>
 @*<link href="~/Content/Orcamento/mapa.css" rel="stylesheet" />*@
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Datas').change(function () {
+            var value = $("#Datas option:selected").val();
+            $.ajax({
+                type: 'POST',
+                url: '/GestaoPessoas/CustoPessoalPartial',
+                data: 'data=' + value,
+                dataType: 'html',
+                cache: false,
+                async: true,
+                success: function (data) {
+                    $('#movimentosCusto').html(data);
+                },
+                beforeSend: function () {
+                    swal({ title: "Carregando", text: "Aguarde.", showConfirmButton: false });
+                },
+                complete: function (msg) {
+                    swal.close();
+                }
+            });
+        });
+    });
+</script>
 <div class="container">
 
     <div class="row banner col-md-12">
@@ -141,10 +164,11 @@
                     <label for="sel2">Selecione a categoria de serviço:</label>
                     <select class="form-control" id="categoria_id" name="categoria_id" style="text-transform: capitalize">
                         <option> </option>
-                        @foreach (var categoria in lstCategoria)
+                        @Html.DropDownList("Categorias", null, String.Empty, new { @class = "form-control" })
+                        @*@foreach (var categoria in lstCategoria)
                         {
                             <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
-                        }
+                        }*@
                     </select>
                 </div>
 

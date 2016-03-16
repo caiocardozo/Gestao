@@ -59,17 +59,17 @@
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
-    <Compile Include="Migrations\201603061451554_gerarCampos.cs" />
-    <Compile Include="Migrations\201603061451554_gerarCampos.Designer.cs">
-      <DependentUpon>201603061451554_gerarCampos.cs</DependentUpon>
+    <Compile Include="Migrations\201603160022229_Banco.cs" />
+    <Compile Include="Migrations\201603160022229_Banco.Designer.cs">
+      <DependentUpon>201603160022229_Banco.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603150038498_att.cs" />
-    <Compile Include="Migrations\201603150038498_att.Designer.cs">
-      <DependentUpon>201603150038498_att.cs</DependentUpon>
+    <Compile Include="Migrations\201603160042524_Banco2.cs" />
+    <Compile Include="Migrations\201603160042524_Banco2.Designer.cs">
+      <DependentUpon>201603160042524_Banco2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603150110578_att2.cs" />
-    <Compile Include="Migrations\201603150110578_att2.Designer.cs">
-      <DependentUpon>201603150110578_att2.cs</DependentUpon>
+    <Compile Include="Migrations\201603160044250_Banco20.cs" />
+    <Compile Include="Migrations\201603160044250_Banco20.Designer.cs">
+      <DependentUpon>201603160044250_Banco20.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,14 +95,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603061451554_gerarCampos.resx">
-      <DependentUpon>201603061451554_gerarCampos.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603160022229_Banco.resx">
+      <DependentUpon>201603160022229_Banco.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603150038498_att.resx">
-      <DependentUpon>201603150038498_att.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603160042524_Banco2.resx">
+      <DependentUpon>201603160042524_Banco2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603150110578_att2.resx">
-      <DependentUpon>201603150110578_att2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603160044250_Banco20.resx">
+      <DependentUpon>201603160044250_Banco20.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

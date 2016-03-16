@@ -10,7 +10,7 @@ namespace GestaoDDD.Domain.Entities
 
         public ICollection<Servico> Servico { get; set; }
 
-        public virtual Orcamento Orcamento { get; set; }
+        //public virtual Orcamento Orcamento { get; set; }
     }
 }
  
