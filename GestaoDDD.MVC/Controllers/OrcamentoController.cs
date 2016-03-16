@@ -48,17 +48,6 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
-
-        public ActionResult CadastrarTeste()
-        {
-            ViewBag.CategoriaVm = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
-            ViewBag.ServicoVm = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
-
-            return View();
-        }
-
-
-        //
         // POST: /Orcamento/Cadastrar
         [HttpPost]
         public ActionResult Cadastrar(OrcamentoViewModel orcamento)
@@ -73,6 +62,9 @@ namespace GestaoDDD.MVC.Controllers
                 }
                 else
                 {
+                    ViewBag.CategoriaVm = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
+                    ViewBag.ServicoVm = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
+
                     return View(orcamento);
                 }
 

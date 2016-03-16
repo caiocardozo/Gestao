@@ -141,12 +141,12 @@
             {
                 @Html.AntiForgeryToken()
 
-
-                @Html.ValidationSummary(false)
+                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="form-group">
                     <label for="descricao">Escreva detalhadamente o serviço que você precisa:</label>
                     <textarea class="form-control" rows="8" id="orc_descricao" name="orc_descricao"></textarea>
+                    @Html.ValidationMessageFor(model => model.orc_descricao, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
@@ -158,6 +158,7 @@
                         <option>Daqui um mês</option>
                         <option>Ainda não sabe</option>
                     </select>
+                    @Html.ValidationMessageFor(model => model.orc_prazo, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
@@ -170,6 +171,7 @@
                             <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
                         }*@
                     </select>
+                    @Html.ValidationMessageFor(model => model.categoria_id, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
@@ -181,12 +183,14 @@
                             <option value="@servico.serv_Id" style="text-transform: capitalize">@servico.serv_Nome</option>
                         }
                     </select>
+                    @Html.ValidationMessageFor(model => model.servico_id, "", new { @class = "text-danger" })
                 </div>
 
 
                 <div class="form-group">
                     <label>Endereço a realizar o serviço:</label>
                     <input type="text" id="orc_Endereco" name="orc_Endereco" class="form-control" style="width:450px;" />
+                    @Html.ValidationMessageFor(model => model.orc_Endereco, "", new { @class = "text-danger" })
                 </div>
                 <div>
                     <input type="button" class="btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
@@ -203,22 +207,26 @@
                 <div class="form-group">
                     <label for="nome">Seu Nome:</label>
                     <input type="text" class="form-control" id="nome" name="orc_nome_solicitante">
+                    @Html.ValidationMessageFor(model => model.orc_nome_solicitante, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     <label for="email">E-mail:</label>
                     <input type="text" class="form-control" id="orc_email_solicitante" name="orc_email_solicitante">
+                    @Html.ValidationMessageFor(model => model.orc_email_solicitante, "", new { @class = "text-danger" })
                 </div>
 
 
                 <div class="row form-group col-md-6 col-sm-6">
                     <label for="telefone">Telefone:</label>
                     <input type="text" class="form-control" id="orc_telefone_solicitante" name="orc_telefone_solicitante">
+                    @Html.ValidationMessageFor(model => model.orc_email_solicitante, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="row form-group col-md-6 col-sm-6 form">
                     <label for="cep">Endereço:</label>
                     <input type="text" class="form-control" id="orc_endereco_solicitante" name="orc_endereco_solicitante">
+                    @Html.ValidationMessageFor(model => model.orc_endereco_solicitante, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="checkbox col-md-6">

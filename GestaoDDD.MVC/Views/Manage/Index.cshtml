@@ -1,16 +1,14 @@
 ﻿@model GestaoDDD.Infra.Identity.Model.IndexViewModel
-@{ 
-    ViewBag.Title = "Gerencie sua conta";
-}
 
-<h2>@ViewBag.Title.</h2>
+@{
+    Layout="~/Views/Shared/_Layout2.cshtml";
+}
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
-    <hr />
+    <h4>Gerencie sua conta</h4>
     <dl class="dl-horizontal">
-        <dt>Password:</dt>
+        <dt>Senha:</dt>
         <dd>
             [
             @if (Model.HasPassword)
@@ -23,13 +21,13 @@
             }
             ]
         </dd>
-        <dt>External Logins:</dt>
+        <dt>Redes sociais:</dt>
         <dd>
             Logins Sociais: @Model.Logins.Count
             @Html.ActionLink("[ Gerenciar ]", "ManageLogins")
         </dd>
-            <dt>Phone Number:</dt>
-            <dd>
+            @*<dt>Número de telefone:</dt>*@
+            @*<dd>
                 Número do Telefone: @(Model.PhoneNumber ?? "Nenhum") [
                 @if (Model.PhoneNumber != null)
                 {
@@ -42,9 +40,9 @@
                     @Html.ActionLink("Adicionar", "AddPhoneNumber")
                 }
                 ]
-            </dd>
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
+            </dd>*@
+        @*<dt>Two-Factor Authentication:</dt>*@
+        @*<dd>
 
             @if (Model.TwoFactor)
             {
@@ -68,8 +66,8 @@
                     </p>
                 }
             }
-        </dd>
-        <dt>Two-Factor Authentication:</dt>
+        </dd>*@
+        @*<dt>Two-Factor Authentication:</dt>
         <dd>
 
             @if (Model.BrowserRemembered)
@@ -90,6 +88,6 @@
                     </p>
                 </form>
             }
-        </dd>
+        </dd>*@
 </dl>
 </div>
