@@ -25,10 +25,86 @@
         <br />
         Você conhece um bom profissional e gostaria de indicá-lo?
     </div>
+
+    <div class="formulario col-md-12">
+        <form role="form">
+            <fieldset>
+                <h4><b>DADOS DO PROFISSIONAL OU EMPRESA</b></h4>
+                <br />
+                <div class="form-group col-md-12">
+                    <label for="nome">Nome do Profissional ou Empresa:</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="telefone">Telefone de contato:</label>
+                    <input type="number" class="form-control" id="telefone">
+                </div>
+
+                <div class="form-group col-md-8">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="estado">Estado:</label>
+                    <select class="form-control" id="estado" name="estado">
+                        <option> </option>
+                        <option>GO</option>
+                        <option>SP</option>
+                        <option>RS</option>
+                        <option>RJ</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-8">
+                    <label for="cidade">Cidade:</label>
+                    <select class="form-control" id="cidade" name="cidade">
+                        <option> </option>
+                        <option>Anápolis</option>
+                        <option>Goiânia</option>
+                        <option>Uruaçu</option>
+                        <option>Abadiânia</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="servico">Especifique o serviço que este profissional ou empresa realiza:</label>
+                    <select class="form-control" id="servico" name="servico">
+                        <option> </option>
+                        <option>Serviço 1</option>
+                        <option>Serviço 2</option>
+                        <option>Serviço 3</option>
+                        <option>Serviço 4</option>
+                    </select>
+                </div>
+            </fieldset>
+            
+            <div>
+                <h4><b>SEUS DADOS</b></h4>
+            </div>
+            <br />
+            <div class="form-group col-md-6">
+                <label for="nomepessoa">Seu nome:</label>
+                <input type="text" class="form-control" id="nomepessoa">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="emailpessoa">Seu E-mail:</label>
+                <input type="email" class="form-control" id="emailpessoa">
+            </div>
+
+            <div class="row botao-solicitar col-md-12">
+                <button type="submit" class="btn btn-solicitar">Recomendar este profissional ou empresa</button>
+            </div>
+
+        </form>
+
+    </div>
 </div>
 
 
-    <h2>Create</h2>
+    @*<h2>Create</h2>
 
     @using (Html.BeginForm())
     {
@@ -89,4 +165,4 @@
 
     <div>
         @Html.ActionLink("Back to List", "Index")
-    </div>
+    </div>*@
