@@ -48,6 +48,11 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
+        public void FiltrarServico(string cat) 
+        {
+ 
+        }
+
         // POST: /Orcamento/Cadastrar
         [HttpPost]
         public ActionResult Cadastrar(OrcamentoViewModel orcamento)

@@ -6,8 +6,6 @@
 
     var lstCategoria = ViewBag.CategoriaVm as IEnumerable<CategoriaViewModel>;
     var lstServico = ViewBag.ServicoVm as IEnumerable<ServicoViewModel>;
-
-
 }
 
 <link href="~/Content/Orcamento/orcamento.css" rel="stylesheet" />
@@ -18,17 +16,17 @@
 @*<link href="~/Content/Orcamento/mapa.css" rel="stylesheet" />*@
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#Datas').change(function () {
-            var value = $("#Datas option:selected").val();
+        $('#cat').change(function () {
+            var value = $("#cat option:selected").val();
             $.ajax({
                 type: 'POST',
-                url: '/GestaoPessoas/CustoPessoalPartial',
-                data: 'data=' + value,
+                url: '/Orcamento/FiltrarServico',
+                data: 'cat=' + value,
                 dataType: 'html',
                 cache: false,
                 async: true,
                 success: function (data) {
-                    $('#movimentosCusto').html(data);
+                    $('#cat').html(data);
                 },
                 beforeSend: function () {
                     swal({ title: "Carregando", text: "Aguarde.", showConfirmButton: false });
@@ -163,13 +161,14 @@
 
                 <div class="form-group">
                     <label for="sel2">Selecione a categoria de serviço:</label>
-                    <select class="form-control" id="categoria_id" name="categoria_id" style="text-transform: capitalize">
+                    <select  onselect="cat" class="form-control" id="categoria_id" name="categoria_id" style="text-transform: capitalize">
                         <option> </option>
-                        @*@Html.DropDownList("Categorias", null, String.Empty, new { @class = "form-control" })*@
-                        @*@foreach (var categoria in lstCategoria)
+                        
+
+                        @foreach (var categoria in lstCategoria)
                         {
                             <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
-                        }*@
+                        }
                     </select>
                     @Html.ValidationMessageFor(model => model.categoria_id, "", new { @class = "text-danger" })
                 </div>

@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<GestaoDDD.Application.ViewModels.ServicoViewModel>
 
     @using GestaoDDD.Application.ViewModels;
-
     @{
         Layout = "~/Views/Shared/_Layout2.cshtml";
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
@@ -12,7 +11,8 @@
 
     <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-            <input type="text" id="pesquisa" name="pesquisa" class="form-control" placeholder="Pesquisar Serviços">
+            <input type="text" id="pesquisa" name="pesquisa_servico" class="form-control" placeholder="Pesquisar Serviços">
+            <input type="text" id="pesquisa" name="pesquisa_categoria" class="form-control" placeholder="Por categorias">
         </div>
         <button type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
     </form>
@@ -24,8 +24,9 @@
 
             <div class="row nome-categoria col-md-12 col-sm-12 col-xs-12" id="position-checkbox">
                 <br />
-                &bull;  @Html.DisplayFor(modelItem => cat.cat_Nome)
                 <hr style="color: #000000;" />
+                &bull;  @Html.DisplayFor(modelItem => cat.cat_Nome)
+                
             </div>
             foreach (var item in Model)
             {

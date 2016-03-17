@@ -1,9 +1,6 @@
 ﻿@model IEnumerable<GestaoDDD.Application.ViewModels.ComoFuncionaViewModel>
 
 @{
-    ViewBag.Title = "Create";
-}
-@{
     Layout = "~/Views/Shared/_Layout2.cshtml";
 
 }
@@ -25,7 +22,7 @@
     <div class="row banner-baixo col-md-12 center-block">
         <div class="row texto-bannerbaixo col-md-12">
             Você é um profissional e <b>busca novos clientes?</b>
-            <button type="button" class="btn">Cadastre-se</button>
+            <a href="~/Prestador/Cadastrar"><input type="button" class="btn" value="Cadastre-se" /></a>
         </div>
     </div>
     <div class="row texto-body col-md-12 center">
