@@ -6,8 +6,6 @@
 
     var lstCategoria = ViewBag.CategoriaVm as IEnumerable<CategoriaViewModel>;
     var lstServico = ViewBag.ServicoVm as IEnumerable<ServicoViewModel>;
-
-
 }
 
 <link href="~/Content/Orcamento/orcamento.css" rel="stylesheet" />
@@ -164,13 +162,13 @@
                     <label for="sel2">Selecione a categoria de serviço:</label>
                     @Html.DropDownList("ListaCat", null, new { @class = "form-control" })
                  @*<select class="form-control" id="categoria_id" name="categoria_id" style="text-transform: capitalize">
-    <option> </option>
+                        <option> </option>
+                        
 
-
-    @foreach (var categoria in lstCategoria)
-    {
-        <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
-    }
+                        @foreach (var categoria in lstCategoria)
+                        {
+                            <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
+                        }
                     </select>
                     @Html.ValidationMessageFor(model => model.categoria_id, "", new { @class = "text-danger" })*@
                 </div>

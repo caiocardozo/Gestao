@@ -146,6 +146,21 @@ a{text-decoration: none; color: rgba(255,255,255,1);}
     }
 
 
+.prefooter {
+    margin-top: 4%;
+}
+
+.menunavegacao {
+    margin-bottom: 2%;
+}
+
+.pesquisa {
+    margin-top: 2%;
+    text-align: center;
+}
+
+
+
 @media screen and (max-width: 1000px){
 	.center{padding: 0 20px;}
 

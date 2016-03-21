@@ -75,22 +75,23 @@ namespace GestaoDDD.MVC.Controllers
         }
 
 
-        public ActionResult Index(string pesquisa, string Filtro)
+        public ActionResult Index(string pesquisa_servico, string pesquisa_categoria)
         {
-            if (pesquisa == null)
-            {
-                pesquisa = Filtro;
-            }
-
-            ViewBag.Filtro = pesquisa;
-
-
             var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_iServicoApp.GetAll());
 
-            if (!string.IsNullOrEmpty(pesquisa))
+            if ((!string.IsNullOrEmpty(pesquisa_servico) && (!string.IsNullOrEmpty(pesquisa_categoria))))
             {
-                servicoViewModel = servicoViewModel.Where(s => s.serv_Nome.ToUpper().Contains(pesquisa.ToUpper()));
+                servicoViewModel = servicoViewModel.Where(s => s.serv_Nome.ToUpper().Contains(pesquisa_servico.ToUpper()) && s.Categoria.cat_Nome.ToUpper().Contains(pesquisa_categoria.ToUpper()));
             }
+            else if ((string.IsNullOrEmpty(pesquisa_servico) && (!string.IsNullOrEmpty(pesquisa_categoria))))
+            {
+                servicoViewModel = servicoViewModel.Where(s => s.Categoria.cat_Nome.ToUpper().Contains(pesquisa_categoria.ToUpper()));
+            }
+            else if ((!string.IsNullOrEmpty(pesquisa_servico) && (string.IsNullOrEmpty(pesquisa_categoria))))
+            {
+                servicoViewModel = servicoViewModel.Where(s => s.serv_Nome.ToUpper().Contains(pesquisa_servico.ToUpper()));
+            }
+
 
             ViewBag.CategoriaModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_iCategoriaApp.GetAll());
 
