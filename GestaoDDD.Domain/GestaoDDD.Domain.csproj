@@ -46,6 +46,7 @@
     <Compile Include="Entities\Identity\Claims.cs" />
     <Compile Include="Entities\Identity\Client.cs" />
     <Compile Include="Entities\IndiqueProfissional.cs" />
+    <Compile Include="Entities\NoSql\ServicoIdNome.cs" />
     <Compile Include="Entities\Orcamento.cs" />
     <Compile Include="Entities\Pessoa.cs" />
     <Compile Include="Entities\Prestador.cs" />

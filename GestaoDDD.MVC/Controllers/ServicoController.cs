@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Web.Helpers;
+using AutoMapper;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
+using GestaoDDD.Domain.Entities.NoSql;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -82,7 +84,7 @@ namespace GestaoDDD.MVC.Controllers
 
             ViewBag.Filtro = pesquisa;
 
-            
+
             var servicoViewModel = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_iServicoApp.GetAll());
 
             if (!string.IsNullOrEmpty(pesquisa))
@@ -203,6 +205,31 @@ namespace GestaoDDD.MVC.Controllers
         public ActionResult ErroAoCadastrar()
         {
             return View();
+        }
+
+        //retorna os serviços pela categoria
+        public JsonResult RServicosPCategoria(string id)
+        {
+            List<ServicoIdNome> retorno = _iServicoApp.RetornaServicoPelaCategoria(Convert.ToInt32(id));
+            return Json(retorno, JsonRequestBehavior.AllowGet);
+            //List<Object> resultado = new List<object>();
+            //resultado.Add(new
+            //                {
+            //                    Nome = "Linha de Código",
+            //                    URL = "www.linhadecodigo.com.br"
+            //                });
+            //resultado.Add(new
+            //                {
+            //                    Nome = "DevMedia",
+            //                    URL = "www.devmedia.com.br"
+            //                });
+            //resultado.Add(new
+            //                {
+            //                    Nome = "Mr. Bool",
+            //                    URL = "www.mrbool.com.br"
+            //                });
+            //return Json(resultado, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

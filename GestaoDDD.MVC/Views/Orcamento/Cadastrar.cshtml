@@ -15,26 +15,25 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
 <script src="~/Scripts/Adicionais/mapa.js"></script>
 <script src="~/Scripts/jquery-ui.custom.min.js"></script>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
 @*<link href="~/Content/Orcamento/mapa.css" rel="stylesheet" />*@
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#Datas').change(function () {
-            var value = $("#Datas option:selected").val();
+        $('#ListaCat').change(function () {
+            var value = $("#ListaCat option:selected").val();
             $.ajax({
                 type: 'POST',
-                url: '/GestaoPessoas/CustoPessoalPartial',
-                data: 'data=' + value,
-                dataType: 'html',
+                url: '/Servico/RServicosPCategoria',
+                data: 'id=' + value,
+                dataType: "json",
                 cache: false,
                 async: true,
                 success: function (data) {
-                    $('#movimentosCusto').html(data);
-                },
-                beforeSend: function () {
-                    swal({ title: "Carregando", text: "Aguarde.", showConfirmButton: false });
-                },
-                complete: function (msg) {
-                    swal.close();
+                    var options_servico = "";
+                    $.each(data, function (key, value) {
+                        options_servico += '<option value="' + key.serv_Id + '">' + value.serv_Nome + '</option>';
+                    });
+                    $("#servico_id").html(options_servico);
                 }
             });
         });
@@ -163,25 +162,22 @@
 
                 <div class="form-group">
                     <label for="sel2">Selecione a categoria de serviço:</label>
-                    <select class="form-control" id="categoria_id" name="categoria_id" style="text-transform: capitalize">
-                        <option> </option>
-                        @*@Html.DropDownList("Categorias", null, String.Empty, new { @class = "form-control" })*@
-                        @*@foreach (var categoria in lstCategoria)
-                        {
-                            <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
-                        }*@
+                    @Html.DropDownList("ListaCat", null, new { @class = "form-control" })
+                 @*<select class="form-control" id="categoria_id" name="categoria_id" style="text-transform: capitalize">
+    <option> </option>
+
+
+    @foreach (var categoria in lstCategoria)
+    {
+        <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
+    }
                     </select>
-                    @Html.ValidationMessageFor(model => model.categoria_id, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.categoria_id, "", new { @class = "text-danger" })*@
                 </div>
 
                 <div class="form-group">
                     <label for="sel3">Especifique o serviço:</label>
                     <select class="form-control" id="servico_id" name="servico_id" style="text-transform: capitalize">
-                        <option> </option>
-                        @foreach (var servico in lstServico)
-                        {
-                            <option value="@servico.serv_Id" style="text-transform: capitalize">@servico.serv_Nome</option>
-                        }
                     </select>
                     @Html.ValidationMessageFor(model => model.servico_id, "", new { @class = "text-danger" })
                 </div>

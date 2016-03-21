@@ -43,8 +43,9 @@ namespace GestaoDDD.Application.ViewModels
         [Display(AutoGenerateField = false)]
         public string orc_longitude { get; set; }
 
-         [Required(ErrorMessage = "Selecione a categoria na qual pertence seu orçamento.")]
-        public virtual Categoria categoria_id { get; set; }
+        // [Required(ErrorMessage = "Selecione a categoria na qual pertence seu orçamento.")]
+        //public virtual Categoria categoria_id { get; set; }
+
         [Required(ErrorMessage = "Selecione o serviço na qual pertence seu orçamento.")]
         public virtual Servico servico_id { get; set; }
     }
