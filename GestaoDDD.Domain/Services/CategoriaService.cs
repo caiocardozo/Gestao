@@ -14,12 +14,5 @@ namespace GestaoDDD.Domain.Services
         {
             _categoriaRepository = categoriarepository;  
         }
-
-        //public IEnumerable<Categoria> ObterCategoriasEspeciais() 
-        //{
-        //    //extender o metodo ao repositorio
-        //    IEnumerable<Categoria> cat;
-        //    return cat;
-        //}
     }
 }

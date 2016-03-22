@@ -76,6 +76,19 @@ namespace GestaoDDD.Infra.IoC
             container.RegisterPerWebRequest<IIndiqueProfissionalService, IndiqueProfissionalService>();
             #endregion
 
+            #region Pessoa
+            container.RegisterPerWebRequest<IPessoaRepository, PessoaRepository>();
+            container.RegisterPerWebRequest<IPessoaAppService, PessoaAppService>();
+            container.RegisterPerWebRequest<IPessoaService, PessoaService>();
+            #endregion
+
+            #region Contato
+            container.RegisterPerWebRequest<IContatoRepository, ContatoRepository>();
+            container.RegisterPerWebRequest<IContatoAppService, ContatoAppService>();
+            container.RegisterPerWebRequest<IContatoService, ContatoService>();
+
+            #endregion
+
 
         } 
     }

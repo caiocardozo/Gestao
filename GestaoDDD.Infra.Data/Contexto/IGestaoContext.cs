@@ -18,5 +18,7 @@ namespace GestaoDDD.Infra.Data.Contexto
         DbSet<ServicoPrestador> ServicoPrestador { get; set; }
         DbSet<Pessoa> Pessoa { get; set; }
         DbSet<IndiqueProfissional> IndiqueProfissional { get; set; }
+        DbSet<Contato> Contato { get; set; }
+
     }
 }

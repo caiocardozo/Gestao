@@ -11,7 +11,8 @@ namespace GestaoDDD.Domain.Entities
         public int cat_Id { get; set; }
         
         public virtual Categoria Categoria { get; set; }
-        //public virtual Orcamento Orcamento { get; set; }
-        public ICollection<Orcamento> Orcamento { get; set; }
+        
+        //Wagner Nogueira 21-03-16 
+        //public ICollection<Orcamento> Orcamento { get; set; }
     }
 }

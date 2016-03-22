@@ -26,8 +26,11 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Orcamento/
         public ActionResult Index()
         {
+            return View();
+        }
 
-
+        public ActionResult OrcamentoEnviadoSucesso() 
+        {
             return View();
         }
 
@@ -49,28 +52,26 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
-        public void FiltrarServico(string cat) 
-        {
- 
-        }
-
         // POST: /Orcamento/Cadastrar
         [HttpPost]
-        public ActionResult Cadastrar(OrcamentoViewModel orcamento)
+        public ActionResult Cadastrar(OrcamentoViewModel orcamento, int servico_id)
         {
             try
             {
-                if (ModelState.IsValid)
+                if (true)
                 {
                     var orcamentoDomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
+
+                    orcamentoDomain.serv_Id = servico_id;
                     _orcamentoApp.Add(orcamentoDomain);
-                    return RedirectToAction("Index");
+
+                    return RedirectToAction("OrcamentoEnviadoSucesso");
                 }
                 else
                 {
                     ViewBag.CategoriaVm = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
                     ViewBag.ServicoVm = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
-
+                    ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
                     return View(orcamento);
                 }
 

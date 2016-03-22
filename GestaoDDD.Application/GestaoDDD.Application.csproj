@@ -48,6 +48,7 @@
     <Compile Include="Interface\ICategoriaAppService.cs" />
     <Compile Include="Interface\IAppServiceBase.cs" />
     <Compile Include="Interface\IComoFuncionaAppService.cs" />
+    <Compile Include="Interface\IContatoAppService.cs" />
     <Compile Include="Interface\IIndiqueProfissionalAppService.cs" />
     <Compile Include="Interface\IOrcamentoAppService.cs" />
     <Compile Include="Interface\IPessoaAppService.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Services\AppServiceBase.cs" />
     <Compile Include="Services\CategoriaAppService.cs" />
     <Compile Include="Services\ComoFuncionaAppService.cs" />
+    <Compile Include="Services\ContatoAppService.cs" />
     <Compile Include="Services\IndiqueProfissionalAppService.cs" />
     <Compile Include="Services\OrcamentoAppService.cs" />
     <Compile Include="Services\PessoaAppService.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Services\UsuarioAppService.cs" />
     <Compile Include="ViewModels\CategoriaViewModel.cs" />
     <Compile Include="ViewModels\ComoFuncionaViewModel.cs" />
+    <Compile Include="ViewModels\ContatoViewModel.cs" />
     <Compile Include="ViewModels\IndiqueProfissionalViewModel.cs" />
     <Compile Include="ViewModels\OrcamentoViewModel.cs" />
     <Compile Include="ViewModels\PessoaViewModel.cs" />

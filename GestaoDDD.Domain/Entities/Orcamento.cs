@@ -16,9 +16,11 @@ namespace GestaoDDD.Domain.Entities
         public string orc_telefone_solicitante { get; set; }
         public string orc_endereco_solicitante { get; set; }
         public string orc_latitude { get; set; }
-        public string orc_longitude { get; set; }
         public int serv_Id { get; set; }
-        public virtual Servico Servico { get; set; }
+
+        //Wagner Nogueira 22-03-16
+        public string orc_longitude { get; set; }
+        //public virtual Servico Servico { get; set; }
     }
 
 }

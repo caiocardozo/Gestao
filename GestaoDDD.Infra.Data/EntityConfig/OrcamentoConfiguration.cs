@@ -33,13 +33,12 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.orc_endereco_solicitante)
                 .HasMaxLength(200);
 
-            //HasRequired(c => c.categoria_id)
-            //    .WithRequiredPrincipal(c => c.Orcamento);
-
             //mapeia o relacionamento 1 to N Categoria
-            HasRequired(t => t.Servico)//determina que Categoria é obrigatorio em serviço
-           .WithMany(t => t.Orcamento)//uma categoria tem varios serviços
-           .HasForeignKey(t => t.serv_Id);//chave estangeira de categoria   
+           // HasRequired(t => t.Servico)//determina que Categoria é obrigatorio em serviço
+           //.WithMany(t => t.Orcamento)//uma categoria tem varios serviços
+           //.HasForeignKey(t => t.Servico);//chave estangeira de categoria   
+
+            Property(c => c.serv_Id);
 
             Property(c => c.orc_latitude);
 
