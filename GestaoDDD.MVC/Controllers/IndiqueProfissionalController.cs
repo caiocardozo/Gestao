@@ -13,10 +13,11 @@ namespace GestaoDDD.MVC.Controllers
     public class IndiqueProfissionalController : Controller
     {
         private readonly IIndiqueProfissionalAppService _iIndiqueAppService;
-
-        public IndiqueProfissionalController(IIndiqueProfissionalAppService iIdProfAppService)
+        private readonly IServicoAppService _iServicoApp;
+        public IndiqueProfissionalController(IIndiqueProfissionalAppService iIdProfAppService, IServicoAppService iServicoApp)
         {
             _iIndiqueAppService = iIdProfAppService;
+            _iServicoApp = iServicoApp;
                 
         }
         public ActionResult Index()
@@ -38,6 +39,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /IndiqueProfissional/Create
         public ActionResult Create()
         {
+            ViewBag.ListaServico = _iServicoApp.GetAll();
             return View();
         }
 

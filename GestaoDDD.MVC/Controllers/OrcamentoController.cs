@@ -46,9 +46,6 @@ namespace GestaoDDD.MVC.Controllers
         public ActionResult Cadastrar()
         {
             ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
-            ViewBag.CategoriaVm = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
-            ViewBag.ServicoVm = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
-
             return View();
         }
 
@@ -69,8 +66,6 @@ namespace GestaoDDD.MVC.Controllers
                 }
                 else
                 {
-                    ViewBag.CategoriaVm = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
-                    ViewBag.ServicoVm = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_servicoApp.GetAll());
                     ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
                     return View(orcamento);
                 }
