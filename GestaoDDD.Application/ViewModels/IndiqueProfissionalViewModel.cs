@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestaoDDD.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -46,6 +47,8 @@ namespace GestaoDDD.Application.ViewModels
         [DisplayName("E-mail do solicitante")]
         [Required(ErrorMessage = "Preencha o campo e-mail do solicitante")]
         public string Email_Solicitante { get; set; }
+
+        public Servico Servico { get; set; }
     }
     [DataContract]
     public enum EnumEstados

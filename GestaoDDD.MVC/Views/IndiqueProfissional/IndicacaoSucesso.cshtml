@@ -1,0 +1,53 @@
+﻿@model GestaoDDD.Application.ViewModels.IndiqueProfissionalViewModel
+@using GestaoDDD.Domain.Entities
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    var listaServico = ViewBag.ListaServico as IEnumerable<Servico>;
+}
+
+<link href="~/Content/IndiqueProfissional/indiqueprofissional.css" rel="stylesheet" />
+
+<div class="container">
+
+    <div class="row banner col-md-12">
+        <div class="row banner-texto-esquerda col-md-6 pull-left">
+            <h1>INDIQUE UM PROFISSIONAL</h1>
+        </div>
+    </div>
+    <div class="row banner-baixo col-md-12 center-block">
+        <div class="row texto-bannerbaixo col-md-12">
+            Você é um profissional e <b>busca novos clientes?</b>
+            <button type="button" class="btn">Cadastre-se</button>
+        </div>
+    </div>
+
+    <div class="row texto-body col-md-12">
+        <h3><b>INDICAÇÃO DE PROFISSIONAL REALIZADA COM SUCESSO</b></h3>
+        <br />
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="formulario col-md-12">
+            <form role="form">
+                <fieldset>
+                    <h4><b>Sua solicitação de indicação foi enviada para nossos atendentes.</b></h4>
+                    
+                    <br />
+                </fieldset>
+
+
+                <div class="row botao-solicitar col-md-12">
+                    <a href="~/Home/Index" type="button" class="btn btn-solicitar">Ok, Entendi.</a>
+                </div>
+
+            </form>
+
+        </div>
+    }
+</div>

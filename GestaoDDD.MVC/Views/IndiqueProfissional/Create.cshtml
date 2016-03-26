@@ -32,7 +32,7 @@
         @Html.AntiForgeryToken()
 
 
-        @Html.ValidationSummary(true)
+         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="formulario col-md-12">
             <form role="form">
@@ -42,39 +42,41 @@
                     <div class="form-group col-md-12">
                         <label for="nome">Nome do Profissional ou Empresa:</label>
                         <input type="text" class="form-control" id="Nome_Profissional" name="Nome_Profissional">
-                        @Html.ValidationMessageFor(model => model.Nome_Profissional)
+                        @Html.ValidationMessageFor(model => model.Nome_Profissional, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group col-md-4">
                         <label for="telefone">Telefone de contato:</label>
-                        <input type="number" class="form-control" id="Telefone" name="Telefone">
-                        @Html.ValidationMessageFor(model => model.Telefone)
+                        <input type="text" class="form-control" id="Telefone" name="Telefone" maxlength="11">
+                        @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group col-md-8">
                         <label for="email">E-mail:</label>
                         <input type="email" class="form-control" id="Email_Empresa" name="Email_Empresa">
-                        @Html.ValidationMessageFor(model => model.Email_Empresa)
+                        @Html.ValidationMessageFor(model => model.Email_Empresa, "", new { @class = "text-danger" })
                     </div>
+
+                    
 
                     <div class="form-group col-md-4">
                         <label for="estado">Estado:</label>
-                        <select class="form-control" id="estado" name="estado">
+                        @*<select class="form-control" id="Estado" name="Estado">
                             <option> </option>
-                          
-                        </select>
+                        </select>*@
+                        @Html.EnumDropDownListFor(m => m.Estado, "Selecione o Estado", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email_Empresa, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group col-md-8">
                         <label for="cidade">Cidade:</label>
                         <input type="text" class="form-control" id="Cidade" name="Cidade" />
-                        @Html.ValidationMessageFor(model => model.Cidade)
+                        @Html.ValidationMessageFor(model => model.Cidade, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="form-group col-md-12">
                         <label for="servico">Especifique o serviço que este profissional ou empresa realiza:</label>
-                        <select class="form-control" id="servico" name="servico" style="text-transform:capitalize">
-                            <option> </option>
+                        <select class="form-control" id="servico_id" name="servico_id" style="text-transform:capitalize">
                             @foreach (var servico in listaServico.OrderByDescending(s => s.serv_Nome))
                             {
                                 <option value="@servico.serv_Id">@servico.serv_Nome</option>
@@ -90,13 +92,13 @@
                 <div class="form-group col-md-6">
                     <label for="nomepessoa">Seu nome:</label>
                     <input type="text" class="form-control" id="Nome" name="Nome">
-                    @Html.ValidationMessageFor(model => model.Nome)
+                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="emailpessoa">Seu E-mail:</label>
                     <input type="email" class="form-control" id="Email_Solicitante" name="Email_Solicitante">
-                    @Html.ValidationMessageFor(model => model.Email_Solicitante)
+                    @Html.ValidationMessageFor(model => model.Email_Solicitante, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="row botao-solicitar col-md-12">

@@ -46,18 +46,22 @@ namespace GestaoDDD.MVC.Controllers
         //
         // POST: /IndiqueProfissional/Create
         [HttpPost]
-        public ActionResult Create(IndiqueProfissionalViewModel indiqueProf)
+        public ActionResult Create(IndiqueProfissionalViewModel indiqueProf, string servico_id)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    var servico = _iServicoApp.GetById(int.Parse(servico_id));
+                    indiqueProf.Servico = servico;
+
                     var indiqueDomain = Mapper.Map<IndiqueProfissionalViewModel, IndiqueProfissional>(indiqueProf);
                     _iIndiqueAppService.Add(indiqueDomain);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndicacaoSucesso");
                 }
                 else 
                 {
+                    ViewBag.ListaServico = _iServicoApp.GetAll();
                     return View(indiqueProf);
                 }
                 
@@ -66,6 +70,10 @@ namespace GestaoDDD.MVC.Controllers
             {
                 return RedirectToAction("ErroAoCadastrar");
             }
+        }
+        public ActionResult IndicacaoSucesso() 
+        {
+            return View();
         }
 
         //
