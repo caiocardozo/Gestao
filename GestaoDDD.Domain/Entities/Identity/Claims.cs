@@ -2,7 +2,7 @@
 
 namespace GestaoDDD.Domain.Entities.Identity
 {
-    public class Claims
+    public class Claims : Entidade 
     {
         public Claims() 
         {

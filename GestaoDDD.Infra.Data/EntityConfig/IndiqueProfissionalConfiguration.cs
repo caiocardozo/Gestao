@@ -19,6 +19,10 @@ namespace GestaoDDD.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(256);
 
+            Property(s => s.Nome_Profissional)
+                .IsRequired()
+                .HasMaxLength(256);
+
             Property(s => s.Telefone)
                 .IsRequired()
                 .HasMaxLength(20);
@@ -35,6 +39,10 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(s => s.Cidade)
                 .IsRequired()
                 .HasMaxLength(128);
+
+            Property(c => c.Data_Alteracao);
+
+            Property(c => c.Data_Inclusao);
 
         }
     }

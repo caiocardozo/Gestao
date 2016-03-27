@@ -14,6 +14,10 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             Property(u => u.ClientKey);
 
+            Property(c => c.Data_Alteracao);
+
+            Property(c => c.Data_Inclusao);
+
             ToTable("AspNetClients");
 
         }

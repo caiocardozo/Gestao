@@ -44,9 +44,9 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             Property(c => c.orc_longitude);
 
-            Property(c => c.data_Alteracao);
+            Property(c => c.Data_Alteracao);
 
-            Property(c => c.data_Inclusao);
+            Property(c => c.Data_Inclusao);
 
 
         }

@@ -33,6 +33,9 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             Property(c => c.status);
 
+
+
+
         }
     }
 }

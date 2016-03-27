@@ -8,6 +8,11 @@ namespace GestaoDDD.Infra.Data.EntityConfig
         public ServicoPrestadorConfiguration()
         {
             HasKey(p => p.serv_Pres_Id);
+
+            Property(c => c.Data_Alteracao);
+
+            Property(c => c.Data_Inclusao);
+
         }
     }
 }

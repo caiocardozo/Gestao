@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestaoDDD.Domain.Entities
 {
-   public class Contato
+   public class Contato : Entidade
     {
         public int contato_Id { get; set; }
         public string ctt_nome { get; set; }

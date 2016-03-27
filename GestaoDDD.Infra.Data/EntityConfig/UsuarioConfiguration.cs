@@ -21,7 +21,13 @@ namespace GestaoDDD.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(256);
 
-            ToTable("AspNetUsers");
+            Property(c => c.Data_Alteracao);
+
+            Property(c => c.Data_Inclusao);
+
+            //ToTable("AspNetUsers");
+            ToTable("Usuario");
+
 
             // MAPEAMENTO DE UM PARA UM
             HasRequired(p => p.Pessoa)

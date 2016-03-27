@@ -37,6 +37,10 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(p => p.pes_cep)
                 .HasMaxLength(9);
 
+            Property(c => c.Data_Alteracao);
+
+            Property(c => c.Data_Inclusao);
+
         }
     }
 }

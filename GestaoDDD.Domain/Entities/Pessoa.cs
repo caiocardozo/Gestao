@@ -1,6 +1,6 @@
 ﻿namespace GestaoDDD.Domain.Entities
 {
-   public class Pessoa
+   public class Pessoa : Entidade
     {
        public string usu_id { get; set; }
 

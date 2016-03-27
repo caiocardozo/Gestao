@@ -28,6 +28,12 @@ namespace GestaoDDD.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(150);
 
+
+            Property(c => c.Data_Alteracao);
+
+            Property(c => c.Data_Inclusao);
+
+
         }
     }
 }

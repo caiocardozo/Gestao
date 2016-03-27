@@ -15,6 +15,11 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             Property(c => c.cf_Ordem)
                 .IsRequired();
+
+            Property(c => c.Data_Alteracao);
+
+            Property(c => c.Data_Inclusao);
+
         }
     }
 }

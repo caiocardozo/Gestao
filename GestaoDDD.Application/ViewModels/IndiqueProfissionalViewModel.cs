@@ -16,7 +16,7 @@ namespace GestaoDDD.Application.ViewModels
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo nome")]
-        [MaxLength(150, ErrorMessage = "Tamanho máximo de {0} caracteres")]
+        [MaxLength(256, ErrorMessage = "Tamanho máximo de {0} caracteres")]
         public string Nome_Profissional { get; set; }
 
         [DisplayName("Telefone de contato")]

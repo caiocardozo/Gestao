@@ -12,6 +12,10 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.cat_Nome)
                 .IsRequired()
                 .HasMaxLength(200);
+
+            Property(c => c.Data_Alteracao);
+
+            Property(c => c.Data_Inclusao);
         }
     }
 }

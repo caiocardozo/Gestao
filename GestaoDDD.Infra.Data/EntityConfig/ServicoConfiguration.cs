@@ -14,9 +14,9 @@ namespace GestaoDDD.Infra.Data.EntityConfig
                 .IsRequired();
 
 
-            Property(c => c.data_Alteracao);
+            Property(c => c.Data_Alteracao);
 
-            Property(c => c.data_Inclusao);
+            Property(c => c.Data_Inclusao);
 
             //mapeia o relacionamento 1 to N Categoria
             HasRequired(t => t.Categoria)//determina que Categoria é obrigatorio em serviço
