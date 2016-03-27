@@ -83,7 +83,7 @@ namespace GestaoDDD.Infra.IoC
             #endregion
 
             #region Contato
-            //container.RegisterPerWebRequest<IContatoRepository, ContatoRepository>();
+            container.RegisterPerWebRequest<IContatoRepository, ContatoRepository>();
             container.RegisterPerWebRequest<IContatoAppService, ContatoAppService>();
             container.RegisterPerWebRequest<IContatoService, ContatoService>();
 

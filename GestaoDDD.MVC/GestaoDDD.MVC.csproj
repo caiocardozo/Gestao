@@ -224,6 +224,7 @@
     <Compile Include="Controllers\IndiqueProfissionalController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrcamentoController.cs" />
+    <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Controllers\PrestadorController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
@@ -399,6 +400,7 @@
     <Content Include="Views\Contato\Edit.cshtml" />
     <Content Include="Views\Contato\Delete.cshtml" />
     <Content Include="Views\IndiqueProfissional\IndicacaoSucesso.cshtml" />
+    <Content Include="Views\Pessoa\DadosCadastrais.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
