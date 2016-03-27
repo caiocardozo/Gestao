@@ -3,9 +3,6 @@
 @using GestaoDDD.Application.ViewModels;
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
-
-    var lstCategoria = ViewBag.CategoriaVm as IEnumerable<CategoriaViewModel>;
-    var lstServico = ViewBag.ServicoVm as IEnumerable<ServicoViewModel>;
 }
 
 <link href="~/Content/Orcamento/orcamento.css" rel="stylesheet" />
@@ -13,8 +10,7 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
 <script src="~/Scripts/Adicionais/mapa.js"></script>
 <script src="~/Scripts/jquery-ui.custom.min.js"></script>
-<script src="~/Scripts/jquery-2.1.4.min.js"></script>
-@*<link href="~/Content/Orcamento/mapa.css" rel="stylesheet" />*@
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#ListaCat').change(function () {
@@ -29,7 +25,7 @@
                 success: function (data) {
                     var options_servico = "";
                     $.each(data, function (key, value) {
-                        options_servico += '<option value="' + key.serv_Id + '">' + value.serv_Nome + '</option>';
+                        options_servico += '<option value="' + value.serv_Id + '">' + value.serv_Nome + '</option>';
                     });
                     $("#servico_id").html(options_servico);
                 }
@@ -138,7 +134,7 @@
             {
                 @Html.AntiForgeryToken()
 
-                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
                 <div class="form-group">
                     <label for="descricao">Escreva detalhadamente o serviço que você precisa:</label>
@@ -151,7 +147,7 @@
                     <select class="form-control" id="sel1" name="orc_prazo">
                         <option> </option>
                         <option>Agora</option>
-                        <option>Daqui uma semana</option>
+                        <option value="13123">Daqui uma semana</option>
                         <option>Daqui um mês</option>
                         <option>Ainda não sabe</option>
                     </select>
@@ -161,23 +157,11 @@
                 <div class="form-group">
                     <label for="sel2">Selecione a categoria de serviço:</label>
                     @Html.DropDownList("ListaCat", null, new { @class = "form-control" })
-                 @*<select class="form-control" id="categoria_id" name="categoria_id" style="text-transform: capitalize">
-                        <option> </option>
-                        
-
-                        @foreach (var categoria in lstCategoria)
-                        {
-                            <option value="@categoria.cat_Id">@categoria.cat_Nome</option>
-                        }
-                    </select>
-                    @Html.ValidationMessageFor(model => model.categoria_id, "", new { @class = "text-danger" })*@
                 </div>
 
                 <div class="form-group">
                     <label for="sel3">Especifique o serviço:</label>
-                    <select class="form-control" id="servico_id" name="servico_id" style="text-transform: capitalize">
-                    </select>
-                    @Html.ValidationMessageFor(model => model.servico_id, "", new { @class = "text-danger" })
+                    <select class="form-control" id="servico_id" name="servico_id" style="text-transform: capitalize"></select>
                 </div>
 
 

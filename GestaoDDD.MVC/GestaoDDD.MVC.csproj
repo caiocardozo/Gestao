@@ -219,6 +219,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\ComoFuncionaController.cs" />
+    <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndiqueProfissionalController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -306,6 +307,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-ui.custom.min.js" />
     <Content Include="Scripts\LoginsExternos.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -369,7 +371,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Orcamento\ErroAoCadastrar.cshtml" />
-    <Content Include="Views\Orcamento\Index.cshtml" />
+    <Content Include="Views\Orcamento\OrcamentoEnviadoSucesso.cshtml" />
     <Content Include="Views\Prestador\Index.cshtml" />
     <Content Include="Views\Prestador\Detalhes.cshtml" />
     <Content Include="Views\Prestador\Cadastrar.cshtml" />
@@ -390,6 +392,13 @@
     <Content Include="Views\IndiqueProfissional\Details.cshtml" />
     <Content Include="Views\IndiqueProfissional\Edit.cshtml" />
     <Content Include="Views\IndiqueProfissional\Index.cshtml" />
+    <Content Include="Views\Orcamento\Index.cshtml" />
+    <Content Include="Views\Contato\Index.cshtml" />
+    <Content Include="Views\Contato\Details.cshtml" />
+    <Content Include="Views\Contato\Create.cshtml" />
+    <Content Include="Views\Contato\Edit.cshtml" />
+    <Content Include="Views\Contato\Delete.cshtml" />
+    <Content Include="Views\IndiqueProfissional\IndicacaoSucesso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

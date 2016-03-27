@@ -51,6 +51,7 @@
     <Compile Include="EntityConfig\ClaimsConfiguration.cs" />
     <Compile Include="EntityConfig\ClientConfiguration.cs" />
     <Compile Include="EntityConfig\ComoFuncionaConfiguration.cs" />
+    <Compile Include="EntityConfig\ContatoConfiguration.cs" />
     <Compile Include="EntityConfig\IndiqueProfissionalConfiguration.cs" />
     <Compile Include="EntityConfig\PessoaConfiguration.cs" />
     <Compile Include="EntityConfig\PrestadorConfiguration.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ComoFuncionaRepository.cs" />
+    <Compile Include="Repositories\ContatoRepository.cs" />
     <Compile Include="Repositories\IndiqueProfissionalRepository.cs" />
     <Compile Include="Repositories\PessoaRepository.cs" />
     <Compile Include="Repositories\ServicoPrestadorRepository.cs" />
