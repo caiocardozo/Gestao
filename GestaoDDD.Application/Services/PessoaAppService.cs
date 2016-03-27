@@ -8,9 +8,15 @@ namespace GestaoDDD.Application.Services
     {
         private readonly IPessoaService _pessoaService;
         public PessoaAppService(IPessoaService pessoaService)
-            :base(pessoaService)
+            : base(pessoaService)
         {
             _pessoaService = pessoaService;
+        }
+
+        //retorna a pessoa atraves do id
+        public Pessoa RPessoaPorId(string id)
+        {
+            return _pessoaService.RPessoaPorId(id);
         }
     }
 }
