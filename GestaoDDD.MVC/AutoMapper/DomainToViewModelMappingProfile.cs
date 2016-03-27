@@ -24,6 +24,7 @@ namespace GestaoDDD.MVC.AutoMapper
             Mapper.CreateMap<ComoFuncionaViewModel, ComoFunciona>();
             Mapper.CreateMap<IndiqueProfissionalViewModel, IndiqueProfissional>();
             Mapper.CreateMap<ContatoViewModel, Contato>();
+            Mapper.CreateMap<PessoaViewModel, Pessoa>();
         }
     }
 }

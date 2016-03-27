@@ -14,5 +14,11 @@ namespace GestaoDDD.Domain.Services
         {
             _pessoaRepository = pessoarepository;  
         }
+
+        //retorna a pessoa atraves do id
+        public Pessoa RPessoaPorId(string id)
+        {
+            return _pessoaRepository.RPessoaPorId(id);
+        }
     }
 }
