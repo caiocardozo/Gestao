@@ -88,8 +88,6 @@ namespace GestaoDDD.Infra.IoC
             container.RegisterPerWebRequest<IContatoService, ContatoService>();
 
             #endregion
-
-
         } 
     }
 }
