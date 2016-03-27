@@ -4,8 +4,8 @@ namespace GestaoDDD.Domain.Entities
 {
     public class Entidade
     {
-        public DateTime Data_Inclusao { get; set; }
         public DateTime Data_Alteracao { get; set; }
+        public DateTime Data_Inclusao { get; set; }
 
         public Entidade()
         {
@@ -14,3 +14,4 @@ namespace GestaoDDD.Domain.Entities
         }
     }
 }
+

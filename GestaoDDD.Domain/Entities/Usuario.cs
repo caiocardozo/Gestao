@@ -1,7 +1,7 @@
 ﻿using System;
 namespace GestaoDDD.Domain.Entities
 {
-    public class Usuario : Entidade
+    public class Usuario 
     {
         public Usuario()
         {
