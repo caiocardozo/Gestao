@@ -27,5 +27,6 @@ namespace GestaoDDD.Application.ViewModels
         [Required(ErrorMessage="Envia sua breve mensagem de contato.")]
         [MaxLength(500, ErrorMessage="Tamanho máximo de {0} caracteres.")]
         public string ctt_msg { get; set; }
+
     }
 }

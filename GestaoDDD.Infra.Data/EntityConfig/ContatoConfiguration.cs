@@ -32,7 +32,6 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             Property(c => c.Data_Inclusao);
 
-
         }
     }
 }
