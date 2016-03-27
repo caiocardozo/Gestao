@@ -25,8 +25,7 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             Property(c => c.Data_Inclusao);
 
-            //ToTable("AspNetUsers");
-            ToTable("Usuario");
+            ToTable("AspNetUsers");
 
 
             // MAPEAMENTO DE UM PARA UM

@@ -54,7 +54,8 @@ namespace GestaoDDD.Infra.Data.Contexto
             modelBuilder.Configurations.Add(new PessoaConfiguration());
             modelBuilder.Configurations.Add(new ComoFuncionaConfiguration());
             modelBuilder.Configurations.Add(new IndiqueProfissionalConfiguration());
-            modelBuilder.Configurations.Add(new ContatoConfiguration());
+            modelBuilder.Configurations.Add(new ContatoConfiguration()); 
+
             #endregion
         }
     }
