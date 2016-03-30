@@ -61,20 +61,12 @@
 
 /* Fim Banner Padrão e Secundário */
 
-
 /* Corpo da página */
 
-.texto-corpo {
+.texto-formulario {
+    text-align: center;
     margin-top: 2%;
     margin-bottom: 2%;
-}
-
-.texto-contato {
-    margin-top: 2%;
-    margin-bottom: 15%;
-    text-align: justify;
-    padding: 0px;
-    margin-left: 0px;
 }
 
 .formulario {
@@ -82,30 +74,15 @@
     border-radius: 10px;
     margin-bottom: 4%;
     padding: 2%;
-    margin: 0px;
+    margin-left: 0px;
     
 }
 
-.titulo-formulario {
-    color: gray;
-
+.col-form {
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
-.texto-direita {
-    text-align: right;
-    margin: 0px;
-    padding: 0px;
-   
-  
-}
-
-.contato-formulario {
-   
-    margin-left: 0px;
-    padding: 0px;
-    margin-bottom: 4%;
-  
-}
 
 .btn-enviar {
     background-color: #ad2323;
@@ -119,12 +96,4 @@
         outline: 0;
     }
 
-
 /* Fim Corpo da página */
-
-@media screen and (max-width: 990px){
-	
-    .texto-direita {
-        text-align: center;
-    }
-}
