@@ -1,0 +1,116 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/Prestador/prestador.css" rel="stylesheet" />
+
+
+
+<div class="container">
+
+    <div class="row banner col-md-12">
+        <div class="row banner-texto-esquerda col-md-6 pull-left">
+            <h1>QUERO ME CADASTRAR</h1>
+        </div>
+        <div class="row banner-texto-direita col-md-6 pull-right">
+
+        </div>
+    </div>
+    <div class="row banner-baixo col-md-12 center-block">
+        <div class="row texto-bannerbaixo col-md-12">
+            Você é um profissional e <b>busca novos clientes?</b>
+            <a href="~/Prestador/Cadastrar"><input type="button" class="btn" value="Cadastre-se" /></a>
+        </div>
+    </div>
+
+    <div class="row texto-formulario col-md-12">
+        <h2><b>Cadastre-se</b></h2>
+        <br />
+        Faça seu cadastro e encontre potenciais clientes da sua região, interessados em seus serviços
+    </div>
+
+    <div class="row formulario col-md-12">
+
+        <form role="form">
+            <div class="titulo-formulario">
+                <h4><b>DADOS DO PROFISSIONAL OU EMPRESA</b></h4>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label for="nome">Nome do Profissional ou Empresa:</label>
+                <input type="text" class="form-control" id="nome">
+            </div>
+            
+                <div class="col-form form-group col-md-5">
+                    <label for="telefone">Telefone de Contato:</label>
+                    <input type="text" class="form-control" id="telefone">
+                </div>
+            
+           
+                <div class="col-form form-group col-md-offset-1 col-md-6">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+            
+
+            
+                <div class="col-form form-group col-md-5">
+                    <label for="sel1">Estado:</label>
+                    <select class="form-control" id="sel1" name="estado">
+                        <option> </option>
+                        <option>Goiás</option>
+                        <option>São Paulo</option>
+                        <option>Minas Gerais</option>
+                        <option>Mato Grosso</option>
+                    </select>
+                </div>
+           
+            
+                <div class="col-form form-group col-md-offset-1 col-md-6">
+                    <label for="sel2">Cidade:</label>
+                    <select class="form-control" id="sel2" name="cidade">
+                        <option> </option>
+                        <option>Goiás</option>
+                        <option>São Paulo</option>
+                        <option>Minas Gerais</option>
+                        <option>Mato Grosso</option>
+                    </select>
+                </div>
+          
+            
+
+            <div class="form-group">
+                <label for="endereço">Endereço:</label>
+                <input type="text" class="form-control" id="endereco">
+            </div>
+
+            <div class="form-group">
+                <label for="cep">CEP:</label>
+                <input type="text" class="form-control" id="cep">
+            </div>
+
+            <div class="form-group">
+                <label for="sel3">Selecione a Categoria de Serviço:</label>
+                <select class="form-control" id="sel3" name="categoria">
+                    <option> </option>
+                    <option>cat 1</option>
+                    <option>cat 2</option>
+                    <option>cat 3</option>
+                    <option>cat 4</option>
+                </select>
+            </div>
+
+            <div class="checkbox col-md-6">
+                <label><input type="checkbox" value="">Li e aceito as condições.</label>
+            </div>
+
+            <div class="row col-md-offset-3 col-md-3">
+                <input type="submit" class="btn btn-enviar" />
+            </div>
+        </form>
+
+    </div>
+
+</div>

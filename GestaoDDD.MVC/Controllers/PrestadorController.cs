@@ -42,6 +42,15 @@ namespace GestaoDDD.MVC.Controllers
         }
 
         //
+        // POST: /Prestador/Create
+        
+        public ActionResult Create()
+        {
+
+            return View();
+
+        }
+        //
         // POST: /Prestador/Cadastrar
         [HttpPost]
         public ActionResult Cadastrar(Prestador prestador)

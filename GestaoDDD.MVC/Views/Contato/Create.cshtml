@@ -1,11 +1,89 @@
 ﻿@model GestaoDDD.Application.ViewModels.ContatoViewModel
 
 @{
-    ViewBag.Title = "Create";
-    
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "Contato";
 }
 
-<h2>Create</h2>
+<link href="~/Content/Contato/contato.css" rel="stylesheet" />
+
+<div class="container">
+
+    <div class="row banner col-md-12">
+        <div class="row banner-texto-esquerda col-md-6 pull-left">
+            <h1>CONTATO</h1>
+        </div>
+        <div class="row banner-texto-direita col-md-6 pull-right">
+            
+        </div>
+    </div>
+    <div class="row banner-baixo col-md-12 center-block">
+        <div class="row texto-bannerbaixo col-md-12">
+            Você é um profissional e <b>busca novos clientes?</b>
+            <a href="~/Prestador/Cadastrar"><input type="button" class="btn" value="Cadastre-se" /></a>
+        </div>
+    </div>
+
+    <div class="row texto-corpo col-md-12">
+        <h3><b>Preencha o formulário</b></h3>
+        <br />
+        Fale conosco preenchendo o formulário abaixo <br />
+        entraremos em contato o mais rápido possível.
+    </div>
+
+    <div class="row contato-formulario col-md-12">
+
+        <div class="row formulario col-md-6">
+            <form role="form">
+                <div class="titulo-formulario">
+                     <h4><b>CONTATO</b></h4>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" id="nome">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Seu E-mail:</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Seu Telefone:</label>
+                    <input type="text" class="form-control" id="telefone">
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea class="form-control" rows="5" id="mensagem"></textarea>
+                </div>
+
+                <div class="checkbox col-md-6">
+                    <label><input type="checkbox" value="">Li e aceito as condições.</label>
+                </div>
+
+                <div class="row col-md-offset-3 col-md-3">
+                    <input type="submit" class="btn btn-enviar" />
+                </div>
+
+            </form>
+        </div>
+
+        <div class="row texto-direita col-md-6">
+            <b>Agiliza Orçamentos</b>
+            <br /> <br />
+            Contato:<br />
+            contato@agilizaorcamentos.com.br<br />
+            (62) 9999-9999 | (62) 9999-9999
+        </div>
+
+    </div>
+
+</div>
+
+@*<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -59,3 +137,5 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+*@
