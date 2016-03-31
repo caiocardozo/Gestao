@@ -1,19 +1,11 @@
-﻿.row {
+﻿
+body {
+    overflow-x: hidden;
     text-align: center;
-    vertical-align: central;
-    width: 100%;
-}
-
-*{
-	margin: 0; padding: 0;  
 }
 
 
 
-footer.footer {
-    position: absolute;
-    width: 100%;
-}
 
 /* Botao */
 
@@ -38,7 +30,10 @@ footer.footer {
 
 /* Fim Botao*/
 
-
+.login {
+    margin-top: 4%;
+    margin-bottom: 10%;
+}
 
 .links a {
 
@@ -50,10 +45,6 @@ footer.footer {
 .links a:hover {
    color: #913034;
    text-decoration: none;
-}
-
-footer.footer {
-    position: absolute;
 }
 
 

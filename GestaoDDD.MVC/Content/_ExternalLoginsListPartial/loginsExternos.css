@@ -180,7 +180,9 @@
 .btn-facebook {
     color: #fff;
     background-color: #3b5998;
-    border-color: rgba(0,0,0,0.2);
+    border-color: rgba(0,0,0,0.0);
+    width: 150px;
+    text-align: left;
 }
 
     .btn-facebook:hover, .btn-facebook:focus, .btn-facebook:active, .btn-facebook.active, .open .dropdown-toggle.btn-facebook {

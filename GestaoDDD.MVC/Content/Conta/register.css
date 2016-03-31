@@ -30,6 +30,12 @@ h2, h4 {
     border: none;
 }
 
+.register {
+    margin-top: 2%;
+    margin-bottom: 10%;
+}
+
+
 .botao:hover {
     background-color: #000000;
 }
@@ -46,9 +52,6 @@ h2, h4 {
    text-decoration: none;
 }
 
-footer.footer {
-    position: absolute;
-}
 
 @media screen and (max-width: 990px) {
     .form-group {
