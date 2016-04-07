@@ -10,7 +10,7 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
 <script src="~/Scripts/Adicionais/mapa.js"></script>
 <script src="~/Scripts/jquery-ui.custom.min.js"></script>
-
+<script src="~/Scripts/jquery-2.1.4.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#ListaCat').change(function () {
@@ -156,6 +156,7 @@
 
                 <div class="form-group">
                     <label for="sel2">Selecione a categoria de serviço:</label>
+                    
                     @Html.DropDownList("ListaCat", null, new { @class = "form-control" })
                 </div>
 
@@ -208,7 +209,7 @@
                 </div>
 
                 <div class="checkbox col-md-6">
-                    <label><input type="checkbox" value="">Li e aceito as condições.</label>
+                    <label><input type="hidden" value="">@*Li e aceito as condições.*@</label>
                 </div>
 
                 <div class="row col-md-6">

@@ -58,6 +58,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GeoCoordinatePortable, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeoCoordinate.1.0.0\lib\portable-net45+wp80+win+wpa81\GeoCoordinatePortable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -226,8 +230,10 @@
     <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Controllers\PrestadorController.cs" />
+    <Compile Include="Controllers\QuemSomosController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
+    <Compile Include="Controllers\TermosDeUsoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -244,12 +250,14 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ComoFunciona\comofunciona.css" />
+    <Content Include="Content\Contato\contato.css" />
     <Content Include="Content\Conta\login.css" />
     <Content Include="Content\Conta\register.css" />
     <Content Include="Content\Home\index.css" />
     <Content Include="Content\IndiqueProfissional\indiqueprofissional.css" />
     <Content Include="Content\Orcamento\mapa.css" />
     <Content Include="Content\Orcamento\orcamento.css" />
+    <Content Include="Content\Prestador\prestador.css" />
     <Content Include="Content\Servico\checkbox_servicos.css" />
     <Content Include="Content\Prestador\pagina_captura.css" />
     <Content Include="Content\Servico\modal_accept.css" />
@@ -401,6 +409,11 @@
     <Content Include="Views\Contato\Delete.cshtml" />
     <Content Include="Views\IndiqueProfissional\IndicacaoSucesso.cshtml" />
     <Content Include="Views\Pessoa\DadosCadastrais.cshtml" />
+    <Content Include="Views\TermosDeUso\Index.cshtml" />
+    <Content Include="Views\QuemSomos\Index.cshtml" />
+    <Content Include="Views\Contato\ContatoSucesso.cshtml" />
+    <Content Include="Views\Prestador\Create.cshtml" />
+    <Content Include="Views\Prestador\ExibirOrcamentos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

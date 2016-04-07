@@ -68,7 +68,7 @@ $(document).ready(function () {
 		});
 	});
 	
-	$("#orc_Endereco").autocomplete({
+	$("#orc_Endereco").autoComplete({
 		source: function (request, response) {
 			geocoder.geocode({ 'address': request.term + ', Brasil', 'region': 'BR' }, function (results, status) {
 				response($.map(results, function (item) {

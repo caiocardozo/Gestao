@@ -6,6 +6,9 @@
 <link href="~/Content/Prestador/prestador.css" rel="stylesheet" />
 
 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
+<script src="~/Scripts/Adicionais/mapa.js"></script>
+<script src="~/Scripts/jquery-ui.custom.min.js"></script>
 
 <div class="container">
 
@@ -68,17 +71,24 @@
                 </div>
            
             
-                <div class="col-form form-group col-md-offset-1 col-md-6">
-                    <label for="sel2">Cidade:</label>
-                    <select class="form-control" id="sel2" name="cidade">
-                        <option> </option>
-                        <option>Goiás</option>
-                        <option>São Paulo</option>
-                        <option>Minas Gerais</option>
-                        <option>Mato Grosso</option>
-                    </select>
-                </div>
-          
+            <div class="col-form form-group col-md-offset-1 col-md-6">
+                <label for="sel2">Cidade:</label>
+                <select class="form-control" id="sel2" name="cidade">
+                    <option> </option>
+                    <option>Goiás</option>
+                    <option>São Paulo</option>
+                    <option>Minas Gerais</option>
+                    <option>Mato Grosso</option>
+                </select>
+            </div>
+
+            <div>
+                <input type="button" class="btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
+            </div>
+            <div id="mapa" class="map-mapa"></div>
+            <input type="hidden" id="orc_latitude" name="orc_latitude" />
+            <input type="hidden" id="orc_longitude" name="orc_longitude" />
+
             
 
             <div class="form-group">

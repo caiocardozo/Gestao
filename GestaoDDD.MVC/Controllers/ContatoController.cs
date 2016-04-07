@@ -1,15 +1,25 @@
-﻿using System;
+﻿using AutoMapper;
+using GestaoDDD.Application.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GestaoDDD.Application.Services;
+using GestaoDDD.Application.ViewModels;
+using GestaoDDD.Domain.Entities;
 
 namespace GestaoDDD.MVC.Controllers
 {
     public class ContatoController : Controller
     {
-        //
-        // GET: /Contato/
+        private readonly IContatoAppService _iContatoAppService;
+
+        public ContatoController(IContatoAppService iContatoAppService)
+        {
+            _iContatoAppService = iContatoAppService;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -29,16 +39,26 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
+        public ActionResult ContatoSucesso()
+        {
+            return View();
+        }
+
         //
         // POST: /Contato/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ContatoViewModel contato)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var contatoVm = Mapper.Map<ContatoViewModel, Contato>(contato);
+                    _iContatoAppService.SaveOrUpdate((contatoVm));
+                    return RedirectToAction("ContatoSucesso");
+                }
+                else
+                    return View(contato);
             }
             catch
             {

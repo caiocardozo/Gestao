@@ -8,14 +8,15 @@ namespace GestaoDDD.Infra.Data.EntityConfig
         public CategoriaConfiguration()
         {
             HasKey(c => c.cat_Id);
+            Property(c => c.cat_Id).HasColumnName("Id");
                 
             Property(c => c.cat_Nome)
                 .IsRequired()
-                .HasMaxLength(200);
+                .HasMaxLength(200).HasColumnName("nome");
 
-            Property(c => c.Data_Alteracao);
+            Property(c => c.data_alteracao);
 
-            Property(c => c.Data_Inclusao);
+            Property(c => c.data_inclusao);
         }
     }
 }

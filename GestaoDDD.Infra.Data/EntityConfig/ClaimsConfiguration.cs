@@ -16,9 +16,9 @@ namespace GestaoDDD.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(128);
 
-            Property(c => c.Data_Alteracao);
+            Property(c => c.data_alteracao);
 
-            Property(c => c.Data_Inclusao);
+            Property(c => c.data_inclusao);
 
             ToTable("Claims");
         }

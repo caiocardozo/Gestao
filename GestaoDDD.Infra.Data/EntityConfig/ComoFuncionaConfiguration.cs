@@ -9,6 +9,7 @@ namespace GestaoDDD.Infra.Data.EntityConfig
         {
             HasKey(c => c.cf_Id);
 
+
             Property(c => c.cf_Informacao)
                 .HasMaxLength(500)
                 .IsRequired();
@@ -16,9 +17,9 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.cf_Ordem)
                 .IsRequired();
 
-            Property(c => c.Data_Alteracao);
+            Property(c => c.data_alteracao);
 
-            Property(c => c.Data_Inclusao);
+            Property(c => c.data_inclusao);
 
         }
     }

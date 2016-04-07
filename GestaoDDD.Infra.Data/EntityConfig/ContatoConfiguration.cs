@@ -14,23 +14,25 @@ namespace GestaoDDD.Infra.Data.EntityConfig
         {
             HasKey(c => c.contato_Id);
 
+            Property(c => c.contato_Id).HasColumnName("Id");
+
             Property(c => c.ctt_email)
-                .IsRequired();
+                .IsRequired().HasColumnName("email");
 
             Property(c => c.ctt_msg)
                 .IsRequired()
-                .HasMaxLength(500);
+                .HasMaxLength(500).HasColumnName("mensagem");
 
             Property(c => c.ctt_telefone)
-                .IsRequired();
+                .IsRequired().HasColumnName("telefone");
 
             Property(c => c.ctt_nome)
                 .IsRequired()
-                .HasMaxLength(150);
+                .HasMaxLength(150).HasColumnName("nome");
 
-            Property(c => c.Data_Alteracao);
+            Property(c => c.data_alteracao);
 
-            Property(c => c.Data_Inclusao);
+            Property(c => c.data_inclusao);
 
         }
     }

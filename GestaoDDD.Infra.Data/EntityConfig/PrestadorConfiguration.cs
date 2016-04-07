@@ -9,33 +9,31 @@ namespace GestaoDDD.Infra.Data.EntityConfig
         {
             HasKey(c => c.pres_Id);
 
+            Property(c => c.pres_Id).HasColumnName("Id");
+
             Property(c => c.pres_Nome)
                 .IsRequired()
-                .HasMaxLength(120);
+                .HasMaxLength(120).HasColumnName("nome");
 
             Property(c => c.pres_Email)
-                .HasMaxLength(100);
+                .HasMaxLength(100).HasColumnName("email");
 
             Property(c => c.pres_Endereco)
-                .HasMaxLength(200);
+                .HasMaxLength(200).HasColumnName("endereco");
 
-            Property(c => c.pres_Raio_Recebimento);
+            Property(c => c.pres_Raio_Recebimento).HasColumnName("raio");
 
             Property(c => c.pres_Cpf_Cnpj)
                 .HasMaxLength(14)
-                .IsRequired();
+                .IsRequired().HasColumnName("cpf_cnpj");
 
             Property(c => c.pres_Telefone_Celular)
-                .HasMaxLength(14);
+                .HasMaxLength(14).HasColumnName("celular");
 
             Property(c => c.pres_Telefone_Residencial)
-               .HasMaxLength(14);
+               .HasMaxLength(14).HasColumnName("telefone_fixo");
 
-            Property(c => c.status);
-
-
-
-
+            Property(c => c.status).HasColumnName("status");
         }
     }
 }

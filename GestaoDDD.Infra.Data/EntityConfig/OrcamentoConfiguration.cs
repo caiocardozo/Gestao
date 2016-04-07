@@ -11,42 +11,42 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             Property(c => c.orc_descricao)
                 .IsRequired()
-                .HasMaxLength(500);
+                .HasMaxLength(500).HasColumnName("descricao");
 
             Property(c => c.orc_endereco)
-                .IsRequired();
+                .IsRequired().HasColumnName("endereco");
 
             Property(c => c.orc_prazo)
-                .IsRequired();
+                .IsRequired().HasColumnName("prazo");
 
             Property(c => c.orc_nome_solicitante)
                 .IsRequired()
-                .HasMaxLength(200);
+                .HasMaxLength(200).HasColumnName("solicitante");
 
             Property(c => c.orc_email_solicitante)
                 .HasMaxLength(200)
-                .IsRequired();
+                .IsRequired().HasColumnName("email_solicitante");
 
             Property(c => c.orc_telefone_solicitante)
-                .IsRequired();
+                .IsRequired().HasColumnName("telefone_solicitante");
 
             Property(c => c.orc_endereco_solicitante)
-                .HasMaxLength(200);
+                .HasMaxLength(200).HasColumnName("endereco_solicitante");
 
             //mapeia o relacionamento 1 to N Categoria
            // HasRequired(t => t.Servico)//determina que Categoria é obrigatorio em serviço
            //.WithMany(t => t.Orcamento)//uma categoria tem varios serviços
            //.HasForeignKey(t => t.Servico);//chave estangeira de categoria   
 
-            Property(c => c.serv_Id);
+            Property(c => c.serv_Id).HasColumnName("servico_id");
 
-            Property(c => c.orc_latitude);
+            Property(c => c.orc_latitude).HasColumnName("latitude");
 
-            Property(c => c.orc_longitude);
+            Property(c => c.orc_longitude).HasColumnName("longitude");
 
-            Property(c => c.Data_Alteracao);
+            Property(c => c.data_alteracao).HasColumnName("data_alteracao");
 
-            Property(c => c.Data_Inclusao);
+            Property(c => c.data_inclusao).HasColumnName("data_inclusao");
 
 
         }

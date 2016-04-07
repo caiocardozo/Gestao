@@ -2,7 +2,6 @@
 
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
-    ViewBag.Title = "Contato";
 }
 
 <link href="~/Content/Contato/contato.css" rel="stylesheet" />
@@ -14,7 +13,7 @@
             <h1>CONTATO</h1>
         </div>
         <div class="row banner-texto-direita col-md-6 pull-right">
-            
+
         </div>
     </div>
     <div class="row banner-baixo col-md-12 center-block">
@@ -31,111 +30,66 @@
         entraremos em contato o mais rápido possível.
     </div>
 
-    <div class="row contato-formulario col-md-12">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="row formulario col-md-6">
-            <form role="form">
-                <div class="titulo-formulario">
-                     <h4><b>CONTATO</b></h4>
-                </div>
-                <br />
 
-                <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input type="text" class="form-control" id="nome">
-                </div>
 
-                <div class="form-group">
-                    <label for="email">Seu E-mail:</label>
-                    <input type="email" class="form-control" id="email">
-                </div>
 
-                <div class="form-group">
-                    <label for="telefone">Seu Telefone:</label>
-                    <input type="text" class="form-control" id="telefone">
-                </div>
+        <div class="row contato-formulario col-md-12">
 
-                <div class="form-group">
-                    <label for="mensagem">Mensagem:</label>
-                    <textarea class="form-control" rows="5" id="mensagem"></textarea>
-                </div>
+            <div class="row formulario col-md-6">
+                <form role="form">
+                    <div class="titulo-formulario">
+                        <h4><b>CONTATO</b></h4>
+                    </div>
+                    <br />
 
-                <div class="checkbox col-md-6">
-                    <label><input type="checkbox" value="">Li e aceito as condições.</label>
-                </div>
+                    <div class="form-group">
+                        <label for="ctt_nome">Nome:</label>
+                        @Html.EditorFor(model => model.ctt_nome, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ctt_nome, "", new { @class = "text-danger" })
+                    </div>
 
-                <div class="row col-md-offset-3 col-md-3">
-                    <input type="submit" class="btn btn-enviar" />
-                </div>
+                    <div class="form-group">
+                        <label for="ctt_email">Seu E-mail:</label>
+                        @Html.EditorFor(model => model.ctt_email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ctt_email, "", new { @class = "text-danger" })
+                    </div>
 
-            </form>
+                    <div class="form-group">
+                        <label for="ctt_telefone">Seu Telefone:</label>
+                        @Html.EditorFor(model => model.ctt_telefone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ctt_telefone, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ctt_msg">Mensagem:</label>
+                        <textarea class="form-control" rows="5" id="ctt_msg" name="ctt_msg"></textarea>
+                        @Html.ValidationMessageFor(model => model.ctt_msg, "", new { @class = "text-danger" })
+                    </div>
+
+                    @*<div class="checkbox col-md-6">
+                        <label><input type="checkbox" value="">Li e aceito as condições.</label>
+                    </div>*@
+
+                    <div class="row col-md-offset-3 col-md-3">
+                        <input type="submit" class="btn btn-enviar" />
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="row texto-direita col-md-6">
+                <b>Agiliza Orçamentos</b>
+                <br /> <br />
+                Contato:<br />
+                contato@agilizaorcamentos.com.br<br />
+                (62) 9999-9999 | (62) 9999-9999
+            </div>
+
         </div>
-
-        <div class="row texto-direita col-md-6">
-            <b>Agiliza Orçamentos</b>
-            <br /> <br />
-            Contato:<br />
-            contato@agilizaorcamentos.com.br<br />
-            (62) 9999-9999 | (62) 9999-9999
-        </div>
-
-    </div>
-
+    }
 </div>
-
-@*<h2>Create</h2>
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ContatoViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ctt_nome, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ctt_nome)
-                @Html.ValidationMessageFor(model => model.ctt_nome)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ctt_email, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ctt_email)
-                @Html.ValidationMessageFor(model => model.ctt_email)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ctt_telefone, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ctt_telefone)
-                @Html.ValidationMessageFor(model => model.ctt_telefone)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ctt_msg, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ctt_msg)
-                @Html.ValidationMessageFor(model => model.ctt_msg)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-*@
