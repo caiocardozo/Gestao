@@ -119,6 +119,18 @@
         outline: 0;
     }
 
+.term-text {
+    margin-bottom: 3%;
+    
+}
+
+    .term-text h3 {
+        font-size: 20px;
+        margin-bottom: 2%;
+    }
+
+
+
 
 /* Fim Corpo da página */
 
@@ -128,3 +140,4 @@
         text-align: center;
     }
 }
+

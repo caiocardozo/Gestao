@@ -8,7 +8,11 @@ namespace GestaoDDD.MVC
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-2.1.4.min.js")
+                        .Include("~/Scripts/Adicionais/menufixo.js")
+                        .Include ("~/Scripts/jquery-ui.custom.min.js")
+                        .Include("~/Scripts/Adicionais/mapa.js")                
+                        );
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -25,6 +29,13 @@ namespace GestaoDDD.MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            //bundles.Add(new StyleBundle("~/Content/css").IncludeDirectory(
+            //              "~/Content", "*.css", true));
+
+            //bundles.Add(new StyleBundle("~/bundles/images").IncludeDirectory(
+            //              "~/Images", "*.png", true));
+
 
             BundleTable.EnableOptimizations = true;
         }

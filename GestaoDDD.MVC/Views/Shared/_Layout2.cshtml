@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title Agiliza Orçamentos</title>
     <link rel="icon" href="~/Content/Imagens/icone.png" />
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
-    <script src="~/Scripts/Adicionais/menufixo.js"></script>
+  
+    @Styles.Render("~/Content/css")
 
     <link href="~/Content/_Layout/layout2.css" rel="stylesheet" />
 
@@ -110,6 +107,10 @@
 
     @RenderBody()
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+   
+
 </body>
        <div class="prefooter col-md-6">
            <section class="row logorodape col-md-4 col-sm-4">
@@ -135,15 +136,6 @@
         <p><small><b>Agiliza Orçamentos</b>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<a href="mailto:contato@agilizapracamentos.com.br">contato@agilizaorcamentos.com.br</a></small></p>
     </div>
 </footer>
-
-
-
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/Content/css")
-@Scripts.Render("~/Scripts/jquery-2.1.4.js")
-@Scripts.Render("~/Scripts/jquery-2.1.4.min.js")
-@Scripts.Render("~/bundles/jqueryval")
 
 
 
