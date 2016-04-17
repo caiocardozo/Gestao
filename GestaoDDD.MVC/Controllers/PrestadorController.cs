@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq.Expressions;
 using AutoMapper;
 using GeoCoordinatePortable;
@@ -68,16 +69,21 @@ namespace GestaoDDD.MVC.Controllers
               
                 //Coordenada de cada orçamento
                 var coordenada_orcamento = new GeoCoordinate();
-                coordenada_orcamento.Latitude = double.Parse(l.orc_longitude);
-                coordenada_orcamento.Longitude = double.Parse(l.orc_longitude);
+                coordenada_orcamento.Latitude = double.Parse(l.orc_latitude.Replace(",", "."), CultureInfo.InvariantCulture);
+                coordenada_orcamento.Longitude = double.Parse(l.orc_longitude.Replace(",", "."), CultureInfo.InvariantCulture);
 
                 //Coordenada fixa de cada prestador... Deve-se passar o id do prestador logado.
+                string lat = "-16.2744242";
+                string longt = "-48.95429619999999";
+
                 var coordenada_prestador = new GeoCoordinate();
-                coordenada_prestador.Latitude = double.Parse("-16.2744242");
-                coordenada_prestador.Longitude = double.Parse("-48.95429619999999");
+                coordenada_prestador.Latitude = double.Parse(lat.Replace(",", "."), CultureInfo.InvariantCulture);
+                coordenada_prestador.Longitude = double.Parse(longt.Replace(",", "."), CultureInfo.InvariantCulture);
                 // Coordenada fixa do parque dos pirineus.
 
                 var distanceKm = GetDistanceTo(coordenada_orcamento, coordenada_prestador);
+
+                var distancia = coordenada_prestador.GetDistanceTo(coordenada_orcamento);
             }
 
             ViewBag.Coordenadas = lstCoord;
