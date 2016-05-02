@@ -1,4 +1,5 @@
-﻿
+﻿@model GestaoDDD.Application.ViewModels.PrestadorUsuarioViewModel
+
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
@@ -35,92 +36,81 @@
 
     <div class="row formulario col-md-12">
 
-        <form role="form">
-            <div class="titulo-formulario">
-                <h4><b>DADOS DO PROFISSIONAL OU EMPRESA</b></h4>
-            </div>
-            <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="titulo-formulario">
+            <h4><b>DADOS DO PROFISSIONAL OU EMPRESA</b></h4>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="nome">Nome do Profissional ou Empresa:</label>
+           @Html.EditorFor(model => model.pres_nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.pres_nome, "", new {@class = "text-danger"})
+        </div>
 
-            <div class="form-group">
-                <label for="nome">Nome do Profissional ou Empresa:</label>
-                <input type="text" class="form-control" id="nome">
-            </div>
-            
-                <div class="col-form form-group col-md-5">
-                    <label for="telefone">Telefone de Contato:</label>
-                    <input type="text" class="form-control" id="telefone">
-                </div>
-            
-           
-                <div class="col-form form-group col-md-offset-1 col-md-6">
-                    <label for="email">E-mail:</label>
-                    <input type="email" class="form-control" id="email">
-                </div>
-            
+        <div class="col-form form-group col-md-6">
+            <label for="email">E-mail:</label>
+            @Html.EditorFor(model => model.pres_email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.pres_email, "", new {@class = "text-danger"})
+        </div>
 
-            
-                <div class="col-form form-group col-md-5">
-                    <label for="sel1">Estado:</label>
-                    <select class="form-control" id="sel1" name="estado">
-                        <option> </option>
-                        <option>Goiás</option>
-                        <option>São Paulo</option>
-                        <option>Minas Gerais</option>
-                        <option>Mato Grosso</option>
-                    </select>
-                </div>
-           
-            
-            <div class="col-form form-group col-md-offset-1 col-md-6">
-                <label for="sel2">Cidade:</label>
-                <select class="form-control" id="sel2" name="cidade">
-                    <option> </option>
-                    <option>Goiás</option>
-                    <option>São Paulo</option>
-                    <option>Minas Gerais</option>
-                    <option>Mato Grosso</option>
-                </select>
-            </div>
+        <div class="col-form form-group col-md-3">
+            <label for="senha">Senha:</label>
+            @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Senha, "", new {@class = "text-danger"})
+        </div>
 
-            <div>
+        <div class="col-form form-group col-md-3">
+            <label for="repetirsenha">Repetir Senha:</label>
+            @Html.PasswordFor(model => model.ConfirmaSenha,new { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.ConfirmaSenha, "", new {@class = "text-danger"})
+        </div>
+
+        <div class="col-form form-group col-md-3">
+            <label for="telefone">Telefone Residencial:</label>
+            @Html.EditorFor(model => model.pres_telefone_residencial, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.pres_telefone_residencial, "", new {@class = "text-danger"})
+        </div>
+
+        <div class="col-form form-group col-md-3">
+            <label for="telefone">Telefone Celular:</label>
+            @Html.EditorFor(model => model.pres_telefone_celular, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.pres_telefone_celular, "", new {@class = "text-danger"})
+        </div>
+
+        <div class="col-form form-group col-md-3">
+            <label for="cpfcnpj">CPF / CNPJ:</label>
+            @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new {@class = "text-danger"})
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-2">
                 <input type="button" class="btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
             </div>
-            <div id="mapa" class="map-mapa"></div>
-            <input type="hidden" id="orc_latitude" name="orc_latitude" />
-            <input type="hidden" id="orc_longitude" name="orc_longitude" />
-
-            
-
-            <div class="form-group">
+            <div class="col-md-10">
                 <label for="endereço">Endereço:</label>
-                <input type="text" class="form-control" id="endereco">
+                @Html.EditorFor(model => model.pres_endereco, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pres_endereco, "", new {@class = "text-danger"})
             </div>
-
-            <div class="form-group">
-                <label for="cep">CEP:</label>
-                <input type="text" class="form-control" id="cep">
+            <div class="col-md-12">
+                <div id="mapa" class="map-mapa"></div>
+                <input type="hidden" id="orc_latitude" name="orc_latitude" />
+                <input type="hidden" id="orc_longitude" name="orc_longitude" />
             </div>
+        </div>
+        <div class="form-group col-md-12">
+            @Html.CheckBoxFor(x => x.TermosECondicoes)
+            @Html.LabelFor(x => x.TermosECondicoes)
+            @Html.ValidationMessageFor(model => model.TermosECondicoes, "", new {@class = "text-danger"})
+        </div>
 
-            <div class="form-group">
-                <label for="sel3">Selecione a Categoria de Serviço:</label>
-                <select class="form-control" id="sel3" name="categoria">
-                    <option> </option>
-                    <option>cat 1</option>
-                    <option>cat 2</option>
-                    <option>cat 3</option>
-                    <option>cat 4</option>
-                </select>
-            </div>
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-enviar" />
+        </div>
 
-            <div class="checkbox col-md-6">
-                <label><input type="checkbox" value="">Li e aceito as condições.</label>
-            </div>
-
-            <div class="row col-md-offset-3 col-md-3">
-                <input type="submit" class="btn btn-enviar" />
-            </div>
-        </form>
-
+    }
     </div>
 
 </div>

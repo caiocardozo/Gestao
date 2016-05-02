@@ -1,5 +1,4 @@
-﻿
-using GestaoDDD.Domain.Entities;
+﻿using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Domain.Interfaces.Services;
 namespace GestaoDDD.Domain.Services
@@ -11,6 +10,12 @@ namespace GestaoDDD.Domain.Services
             :base(usuarioRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
+        }
+
+        //obtem o usuario atraves do email
+        public Usuario ObterPorEmail(string email)
+        {
+            return _usuarioRepositorio.ObterPorEmail(email);
         }
     }
 }

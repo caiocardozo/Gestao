@@ -8,5 +8,8 @@ namespace GestaoDDD.Domain.Interfaces.Repositories
         Usuario ObterPorId(string id);
         IEnumerable<Usuario> ObterTodos();
         void DesativarLock(string id);
+
+        //obtem o usuario atraves do email
+        Usuario ObterPorEmail(string email);
     }
 }

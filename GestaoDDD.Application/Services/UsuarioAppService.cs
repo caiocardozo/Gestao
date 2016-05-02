@@ -24,5 +24,11 @@ namespace GestaoDDD.Application.Services
             usuario.LockoutEnabled= false;
             _usuarioService.SaveOrUpdate(usuario);
         }
+
+        //obtem o usuario atraves do email
+        public Usuario ObterPorEmail(string email)
+        {
+            return _usuarioService.ObterPorEmail(email);
+        }
     }
 }

@@ -74,6 +74,7 @@
     <Compile Include="ViewModels\IndiqueProfissionalViewModel.cs" />
     <Compile Include="ViewModels\OrcamentoViewModel.cs" />
     <Compile Include="ViewModels\PessoaViewModel.cs" />
+    <Compile Include="ViewModels\PrestadorUsuarioViewModel.cs" />
     <Compile Include="ViewModels\ServicoPrestadorViewModel.cs" />
     <Compile Include="ViewModels\ServicoViewModel.cs" />
     <Compile Include="ViewModels\UsuarioViewModel.cs" />

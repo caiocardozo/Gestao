@@ -30,6 +30,12 @@ namespace GestaoDDD.Infra.Data.Repositories
             _gestaoContext.SaveChanges();
         }
 
+        //obtem o usuario atraves do email
+        public Usuario ObterPorEmail(string email)
+        {
+            return _gestaoContext.Usuario.Find(email);
+        }
+
         public void Dispose()
         {
             _gestaoContext.Dispose();
