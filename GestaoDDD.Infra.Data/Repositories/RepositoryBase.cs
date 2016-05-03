@@ -9,7 +9,7 @@ namespace GestaoDDD.Infra.Data.Repositories
 {
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
-      //aqui rabalha com objetos genericos
+        //aqui rabalha com objetos genericos
         protected GestaoContext _db;
 
         public RepositoryBase(GestaoContext gestaoContext)
@@ -25,8 +25,8 @@ namespace GestaoDDD.Infra.Data.Repositories
 
         public void SaveOrUpdate(TEntity obj)
         {
-             _db.Set<TEntity>().Add(obj);
-             _db.SaveChanges();
+            _db.Set<TEntity>().Add(obj);
+            _db.SaveChanges();
         }
 
         public TEntity GetById(int id)
@@ -60,5 +60,5 @@ namespace GestaoDDD.Infra.Data.Repositories
             // Suppress finalization.
             GC.SuppressFinalize(this);
         }
-       }
+    }
 }

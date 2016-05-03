@@ -25,8 +25,6 @@ namespace GestaoDDD.Infra.Data.EntityConfig
            .HasForeignKey(t => t.cat_Id);//chave estangeira de categoria   
 
             Property(c => c.cat_Id).HasColumnName("categoria_id");
-
-
         }
     }
 }

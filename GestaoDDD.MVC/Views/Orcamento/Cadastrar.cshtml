@@ -1,9 +1,146 @@
-﻿@model GestaoDDD.Application.ViewModels.OrcamentoViewModel
+@model GestaoDDD.Application.ViewModels.OrcamentoViewModel
 
 @using GestaoDDD.Application.ViewModels;
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+
+Amor sei que não tivemos um dia como queriamos ter devido a nossa grande ignorancia.
+Porém quero te dizer que hoje completamos 4 meses, é amor... O tempo ta passando e o nosso amor se desenvolvendo a cada dia, por todos esses dias você tem me preenchido e me completado em tudo, tem sido minha base e minha alegria.
+Quero te agradecer por todos esses dias ao meu lado, por todo seu amor, respeito, sinceridade... sou muito grato por ter me feito viver os melhores dias da minha vida, dias que eu jamais havia vivido ao lado de alguém com tamanha felicidade e muito amor. Te amo <?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <appSettings>
+    <add key="WebPages:Version" value="3.0.0.0" />
+    <add key="WebPages:Enabled" value="true" />
+    <add key="PreserveLoginUrl" value="true" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="owin:AppStartup" value="GestaoDDD.MVC.Startup,GestaoDDD.MVC" />
+    <add key="ContaDeEmail" value="agilizaorcamentos@gmail.com" />
+    <add key="SenhaEmail" value="agiliza@2" />
+    <add key="Internet" value="true" />
+  </appSettings>
+  <connectionStrings>
+    <!--Connection Caio-->
+   <!--<add name="ConnectionLocalCaio" connectionString="Data Source=DESKTOP-EHGRN7O\SQLEXPRESS12;Initial Catalog=GestaoDados;Persist Security Info=True;User ID=sa;Password=caiocaio" providerName="System.Data.SqlClient" />-->
+    <!--Connection Wagner-->
+    <!--<add name="ConnectionLocalCaio" connectionString="Data Source=NOGUEIRA-PC\SQLEXPRESS;Initial Catalog=GestaoDados;Persist Security Info=True;User ID=sa;Password=sa.@2" providerName="System.Data.SqlClient" />-->
+    <!--Connection Web-->
+    <add name="ConnectionLocalCaio" connectionString="Data Source=plumeria.arvixe.com;Initial Catalog=GestaoDados;Persist Security Info=True;User ID=user_gestao;Password=sa.@2" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <!--
+    For a description of web.config changes see http://go.microsoft.com/fwlink/?LinkId=235367.
+
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="4.5.1" />
+      </system.Web>
+  -->
+  <system.web>
+    <authentication mode="None" />
+    <httpRuntime targetFramework="4.5" />
+    <compilation targetFramework="4.5.1" />
+    <globalization culture="pt-BR" uiCulture="pt-BR" />
+    <pages>
+      <namespaces>
+        <add namespace="System.Web.Helpers" />
+        <add namespace="System.Web.Mvc" />
+        <add namespace="System.Web.Mvc.Ajax" />
+        <add namespace="System.Web.Mvc.Html" />
+        <add namespace="System.Web.Routing" />
+        <add namespace="System.Web.WebPages" />
+      </namespaces>
+    </pages>
+  </system.web>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <handlers>
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <remove name="OPTIONSVerbHandler" />
+      <remove name="TRACEVerbHandler" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>
+    <modules>
+      <remove name="FormsAuthentication" />
+    </modules>
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.6.5135.21930" newVersion="1.6.5135.21930" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Antlr3.Runtime" publicKeyToken="eb42632606e9261f" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.5.0.2" newVersion="3.5.0.2" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="SimpleInjector" publicKeyToken="984cb50dea722e99" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.5.0" newVersion="3.0.5.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security.OAuth" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security.Cookies" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.1.0" newVersion="3.0.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Optimization" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="1.1.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Razor" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages.Razor" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+</configuration>
+
+
+ É como voce disse, as qualidades sobrepõem os defeito
 
 <link href="~/Content/Orcamento/orcamento.css" rel="stylesheet" />
 
