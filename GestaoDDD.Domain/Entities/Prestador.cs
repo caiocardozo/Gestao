@@ -22,6 +22,8 @@ namespace GestaoDDD.Domain.Entities
 
         public EnumStatus status { get; set; }
 
+        public virtual Usuario Usuario { get; set; }
+
     }
 
     [DataContract]
