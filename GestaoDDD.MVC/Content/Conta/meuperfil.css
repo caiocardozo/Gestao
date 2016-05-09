@@ -1,0 +1,64 @@
+﻿body { overflow-x: hidden; }
+
+
+.header {
+    background-color: #A52A2A;
+    margin-left: 0px;
+    margin-right: 0px; 
+    padding: 0px;
+    
+}
+
+
+.header-foto {
+
+    margin-left: 6%;
+    border-radius:50%;
+}
+
+.header-texto {
+    color: white;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.header-texto-nome {
+    font-size: 20px;
+}
+
+/* Botões Header */
+
+.btn {
+    color: black;
+    background-color: white;
+    margin: 20px;
+    border-bottom-color: black;
+    
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+    -webkit-transition: all 0.3s linear; 
+    -o-transition: all 0s linear; 
+	transition: all 0s linear; 
+}
+
+.btn:hover {
+    font-size: 16px;
+    border: 2px solid;
+
+    
+	
+	
+}
+
+.btn:focus {
+    box-shadow: rgba (0,0,0,4);
+    outline: 0;
+}
+
+.botoes-header {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+/* Fim Botões Header */
