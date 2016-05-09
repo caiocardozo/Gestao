@@ -234,6 +234,7 @@
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\TermosDeUsoController.cs" />
+    <Compile Include="Controllers\TesteController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -245,6 +246,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\Admin\admin.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -295,6 +297,7 @@
     <Content Include="Images\Orcamento\profissional.png" />
     <Content Include="Images\Prestador\background.png" />
     <Content Include="Images\Prestador\man.png" />
+    <Content Include="Scripts\Adicionais\administrativo.js" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
     <Content Include="Scripts\Adicionais\loginsExternos.js" />
     <Content Include="Scripts\Adicionais\mapa.js" />
@@ -414,10 +417,12 @@
     <Content Include="Views\Contato\ContatoSucesso.cshtml" />
     <Content Include="Views\Prestador\Create.cshtml" />
     <Content Include="Views\Prestador\ExibirOrcamentos.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Teste\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -368,7 +368,7 @@ namespace GestaoDDD.MVC.Controllers
         {
             AuthenticationManager.SignOut();
             //return RedirectToAction("Index", "Home");
-            return RedirectToAction("Index", "Prestador");
+            return RedirectToAction("IndexAdmin", "Home");
         }
 
         //

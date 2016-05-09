@@ -24,7 +24,7 @@
     <div class="row banner-baixo col-md-12 center-block">
         <div class="row texto-bannerbaixo col-md-12">
             Você é um profissional e <b>busca novos clientes?</b>
-            <a href="~/Prestador/Cadastrar"><input type="button" class="btn" value="Cadastre-se" /></a>
+            <a href="~/Prestador/Create"><input type="button" class="btn" value="Cadastre-se" /></a>
         </div>
     </div>
 
@@ -56,23 +56,23 @@
             @Html.ValidationMessageFor(model => model.pres_email, "", new {@class = "text-danger"})
         </div>
 
-        <div class="col-form form-group col-md-3">
+        <div class="col-form form-group col-md-3" style="margin:2px;">
             <label for="senha">Senha:</label>
             @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Senha, "", new {@class = "text-danger"})
         </div>
 
-        <div class="col-form form-group col-md-3">
-            <label for="repetirsenha">Repetir Senha:</label>
-            @Html.PasswordFor(model => model.ConfirmaSenha,new { @class = "form-control"})
-            @Html.ValidationMessageFor(model => model.ConfirmaSenha, "", new {@class = "text-danger"})
-        </div>
+    <div class="col-form form-group col-md-3" style="margin:2px;">
+        <label for="repetirsenha">Repetir Senha:</label>
+        @Html.PasswordFor(model => model.ConfirmaSenha, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ConfirmaSenha, "", new { @class = "text-danger" })
+    </div>
 
-        <div class="col-form form-group col-md-3">
-            <label for="telefone">Telefone Residencial:</label>
-            @Html.EditorFor(model => model.pres_telefone_residencial, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.pres_telefone_residencial, "", new {@class = "text-danger"})
-        </div>
+    <div class="col-form form-group col-md-3" style="margin:2px;">
+        <label for="telefone">Telefone Residencial:</label>
+        @Html.EditorFor(model => model.pres_telefone_residencial, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.pres_telefone_residencial, "", new { @class = "text-danger" })
+    </div>
 
         <div class="col-form form-group col-md-3">
             <label for="telefone">Telefone Celular:</label>

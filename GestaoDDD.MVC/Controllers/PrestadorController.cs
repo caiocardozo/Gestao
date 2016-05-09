@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GeoCoordinatePortable;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
-using System.Web.Mvc;
 using GestaoDDD.Domain.Interfaces.Services;
 using GestaoDDD.Infra.Identity.Configuration;
 using GestaoDDD.Infra.Identity.Model;
-using Microsoft.Ajax.Utilities;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using EnumStatus = GestaoDDD.Domain.Entities.EnumStatus;
 
 
@@ -31,8 +25,7 @@ namespace GestaoDDD.MVC.Controllers
         private ApplicationUserManager _userManager;
 
         public PrestadorController(IPrestadorAppService prestadorApp, IOrcamentoService orcamentoApp,
-            IUsuarioAppService usuarioApp,
-            ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+            IUsuarioAppService usuarioApp, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             _prestadorApp = prestadorApp;
             _orcamentoApp = orcamentoApp;
@@ -40,27 +33,24 @@ namespace GestaoDDD.MVC.Controllers
             _signInManager = signInManager;
             _usuarioApp = usuarioApp;
         }
-        //
-        // GET: /Prestador/
+
         [Authorize(Roles = "Admin")]
-        // GET: /Prestador/
         public ActionResult Index()
         {
             var prestadorViewModel = Mapper.Map<IEnumerable<Prestador>, IEnumerable<PrestadorViewModel>>(_prestadorApp.GetAll());
             return View(prestadorViewModel);
         }
 
-        //
-        // GET: /Prestador/Details/5
+        
         public ActionResult Detalhes(int id)
         {
             var prestador = _prestadorApp.GetById(id);
             var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
             return View(prestadorViewModel);
+            
         }
 
-        //
-        // GET: /Prestador/Cadastrar
+        
         public ActionResult Cadastrar(FormCollection collection)
         {
             return View();
@@ -151,7 +141,6 @@ namespace GestaoDDD.MVC.Controllers
                 coordenada_prestador.Longitude = double.Parse(longt.Replace(",", "."), CultureInfo.InvariantCulture);
                 // Coordenada fixa do parque dos pirineus.
 
-                var distanceKm = GetDistanceTo(coordenada_orcamento, coordenada_prestador);
 
                 var distancia = coordenada_prestador.GetDistanceTo(coordenada_orcamento);
             }
@@ -161,27 +150,6 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
-        public double GetDistanceTo(GeoCoordinate orcamento, GeoCoordinate prestador)
-        {
-            double distanceKm = 0.0;
-            if (double.IsNaN(orcamento.Latitude) || double.IsNaN(orcamento.Longitude) || double.IsNaN(prestador.Latitude) || double.IsNaN(prestador.Longitude))
-            {
-                double latitude = orcamento.Latitude * 0.0174532925199433;
-                double longitude = orcamento.Longitude * 0.0174532925199433;
-                double num = prestador.Latitude * 0.0174532925199433;
-                double longitude1 = prestador.Longitude * 0.0174532925199433;
-                double num1 = longitude1 - longitude;
-                double num2 = num - latitude;
-                double num3 = Math.Pow(Math.Sin(num2 / 2), 2) + Math.Cos(latitude) * Math.Cos(num) * Math.Pow(Math.Sin(num1 / 2), 2);
-                double num4 = 2 * Math.Atan2(Math.Sqrt(num3), Math.Sqrt(1 - num3));
-                double num5 = 6376500 * num4;
-                distanceKm = num5 * 0.001;
-                return distanceKm;
-            }
-            return distanceKm = 0.0;
-        }
-
-        //
         // POST: /Prestador/Cadastrar
         [HttpPost]
         public ActionResult Cadastrar(Prestador prestador)

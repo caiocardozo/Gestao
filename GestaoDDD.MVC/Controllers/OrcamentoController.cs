@@ -55,7 +55,7 @@ namespace GestaoDDD.MVC.Controllers
         {
             try
             {
-                if (true)
+                if (ModelState.IsValid)
                 {
                     var orcamentoDomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
 
