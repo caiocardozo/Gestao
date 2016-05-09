@@ -42,12 +42,15 @@
                 @{
                     if (Request.IsAuthenticated)
                     {
+                        
+                        
                         if (User.IsInRole("Admin"))
                         {
-                            <li>@Html.ActionLink("Prestadores", "Index", "Prestador")</li>
+                            @*<li>@Html.ActionLink("Prestadores", "Index", "Prestador")</li>*@
+                            @Html.ActionLink("Gerenciar", "Admin", "Home")
                         }
 
-                        var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+                        @*var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
                         var claim = claimsIdentity.FindFirst(c => c.Type == "AdmUsers");
 
                         if (claim != null)
@@ -65,7 +68,7 @@
                             {
                                 <li>@Html.ActionLink("Admin Claims", "Index", "ClaimsAdmin")</li>
                             }
-                        }
+                        }*@
                     }
 
                 }

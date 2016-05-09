@@ -24,7 +24,7 @@
     <div class="row banner-baixo col-md-12 center-block">
         <div class="row texto-bannerbaixo col-md-12">
             Você é um profissional e <b>busca novos clientes?</b>
-            <a href="~/Prestador/Cadastrar"><input type="button" class="btn" value="Cadastre-se" /></a>
+            <a href="~/Prestador/Create"><input type="button" class="btn" value="Cadastre-se" /></a>
         </div>
     </div>
 
@@ -36,65 +36,65 @@
 
     <div class="row formulario col-md-12">
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="titulo-formulario">
-                <h4><b>DADOS DO PROFISSIONAL OU EMPRESA</b></h4>
-            </div>
-            <br />
-            <div class="form-group">
-                <label for="nome">Nome do Profissional ou Empresa:</label>
-                @Html.EditorFor(model => model.pres_nome, new { htmlAttributes = new { @class = "form-control" } })
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="titulo-formulario">
+            <h4><b>DADOS DO PROFISSIONAL OU EMPRESA</b></h4>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="nome">Nome do Profissional ou Empresa:</label>
+           @Html.EditorFor(model => model.pres_nome, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.pres_nome, "", new { @class = "text-danger" })
-            </div>
+        </div>
 
             <div class="col-form form-group col-md-5">
-                <label for="email">E-mail:</label>
-                @Html.EditorFor(model => model.pres_email, new { htmlAttributes = new { @class = "form-control" } })
+            <label for="email">E-mail:</label>
+            @Html.EditorFor(model => model.pres_email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.pres_email, "", new { @class = "text-danger" })
-            </div>
+        </div>
 
-            <div class="col-form form-group col-md-offset-1 col-md-3">
-                <label for="senha">Senha:</label>
-                @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
+        <div class="col-form form-group col-md-3">
+            <label for="senha">Senha:</label>
+            @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
-            </div>
+        </div>
 
-            <div class="col-form-2 form-group col-md-3">
-                <label for="repetirsenha">Repetir Senha:</label>
-                @Html.PasswordFor(model => model.ConfirmaSenha, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ConfirmaSenha, "", new { @class = "text-danger" })
-            </div>
+        <div class="col-form form-group col-md-3">
+            <label for="repetirsenha">Repetir Senha:</label>
+        @Html.PasswordFor(model => model.ConfirmaSenha, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ConfirmaSenha, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-form form-group col-md-3">
+            <label for="telefone">Telefone Residencial:</label>
+            @Html.EditorFor(model => model.pres_telefone_residencial, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.pres_telefone_residencial, "", new { @class = "text-danger" })
+        </div>
 
             <div class="col-form form-group col-md-4">
-                <label for="telefone">Telefone Residencial:</label>
-                @Html.EditorFor(model => model.pres_telefone_residencial, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pres_telefone_residencial, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="col-form form-group col-md-4">
-                <label for="telefone">Telefone Celular:</label>
-                @Html.EditorFor(model => model.pres_telefone_celular, new { htmlAttributes = new { @class = "form-control" } })
+            <label for="telefone">Telefone Celular:</label>
+            @Html.EditorFor(model => model.pres_telefone_celular, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.pres_telefone_celular, "", new { @class = "text-danger" })
-            </div>
+        </div>
 
             <div class="col-form-2 form-group col-md-4">
-                <label for="cpfcnpj">CPF / CNPJ:</label>
-                @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control" } })
+            <label for="cpfcnpj">CPF / CNPJ:</label>
+            @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new { @class = "text-danger" })
             </div>
             
                 <div class="col-form form-group col-md-10">
-                    <label for="endereço">Endereço:</label>
-                    @Html.EditorFor(model => model.pres_endereco, new { htmlAttributes = new { @class = "form-control" } })
+                <label for="endereço">Endereço:</label>
+                @Html.EditorFor(model => model.pres_endereco, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.pres_endereco, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="botao-marcar col-md-2 ">
                     <input type="button" class="botao btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
-                </div>
+            </div>
 
 
             <div class="mapa col-md-12">
@@ -103,16 +103,16 @@
                 <input type="hidden" id="orc_longitude" name="orc_longitude" />
             </div>
             <div class="col-form form-group col-md-12">
-                @Html.CheckBoxFor(x => x.TermosECondicoes)
-                @Html.LabelFor(x => x.TermosECondicoes)
+            @Html.CheckBoxFor(x => x.TermosECondicoes)
+            @Html.LabelFor(x => x.TermosECondicoes)
                 @Html.ValidationMessageFor(model => model.TermosECondicoes, "", new { @class = "text-danger" })
-            </div>
+        </div>
 
             <div class="col-form col-md-12">
-                <input type="submit" class="btn btn-enviar" />
-            </div>
+            <input type="submit" class="btn btn-enviar" />
+        </div>
 
-        }
+    }
     </div>
 
 </div>

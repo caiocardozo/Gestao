@@ -55,15 +55,12 @@
     <Compile Include="EntityConfig\IndiqueProfissionalConfiguration.cs" />
     <Compile Include="EntityConfig\PessoaConfiguration.cs" />
     <Compile Include="EntityConfig\PrestadorConfiguration.cs" />
+    <Compile Include="EntityConfig\RoleConfiguration.cs" />
     <Compile Include="EntityConfig\ServicoPrestadorConfiguration.cs" />
     <Compile Include="EntityConfig\UsuarioConfiguration.cs" />
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
-    <Compile Include="Migrations\201604230246450_caio.cs" />
-    <Compile Include="Migrations\201604230246450_caio.Designer.cs">
-      <DependentUpon>201604230246450_caio.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ComoFuncionaRepository.cs" />
@@ -87,11 +84,6 @@
       <Project>{bdb34e47-03fa-4b92-8e26-589f14e9c512}</Project>
       <Name>GestaoDDD.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604230246450_caio.resx">
-      <DependentUpon>201604230246450_caio.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

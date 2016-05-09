@@ -17,9 +17,6 @@ namespace GestaoDDD.Infra.Data.Repositories
 
         public Prestador GetPorCpf(string cpf)
         {
-            //var prestador = base.GetAll();
-            //return prestador.FirstOrDefault(s => s.pres_Cpf_Cnpj == cpf);
-            //conparar string sempre com equals e nao com =
             return _db.Prestador.FirstOrDefault(s => s.pres_Cpf_Cnpj.Equals(cpf));
         }
     }
