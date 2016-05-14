@@ -1,0 +1,113 @@
+﻿body { overflow-x: hidden; }
+
+
+.header {
+    background-color: #A52A2A;
+    margin-left: 0px;
+    margin-right: 0px; 
+    padding: 0px;
+    margin-bottom: 0px;
+    
+}
+
+
+.header-foto {
+
+    margin-left: 6%;
+    border-radius:50%;
+}
+
+.header-texto {
+    color: white;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.header-texto-nome {
+    font-size: 20px;
+}
+
+/* Botões Header */
+
+.btn-header {
+    color: black;
+    background-color: white;
+    margin: 20px;
+    border-bottom-color: black;
+    
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+    -webkit-transition: all 0.3s linear; 
+    -o-transition: all 0s linear; 
+	transition: all 0s linear; 
+}
+
+.btn-header:hover {
+    font-size: 16px;
+    border: 2px solid;
+
+}
+
+.btn-header:focus {
+    box-shadow: rgba (0,0,0,4);
+    outline: 0;
+}
+
+.botoes-header {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+/* Fim Botões Header */
+
+/* Corpo da página  */
+
+.texto-antesform {
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.texto-superior {
+    font: bold;
+}
+
+body > .container {
+     padding-top: 0px; 
+}
+
+.formulario {
+    background-color: #EEE9E9;
+    margin-bottom: 4%;
+    padding: 2%;
+    border-radius: 10px;
+}
+
+.titulo-formulario {
+    color: gray;
+    margin-bottom: 2%;
+}
+
+.sub-formulario {
+    color: gray;
+    margin-bottom: 2%;
+    margin-top: 10%;
+}
+
+.botao-formulario {
+    text-align: center;
+    margin-top: 2%;
+    
+}
+
+.btn-formulario {
+    color: white;
+    text-align: center;
+    border-bottom: 5px solid #f56a6a;
+    background-color: #ad2323;
+    margin: 20px;
+    
+}
+
+
+/* Fim Corpo da página  */

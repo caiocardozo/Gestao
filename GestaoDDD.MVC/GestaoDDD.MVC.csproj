@@ -253,7 +253,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ComoFunciona\comofunciona.css" />
     <Content Include="Content\Contato\contato.css" />
+    <Content Include="Content\Conta\buscatrabalhadores.css" />
+    <Content Include="Content\Conta\buscatrabalhos.css" />
     <Content Include="Content\Conta\login.css" />
+    <Content Include="Content\Conta\meuperfil.css" />
+    <Content Include="Content\Conta\perfilindex.css" />
     <Content Include="Content\Conta\register.css" />
     <Content Include="Content\Home\index.css" />
     <Content Include="Content\IndiqueProfissional\indiqueprofissional.css" />
@@ -270,6 +274,7 @@
     <Content Include="Content\_Layout\layout2.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Conta\fotoperfil.png" />
     <Content Include="Images\front.png" />
     <Content Include="Images\Home\banner.png" />
     <Content Include="Images\Home\facebook.png" />
@@ -417,9 +422,6 @@
     <Content Include="Views\Contato\ContatoSucesso.cshtml" />
     <Content Include="Views\Prestador\Create.cshtml" />
     <Content Include="Views\Prestador\ExibirOrcamentos.cshtml" />
-    <Content Include="Views\Home\Admin.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\Teste\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

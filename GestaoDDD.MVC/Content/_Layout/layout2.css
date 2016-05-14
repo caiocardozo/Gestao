@@ -5,9 +5,11 @@
 * {
     -webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	-webkit-transition: all .9s ease;
-	-o-transition: all .9s ease;
-	transition: all .9s ease;
+	-webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+	
+	
     margin:0px;
     padding: 0px; 
 
@@ -34,8 +36,11 @@ a:hover {
 /* MENU NAVEGAÇÃO */
 
 .menunavegacao {
+   
     background-color: #eee;
 }
+
+
 
 
 
@@ -64,9 +69,12 @@ nav.navbar-findcond span.badge { background: #f14444; font-weight: normal; font-
 nav.navbar-findcond span.badge.new { background: rgba(255, 0, 0, 0.8); color: #fff; }
 
 .navbarmenu {
+     
     vertical-align: central;
     padding-top: 1.5%;
     font-size: 16px;
+
+
 }
 
 .redessociaistopo {

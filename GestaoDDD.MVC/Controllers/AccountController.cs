@@ -457,6 +457,31 @@ namespace GestaoDDD.MVC.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
+
+        [AllowAnonymous]
+        public ActionResult PerfilIndex()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult BuscaTrabalhadores()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult BuscaTrabalhos()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult MeuPerfil()
+        {
+            return View();
+        }
+
         #endregion
     }
 }
