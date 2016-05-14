@@ -1,0 +1,62 @@
+﻿@model GestaoDDD.Application.ViewModels.ContatoViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "Contato";
+}
+
+<link href="~/Content/Contato/contato.css" rel="stylesheet" />
+
+<div class="container">
+
+    <div class="row banner col-md-12">
+        <div class="row banner-texto-esquerda col-md-6 pull-left">
+            <h1>CONTATO ENVIADO COM SUCESSO</h1>
+        </div>
+        <div class="row banner-texto-direita col-md-6 pull-right">
+
+        </div>
+    </div>
+    <div class="row banner-baixo col-md-12 center-block">
+        <div class="row texto-bannerbaixo col-md-12">
+            Você é um profissional e <b>busca novos clientes?</b>
+            <a href="~/Prestador/Cadastrar"><input type="button" class="btn" value="Cadastre-se" /></a>
+        </div>
+    </div>
+
+    <div class="row texto-corpo col-md-12">
+        <h3><b>Preencha o formulário</b></h3>
+        <br />
+        Entraremos em contato o mais rápido possível.
+    </div>
+
+
+        <div class="row contato-formulario col-md-12">
+
+            <div class="row formulario col-md-6">
+                <form role="form">
+                    <div class="titulo-formulario">
+                        <h4><b>Seu contato foi enviado com sucesso, entraremos em contato o mais rápido possível.<br/>
+                            Obrigado pelo seu contato, sugestão ou opinião tudo isso contribuirá para que possamos oferecer o melhor de nossos serviços.
+                            </b></h4>
+                    </div>
+                    <br />
+
+                    <div class="row col-md-offset-3 col-md-3">
+                        <a href="~/Home/Index" type="button" class="btn btn-solicitar">Ok, Entendi.</a>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="row texto-direita col-md-6">
+                <b>Agiliza Orçamentos</b>
+                <br /> <br />
+                Contato:<br />
+                contato@agilizaorcamentos.com.br<br />
+                (62) 9999-9999 | (62) 9999-9999
+            </div>
+
+        </div>
+    
+</div>
