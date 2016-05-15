@@ -51,7 +51,9 @@ namespace GestaoDDD.MVC.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    //joga o usuario para a tela inicial
+                    return RedirectToAction("Index", "Home");
+                    //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -368,7 +370,7 @@ namespace GestaoDDD.MVC.Controllers
         {
             AuthenticationManager.SignOut();
             //return RedirectToAction("Index", "Home");
-            return RedirectToAction("IndexAdmin", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         //

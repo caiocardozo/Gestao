@@ -1,5 +1,4 @@
-﻿using System.Web.Helpers;
-using AutoMapper;
+﻿using AutoMapper;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
@@ -66,7 +65,7 @@ namespace GestaoDDD.MVC.Controllers
                 pts.pres_Email = email;
 
                 _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, pts);
-                return RedirectToAction("Cadastrar", "Prestador");
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
@@ -231,6 +230,11 @@ namespace GestaoDDD.MVC.Controllers
             //                });
             //return Json(resultado, JsonRequestBehavior.AllowGet);
 
+        }
+
+        public ActionResult ServicosCadastrados()
+        {
+            return View();
         }
     }
 }

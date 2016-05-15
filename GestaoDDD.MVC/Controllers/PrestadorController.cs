@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.EntityFramework;
 using EnumStatus = GestaoDDD.Domain.Entities.EnumStatus;
 
 
@@ -41,16 +42,16 @@ namespace GestaoDDD.MVC.Controllers
             return View(prestadorViewModel);
         }
 
-        
+
         public ActionResult Detalhes(int id)
         {
             var prestador = _prestadorApp.GetById(id);
             var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
             return View(prestadorViewModel);
-            
+
         }
 
-        
+
         public ActionResult Cadastrar(FormCollection collection)
         {
             return View();
@@ -72,19 +73,15 @@ namespace GestaoDDD.MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     Prestador prestador = new Prestador();
+
                     //primeiro efetua o cadastro do usuario
-                    var user = new ApplicationUser { UserName = prestadorUsuario.pres_email, Email = prestadorUsuario.pres_email };
-                    var result = await _userManager.CreateAsync(user, prestadorUsuario.Senha);
-                    //if (result.Succeeded)
-                    //{
-                    //    //await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    //    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    //    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    //    await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
-
-                    //}
+                    var user = new ApplicationUser { UserName = prestadorUsuario.pres_email, Email = prestadorUsuario.pres_email};
                     //adicionar a role para este usuario
-
+                    IdentityUserRole role = new IdentityUserRole();
+                    role.RoleId = "2";//role 2 e role prestador
+                    role.UserId = user.Id;
+                    user.Roles.Add(role);
+                    var result = await _userManager.CreateAsync(user, prestadorUsuario.Senha);
                     //pega o usuario cadastrado e adiciona ele no objeto prestador
                     Usuario usuarioCadastrado = _usuarioApp.ObterPorEmail(prestadorUsuario.pres_email);
                     prestador.pres_Nome = prestadorUsuario.pres_nome;
