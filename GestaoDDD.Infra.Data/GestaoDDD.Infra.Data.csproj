@@ -61,9 +61,9 @@
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
-    <Compile Include="Migrations\201605151752098_migrar2.cs" />
-    <Compile Include="Migrations\201605151752098_migrar2.Designer.cs">
-      <DependentUpon>201605151752098_migrar2.cs</DependentUpon>
+    <Compile Include="Migrations\201605160351356_paulo.cs" />
+    <Compile Include="Migrations\201605160351356_paulo.Designer.cs">
+      <DependentUpon>201605160351356_paulo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,8 +90,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605151752098_migrar2.resx">
-      <DependentUpon>201605151752098_migrar2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605160351356_paulo.resx">
+      <DependentUpon>201605160351356_paulo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
