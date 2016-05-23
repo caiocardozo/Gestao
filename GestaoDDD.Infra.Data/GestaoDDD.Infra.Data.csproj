@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Contexto\GestaoContext.cs" />
     <Compile Include="Contexto\IGestaoContext.cs" />
+    <Compile Include="EntityConfig\CidadeConfiguration.cs" />
     <Compile Include="EntityConfig\ClaimsConfiguration.cs" />
     <Compile Include="EntityConfig\ClientConfiguration.cs" />
     <Compile Include="EntityConfig\ComoFuncionaConfiguration.cs" />

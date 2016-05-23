@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Categoria.cs" />
+    <Compile Include="Entities\Cidade.cs" />
     <Compile Include="Entities\ComoFunciona.cs" />
     <Compile Include="Entities\Contato.cs" />
     <Compile Include="Entities\Entidade.cs" />

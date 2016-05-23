@@ -4,7 +4,7 @@ using GestaoDDD.Domain.Entities;
 
 namespace GestaoDDD.Infra.Data.Contexto
 {
-   public interface IGestaoContext
+    public interface IGestaoContext
     {
         DbEntityEntry Entry(object entity);
         int SaveChanges();
@@ -20,6 +20,7 @@ namespace GestaoDDD.Infra.Data.Contexto
         DbSet<IndiqueProfissional> IndiqueProfissional { get; set; }
         DbSet<Contato> Contato { get; set; }
         DbSet<Role> Role { get; set; }
+        DbSet<Cidade> Cidade { get; set; }
 
     }
 }
