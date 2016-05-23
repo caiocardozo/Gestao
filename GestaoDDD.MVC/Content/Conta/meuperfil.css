@@ -111,3 +111,107 @@ body > .container {
 
 
 /* Fim Corpo da página  */
+
+/* BuscaTrabalhosIndex */
+
+.botao {
+    margin-top: 2%;
+    margin-bottom: 4%;
+    text-align: center;
+}
+
+.imagem-lupa {
+    text-align: right;
+    margin-top: 1%;
+}
+
+.texto-imagem h2 {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.texto-antesform2 {
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
+/* Fim BuscaTrabalhosIndex */
+
+/* BuscaTrabalhos */
+
+.corpo {
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+.texto-lista {
+    text-align: left;
+    margin-bottom:1%;
+}
+
+.filtro {
+    background-color: #EEE9E9;
+    border-radius: 10px;
+}
+
+.titulo-filtro {
+    color: gray;
+    margin-bottom: 2%;
+}
+
+.titulo-filtro h4 {
+    margin-top: 10%;
+}
+
+.qtd-resultados {
+    background-color: #EEE9E9;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.texto-resultados {
+    padding: 2%;
+    font-size: 16px;
+}
+
+.resultados {
+    background-color: #f7f4f4;
+    margin-left: 0px;
+}
+
+.titulo-resultado {
+    font-weight: bold;
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+
+.localizacao-resultado {
+    margin-top: 3%;
+    margin-bottom: 2%;
+    color: red;
+    font-weight: bold;
+}
+
+.dados {
+    margin-top: 20%;
+}
+
+.valor {
+    margin-top: 2%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.resultados hr {
+    width: 100%;
+    color: black;
+    border: 1px solid black;
+}
+
+.resultados-trabalhos {
+    margin-bottom: 5%;
+}
+
+
+
+/* Fim BuscaTrabalhos */

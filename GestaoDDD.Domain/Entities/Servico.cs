@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace GestaoDDD.Domain.Entities
+﻿namespace GestaoDDD.Domain.Entities
 {
     public class Servico : Entidade
     {

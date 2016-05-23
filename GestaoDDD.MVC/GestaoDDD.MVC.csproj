@@ -422,6 +422,9 @@
     <Content Include="Views\Contato\ContatoSucesso.cshtml" />
     <Content Include="Views\Prestador\Create.cshtml" />
     <Content Include="Views\Prestador\ExibirOrcamentos.cshtml" />
+    <Content Include="Views\Servico\ServicosCadastrados.cshtml" />
+    <Content Include="Views\Shared\_PerfilPartial.cshtml" />
+    <Content Include="Views\Account\BuscaTrabalhosIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

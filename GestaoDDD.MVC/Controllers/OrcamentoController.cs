@@ -4,7 +4,6 @@ using AutoMapper;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
-using System.Collections.Generic;
 
 namespace GestaoDDD.MVC.Controllers
 {

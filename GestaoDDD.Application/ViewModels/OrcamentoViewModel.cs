@@ -1,7 +1,5 @@
 ﻿using GestaoDDD.Domain.Entities;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
 
 namespace GestaoDDD.Application.ViewModels
 {
