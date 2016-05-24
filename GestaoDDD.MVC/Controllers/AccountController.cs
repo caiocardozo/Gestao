@@ -462,24 +462,6 @@ namespace GestaoDDD.MVC.Controllers
 
 
 
-        [AllowAnonymous]
-        public ActionResult BuscaTrabalhosIndex()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        public ActionResult BuscaTrabalhos()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        public ActionResult MeuPerfil()
-        {
-            return View();
-        }
-
         #endregion
     }
 }

@@ -234,7 +234,6 @@
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\TermosDeUsoController.cs" />
-    <Compile Include="Controllers\TesteController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -425,6 +424,9 @@
     <Content Include="Views\Servico\ServicosCadastrados.cshtml" />
     <Content Include="Views\Shared\_PerfilPartial.cshtml" />
     <Content Include="Views\Account\BuscaTrabalhosIndex.cshtml" />
+    <Content Include="Views\Orcamento\BuscaTrabalhos.cshtml" />
+    <Content Include="Views\Account\MeuPerfil.cshtml" />
+    <Content Include="Views\Prestador\MeuPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

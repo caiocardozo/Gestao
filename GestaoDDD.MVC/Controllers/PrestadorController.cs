@@ -176,6 +176,11 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
+        public ActionResult MeuPerfil()
+        {
+            return View();
+        }
+
         public ActionResult Editar(int id)
         {
             var prestador = _prestadorApp.GetById(id);

@@ -135,6 +135,17 @@ namespace GestaoDDD.MVC.Controllers
         {
             return View();
         }
+
+        public ActionResult BuscaTrabalhosIndex()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult BuscaTrabalhos()
+        {
+            return View();
+        }
     }
 
 }

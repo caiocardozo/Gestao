@@ -1,0 +1,129 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@Html.Partial("_PerfilPartial")
+
+
+
+<div class="container">
+    <div class="row texto-antesform col-md-12">
+        <div class="texto-superior">
+            <h2>Meu Perfil</h2>
+         
+        </div>
+        <div class="texto-inferior">
+            Olá! Aqui estão suas informações pessoais e do seu negócio, é importante manter seus dados sempre atualizados.
+        </div>
+    </div>
+
+    <form role="form">
+
+        <div class="row formulario col-md-12">
+            <div class="titulo-formulario">
+                <h4><b>CONTATO</b></h4>
+            </div>
+
+            <div class="col-form form-group col-md-6">
+                <label for="nome">Seu nome:</label>
+                <input type="text" class="form-control" id="nome" />
+            </div>
+
+            <div class="col-form form-group col-md-6">
+                <label for="empresa">Nome da sua empresa:</label>
+                <input type="text" class="form-control" id="empresa" />
+            </div>
+
+            <div class="col-form form-group col-md-6">
+                <label for="email">Seu e-mail:</label>
+                <input type="email" class="form-control" id="email" />
+            </div>
+
+            <div class="col-form form-group col-md-2">
+                <label for="estado">Estado:</label>
+                    <select class="form-control" id="estado">
+                    <option>GO</option>
+                    <option>SP</option>
+                    <option>RJ</option>
+                    <option>AM</option>
+                </select>
+            </div>
+
+            <div class="col-form form-group col-md-2">
+                <label for="cidade">Cidade:</label>
+                <select class="form-control" id="cidade">
+                    <option>Anápolis</option>
+                    <option>Goiânia</option>
+                    <option>Divinópolis</option>
+                    <option>Trindade</option>
+                </select>
+            </div>
+
+            <div class="col-form form-group col-md-2">
+                <label for="cep">CEP:</label>
+                <input type="text" class="form-control" id="cep" />
+            </div>
+
+            <div class="col-form form-group col-md-6">
+                <label for="telefone">Seu telefone:</label>
+                <input type="text" class="form-control" id="telefone" />
+            </div>
+
+            <div class="col-form form-group col-md-6">
+                <label for="raioatuacao">Raio de Atuação:</label>
+                <select class="form-control" id="raioatuacao">
+                    <option>Somente minha cidade</option>
+                    <option>Minha cidade e 30Km ao redor</option>
+                    <option>Mais de 30Km</option>
+                    <option>Todo o Brasil</option>
+                </select>
+            </div>
+
+            <div class="col-form form-group col-md-6">
+                <label for="apresentacaopessoal">Breve apresentação pessoal:</label>
+                <textarea class="form-control" rows="5" id="apresentacaopessoal"></textarea>
+            </div>
+
+            <div class="col-form form-group col-md-6">
+                <label for="apresentacaoempresa">Breve apresentação da empresa:</label>
+                <textarea class="form-control" rows="5" id="apresentacaoempresa"></textarea>
+            </div>
+
+          
+            <div class="sub-formulario ">
+                <h4><b>ÁREA DE ATUAÇÃO</b></h4>
+            </div>
+
+            <div class="col-form form-group col-md-6">
+                <label for="categorias">Categorias:</label>
+                <div class="col-form form-group">
+                    <label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
+                    <label class="checkbox-inline"><input type="checkbox" value="">Option 2</label>
+                    <label class="checkbox-inline"><input type="checkbox" value="">Option 3</label>
+                </div>
+            </div>
+
+            <div class="col-form form-group col-md-6">
+                <label for="subcaterias">Subcategorias:</label>
+                <div class="col-form form-group">
+                    <label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
+                    <label class="checkbox-inline"><input type="checkbox" value="">Option 2</label>
+                    <label class="checkbox-inline"><input type="checkbox" value="">Option 3</label>
+                </div>
+            </div>
+
+            <div class="col-form col-md-offset-8 col-md-2">
+                <button type="button" class="btn btn-formulario">Editar informações </button>
+            </div>
+
+            <div class="col-form col-md-2">
+                <input type="submit" class="btn btn-formulario" />
+            </div>
+
+         
+        </div>
+
+    </form>
+</div>
+
