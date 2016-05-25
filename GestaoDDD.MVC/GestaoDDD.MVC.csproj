@@ -427,6 +427,7 @@
     <Content Include="Views\Orcamento\BuscaTrabalhos.cshtml" />
     <Content Include="Views\Account\MeuPerfil.cshtml" />
     <Content Include="Views\Prestador\MeuPerfil.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

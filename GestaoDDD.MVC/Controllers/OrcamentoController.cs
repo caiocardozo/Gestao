@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Web.Mvc;
 using AutoMapper;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
+using System.Collections.Generic;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -141,10 +143,10 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
-        [AllowAnonymous]
         public ActionResult BuscaTrabalhos()
         {
-            return View();
+            var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetAll());
+            return View(orcamentoVm);
         }
     }
 

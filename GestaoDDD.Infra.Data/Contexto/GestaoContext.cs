@@ -24,7 +24,6 @@ namespace GestaoDDD.Infra.Data.Contexto
         public DbSet<IndiqueProfissional> IndiqueProfissional { get; set; }
         public DbSet<Contato> Contato { get; set; }
         public DbSet<Role> Role { get; set; }
-        
         public DbSet<Cidade> Cidade { get; set; }
 
         #endregion
