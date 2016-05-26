@@ -99,7 +99,7 @@ namespace GestaoDDD.MVC.Controllers
                         prestador.pres_Telefone_Residencial = prestadorUsuario.pres_telefone_residencial;
                         prestador.status = EnumStatus.Orcamento_bloqueado;
                         prestador.pres_Raio_Recebimento = "0";
-                        prestador.Usuario = usuarioCadastrado;
+                        prestador.UsuarioId = user.Id;
                         _prestadorApp.SaveOrUpdate(prestador);
                         //redireciona o cara para continuar o processo de cadastro dos serviços
                         return RedirectToAction("ServicosCategorias", "Servico",

@@ -22,7 +22,8 @@ namespace GestaoDDD.Domain.Entities
 
         public EnumStatus status { get; set; }
 
-        public virtual Usuario Usuario { get; set; }
+        public string UsuarioId { get; set; }
+        //public virtual Usuario UsuarioId { get; set; }
 
     }
 

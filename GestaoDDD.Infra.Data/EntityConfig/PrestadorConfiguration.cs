@@ -1,4 +1,5 @@
-﻿using GestaoDDD.Domain.Entities;
+﻿using System.Runtime.InteropServices;
+using GestaoDDD.Domain.Entities;
 using System.Data.Entity.ModelConfiguration;
 
 namespace GestaoDDD.Infra.Data.EntityConfig
@@ -34,6 +35,8 @@ namespace GestaoDDD.Infra.Data.EntityConfig
                .HasMaxLength(14).HasColumnName("telefone_fixo");
 
             Property(c => c.status).HasColumnName("status");
+
+            Property(c => c.UsuarioId).HasColumnName("usuario_id");
         }
     }
 }

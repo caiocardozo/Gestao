@@ -4,7 +4,7 @@
 
     @{
         Layout = "~/Views/Shared/_Layout2.cshtml";
-        
+
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
         //Wagner Nogueira 02-02-16
         var cpfPrestador = ViewBag.Cpf as string;
@@ -13,9 +13,9 @@
         var celular = ViewBag.Celular as string;
     }
 
-    
+
     <link href="~/Content/Servico/checkbox_servicos.css" rel="stylesheet" />
-   
+
     <script src="~/Scripts/Adicionais/lerCheckbox.js"></script>
     <link href="~/Content/Servico/modal_accept.css" rel="stylesheet" />
     <script src="~/Scripts/Adicionais/modalServicoPrestador.js"></script>
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    @using (Html.BeginForm("ServicosCategorias, Servico"))
+    @using (Html.BeginForm())
     {
         foreach (var cat in ListaCategoria)
         {
@@ -63,18 +63,20 @@
 
 
         @*02-02-16 Wagner Nogueira*@
-    <input type="hidden" value="@cpfPrestador" name="cpfPrestador" />
-    <input type="hidden" value="@nome" name="nome" />
-    <input type="hidden" value="@email" name="email" />
-    <input type="hidden" value="@celular" name="celular" />
-        <div class="container">
-            <div class="row col-md-12 bottom col-sm-12 col-xs-12">
-                    <input type="submit" class="btn  btn-lg col-md-3 col-lg-12 col-xs-3 bottom frm-contato " value="Cadastrar" onclick="verificar()" />
-                    @*<a href="#" class="btn btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Cadastrar</a>*@
-            </div>
-        </div>
+        <input type="hidden" value="@cpfPrestador" name="cpfPrestador" />
+        <input type="hidden" value="@nome" name="nome" />
+        <input type="hidden" value="@email" name="email" />
+        <input type="hidden" value="@celular" name="celular" />
+        <button type="submit" class="btn btn-lg btn-block">Ok</button>
+
     }
 
 
 
-    <!-- END # MODAL LOGIN -->
+    @*<div class="container">
+            <div class="row col-md-12 bottom col-sm-12 col-xs-12">
+                    <input type="submit" class="btn  btn-lg col-md-3 col-lg-12 col-xs-3 bottom frm-contato" onclick="verificar()" />
+                @*<a href="#" class="btn btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Cadastrar</a>
+
+            </div>
+        </div>*@

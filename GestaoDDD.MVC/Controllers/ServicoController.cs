@@ -40,12 +40,13 @@ namespace GestaoDDD.MVC.Controllers
             return View(servicoViewModel);
         }
 
+
         [HttpPost]
         public ActionResult ServicosCategorias(FormCollection collection, string cpfPrestador, string nome, string celular, string email)
         {
             try
             {
-                List<Servico> checkboxes = new List<Servico>();
+                var checkboxes = new List<Servico>();
                 foreach (var col in collection)
                 {
 

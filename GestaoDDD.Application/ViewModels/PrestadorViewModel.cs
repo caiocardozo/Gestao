@@ -45,6 +45,8 @@ namespace GestaoDDD.Application.ViewModels
         [DisplayName("Status")]
         public EnumStatus status { get; set; }
 
+        public string UsuarioId { get; set; }
+
     }
 
     [DataContract]
