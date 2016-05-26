@@ -134,6 +134,11 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
+        public ActionResult PrestadorCadastroSucesso()
+        {
+            return View();
+        }
+
         public ActionResult ExibirOrcamentos()
         {
             //Essa view ta aqui so por questao de teste... Ela nao existe no sistema, era so pra chamar ela e debugar esse processo aqui.

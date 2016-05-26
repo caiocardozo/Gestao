@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("ServicosCategorias, Servico"))
     {
         foreach (var cat in ListaCategoria)
         {
@@ -63,44 +63,14 @@
 
 
         @*02-02-16 Wagner Nogueira*@
-        <input type="hidden" value="@cpfPrestador" name="cpfPrestador" />
+    <input type="hidden" value="@cpfPrestador" name="cpfPrestador" />
     <input type="hidden" value="@nome" name="nome" />
     <input type="hidden" value="@email" name="email" />
     <input type="hidden" value="@celular" name="celular" />
         <div class="container">
             <div class="row col-md-12 bottom col-sm-12 col-xs-12">
-                <p class="text-center">
-                <a href="#" class="btn btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Cadastrar</a></p>  
-
-                        @*<div class="row col-md-12 bottom col-sm-12 col-xs-12 frm-contato">
-                            <input type="submit" value="Cadastrar" class="btn btn-group-lg" onclick="verificar()" />
-                        </div>*@
-                 
-                <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div id="div-forms">
-                                <form id="register-form" style="display:none;">
-                                    <div class="modal-body">
-                                       <h2>Cadastro realizado com sucesso.</h2>
-                                        <h3>
-                                            Obrigado por optar pelos nossos serviços.
-                                        </h3>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <div>
-                                            <button type="submit" class="btn btn-lg btn-block">Ok</button>
-                                        </div>
-                                    </div>
-                                </form>
-                                <!-- End | Register Form -->
-
-                            </div>
-                            <!-- End # DIV Form -->
-
-                        </div>
-                    </div>
-                </div>
+                    <input type="submit" class="btn  btn-lg col-md-3 col-lg-12 col-xs-3 bottom frm-contato " value="Cadastrar" onclick="verificar()" />
+                    @*<a href="#" class="btn btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Cadastrar</a>*@
             </div>
         </div>
     }

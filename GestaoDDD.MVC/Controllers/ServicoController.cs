@@ -65,7 +65,7 @@ namespace GestaoDDD.MVC.Controllers
                 pts.pres_Email = email;
 
                 _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, pts);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "PrestadorCadastroSucesso", "Prestador");
             }
             catch
             {
