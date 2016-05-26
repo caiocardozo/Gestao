@@ -2,11 +2,18 @@
 
 
 .header {
-    background-color: #A52A2A;
+ /* #EE6363 #A52A2A */   background-color: #CD5555;
     margin-left: 0px;
     margin-right: 0px; 
     padding: 0px;
     margin-bottom: 0px;
+    
+    
+}
+
+.image-upload > input
+{
+    display: none;
     
 }
 
@@ -15,6 +22,7 @@
 
     margin-left: 6%;
     border-radius:50%;
+    cursor:pointer;
 }
 
 .header-texto {
@@ -31,8 +39,8 @@
 /* Botões Header */
 
 .btn-header {
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: #ad2323;
     margin: 20px;
     border-bottom-color: black;
     
@@ -45,8 +53,7 @@
 
 .btn-header:hover {
     font-size: 16px;
-    border: 2px solid;
-
+    color: white;
 }
 
 .btn-header:focus {
@@ -215,3 +222,24 @@ body > .container {
 
 
 /* Fim BuscaTrabalhos */
+
+@media screen and (max-width: 1000px){
+	.header-texto {
+        text-align: center;
+	}
+    .header {
+        text-align: center;
+    }
+    .header-foto {
+        margin-left: 0px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+   
+}
+
+@media screen and (max-width: 500px){
+    
+}
