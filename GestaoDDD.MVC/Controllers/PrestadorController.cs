@@ -176,8 +176,9 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
-        public ActionResult MeuPerfil()
+        public ActionResult MeuPerfil(string usuarioId)
         {
+
             return View();
         }
 

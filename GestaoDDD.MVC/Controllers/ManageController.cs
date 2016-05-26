@@ -41,7 +41,8 @@ namespace GestaoDDD.MVC.Controllers
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await _userManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                UsuarioId = userId
             };
             return View(model);
         }

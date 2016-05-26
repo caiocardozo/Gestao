@@ -26,7 +26,12 @@
             Logins Sociais: @Model.Logins.Count
             @Html.ActionLink("[ Gerenciar ]", "ManageLogins")
         </dd>
-            @*<dt>Número de telefone:</dt>*@
+        <dt>Dados cadastrais:</dt>
+        <dd>
+            @Html.ActionLink("[ Meu Perfil ]", "MeuPerfil", "Prestador", new {usuarioId = @Model.UsuarioId}, null)
+        </dd>
+
+        @*<dt>Número de telefone:</dt>*@
             @*<dd>
                 Número do Telefone: @(Model.PhoneNumber ?? "Nenhum") [
                 @if (Model.PhoneNumber != null)
