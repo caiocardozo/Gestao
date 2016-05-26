@@ -38,7 +38,8 @@ namespace GestaoDDD.MVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            var prestadorViewModel = Mapper.Map<IEnumerable<Prestador>, IEnumerable<PrestadorViewModel>>(_prestadorApp.GetAll());
+            var prestadorViewModel =
+                Mapper.Map<IEnumerable<Prestador>, IEnumerable<PrestadorViewModel>>(_prestadorApp.GetAll());
             return View(prestadorViewModel);
         }
 
@@ -75,34 +76,51 @@ namespace GestaoDDD.MVC.Controllers
                     Prestador prestador = new Prestador();
 
                     //primeiro efetua o cadastro do usuario
-                    var user = new ApplicationUser { UserName = prestadorUsuario.pres_email, Email = prestadorUsuario.pres_email};
+                    var user = new ApplicationUser
+                    {
+                        UserName = prestadorUsuario.pres_email,
+                        Email = prestadorUsuario.pres_email
+                    };
                     //adicionar a role para este usuario
                     IdentityUserRole role = new IdentityUserRole();
-                    role.RoleId = "2";//role 2 e role prestador
+                    role.RoleId = "2"; //role 2 e role prestador
                     role.UserId = user.Id;
                     user.Roles.Add(role);
                     var result = await _userManager.CreateAsync(user, prestadorUsuario.Senha);
-                    //pega o usuario cadastrado e adiciona ele no objeto prestador
-                    Usuario usuarioCadastrado = _usuarioApp.ObterPorEmail(prestadorUsuario.pres_email);
-                    prestador.pres_Nome = prestadorUsuario.pres_nome;
-                    prestador.pres_Email = prestadorUsuario.pres_email;
-                    prestador.pres_Cpf_Cnpj = prestadorUsuario.pres_cpf_cnpj;
-                    prestador.pres_Endereco = prestadorUsuario.pres_endereco;
-                    prestador.pres_Telefone_Celular = prestadorUsuario.pres_telefone_celular;
-                    prestador.pres_Telefone_Residencial = prestadorUsuario.pres_telefone_residencial;
-                    prestador.status = EnumStatus.Orcamento_bloqueado;
-                    prestador.pres_Raio_Recebimento = "0";
-                    prestador.Usuario = usuarioCadastrado;
-                    _prestadorApp.SaveOrUpdate(prestador);
-                    //redireciona o cara para continuar o processo de cadastro dos serviços
-                    return RedirectToAction("ServicosCategorias", "Servico",
-                                       new
-                                       {
-                                           cpf = prestador.pres_Cpf_Cnpj,
-                                           nome = prestador.pres_Nome,
-                                           email = prestador.pres_Email,
-                                           celular = prestador.pres_Telefone_Celular
-                                       });
+                    if (result.Succeeded)
+                    {
+                        //pega o usuario cadastrado e adiciona ele no objeto prestador
+                        Usuario usuarioCadastrado = _usuarioApp.ObterPorEmail(prestadorUsuario.pres_email);
+                        prestador.pres_Nome = prestadorUsuario.pres_nome;
+                        prestador.pres_Email = prestadorUsuario.pres_email;
+                        prestador.pres_Cpf_Cnpj = prestadorUsuario.pres_cpf_cnpj;
+                        prestador.pres_Endereco = prestadorUsuario.pres_endereco;
+                        prestador.pres_Telefone_Celular = prestadorUsuario.pres_telefone_celular;
+                        prestador.pres_Telefone_Residencial = prestadorUsuario.pres_telefone_residencial;
+                        prestador.status = EnumStatus.Orcamento_bloqueado;
+                        prestador.pres_Raio_Recebimento = "0";
+                        prestador.Usuario = usuarioCadastrado;
+                        _prestadorApp.SaveOrUpdate(prestador);
+                        //redireciona o cara para continuar o processo de cadastro dos serviços
+                        return RedirectToAction("ServicosCategorias", "Servico",
+                            new
+                            {
+                                cpf = prestador.pres_Cpf_Cnpj,
+                                nome = prestador.pres_Nome,
+                                email = prestador.pres_Email,
+                                celular = prestador.pres_Telefone_Celular
+                            });
+                    }
+                    else
+                    {
+                        foreach (var erro in result.Errors)
+                        {
+                            var erros = "";
+                            erros += erro;
+                        }
+                        return View(prestadorUsuario);
+                    }
+
                 }
                 else
                 {
@@ -115,6 +133,7 @@ namespace GestaoDDD.MVC.Controllers
                 return RedirectToAction("ErroAoCadastrar");
             }
         }
+
         public ActionResult ExibirOrcamentos()
         {
             //Essa view ta aqui so por questao de teste... Ela nao existe no sistema, era so pra chamar ela e debugar esse processo aqui.
