@@ -166,13 +166,13 @@
 
                 <div class="form-group">
                     <label>Endereço a realizar o serviço:</label>
-                    <input type="text" id="orc_Endereco" name="orc_Endereco" class="form-control" style="width:450px;" />
+                    <input type="text" id="orc_Endereco" name="orc_Endereco" class="form-control" />
                     @Html.ValidationMessageFor(model => model.orc_Endereco, "", new { @class = "text-danger" })
                 </div>
-                <div>
+                @*<div>
                     <input type="button" class="btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
-                </div>
-                <div id="mapa" class="map-mapa"></div>
+                </div>*@
+                <div id="mapa" class="map-mapa" style="top: 2px;"></div>
                 <input type="hidden" id="orc_latitude" name="orc_latitude" />
                 <input type="hidden" id="orc_longitude" name="orc_longitude" />
 

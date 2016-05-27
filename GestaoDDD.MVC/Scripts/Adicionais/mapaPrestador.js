@@ -33,7 +33,7 @@ $(document).ready(function () {
 					var latitude = results[0].geometry.location.lat();
 					var longitude = results[0].geometry.location.lng();
 		
-					$('#pres_endereco').val(results[0].formatted_address);
+					$('#pres_Endereco').val(results[0].formatted_address);
 					$('#orc_latitude').val(latitude);
                    	$('#orc_longitude').val(longitude);
 		
@@ -48,10 +48,10 @@ $(document).ready(function () {
 	
 	$("#btnEndereco").click(function() {
 		if($(this).val() != "")
-		    carregarNoMapa($("#pres_endereco").val());
+		    carregarNoMapa($("#pres_Endereco").val());
 	})
 	
-	$("#pres_endereco").blur(function () {
+	$("#pres_Endereco").blur(function () {
 		if($(this).val() != "")
 			carregarNoMapa($(this).val());
 	})
@@ -60,7 +60,7 @@ $(document).ready(function () {
 		geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {  
-				    $('#pres_endereco').val(results[0].formatted_address);
+				    $('#pres_Endereco').val(results[0].formatted_address);
 					$('#orc_latitude').val(marker.getPosition().lat());
 					$('#orc_longitude').val(marker.getPosition().lng());
 				}
@@ -68,7 +68,7 @@ $(document).ready(function () {
 		});
 	});
 	
-	$("#pres_endereco").autoComplete({
+	$("#pres_Endereco").autoComplete({
 		source: function (request, response) {
 			geocoder.geocode({ 'address': request.term + ', Brasil', 'region': 'BR' }, function (results, status) {
 				response($.map(results, function (item) {
@@ -94,7 +94,7 @@ $(document).ready(function () {
 	$("form").submit(function(event) {
 		event.preventDefault();
 		
-		var endereco = $("#pres_endereco").val();
+		var endereco = $("#pres_Endereco").val();
 		var latitude = $("#orc_latitude").val();
 		var longitude = $("#orc_longitude").val();
 		

@@ -92,22 +92,22 @@
                 @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new { @class = "text-danger" })
             </div>
 
-            <div class="col-form form-group col-md-10">
+            <div class="col-form form-group col-md-12">
                 <label for="endereço">Endereço:</label>
-                <input type="text" id="pres_endereco" name="pres_endereco" class="form-control" />
+                <input type="text" id="pres_Endereco" name="pres_Endereco" class="form-control" />
                 @*@Html.EditorFor(model => model.pres_endereco, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.pres_endereco, "", new { @class = "text-danger" })
             </div>
-            <div class="botao-marcar col-md-2 ">
+            @*<div class="botao-marcar col-md-2 ">
                     <input type="button" class="botao btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
-                </div>
+                </div>*@
 
 
-                <div class="mapa col-md-12">
-                    <div id="mapa" class="map-mapa"></div>
-                    <input type="hidden" id="orc_latitude" name="orc_latitude" />
-                    <input type="hidden" id="orc_longitude" name="orc_longitude" />
-                </div>
+            <div class="mapa col-md-12">
+                <div id="mapa" class="map-mapa"></div>
+                <input type="hidden" id="orc_latitude" name="orc_latitude" />
+                <input type="hidden" id="orc_longitude" name="orc_longitude" />
+            </div>
 
             <div class="col-form form-group col-md-12">
                 @Html.CheckBoxFor(x => x.TermosECondicoes)
