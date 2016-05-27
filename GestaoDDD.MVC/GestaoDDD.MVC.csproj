@@ -304,6 +304,7 @@
     <Content Include="Scripts\Adicionais\administrativo.js" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
     <Content Include="Scripts\Adicionais\loginsExternos.js" />
+    <Content Include="Scripts\Adicionais\mapaPrestador.js" />
     <Content Include="Scripts\Adicionais\mapa.js" />
     <Content Include="Scripts\Adicionais\menufixo.js" />
     <Content Include="Scripts\Adicionais\modalServicoPrestador.js" />

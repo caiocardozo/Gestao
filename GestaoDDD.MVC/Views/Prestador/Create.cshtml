@@ -8,9 +8,9 @@
 
 
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
-<script src="~/Scripts/Adicionais/mapa.js"></script>
+<script src="~/Scripts/Adicionais/mapaPrestador.js"></script>
 <script src="~/Scripts/jquery-ui.custom.min.js"></script>
-
+<script src="~/Scripts/jquery-2.1.4.js"></script>
 <div class="container">
 
     <div class="row banner col-md-12">
@@ -70,29 +70,35 @@
 
             <div class="col-form form-group col-md-4">
                 <label for="telefone">Telefone Residencial:</label>
-                @Html.EditorFor(model => model.pres_telefone_residencial, new { htmlAttributes = new { @class = "form-control" } })
+
+                <input class="form-control text-box single-line" id="pres_telefone_residencial" maxlength="15" size="15" name="pres_telefone_residencial" type="text" pattern="\(\d{2}\) \d{4}-\d{4}" placeholder="(99) 9999-9999">
+
+                @*@Html.EditorFor(model => model.pres_telefone_residencial, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.pres_telefone_residencial, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-form form-group col-md-4">
                 <label for="telefone">Telefone Celular:</label>
-                @Html.EditorFor(model => model.pres_telefone_celular, new { htmlAttributes = new { @class = "form-control" } })
+                <input class="form-control text-box single-line" id="pres_telefone_celular" maxlength="15" size="15" name="pres_telefone_celular" type="text" pattern="\(\d{2}\) \d{4}-\d{4}" placeholder="(99) 9999-9999">
+
+
+                @*@Html.EditorFor(model => model.pres_telefone_celular, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.pres_telefone_celular, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-form-2 form-group col-md-4">
                 <label for="cpfcnpj">CPF / CNPJ:</label>
-                @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control" } })
+                <input class="input-validation-error form-control text-box single-line" data-val="true" data-val-required="Preencha o campo endereço." id="pres_endereco" name="pres_endereco" type="number" value="">
                 @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-form form-group col-md-10">
                 <label for="endereço">Endereço:</label>
-                @Html.EditorFor(model => model.pres_endereco, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="text" id="pres_endereco" name="pres_endereco" class="form-control" />
+                @*@Html.EditorFor(model => model.pres_endereco, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.pres_endereco, "", new { @class = "text-danger" })
             </div>
-
-                <div class="botao-marcar col-md-2 ">
+            <div class="botao-marcar col-md-2 ">
                     <input type="button" class="botao btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
                 </div>
 
@@ -102,15 +108,16 @@
                     <input type="hidden" id="orc_latitude" name="orc_latitude" />
                     <input type="hidden" id="orc_longitude" name="orc_longitude" />
                 </div>
-                <div class="col-form form-group col-md-12">
-                    @Html.CheckBoxFor(x => x.TermosECondicoes)
-                    @Html.LabelFor(x => x.TermosECondicoes)
-                    @Html.ValidationMessageFor(model => model.TermosECondicoes, "", new { @class = "text-danger" })
-                </div>
 
-                <div class="col-form col-md-12">
-                    <input type="submit" class="btn btn-enviar" />
-                </div>
+            <div class="col-form form-group col-md-12">
+                @Html.CheckBoxFor(x => x.TermosECondicoes)
+                @Html.LabelFor(x => x.TermosECondicoes)
+                @Html.ValidationMessageFor(model => model.TermosECondicoes, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-form col-md-12">
+                <input type="submit" class="btn btn-enviar" />
+            </div>
 
         }
     </div>
