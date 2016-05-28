@@ -1,4 +1,5 @@
-﻿using GestaoDDD.Domain.Entities;
+﻿using System.Linq;
+using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Infra.Data.Contexto;
 using System;
@@ -33,7 +34,7 @@ namespace GestaoDDD.Infra.Data.Repositories
         //obtem o usuario atraves do email
         public Usuario ObterPorEmail(string email)
         {
-            return _gestaoContext.Usuario.Find(email);
+            return _db.Usuario.First(u => u.Email == email);
         }
 
         public void Dispose()

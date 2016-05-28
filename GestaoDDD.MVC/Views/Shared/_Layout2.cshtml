@@ -9,7 +9,11 @@
     @Styles.Render("~/Content/css")
 
     <link href="~/Content/_Layout/layout2.css" rel="stylesheet" />
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @* Arquivo .min nao pode ir para o bundles, pois o bundles minifica
+        os arquivos, entao arquivo ja minificado nao funciona por isso coloquei aqui  *@
+    <script src="~/Scripts/jquery-ui.custom.min.js"></script>
   
 
 </head>
@@ -107,9 +111,7 @@
 
     @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-   
+
 
 </body>
        <div class="prefooter col-md-6">

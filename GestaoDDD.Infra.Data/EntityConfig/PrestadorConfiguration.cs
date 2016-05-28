@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using GestaoDDD.Domain.Entities;
+﻿using GestaoDDD.Domain.Entities;
 using System.Data.Entity.ModelConfiguration;
 
 namespace GestaoDDD.Infra.Data.EntityConfig
@@ -10,8 +9,11 @@ namespace GestaoDDD.Infra.Data.EntityConfig
         {
             HasKey(c => c.pres_Id);
 
-            Property(c => c.pres_Id).HasColumnName("Id");
-
+            Property(u => u.pres_Id)
+                .HasColumnName("Id")
+                .IsRequired()
+                .HasMaxLength(128);
+            
             Property(c => c.pres_Nome)
                 .IsRequired()
                 .HasMaxLength(120).HasColumnName("nome");
@@ -36,7 +38,7 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             Property(c => c.status).HasColumnName("status");
 
-            Property(c => c.UsuarioId).HasColumnName("usuario_id");
+           // Property(c => c.UsuarioId).HasColumnName("usuario_id");
         }
     }
 }

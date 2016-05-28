@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using EnumStatus = GestaoDDD.Domain.Entities.EnumStatus;
 
@@ -73,62 +74,75 @@ namespace GestaoDDD.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Prestador prestador = new Prestador();
-
-                    //primeiro efetua o cadastro do usuario
-                    var user = new ApplicationUser
+                    var retorno = _userManager.FindByEmail(prestadorUsuario.pres_email);
+                    if (retorno != null)
                     {
-                        UserName = prestadorUsuario.pres_email,
-                        Email = prestadorUsuario.pres_email
-                    };
-                    //adicionar a role para este usuario
-                    IdentityUserRole role = new IdentityUserRole();
-                    role.RoleId = "2"; //role 2 e role prestador
-                    role.UserId = user.Id;
-                    user.Roles.Add(role);
-                    var result = await _userManager.CreateAsync(user, prestadorUsuario.Senha);
-                    if (result.Succeeded)
-                    {
-                        //pega o usuario cadastrado e adiciona ele no objeto prestador
-                        Usuario usuarioCadastrado = _usuarioApp.ObterPorEmail(prestadorUsuario.pres_email);
-                        prestador.pres_Nome = prestadorUsuario.pres_nome;
-                        prestador.pres_Email = prestadorUsuario.pres_email;
-                        prestador.pres_Cpf_Cnpj = prestadorUsuario.pres_cpf_cnpj;
-                        prestador.pres_Endereco = prestadorUsuario.pres_endereco;
-                        prestador.pres_Telefone_Celular = prestadorUsuario.pres_telefone_celular;
-                        prestador.pres_Telefone_Residencial = prestadorUsuario.pres_telefone_residencial;
-                        prestador.status = EnumStatus.Orcamento_bloqueado;
-                        prestador.pres_Raio_Recebimento = "0";
-                        prestador.UsuarioId = user.Id;
-                        _prestadorApp.SaveOrUpdate(prestador);
-                        //redireciona o cara para continuar o processo de cadastro dos serviços
-                        return RedirectToAction("ServicosCategorias", "Servico",
-                            new
-                            {
-                                cpf = prestador.pres_Cpf_Cnpj,
-                                nome = prestador.pres_Nome,
-                                email = prestador.pres_Email,
-                                celular = prestador.pres_Telefone_Celular
-                            });
+                        ModelState.AddModelError("pres_email", "Email já cadastrado");
+                        return View(prestadorUsuario);
                     }
                     else
                     {
-                        foreach (var erro in result.Errors)
-                        {
-                            var erros = "";
-                            erros += erro;
-                        }
-                        return View(prestadorUsuario);
-                    }
+                        Prestador prestador = new Prestador();
 
+                        //primeiro efetua o cadastro do usuario
+                        var user = new ApplicationUser
+                        {
+                            UserName = prestadorUsuario.pres_email,
+                            Email = prestadorUsuario.pres_email
+                        };
+                        //adicionar a role para este usuario
+                        IdentityUserRole role = new IdentityUserRole();
+                        role.RoleId = "2"; //role 2 e role prestador
+                        role.UserId = user.Id;
+                        user.Roles.Add(role);
+                        var result = _userManager.Create(user, prestadorUsuario.Senha);
+                        if (result.Succeeded)
+                        {
+                            //pega o usuario cadastrado e adiciona ele no objeto prestador
+                            Usuario usuarioCadastrado = new Usuario();
+                            usuarioCadastrado = _usuarioApp.ObterPorEmail(prestadorUsuario.pres_email);
+                            prestador.Usuario = usuarioCadastrado;
+                            prestador.pres_Nome = prestadorUsuario.pres_nome;
+                            prestador.pres_Email = prestadorUsuario.pres_email;
+                            prestador.pres_Cpf_Cnpj = prestadorUsuario.pres_cpf_cnpj;
+                            prestador.pres_Endereco = prestadorUsuario.pres_endereco;
+                            prestador.pres_Telefone_Celular = prestadorUsuario.pres_telefone_celular;
+                            prestador.pres_Telefone_Residencial = prestadorUsuario.pres_telefone_residencial;
+                            prestador.status = EnumStatus.Orcamento_bloqueado;
+                            prestador.pres_Raio_Recebimento = "0";
+                            prestador.pres_Id = user.Id;
+                           
+                            _prestadorApp.SaveOrUpdate(prestador);
+                            //redireciona o cara para continuar o processo de cadastro dos serviços
+                            return RedirectToAction("ServicosCategorias", "Servico",
+                                new
+                                {
+                                    cpf = prestador.pres_Cpf_Cnpj,
+                                    nome = prestador.pres_Nome,
+                                    email = prestador.pres_Email,
+                                    celular = prestador.pres_Telefone_Celular
+                                });
+                        }
+                        else
+                        {
+                            foreach (var erro in result.Errors)
+                            {
+                                var erros = "";
+                                erros += erro;
+                            }
+                            return View(prestadorUsuario);
+                        }
+
+                    }
                 }
+
                 else
                 {
                     return View(prestadorUsuario);
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return RedirectToAction("ErroAoCadastrar");
             }

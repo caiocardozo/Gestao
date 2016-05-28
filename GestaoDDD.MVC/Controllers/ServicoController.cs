@@ -42,7 +42,8 @@ namespace GestaoDDD.MVC.Controllers
 
 
         [HttpPost]
-        public ActionResult ServicosCategorias(FormCollection collection, string cpfPrestador, string nome, string celular, string email)
+        public ActionResult ServicosCategorias(FormCollection collection,string cpfPrestador,
+            string nome, string celular, string email, string[] selectGrupos)
         {
             try
             {

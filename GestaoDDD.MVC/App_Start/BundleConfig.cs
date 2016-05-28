@@ -7,11 +7,13 @@ namespace GestaoDDD.MVC
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            //referencia do jquery apontada na mao, assim cada atualizacao teria de vir aqui trocar
+            //agora ele pega sempre a ultima versao instalada
+            //removi o arquivo .min, arquivo .min tanto em .js quanto .css nao pode estar aqui
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-2.1.4.min.js")
-                        .Include("~/Scripts/Adicionais/menufixo.js")
-                        .Include ("~/Scripts/jquery-ui.custom.min.js")
-                        .Include("~/Scripts/Adicionais/mapa.js")                
+                        "~/Scripts/jquery-{version}.js",
+                       "~/Scripts/Adicionais/menufixo.js",
+                       "~/Scripts/Adicionais/mapa.js")                
                         );
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

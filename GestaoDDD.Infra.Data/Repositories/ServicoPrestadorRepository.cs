@@ -23,8 +23,8 @@ namespace GestaoDDD.Infra.Data.Repositories
 
             foreach (var check in checkboxes) 
             {
-                Objeto.prestador_Id = prestador;
-                Objeto.servico_Id = check;
+                //Objeto.pres_Id = prestador;
+                //Objeto.servico_Id = check;
                 
                 SaveOrUpdate(Objeto);
             }
