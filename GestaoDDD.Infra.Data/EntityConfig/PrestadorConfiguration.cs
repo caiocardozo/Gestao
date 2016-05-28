@@ -37,6 +37,19 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.status).HasColumnName("status");
 
             Property(c => c.UsuarioId).HasColumnName("usuario_id");
+
+            Property(c => c.foto).HasColumnName("caminho_foto");
+
+            Property(c => c.apresentacao_Empresa).HasColumnName("apresentacao_empresa");
+
+            Property(c => c.apresentacao_Pesssoal).HasColumnName("apresentacao_pessoal");
+
+            Property(c => c.nome_Empresa).HasColumnName("nome_empresa");
+
+            Property(c => c.pres_latitude).HasColumnName("latitude");
+
+            Property(c => c.pres_longitude).HasColumnName("longitude");
+
         }
     }
 }

@@ -23,8 +23,16 @@ namespace GestaoDDD.Domain.Entities
         public EnumStatus status { get; set; }
 
         public string UsuarioId { get; set; }
-        //public virtual Usuario UsuarioId { get; set; }
 
+        public string nome_Empresa { get; set; }
+
+        public string foto { get; set; }
+
+        public string apresentacao_Pesssoal { get; set; }
+        public string apresentacao_Empresa { get; set; }
+
+        public string pres_latitude { get; set; }
+        public string pres_longitude { get; set; }
     }
 
     [DataContract]
