@@ -430,6 +430,7 @@
     <Content Include="Views\Prestador\MeuPerfil.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Prestador\PrestadorCadastroSucesso.cshtml" />
+    <Content Include="Views\Prestador\EditarPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
