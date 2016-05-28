@@ -7,7 +7,7 @@
 
         var ListaCategoria = ViewBag.CategoriaModel as IEnumerable<CategoriaViewModel>;
         //Wagner Nogueira 02-02-16
-        var cpfPrestador = ViewBag.Cpf as string;
+        var cpf = ViewBag.Cpf as string;
         var nome = ViewBag.Nome as string;
         var email = ViewBag.Email as string;
         var celular = ViewBag.Celular as string;
@@ -63,15 +63,15 @@
 
 
         @*02-02-16 Wagner Nogueira*@
-        <input type="hidden" value="@cpfPrestador" name="cpfPrestador" />
-        <input type="hidden" value="@nome" name="nome" />
-        <input type="hidden" value="@email" name="email" />
-        <input type="hidden" value="@celular" name="celular" />
+       
         <div class="form-group"><input type="submit" value="Cadastrar" class="btn btn-lg"/></div>
        
 
     }
-
+                      <input type="hidden" value="@cpf" name="cpfPrestador" />
+                      <input type="hidden" value="@nome" name="nome" />
+                      <input type="hidden" value="@email" name="email" />
+                      <input type="hidden" value="@celular" name="celular" />
 
 
     @*<div class="container">

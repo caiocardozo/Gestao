@@ -42,32 +42,31 @@ namespace GestaoDDD.MVC.Controllers
 
 
         [HttpPost]
-        public ActionResult ServicosCategorias(FormCollection collection,string cpfPrestador,
-            string nome, string celular, string email, string[] selectGrupos)
+        public ActionResult ServicosCategorias(FormCollection collection, string cpf,
+            string nome, string celular, string email)
         {
             try
             {
                 var checkboxes = new List<Servico>();
                 foreach (var col in collection)
                 {
-
-                    if (col.ToString() != "cpfPrestador")
-                    {
+                    //if (col.ToString() != "cpfPrestador") retirei pois nao vem mais na collection
+                    //{
                         int servId;
                         Int32.TryParse(col.ToString(), out servId);
                         var servico = _iServicoApp.GetById(servId);
                         checkboxes.Add(servico);
-                    }
+                    //}
                 }
-                //var prestador = _iPrestadorApp.GetPorCpf(cpfPrestador);
-                var pts = new Prestador();
-                pts.pres_Cpf_Cnpj = cpfPrestador;
-                pts.pres_Nome = nome;
-                pts.pres_Telefone_Celular = celular;
-                pts.pres_Email = email;
+                var prestador = _iPrestadorApp.GetPorCpf(cpf);
+                //var pts = new Prestador();
+                //pts.pres_Cpf_Cnpj = cpf;
+                //pts.pres_Nome = nome;
+                //pts.pres_Telefone_Celular = celular;
+                //pts.pres_Email = email;
 
-                _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, pts);
-                return RedirectToAction("Index", "PrestadorCadastroSucesso", "Prestador");
+                _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
+                return RedirectToAction("PrestadorCadastroSucesso", "Prestador");
             }
             catch
             {

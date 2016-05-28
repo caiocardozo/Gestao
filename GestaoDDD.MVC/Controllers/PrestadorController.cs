@@ -95,7 +95,12 @@ namespace GestaoDDD.MVC.Controllers
                         role.RoleId = "2"; //role 2 e role prestador
                         role.UserId = user.Id;
                         user.Roles.Add(role);
+                        //cria o usuario
                         var result = _userManager.Create(user, prestadorUsuario.Senha);
+                        //envia o email de confirmação para o usuario
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
                         if (result.Succeeded)
                         {
                             //pega o usuario cadastrado e adiciona ele no objeto prestador
@@ -111,8 +116,7 @@ namespace GestaoDDD.MVC.Controllers
                             prestador.status = EnumStatus.Orcamento_bloqueado;
                             prestador.pres_Raio_Recebimento = "0";
                             prestador.pres_Id = user.Id;
-                           
-                            _prestadorApp.SaveOrUpdate(prestador);
+                           _prestadorApp.SaveOrUpdate(prestador);
                             //redireciona o cara para continuar o processo de cadastro dos serviços
                             return RedirectToAction("ServicosCategorias", "Servico",
                                 new
