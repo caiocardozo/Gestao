@@ -24,7 +24,7 @@
     <div class="row banner-baixo col-md-12 center-block">
         <div class="row texto-bannerbaixo col-md-12">
             Você é um profissional e <b>busca novos clientes?</b>
-            <a href="~/Prestador/Cadastrar"><input type="button" class="btn" value="Cadastre-se" /></a>
+            <a href="~/Prestador/Create"><input type="button" class="btn" value="Cadastre-se" /></a>
         </div>
     </div>
 
@@ -88,25 +88,36 @@
 
             <div class="col-form-2 form-group col-md-4">
                 <label for="cpfcnpj">CPF / CNPJ:</label>
-                <input class="input-validation-error form-control text-box single-line" data-val="true" data-val-required="Preencha o campo endereço." id="pres_endereco" name="pres_endereco" type="number" value="">
+                <input class="input-validation-error form-control text-box single-line" data-val="true" data-val-required="Preencha o campo endereço." id="pres_cpf_cnpj" name="pres_cpf_cnpj" type="number" value="">
                 @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new { @class = "text-danger" })
             </div>
 
-            <div class="col-form form-group col-md-12">
+            <div class="col-form form-group col-md-9">
                 <label for="endereço">Endereço:</label>
-                <input type="text" id="pres_Endereco" name="pres_Endereco" class="form-control" />
+                <input type="text" id="pres_endereco" name="pres_endereco" class="form-control" />
                 @*@Html.EditorFor(model => model.pres_endereco, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.pres_endereco, "", new { @class = "text-danger" })
             </div>
             @*<div class="botao-marcar col-md-2 ">
                     <input type="button" class="botao btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
                 </div>*@
-
+            <div class="col-form form-group col-md-3">
+                <label for="raioatuacao">Raio de Atuação em KM:</label>
+                <select class="form-control" id="pres_Raio_Recebimento" name="pres_Raio_Recebimento">
+                    <option>10</option>
+                    <option>30</option>
+                    <option>60</option>
+                    <option>70</option>
+                    <option>100</option>
+                    <option>150</option>
+                    <option>200</option>
+                </select>
+            </div>
 
             <div class="mapa col-md-12">
                 <div id="mapa" class="map-mapa"></div>
-                <input type="hidden" id="orc_latitude" name="orc_latitude" />
-                <input type="hidden" id="orc_longitude" name="orc_longitude" />
+                <input type="hidden" id="pres_Latitude" name="pres_Latitude" />
+                <input type="hidden" id="pres_Longitude" name="pres_Longitude" />
             </div>
 
             <div class="col-form form-group col-md-12">

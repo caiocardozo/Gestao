@@ -18,5 +18,11 @@ namespace GestaoDDD.Application.Services
         {
             _servicoPresService.SalvarServicosPrestador(checkboxes, prestador);
         }
+
+
+        public IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(int prestadorId)
+        {
+            return _servicoPresService.GetServicoPorPrestadorId(prestadorId);
+        }
     }
 }

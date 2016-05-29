@@ -49,8 +49,22 @@ namespace GestaoDDD.Application.ViewModels
         [Compare("Senha", ErrorMessage = "A Nova Senha e Confirmação não conferem.")]
         public string ConfirmaSenha { get; set; }
 
+        public string nome_Empresa { get; set; }
+
+        public string foto { get; set; }
+
+        public string apresentacao_Pesssoal { get; set; }
+        
+        public string apresentacao_Empresa { get; set; }
+        [Required]
+        public string pres_latitude { get; set; }
+        [Required]
+        public string pres_longitude { get; set; }
+
         [DisplayName("Li e aceito as condições.")]
         [Range(typeof(bool), "true", "true", ErrorMessage = "Aceite os termos e condições")]
         public bool TermosECondicoes { get; set; }
+
+        public string pres_Raio_Recebimento { get; set; }
     }
 }

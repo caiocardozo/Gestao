@@ -6,5 +6,7 @@ namespace GestaoDDD.Domain.Interfaces.Services
     public interface IServicoPrestadorService : IServiceBase<ServicoPrestador>
     {
         void SalvarServicosPrestador(IEnumerable<Servico> checkboxes, Prestador prestador);
+        IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(int prestadorId);
     }
+
 }

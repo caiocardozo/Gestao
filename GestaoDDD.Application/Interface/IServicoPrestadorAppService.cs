@@ -7,6 +7,7 @@ namespace GestaoDDD.Application.Interface
     {
         void SalvarServicosPrestador(IEnumerable<Servico> checkboxes, Prestador prestador);
 
-        //void CalcularDistanciaOrcamentos();
+        IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(int prestadorId);
+
     }
 }

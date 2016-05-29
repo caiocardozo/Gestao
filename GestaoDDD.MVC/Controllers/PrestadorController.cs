@@ -21,18 +21,20 @@ namespace GestaoDDD.MVC.Controllers
     {
         private readonly IPrestadorAppService _prestadorApp;
         private readonly IUsuarioAppService _usuarioApp;
-        private readonly IOrcamentoService _orcamentoApp;
+        private readonly IOrcamentoAppService _orcamentoApp;
+        private readonly IServicoPrestadorAppService _servicoPrestadorApp;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public PrestadorController(IPrestadorAppService prestadorApp, IOrcamentoService orcamentoApp,
-            IUsuarioAppService usuarioApp, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public PrestadorController(IPrestadorAppService prestadorApp, IOrcamentoAppService orcamentoApp,
+            IUsuarioAppService usuarioApp, IServicoPrestadorAppService servicoPrestadorApp, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             _prestadorApp = prestadorApp;
             _orcamentoApp = orcamentoApp;
             _userManager = userManager;
             _signInManager = signInManager;
             _usuarioApp = usuarioApp;
+            _servicoPrestadorApp = servicoPrestadorApp;
         }
 
         [Authorize(Roles = "Admin")]
@@ -98,7 +100,9 @@ namespace GestaoDDD.MVC.Controllers
                         prestador.pres_Telefone_Celular = prestadorUsuario.pres_telefone_celular;
                         prestador.pres_Telefone_Residencial = prestadorUsuario.pres_telefone_residencial;
                         prestador.status = EnumStatus.Orcamento_bloqueado;
-                        prestador.pres_Raio_Recebimento = "0";
+                        prestador.pres_Raio_Recebimento = prestadorUsuario.pres_Raio_Recebimento;
+                        prestador.pres_latitude = prestadorUsuario.pres_latitude;
+                        prestador.pres_longitude = prestadorUsuario.pres_longitude;
                         prestador.UsuarioId = user.Id;
                         _prestadorApp.SaveOrUpdate(prestador);
                         //redireciona o cara para continuar o processo de cadastro dos serviços
@@ -202,8 +206,12 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult MeuPerfil(string usuarioId)
         {
+            var prestador = _prestadorApp.GetPorGuid(usuarioId);
+            var prestadorVm = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
 
-            return View();
+            var servicoPrestador = _servicoPrestadorApp.GetServicoPorPrestadorId(prestadorVm.pres_Id);
+            //var servicoPrestadorVm = Mapper.Map<IEnumerable<ServicoPrestador>, IEnumerable<ServicoPrestadorViewModel>>(servicoPrestador);
+            return View(prestadorVm);
         }
 
         public ActionResult Editar(int id)

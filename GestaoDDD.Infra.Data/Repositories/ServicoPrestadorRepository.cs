@@ -30,6 +30,9 @@ namespace GestaoDDD.Infra.Data.Repositories
             }
         }
 
-        private void VerificarSeExiste() { }
+        public IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(int prestadorId)
+        {
+            return _db.ServicoPrestador.Where(s => s.prestador_Id.pres_Id.Equals(prestadorId));
+        }
     }
 }

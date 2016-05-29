@@ -9,14 +9,20 @@ namespace GestaoDDD.Domain.Services
     {
         private readonly IServicoPrestadorRepository _servPrestRepo;
         public ServicoPrestadorService(IServicoPrestadorRepository servPrestRepo)
-            :base(servPrestRepo)
+            : base(servPrestRepo)
         {
             _servPrestRepo = servPrestRepo;
         }
 
-        public void SalvarServicosPrestador(IEnumerable<Servico> checkboxes, Prestador prestador) 
+        public void SalvarServicosPrestador(IEnumerable<Servico> checkboxes, Prestador prestador)
         {
             _servPrestRepo.SalvarServicosPrestador(checkboxes, prestador);
+        }
+
+
+        public IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(int prestadorId)
+        {
+            return _servPrestRepo.GetServicoPorPrestadorId(prestadorId);
         }
     }
 }

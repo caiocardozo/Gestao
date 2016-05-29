@@ -18,5 +18,11 @@ namespace GestaoDDD.Application.Services
           //  return GetPorCpf(cpf); lembra sempre de chamar dentro das interfaces e classes _prestador...
             return _prestadorService.GetPorCpf(cpf);
         }
+
+
+        public Prestador GetPorGuid(string guid)
+        {
+            return _prestadorService.GetPorGuid(guid);
+        }
     }
 }
