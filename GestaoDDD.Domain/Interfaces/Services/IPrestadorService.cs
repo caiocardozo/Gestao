@@ -6,5 +6,8 @@ namespace GestaoDDD.Domain.Interfaces.Services
     {
         Prestador GetPorCpf(string cpf);
         Prestador GetPorGuid(string guid);
+
+        //retorna o prestador atraves do email
+        Prestador GetPorEmail(string email);
     }
 }
