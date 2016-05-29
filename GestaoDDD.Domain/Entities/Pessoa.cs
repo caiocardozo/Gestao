@@ -20,7 +20,7 @@
 
        public string pes_cep { get; set; }
        
-       public virtual Usuario Usuario { get; set; }
+       //public virtual Usuario Usuario { get; set; }
 
     }
 }

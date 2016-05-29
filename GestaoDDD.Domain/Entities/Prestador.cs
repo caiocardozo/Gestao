@@ -1,10 +1,11 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace GestaoDDD.Domain.Entities
 {
     public class Prestador : Entidade
     {
-        public int pres_Id { get; set; }
+        public string pres_Id { get; set; }
 
         public string pres_Nome { get; set; }
 
@@ -21,9 +22,7 @@ namespace GestaoDDD.Domain.Entities
         public string pres_Telefone_Celular { get; set; }
 
         public EnumStatus status { get; set; }
-
-        public string UsuarioId { get; set; }
-
+        
         public string nome_Empresa { get; set; }
 
         public string foto { get; set; }

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using EnumStatus = GestaoDDD.Domain.Entities.EnumStatus;
 
@@ -75,6 +76,14 @@ namespace GestaoDDD.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var retorno = _userManager.FindByEmail(prestadorUsuario.pres_email);
+                    if (retorno != null)
+                    {
+                        ModelState.AddModelError("pres_email", "Email já cadastrado");
+                        return View(prestadorUsuario);
+                    }
+                    else
+                    {
                     Prestador prestador = new Prestador();
 
                     //primeiro efetua o cadastro do usuario
@@ -88,11 +97,18 @@ namespace GestaoDDD.MVC.Controllers
                     role.RoleId = "2"; //role 2 e role prestador
                     role.UserId = user.Id;
                     user.Roles.Add(role);
-                    var result = await _userManager.CreateAsync(user, prestadorUsuario.Senha);
+                        //cria o usuario
+                        var result = _userManager.Create(user, prestadorUsuario.Senha);
+                        //envia o email de confirmação para o usuario
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
                     if (result.Succeeded)
                     {
                         //pega o usuario cadastrado e adiciona ele no objeto prestador
-                        Usuario usuarioCadastrado = _usuarioApp.ObterPorEmail(prestadorUsuario.pres_email);
+                            Usuario usuarioCadastrado = new Usuario();
+                            usuarioCadastrado = _usuarioApp.ObterPorEmail(prestadorUsuario.pres_email);
+                            prestador.Usuario = usuarioCadastrado;
                         prestador.pres_Nome = prestadorUsuario.pres_nome;
                         prestador.pres_Email = prestadorUsuario.pres_email;
                         prestador.pres_Cpf_Cnpj = prestadorUsuario.pres_cpf_cnpj;
@@ -103,7 +119,7 @@ namespace GestaoDDD.MVC.Controllers
                         prestador.pres_Raio_Recebimento = prestadorUsuario.pres_Raio_Recebimento;
                         prestador.pres_latitude = prestadorUsuario.pres_latitude;
                         prestador.pres_longitude = prestadorUsuario.pres_longitude;
-                        prestador.UsuarioId = user.Id;
+                        
                         _prestadorApp.SaveOrUpdate(prestador);
                         //redireciona o cara para continuar o processo de cadastro dos serviços
                         return RedirectToAction("ServicosCategorias", "Servico",
@@ -126,13 +142,15 @@ namespace GestaoDDD.MVC.Controllers
                     }
 
                 }
+                }
+
                 else
                 {
                     return View(prestadorUsuario);
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return RedirectToAction("ErroAoCadastrar");
             }

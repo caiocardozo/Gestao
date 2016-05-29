@@ -23,9 +23,13 @@ namespace GestaoDDD.Infra.Data.EntityConfig
 
             ToTable("AspNetUsers");
 
+            //// MAPEAMENTO DE UM PARA UM
+            //HasRequired(p => p.Pessoa)
+            //    .WithRequiredPrincipal(p => p.Usuario);
+
             // MAPEAMENTO DE UM PARA UM
-            HasRequired(p => p.Pessoa)
-                .WithRequiredPrincipal(p => p.Usuario);
+            HasRequired(p => p.Prestador)
+                .WithRequiredPrincipal(p => p.Usuario);  
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace GestaoDDD.Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace GestaoDDD.Domain.Entities
 {
     public class Servico : Entidade
     {
@@ -9,7 +11,9 @@
         public int cat_Id { get; set; }
         
         public virtual Categoria Categoria { get; set; }
-        
+
+        public virtual ICollection<ServicoPrestador> ServicoPrestador { get; set; }
+
         //Wagner Nogueira 21-03-16 
         //public ICollection<Orcamento> Orcamento { get; set; }
     }

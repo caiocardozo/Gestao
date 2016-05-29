@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using GestaoDDD.Domain.Entities;
 
 namespace GestaoDDD.Application.ViewModels
 {
@@ -45,7 +46,7 @@ namespace GestaoDDD.Application.ViewModels
         [DisplayName("Status")]
         public EnumStatus status { get; set; }
 
-        public string UsuarioId { get; set; }
+        public virtual Usuario Usuario { get; set; }
 
     }
 

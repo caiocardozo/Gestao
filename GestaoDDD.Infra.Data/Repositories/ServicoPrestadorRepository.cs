@@ -19,13 +19,12 @@ namespace GestaoDDD.Infra.Data.Repositories
         public void SalvarServicosPrestador(IEnumerable<Servico> checkboxes, Prestador prestador) 
         {
             ServicoPrestador Objeto = new ServicoPrestador();
-            var servicosPrestador = _db.ServicoPrestador.FirstOrDefault(s => s.serv_Pres_Id.Equals(prestador.pres_Id));
+            //var servicosPrestador = _db.ServicoPrestador.FirstOrDefault(s => s.serv_Pres_Id.Equals(prestador.pres_Id));
 
             foreach (var check in checkboxes) 
             {
-                Objeto.prestador_Id = prestador;
-                Objeto.servico_Id = check;
-                
+                Objeto.pres_Id = prestador.pres_Id;
+                Objeto.serv_Id = check.serv_Id;
                 SaveOrUpdate(Objeto);
             }
         }

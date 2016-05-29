@@ -32,7 +32,9 @@ namespace GestaoDDD.Domain.Entities
 
         public virtual string UserName { get; set; }
 
-        public virtual Pessoa Pessoa { get; set; }
+       // public virtual Pessoa Pessoa { get; set; }
+
+        public virtual Prestador Prestador { get; set; }
     }
 }
 

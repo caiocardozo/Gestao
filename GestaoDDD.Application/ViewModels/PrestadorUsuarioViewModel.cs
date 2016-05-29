@@ -7,14 +7,14 @@ namespace GestaoDDD.Application.ViewModels
     {
         [Key]
         [ScaffoldColumn(false)]
-        public int pres_Id { get; set; }
+        public string pres_Id { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo nome")]
         [DisplayName("Nome")]
         public string pres_nome { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo CPF/CNPJ.")]
-        [DisplayName("Cpf/Cnpj")]
+        [DisplayName("CPF / CNPJ:")]
         public string pres_cpf_cnpj { get; set; }
 
 
@@ -28,11 +28,13 @@ namespace GestaoDDD.Application.ViewModels
         public string pres_email { get; set; }
 
         [DisplayName("Telefone residencial.")]
+        [StringLength(14, ErrorMessage = "A {0} deve conter {2} caracteres ao menos.", MinimumLength = 14)]
         [DataType(DataType.PhoneNumber)]
         public string pres_telefone_residencial { get; set; }
 
 
         [DisplayName("Telefone celular.")]
+        [StringLength(14, ErrorMessage = "A {0} deve conter {2} caracteres ao menos.", MinimumLength = 14)]
         [DataType(DataType.PhoneNumber)]
         public string pres_telefone_celular { get; set; }
 
