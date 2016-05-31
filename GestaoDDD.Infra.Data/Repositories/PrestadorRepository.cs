@@ -21,7 +21,7 @@ namespace GestaoDDD.Infra.Data.Repositories
         }
         public Prestador GetPorGuid(string guid)
         {
-            return _db.Prestador.FirstOrDefault(s => s.UsuarioId.Equals(guid));
+            return _db.Prestador.FirstOrDefault(s => s.Usuario.Id.Equals(guid));
         }
     }
 }

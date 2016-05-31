@@ -20,7 +20,7 @@ namespace GestaoDDD.Application.Services
         }
 
 
-        public IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(int prestadorId)
+        public IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(string prestadorId)
         {
             return _servicoPresService.GetServicoPorPrestadorId(prestadorId);
         }

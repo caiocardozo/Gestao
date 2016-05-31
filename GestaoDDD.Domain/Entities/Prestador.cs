@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿ using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace GestaoDDD.Domain.Entities
@@ -32,6 +32,9 @@ namespace GestaoDDD.Domain.Entities
 
         public string pres_latitude { get; set; }
         public string pres_longitude { get; set; }
+        public virtual Usuario Usuario { get; set; }
+        public ICollection<ServicoPrestador> ServicoPrestador { get; set; }
+      
     }
 
     [DataContract]

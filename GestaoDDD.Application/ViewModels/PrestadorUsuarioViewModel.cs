@@ -18,9 +18,10 @@ namespace GestaoDDD.Application.ViewModels
         public string pres_cpf_cnpj { get; set; }
 
 
-        [Required(ErrorMessage = "Preencha o campo endereço.")]
-        [DisplayName("Endereço")]
-        public string pres_endereco { get; set; }
+        [Required(ErrorMessage = "Preencha o endereço.")]
+        [MaxLength(200, ErrorMessage = "Tamanho máximo de {0} caracteres.")]
+        [MinLength(10, ErrorMessage = "Tamanho minímo de {0} caracteres.")]
+        public string pres_Endereco { get; set; }
 
         [Required(ErrorMessage = "Preencha o e-mail")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Insira um email válido.")]
@@ -59,9 +60,9 @@ namespace GestaoDDD.Application.ViewModels
         
         public string apresentacao_Empresa { get; set; }
         [Required]
-        public string pres_latitude { get; set; }
+        public string pres_Latitude { get; set; }
         [Required]
-        public string pres_longitude { get; set; }
+        public string pres_Longitude { get; set; }
 
         [DisplayName("Li e aceito as condições.")]
         [Range(typeof(bool), "true", "true", ErrorMessage = "Aceite os termos e condições")]

@@ -23,7 +23,7 @@ namespace GestaoDDD.Application.ViewModels
 
         [Required(ErrorMessage = "Preencha o campo endereço.")]
         [DisplayName("Endereço")]
-        public string pres_endereco { get; set; }
+        public string pres_Endereco { get; set; }
 
         [Required(ErrorMessage = "Informe o raio distância que deseja receber os orçamentos")]
         [DisplayName("Raio")]
@@ -45,9 +45,19 @@ namespace GestaoDDD.Application.ViewModels
 
         [DisplayName("Status")]
         public EnumStatus status { get; set; }
-
         public virtual Usuario Usuario { get; set; }
+        
+        public string nome_Empresa { get; set; }
 
+        public string foto { get; set; }
+
+        public string apresentacao_Pesssoal { get; set; }
+
+        public string apresentacao_Empresa { get; set; }
+        [Required]
+        public string pres_Latitude { get; set; }
+        [Required]
+        public string pres_Longitude { get; set; }
     }
 
     [DataContract]

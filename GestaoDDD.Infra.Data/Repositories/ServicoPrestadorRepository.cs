@@ -29,9 +29,9 @@ namespace GestaoDDD.Infra.Data.Repositories
             }
         }
 
-        public IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(int prestadorId)
+        public IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(string prestadorId)
         {
-            return _db.ServicoPrestador.Where(s => s.prestador_Id.pres_Id.Equals(prestadorId));
+            return _db.ServicoPrestador.Where(s => s.Prestador.pres_Id.Equals(prestadorId));
         }
     }
 }

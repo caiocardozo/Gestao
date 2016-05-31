@@ -62,13 +62,9 @@
     <Compile Include="EntityConfig\ServicoConfiguration.cs" />
     <Compile Include="EntityConfig\OrcamentoConfiguration.cs" />
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
-    <Compile Include="Migrations\201605240255176_attdb2.cs" />
-    <Compile Include="Migrations\201605240255176_attdb2.Designer.cs">
-      <DependentUpon>201605240255176_attdb2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605261505348_attdba.cs" />
-    <Compile Include="Migrations\201605261505348_attdba.Designer.cs">
-      <DependentUpon>201605261505348_attdba.cs</DependentUpon>
+    <Compile Include="Migrations\201605312214062_x1.cs" />
+    <Compile Include="Migrations\201605312214062_x1.Designer.cs">
+      <DependentUpon>201605312214062_x1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,11 +91,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605240255176_attdb2.resx">
-      <DependentUpon>201605240255176_attdb2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605261505348_attdba.resx">
-      <DependentUpon>201605261505348_attdba.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605312214062_x1.resx">
+      <DependentUpon>201605312214062_x1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

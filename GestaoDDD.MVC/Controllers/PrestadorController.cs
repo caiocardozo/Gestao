@@ -112,13 +112,13 @@ namespace GestaoDDD.MVC.Controllers
                         prestador.pres_Nome = prestadorUsuario.pres_nome;
                         prestador.pres_Email = prestadorUsuario.pres_email;
                         prestador.pres_Cpf_Cnpj = prestadorUsuario.pres_cpf_cnpj;
-                        prestador.pres_Endereco = prestadorUsuario.pres_endereco;
+                        prestador.pres_Endereco = prestadorUsuario.pres_Endereco;
                         prestador.pres_Telefone_Celular = prestadorUsuario.pres_telefone_celular;
                         prestador.pres_Telefone_Residencial = prestadorUsuario.pres_telefone_residencial;
                         prestador.status = EnumStatus.Orcamento_bloqueado;
                         prestador.pres_Raio_Recebimento = prestadorUsuario.pres_Raio_Recebimento;
-                        prestador.pres_latitude = prestadorUsuario.pres_latitude;
-                        prestador.pres_longitude = prestadorUsuario.pres_longitude;
+                        prestador.pres_latitude = prestadorUsuario.pres_Latitude;
+                        prestador.pres_longitude = prestadorUsuario.pres_Longitude;
                         
                         _prestadorApp.SaveOrUpdate(prestador);
                         //redireciona o cara para continuar o processo de cadastro dos serviços
@@ -227,7 +227,7 @@ namespace GestaoDDD.MVC.Controllers
             var prestador = _prestadorApp.GetPorGuid(usuarioId);
             var prestadorVm = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
 
-            var servicoPrestador = _servicoPrestadorApp.GetServicoPorPrestadorId(prestadorVm.pres_Id);
+            var servicoPrestador = _servicoPrestadorApp.GetServicoPorPrestadorId(prestadorVm.pres_Id.ToString());
             //var servicoPrestadorVm = Mapper.Map<IEnumerable<ServicoPrestador>, IEnumerable<ServicoPrestadorViewModel>>(servicoPrestador);
             return View(prestadorVm);
         }

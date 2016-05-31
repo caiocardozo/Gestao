@@ -7,7 +7,7 @@ namespace GestaoDDD.Application.Interface
     {
         void SalvarServicosPrestador(IEnumerable<Servico> checkboxes, Prestador prestador);
 
-        IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(int prestadorId);
+        IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(string prestadorId);
 
     }
 }
