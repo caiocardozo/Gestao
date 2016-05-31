@@ -50,22 +50,14 @@ namespace GestaoDDD.MVC.Controllers
                 var checkboxes = new List<Servico>();
                 foreach (var col in collection)
                 {
-                    //if (col.ToString() != "cpfPrestador") retirei pois nao vem mais na collection
-                    //{
-                        int servId;
-                        Int32.TryParse(col.ToString(), out servId);
-                        var servico = _iServicoApp.GetById(servId);
-                        checkboxes.Add(servico);
-                    //}
+                    int servId;
+                    Int32.TryParse(col.ToString(), out servId);
+                    var servico = _iServicoApp.GetById(servId);
+                    checkboxes.Add(servico);
                 }
-                var prestador = _iPrestadorApp.GetPorCpf(cpf);
-                //var pts = new Prestador();
-                //pts.pres_Cpf_Cnpj = cpf;
-                //pts.pres_Nome = nome;
-                //pts.pres_Telefone_Celular = celular;
-                //pts.pres_Email = email;
-
-                _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
+                //inserir por email, assim nao tem como duplicar
+                var prestador = _iPrestadorApp.GetPorEmail(email);
+               _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
                 return RedirectToAction("PrestadorCadastroSucesso", "Prestador");
             }
             catch

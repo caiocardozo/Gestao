@@ -24,5 +24,11 @@ namespace GestaoDDD.Application.Services
         {
             return _prestadorService.GetPorGuid(guid);
         }
+
+        //retorna o prestador atraves do email
+        public Prestador GetPorEmail(string email)
+        {
+            return _prestadorService.GetPorEmail(email);
+        }
     }
 }

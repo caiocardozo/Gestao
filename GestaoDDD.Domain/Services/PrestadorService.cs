@@ -23,5 +23,11 @@ namespace GestaoDDD.Domain.Services
         {
             return _prestadorRepository.GetPorGuid(guid);
         }
+
+        //retorna o prestador atraves do email
+        public Prestador GetPorEmail(string email)
+        {
+            return _prestadorRepository.GetPorEmail(email);
+        }
     }
 }
