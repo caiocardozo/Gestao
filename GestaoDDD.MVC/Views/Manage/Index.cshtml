@@ -1,13 +1,17 @@
 ﻿@model GestaoDDD.Infra.Identity.Model.IndexViewModel
 
+<link href="~/Content/Conta/meuperfil.css" rel="stylesheet" />
+
 @{
     Layout="~/Views/Shared/_Layout2.cshtml";
 }
 
+@Html.Partial("_PerfilPartial")
+
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
     <h4>Gerencie sua conta</h4>
-    <dl class="dl-horizontal">
+    <dl class="msg dl-horizontal">
         <dt>Senha:</dt>
         <dd>
             [

@@ -219,6 +219,19 @@ body > .container {
     margin-bottom: 5%;
 }
 
+.msg a:link{
+
+    text-decoration: none;
+}
+
+.msg a{
+    color: black;
+}
+
+.msg a:hover{
+    color: red;
+}
+
 
 
 /* Fim BuscaTrabalhos */

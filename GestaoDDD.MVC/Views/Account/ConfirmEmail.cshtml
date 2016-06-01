@@ -2,8 +2,10 @@
     ViewBag.Title = "Confirmar E-mail";
 }
 
+<link href="~/Content/Conta/meuperfil.css" rel="stylesheet" />
+
 <h2>@ViewBag.Title.</h2>
-<div>
+<div class="msg">
     <p>
         Obrigado por confirmar seu e-mail. Por favor @Html.ActionLink("Clique aqui para continuar", "Index", "Prestador", routeValues: null, htmlAttributes: new { id = "loginLink" })
     </p>
