@@ -1,4 +1,4 @@
-﻿@model GestaoDDD.Application.ViewModels.PrestadorViewModel
+﻿@model GestaoDDD.Application.ViewModels.PrestadorUsuarioViewModel
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
@@ -33,7 +33,7 @@
             </div>
             <div class="col-form form-group col-md-6">
                 <label for="endereco">Endereço:</label>
-                <input type="text" id="pres_endereco" name="pres_endereco" class="form-control" readonly value="@Html.DisplayFor(model => model.pres_endereco)" />
+                <input type="text" id="pres_endereco" name="pres_endereco" class="form-control" readonly value="@Html.DisplayFor(model => model.pres_Endereco)" />
             </div>
 
             <div class="col-form form-group col-md-3">
@@ -46,7 +46,7 @@
             </div>
             <div class="col-form form-group col-md-6">
                 <label for="raioatuacao">Raio de Atuação:</label>
-                <input type="text" class="form-control" id="raio" readonly value="@Html.DisplayFor(model => model.pres_raio_recebimento)" />
+                <input type="text" class="form-control" id="raio" readonly value="@Html.DisplayFor(model => model.pres_Raio_Recebimento)" />
             </div>
             <div class="col-form form-group col-md-6">
                 <label for="apresentacaopessoal">Breve apresentação pessoal:</label>

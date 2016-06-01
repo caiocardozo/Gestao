@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using GestaoDDD.Domain.Entities;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace GestaoDDD.Application.ViewModels
@@ -69,5 +71,8 @@ namespace GestaoDDD.Application.ViewModels
         public bool TermosECondicoes { get; set; }
 
         public string pres_Raio_Recebimento { get; set; }
+
+        public virtual Usuario Usuario { get; set; }
+        public ICollection<ServicoPrestador> ServicoPrestador { get; set; }
     }
 }

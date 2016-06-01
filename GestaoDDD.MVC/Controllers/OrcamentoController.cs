@@ -58,10 +58,10 @@ namespace GestaoDDD.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var orcamentoDomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
+                    var orcamentoEntity = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
 
-                    orcamentoDomain.serv_Id = servico_id;
-                    _orcamentoApp.Add(orcamentoDomain);
+                    orcamentoEntity.serv_Id = servico_id;
+                    _orcamentoApp.Add(orcamentoEntity);
 
                     return RedirectToAction("OrcamentoEnviadoSucesso");
                 }

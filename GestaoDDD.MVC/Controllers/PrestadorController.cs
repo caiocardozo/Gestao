@@ -225,8 +225,9 @@ namespace GestaoDDD.MVC.Controllers
         public ActionResult MeuPerfil(string usuarioId)
         {
             var prestador = _prestadorApp.GetPorGuid(usuarioId);
-            var prestadorVm = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
 
+            var prestadorVm = Mapper.Map<Prestador, PrestadorUsuarioViewModel>(prestador);
+            ViewBag.Nome = prestador.pres_Nome;
             var servicoPrestador = _servicoPrestadorApp.GetServicoPorPrestadorId(prestadorVm.pres_Id.ToString());
             //var servicoPrestadorVm = Mapper.Map<IEnumerable<ServicoPrestador>, IEnumerable<ServicoPrestadorViewModel>>(servicoPrestador);
             return View(prestadorVm);
