@@ -32,10 +32,12 @@ $(document).ready(function () {
 				if (results[0]) {
 					var latitude = results[0].geometry.location.lat();
 					var longitude = results[0].geometry.location.lng();
+					
 		
 					$('#orc_Endereco').val(results[0].formatted_address);
 					$('#orc_latitude').val(latitude);
-                   	$('#orc_longitude').val(longitude);
+					$('#orc_longitude').val(longitude);
+				
 		
 					var location = new google.maps.LatLng(latitude, longitude);
 					marker.setPosition(location);
@@ -63,6 +65,8 @@ $(document).ready(function () {
 					$('#orc_Endereco').val(results[0].formatted_address);
 					$('#orc_latitude').val(marker.getPosition().lat());
 					$('#orc_longitude').val(marker.getPosition().lng());
+				
+
 				}
 			}
 		});
@@ -72,18 +76,19 @@ $(document).ready(function () {
 		source: function (request, response) {
 			geocoder.geocode({ 'address': request.term + ', Brasil', 'region': 'BR' }, function (results, status) {
 				response($.map(results, function (item) {
-					return {
-						label: item.formatted_address,
-						value: item.formatted_address,
-						latitude: item.geometry.location.lat(),
-          				longitude: item.geometry.location.lng()
-					}
+				    return {
+				        label: item.formatted_address,
+				        value: item.formatted_address,
+				        latitude: item.geometry.location.lat(),
+				        longitude: item.geometry.location.lng(),
+				}
 				}));
 			})
 		},
 		select: function (event, ui) {
 			$("#orc_latitude").val(ui.item.latitude);
-    		$("#orc_longitude").val(ui.item.longitude);
+			$("#orc_longitude").val(ui.item.longitude);
+			
 			var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
 			marker.setPosition(location);
 			map.setCenter(location);
@@ -97,7 +102,8 @@ $(document).ready(function () {
 		var endereco = $("#orc_Endereco").val();
 		var latitude = $("#orc_latitude").val();
 		var longitude = $("#orc_longitude").val();
-		
+    
+
 		alert("Endereço: " + endereco + "\nLatitude: " + latitude + "\nLongitude: " + longitude);
 	});
 
