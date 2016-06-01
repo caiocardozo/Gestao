@@ -84,64 +84,64 @@ namespace GestaoDDD.MVC.Controllers
                     }
                     else
                     {
-                    Prestador prestador = new Prestador();
+                        Prestador prestador = new Prestador();
 
-                    //primeiro efetua o cadastro do usuario
-                    var user = new ApplicationUser
-                    {
-                        UserName = prestadorUsuario.pres_email,
-                        Email = prestadorUsuario.pres_email
-                    };
-                    //adicionar a role para este usuario
-                    IdentityUserRole role = new IdentityUserRole();
-                    role.RoleId = "2"; //role 2 e role prestador
-                    role.UserId = user.Id;
-                    user.Roles.Add(role);
+                        //primeiro efetua o cadastro do usuario
+                        var user = new ApplicationUser
+                        {
+                            UserName = prestadorUsuario.pres_email,
+                            Email = prestadorUsuario.pres_email
+                        };
+                        //adicionar a role para este usuario
+                        IdentityUserRole role = new IdentityUserRole();
+                        role.RoleId = "2"; //role 2 e role prestador
+                        role.UserId = user.Id;
+                        user.Roles.Add(role);
                         //cria o usuario
                         var result = _userManager.Create(user, prestadorUsuario.Senha);
                         //envia o email de confirmação para o usuario
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
-                    if (result.Succeeded)
-                    {
-                        //pega o usuario cadastrado e adiciona ele no objeto prestador
+                        if (result.Succeeded)
+                        {
+                            //pega o usuario cadastrado e adiciona ele no objeto prestador
                             Usuario usuarioCadastrado = new Usuario();
                             usuarioCadastrado = _usuarioApp.ObterPorEmail(prestadorUsuario.pres_email);
                             prestador.Usuario = usuarioCadastrado;
-                        prestador.pres_Nome = prestadorUsuario.pres_nome;
-                        prestador.pres_Email = prestadorUsuario.pres_email;
-                        prestador.pres_Cpf_Cnpj = prestadorUsuario.pres_cpf_cnpj;
-                        prestador.pres_Endereco = prestadorUsuario.pres_Endereco;
-                        prestador.pres_Telefone_Celular = prestadorUsuario.pres_telefone_celular;
-                        prestador.pres_Telefone_Residencial = prestadorUsuario.pres_telefone_residencial;
-                        prestador.status = EnumStatus.Orcamento_bloqueado;
-                        prestador.pres_Raio_Recebimento = prestadorUsuario.pres_Raio_Recebimento;
-                        prestador.pres_latitude = prestadorUsuario.pres_Latitude;
-                        prestador.pres_longitude = prestadorUsuario.pres_Longitude;
-                        
-                        _prestadorApp.SaveOrUpdate(prestador);
-                        //redireciona o cara para continuar o processo de cadastro dos serviços
-                        return RedirectToAction("ServicosCategorias", "Servico",
-                            new
-                            {
-                                cpf = prestador.pres_Cpf_Cnpj,
-                                nome = prestador.pres_Nome,
-                                email = prestador.pres_Email,
-                                celular = prestador.pres_Telefone_Celular
-                            });
-                    }
-                    else
-                    {
-                        foreach (var erro in result.Errors)
-                        {
-                            var erros = "";
-                            erros += erro;
-                        }
-                        return View(prestadorUsuario);
-                    }
+                            prestador.pres_Nome = prestadorUsuario.pres_nome;
+                            prestador.pres_Email = prestadorUsuario.pres_email;
+                            prestador.pres_Cpf_Cnpj = prestadorUsuario.pres_cpf_cnpj;
+                            prestador.pres_Endereco = prestadorUsuario.pres_Endereco;
+                            prestador.pres_Telefone_Celular = prestadorUsuario.pres_telefone_celular;
+                            prestador.pres_Telefone_Residencial = prestadorUsuario.pres_telefone_residencial;
+                            prestador.status = EnumStatus.Orcamento_bloqueado;
+                            prestador.pres_Raio_Recebimento = prestadorUsuario.pres_Raio_Recebimento;
+                            prestador.pres_latitude = prestadorUsuario.pres_Latitude;
+                            prestador.pres_longitude = prestadorUsuario.pres_Longitude;
 
-                }
+                            _prestadorApp.SaveOrUpdate(prestador);
+                            //redireciona o cara para continuar o processo de cadastro dos serviços
+                            return RedirectToAction("ServicosCategorias", "Servico",
+                                new
+                                {
+                                    cpf = prestador.pres_Cpf_Cnpj,
+                                    nome = prestador.pres_Nome,
+                                    email = prestador.pres_Email,
+                                    celular = prestador.pres_Telefone_Celular
+                                });
+                        }
+                        else
+                        {
+                            foreach (var erro in result.Errors)
+                            {
+                                var erros = "";
+                                erros += erro;
+                            }
+                            return View(prestadorUsuario);
+                        }
+
+                    }
                 }
 
                 else
