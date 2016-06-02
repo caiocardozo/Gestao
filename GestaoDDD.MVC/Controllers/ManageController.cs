@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using GestaoDDD.Infra.Identity.Configuration;
 using GestaoDDD.Infra.Identity.Model;
+using GestaoDDD.Application.Interface;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -14,17 +15,21 @@ namespace GestaoDDD.MVC.Controllers
     {
         private readonly ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IPrestadorAppService _prestadorApp;
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IPrestadorAppService prestadorApp)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _prestadorApp = prestadorApp;
+
         }
 
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
+            
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "A senha foi alterada."
                 : message == ManageMessageId.SetPasswordSuccess ? "A senha foi enviada."
@@ -44,6 +49,8 @@ namespace GestaoDDD.MVC.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
                 UsuarioId = userId
             };
+            var prestador = _prestadorApp.GetPorGuid(userId);
+            ViewBag.Nome = prestador.pres_Nome;
             return View(model);
         }
 
