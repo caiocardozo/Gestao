@@ -88,6 +88,19 @@ namespace GestaoDDD.Infra.IoC
             container.RegisterPerWebRequest<IContatoService, ContatoService>();
 
             #endregion
+
+            #region Cidade
+            container.RegisterPerWebRequest<ICidadeRepository, CidadeRepository>();
+            container.RegisterPerWebRequest<ICidadeAppService, CidadeAppService>();
+            container.RegisterPerWebRequest<ICidadeService, CidadeService>();
+            #endregion
+
+            #region Log
+            container.RegisterPerWebRequest<ILogRepository, LogRepository>();
+            container.RegisterPerWebRequest<ILogAppService, LogAppService>();
+            container.RegisterPerWebRequest<ILogService, LogService>();
+            #endregion 
+
         } 
     }
 }

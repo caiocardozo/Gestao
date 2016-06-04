@@ -26,6 +26,8 @@ namespace GestaoDDD.Infra.Data.Contexto
         public DbSet<Role> Role { get; set; }
         public DbSet<Cidade> Cidade { get; set; }
 
+        public DbSet<Log> Log { get; set; }
+
         #endregion
 
 

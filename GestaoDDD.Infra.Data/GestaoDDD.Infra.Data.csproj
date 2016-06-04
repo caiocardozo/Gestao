@@ -54,6 +54,7 @@
     <Compile Include="EntityConfig\ComoFuncionaConfiguration.cs" />
     <Compile Include="EntityConfig\ContatoConfiguration.cs" />
     <Compile Include="EntityConfig\IndiqueProfissionalConfiguration.cs" />
+    <Compile Include="EntityConfig\LogConfiguration.cs" />
     <Compile Include="EntityConfig\PessoaConfiguration.cs" />
     <Compile Include="EntityConfig\PrestadorConfiguration.cs" />
     <Compile Include="EntityConfig\RoleConfiguration.cs" />
@@ -64,9 +65,11 @@
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CidadeRepository.cs" />
     <Compile Include="Repositories\ComoFuncionaRepository.cs" />
     <Compile Include="Repositories\ContatoRepository.cs" />
     <Compile Include="Repositories\IndiqueProfissionalRepository.cs" />
+    <Compile Include="Repositories\LogRepository.cs" />
     <Compile Include="Repositories\PessoaRepository.cs" />
     <Compile Include="Repositories\ServicoPrestadorRepository.cs" />
     <Compile Include="Repositories\ServicoRepository.cs" />

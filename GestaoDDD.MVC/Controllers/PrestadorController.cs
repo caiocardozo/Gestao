@@ -24,11 +24,13 @@ namespace GestaoDDD.MVC.Controllers
         private readonly IUsuarioAppService _usuarioApp;
         private readonly IOrcamentoAppService _orcamentoApp;
         private readonly IServicoPrestadorAppService _servicoPrestadorApp;
+        private readonly ILogAppService _logAppService;
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public PrestadorController(IPrestadorAppService prestadorApp, IOrcamentoAppService orcamentoApp,
-            IUsuarioAppService usuarioApp, IServicoPrestadorAppService servicoPrestadorApp, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+            IUsuarioAppService usuarioApp, IServicoPrestadorAppService servicoPrestadorApp, ILogAppService logApp, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             _prestadorApp = prestadorApp;
             _orcamentoApp = orcamentoApp;
@@ -36,6 +38,7 @@ namespace GestaoDDD.MVC.Controllers
             _signInManager = signInManager;
             _usuarioApp = usuarioApp;
             _servicoPrestadorApp = servicoPrestadorApp;
+            _logAppService = logApp;
         }
 
         [Authorize(Roles = "Admin")]
@@ -69,8 +72,16 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
+
+        private async Task EnviaEmailConfirmacao(ApplicationUser user)
+        {
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
+        }
+
         [HttpPost]
-        public async Task<ActionResult> Create(PrestadorUsuarioViewModel prestadorUsuario)
+        public ActionResult Create(PrestadorUsuarioViewModel prestadorUsuario)
         {
             try
             {
@@ -84,7 +95,7 @@ namespace GestaoDDD.MVC.Controllers
                     }
                     else
                     {
-                        Prestador prestador = new Prestador();
+                        var prestador = new Prestador();
 
                         //primeiro efetua o cadastro do usuario
                         var user = new ApplicationUser
@@ -99,10 +110,13 @@ namespace GestaoDDD.MVC.Controllers
                         user.Roles.Add(role);
                         //cria o usuario
                         var result = _userManager.Create(user, prestadorUsuario.Senha);
-                        //envia o email de confirmação para o usuario
-                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
+
+                        EnviaEmailConfirmacao(user);
+
+                        ////envia o email de confirmação para o usuario
+                        //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        //await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
                         if (result.Succeeded)
                         {
                             //pega o usuario cadastrado e adiciona ele no objeto prestador
@@ -133,17 +147,11 @@ namespace GestaoDDD.MVC.Controllers
                         }
                         else
                         {
-                            foreach (var erro in result.Errors)
-                            {
-                                var erros = "";
-                                erros += erro;
-                            }
                             return View(prestadorUsuario);
                         }
 
                     }
                 }
-
                 else
                 {
                     return View(prestadorUsuario);
@@ -152,6 +160,14 @@ namespace GestaoDDD.MVC.Controllers
             }
             catch (Exception e)
             {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Prestador";
+                logVm.View = "Create";
+
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
         }

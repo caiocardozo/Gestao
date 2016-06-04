@@ -21,6 +21,7 @@ namespace GestaoDDD.Infra.Data.Contexto
         DbSet<Contato> Contato { get; set; }
         DbSet<Role> Role { get; set; }
         DbSet<Cidade> Cidade { get; set; }
+        DbSet<Log> Log { get; set; }
 
     }
 }

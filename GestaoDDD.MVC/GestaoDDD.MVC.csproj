@@ -427,7 +427,6 @@
     <Content Include="Views\Orcamento\OrcamentoEnviadoSucesso.cshtml" />
     <Content Include="Views\Prestador\Index.cshtml" />
     <Content Include="Views\Prestador\Detalhes.cshtml" />
-    <Content Include="Views\Prestador\Cadastrar.cshtml" />
     <Content Include="Views\Prestador\Editar.cshtml" />
     <Content Include="Views\Prestador\Deletar.cshtml" />
     <Content Include="Views\Prestador\ErroAoCadastrar.cshtml" />
@@ -460,13 +459,14 @@
     <Content Include="Views\Prestador\ExibirOrcamentos.cshtml" />
     <Content Include="Views\Servico\ServicosCadastrados.cshtml" />
     <Content Include="Views\Shared\_PerfilPartial.cshtml" />
-    <Content Include="Views\Account\BuscaTrabalhosIndex.cshtml" />
     <Content Include="Views\Orcamento\BuscaTrabalhos.cshtml" />
     <Content Include="Views\Account\MeuPerfil.cshtml" />
     <Content Include="Views\Prestador\MeuPerfil.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Prestador\PrestadorCadastroSucesso.cshtml" />
     <Content Include="Scripts\jquery-2.2.3.min.map" />
+    <Content Include="Views\Prestador\EditarPerfil.cshtml" />
+    <Content Include="Views\Orcamento\BuscaTrabalhosIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

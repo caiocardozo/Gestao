@@ -48,6 +48,7 @@
     <Compile Include="Entities\Identity\Claims.cs" />
     <Compile Include="Entities\Identity\Client.cs" />
     <Compile Include="Entities\IndiqueProfissional.cs" />
+    <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\NoSql\ServicoIdNome.cs" />
     <Compile Include="Entities\Orcamento.cs" />
     <Compile Include="Entities\Pessoa.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="Interfaces\Repositories\IComoFuncionaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IContatoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IIndiqueProfissionalRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ILogRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ICidadeRepository.cs" />
     <Compile Include="Interfaces\Repositories\IOrcamentoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPessoaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPrestadorRepository.cs" />
@@ -69,9 +72,11 @@
     <Compile Include="Interfaces\Repositories\IServicoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IUsuarioRepository.cs" />
     <Compile Include="Interfaces\Services\ICategoriaService.cs" />
+    <Compile Include="Interfaces\Services\ICidadeService.cs" />
     <Compile Include="Interfaces\Services\IComoFuncionaService.cs" />
     <Compile Include="Interfaces\Services\IContatoService.cs" />
     <Compile Include="Interfaces\Services\IIndiqueProfissionalService.cs" />
+    <Compile Include="Interfaces\Services\ILogService.cs" />
     <Compile Include="Interfaces\Services\IOrcamentoService.cs" />
     <Compile Include="Interfaces\Services\IPessoaService.cs" />
     <Compile Include="Interfaces\Services\IPrestadorService.cs" />
@@ -80,9 +85,11 @@
     <Compile Include="Interfaces\Services\IServicoPrestadorService.cs" />
     <Compile Include="Interfaces\Services\IServicoService.cs" />
     <Compile Include="Interfaces\Services\IUsuarioService.cs" />
+    <Compile Include="Services\CidadeService.cs" />
     <Compile Include="Services\ComoFuncionaService.cs" />
     <Compile Include="Services\ContatoService.cs" />
     <Compile Include="Services\IndiqueProfissionalService.cs" />
+    <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\OrcamentoService.cs" />
     <Compile Include="Services\PessoaService.cs" />
     <Compile Include="Services\PrestadorService.cs" />
