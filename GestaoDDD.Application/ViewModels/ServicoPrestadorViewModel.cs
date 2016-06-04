@@ -8,8 +8,8 @@ namespace GestaoDDD.Application.ViewModels
         [Key]
         public int serv_Pres_Id { get; set; }
         [Key]
-        public Prestador prestador_Id { get; set; }
+        public virtual Prestador prestador_Id { get; set; }
         [Key]
-        public Servico servico_Id { get; set; }
+        public virtual Servico servico_Id { get; set; }
     }
 }

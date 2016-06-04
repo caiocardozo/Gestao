@@ -16,16 +16,18 @@ namespace GestaoDDD.Infra.Data.Repositories
             _db = new GestaoContext();
         }
 
-        public void SalvarServicosPrestador(IEnumerable<Servico> checkboxes, Prestador prestador) 
+        public void SalvarServicosPrestador(IEnumerable<Servico> servicos, Prestador prestador) 
         {
-            ServicoPrestador Objeto = new ServicoPrestador();
+            var servicoPrestador = new ServicoPrestador();
             //var servicosPrestador = _db.ServicoPrestador.FirstOrDefault(s => s.serv_Pres_Id.Equals(prestador.pres_Id));
 
-            foreach (var check in checkboxes) 
+            foreach (var check in servicos)
             {
-                Objeto.pres_Id = prestador.pres_Id;
-                Objeto.serv_Id = check.serv_Id;
-                SaveOrUpdate(Objeto);
+                //servicoPrestador.Prestador = prestador;
+                //servicoPrestador.Servico = check;
+                servicoPrestador.pres_Id = prestador.pres_Id;
+                servicoPrestador.serv_Id = check.serv_Id;
+                SaveOrUpdate(servicoPrestador);
             }
         }
 

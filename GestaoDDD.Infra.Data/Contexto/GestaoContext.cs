@@ -10,6 +10,8 @@ namespace GestaoDDD.Infra.Data.Contexto
         public GestaoContext()
             : base("ConnectionLocalCaio")
         {
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         #region objetos
@@ -60,7 +62,7 @@ namespace GestaoDDD.Infra.Data.Contexto
             modelBuilder.Configurations.Add(new IndiqueProfissionalConfiguration());
             modelBuilder.Configurations.Add(new ContatoConfiguration());
             modelBuilder.Configurations.Add(new RoleConfiguration());
-            
+            modelBuilder.Configurations.Add(new LogConfiguration());
             modelBuilder.Configurations.Add(new CidadeConfiguration());
 
             #endregion

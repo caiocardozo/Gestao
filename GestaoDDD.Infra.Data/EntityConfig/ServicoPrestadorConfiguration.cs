@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Configuration;
 using GestaoDDD.Domain.Entities;
 
 namespace GestaoDDD.Infra.Data.EntityConfig
@@ -28,7 +29,7 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             //mapeia o relacionamento 1 to N Prestador
             HasRequired(t => t.Prestador)//determina que Prestador é obrigatorio em serviço
            .WithMany(t => t.ServicoPrestador)
-           .HasForeignKey(t => t.pres_Id);//chave estangeira de prestado   
+           .HasForeignKey(t => t.pres_Id);//chave estangeira de prestador
         }
     }
 }

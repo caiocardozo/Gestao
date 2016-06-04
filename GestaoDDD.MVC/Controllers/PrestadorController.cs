@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using GeoCoordinatePortable;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
@@ -25,12 +26,15 @@ namespace GestaoDDD.MVC.Controllers
         private readonly IOrcamentoAppService _orcamentoApp;
         private readonly IServicoPrestadorAppService _servicoPrestadorApp;
         private readonly ILogAppService _logAppService;
+        private readonly IServicoAppService _servicoAppService;
+        private readonly ICategoriaAppService _categoriaApp;
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public PrestadorController(IPrestadorAppService prestadorApp, IOrcamentoAppService orcamentoApp,
-            IUsuarioAppService usuarioApp, IServicoPrestadorAppService servicoPrestadorApp, ILogAppService logApp, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+            IUsuarioAppService usuarioApp, IServicoPrestadorAppService servicoPrestadorApp, ILogAppService logApp, IServicoAppService servicoApp,
+            ICategoriaAppService categoriaApp, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             _prestadorApp = prestadorApp;
             _orcamentoApp = orcamentoApp;
@@ -39,6 +43,8 @@ namespace GestaoDDD.MVC.Controllers
             _usuarioApp = usuarioApp;
             _servicoPrestadorApp = servicoPrestadorApp;
             _logAppService = logApp;
+            _servicoAppService = servicoApp;
+            _categoriaApp = categoriaApp;
         }
 
         [Authorize(Roles = "Admin")]
@@ -117,6 +123,10 @@ namespace GestaoDDD.MVC.Controllers
                         //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         //await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
+
+                        var code = _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                         _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
                         if (result.Succeeded)
                         {
                             //pega o usuario cadastrado e adiciona ele no objeto prestador
@@ -209,43 +219,33 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
-        // POST: /Prestador/Cadastrar
-        [HttpPost]
-        public ActionResult Cadastrar(Prestador prestador)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    return RedirectToAction("ServicosCategorias", "Servico",
-                        new
-                        {
-                            cpf = prestador.pres_Cpf_Cnpj,
-                            nome = prestador.pres_Nome,
-                            email = prestador.pres_Email,
-                            celular = prestador.pres_Telefone_Celular
-                        });
-                }
-                else
-                {
-                    return View(prestador);
-                }
-
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("ErroAoCadastrar");
-            }
-        }
-
         public ActionResult MeuPerfil(string usuarioId)
         {
             var prestador = _prestadorApp.GetPorGuid(usuarioId);
 
             var prestadorVm = Mapper.Map<Prestador, PrestadorUsuarioViewModel>(prestador);
             ViewBag.Nome = prestador.pres_Nome;
-            var servicoPrestador = _servicoPrestadorApp.GetServicoPorPrestadorId(prestadorVm.pres_Id.ToString());
-            //var servicoPrestadorVm = Mapper.Map<IEnumerable<ServicoPrestador>, IEnumerable<ServicoPrestadorViewModel>>(servicoPrestador);
+
+            var servicosList = new List<Servico>();
+            var categoriaList = new List<Categoria>();
+
+            var servicoPrestador = _servicoPrestadorApp.GetServicoPorPrestadorId(prestadorVm.pres_Id);
+            foreach (var servicoPres in servicoPrestador)
+            {
+                var servico = _servicoAppService.GetById(servicoPres.serv_Id);
+                var categoria = _categoriaApp.GetById(servico.cat_Id);
+                categoriaList.Add(categoria);
+                servicosList.Add(servico);
+            }
+
+            var servicosVm = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(servicosList);
+            var categoriasVm = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(categoriaList.Distinct());
+
+            ViewBag.Servicos = servicosVm;
+            ViewBag.Categorias = categoriasVm;
+
+                //categoriaList.GroupBy(s => s.cat_Id);
+
             return View(prestadorVm);
         }
 
@@ -254,6 +254,20 @@ namespace GestaoDDD.MVC.Controllers
             var prestador = _prestadorApp.GetById(id);
             var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
             return View(prestadorViewModel);
+        }
+
+
+        public ActionResult EditarPerfil(string usuarioId)
+        {
+            var prestador = _prestadorApp.GetPorGuid(usuarioId);
+            var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
+            return View(prestadorViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditarPerfil(PrestadorViewModel prestadorViewModel)
+        {
+            return View();
         }
 
         //

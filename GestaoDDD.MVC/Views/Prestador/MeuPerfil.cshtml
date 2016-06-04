@@ -1,6 +1,13 @@
-﻿@model GestaoDDD.Application.ViewModels.PrestadorUsuarioViewModel
+﻿@model PrestadorUsuarioViewModel
+
+@using GestaoDDD.Application.ViewModels;
+
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
+    var categorias = ViewBag.Categorias as List<CategoriaViewModel>;
+    var servicos = ViewBag.Servicos as List<ServicoViewModel>;
+    var usuarioId = Model.pres_Id;
+
 }
 @Html.Partial("_PerfilPartial")
 
@@ -8,7 +15,6 @@
     <div class="row texto-antesform col-md-12">
         <div class="texto-superior">
             <h2>Meu Perfil</h2>
-
         </div>
         <div class="texto-inferior">
             Olá! Aqui estão suas informações pessoais e do seu negócio, é importante manter seus dados sempre atualizados.
@@ -63,23 +69,31 @@
             <div class="col-form form-group col-md-6">
                 <label for="categorias">Categorias:</label>
                 <div class="col-form form-group">
-                    <label class="checkbox-inline"><input type="checkbox" checked readonly>Option 1</label>
+                    @foreach (var categoria in categorias)
+                    {
+                        <label class="checkbox-inline" style="text-transform: capitalize"><input type="checkbox" checked readonly>@categoria.cat_Nome</label>
+                    }
+
                 </div>
             </div>
             <div class="col-form form-group col-md-6">
                 <label for="subcaterias">Serviços:</label>
                 <div class="col-form form-group">
-                    <label class="checkbox-inline"><input type="checkbox" checked readonly>Option 1</label>
+                    @foreach (var servico in servicos)
+                    {
+                        <label class="checkbox-inline" style="text-transform: capitalize"><input type="checkbox" checked readonly>@servico.serv_Nome</label>
+                    }
                 </div>
             </div>
+            @*<div hidden class="col-form col-md-2">
+                <input type="submit" class="btn btn-formulario" />
+            </div>*@
             <div class="col-form col-md-offset-8 col-md-2">
                 <button type="button" class="btn btn-formulario">
-                    <a href="~/Views/Prestador/EditarPerfil.cshtml">Editar informações </a>
+                    @Html.ActionLink("Editar Informações", "EditarPerfil", new { usuarioId = usuarioId })
                 </button>
             </div>
-            <div class="col-form col-md-2">
-                <input type="submit" class="btn btn-formulario" />
-            </div>
+
 
         </div>
     </form>

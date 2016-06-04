@@ -7,6 +7,8 @@ namespace GestaoDDD.Infra.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            
+            
         }
 
         protected override void Seed(GestaoDDD.Infra.Data.Contexto.GestaoContext context)
