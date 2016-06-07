@@ -259,14 +259,61 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult EditarPerfil(string usuarioId)
         {
-            var prestador = _prestadorApp.GetPorGuid(usuarioId);
-            var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
-            return View(prestadorViewModel);
+            try
+            {
+                var prestador = _prestadorApp.GetPorGuid(usuarioId);
+                ViewBag.Nome = prestador.pres_Nome;
+
+                var prestadorViewModel = Mapper.Map<Prestador, PrestadorUsuarioViewModel>(prestador);
+                return View(prestadorViewModel);
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Prestador";
+                logVm.View = "Get Editar Perfil";
+
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoCadastrar");
+            }
+           
         }
 
         [HttpPost]
-        public ActionResult EditarPerfil(PrestadorViewModel prestadorViewModel)
+        public ActionResult EditarPerfil(PrestadorUsuarioViewModel prestadorViewModel)
         {
+            try
+            {
+                ModelState["Senha"].Errors.Clear();
+                ModelState["ConfirmaSenha"].Errors.Clear();
+                
+                if (ModelState.IsValid)
+                {
+                    var prestador = Mapper.Map<PrestadorUsuarioViewModel, Prestador>(prestadorViewModel);
+                    _prestadorApp.SaveOrUpdate(prestador);
+                }
+                else
+                {
+                    return View (prestadorViewModel);
+                }
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Prestador";
+                logVm.View = "Post Editar Perfil";
+
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoCadastrar");
+            }
+            
+
             return View();
         }
 
@@ -284,8 +331,17 @@ namespace GestaoDDD.MVC.Controllers
                     _prestadorApp.Update(prestadordomain);
                     return RedirectToAction("Index");
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    var logVm = new LogViewModel();
+                    logVm.Mensagem = e.Message;
+                    logVm.Controller = "Prestador";
+                    logVm.View = "Post Editar Perfil";
+
+                    var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                    _logAppService.SaveOrUpdate(log);
+                    return RedirectToAction("ErroAoCadastrar");
                     //inserir pagina de erro
                     return RedirectToAction("ErroAoCadastrar");
                 }

@@ -1,85 +1,148 @@
-﻿@model GestaoDDD.Application.ViewModels.PrestadorViewModel
+﻿@model GestaoDDD.Application.ViewModels.PrestadorUsuarioViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+
 @Html.Partial("_PerfilPartial")
+
+<link href="~/Content/Prestador/prestador.css" rel="stylesheet" />
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
+<script src="~/Scripts/Adicionais/mapaPrestador.js"></script>
+<script src="~/Scripts/jquery-ui.custom.min.js"></script>
+<script src="~/Scripts/jquery-2.2.3.js"></script>
+<script src="~/Scripts/jquery.maskedinput.min.js"></script>
 
 <div class="container">
     <div class="row texto-antesform col-md-12">
         <div class="texto-superior">
             <h2>Meu Perfil</h2>
-
         </div>
         <div class="texto-inferior">
             Olá! Aqui estão suas informações pessoais e do seu negócio, é importante manter seus dados sempre atualizados.
         </div>
     </div>
+@using (Html.BeginForm("EditarPerfil", "Prestador", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+    @Html.HiddenFor(model => model.pres_Id)
+
     <form role="form">
         <div class="row formulario col-md-12">
-            <div class="titulo-formulario">
-                <h4><b>CONTATO</b></h4>
+                
+            <div class="col-form form-group col-md-6">
+                <label for="nome">Nome:</label>
+                @Html.EditorFor(model => model.pres_nome, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.pres_nome, "", new {@class = "text-danger"})
             </div>
             <div class="col-form form-group col-md-6">
-                <label for="nome">Seu nome:</label>
-                <input type="text" class="form-control" readonly id="pres_nome" name="pres_nome" value="@Html.DisplayFor(model => model.pres_nome)" />
+                <label for="nome">Nome da Empresa:</label>
+                @Html.EditorFor(model => model.nome_Empresa, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.nome_Empresa, "", new {@class = "text-danger"})
             </div>
-            <div class="col-form form-group col-md-6">
-                <label for="empresa">Nome da sua empresa:</label>
-                <input type="text" class="form-control" readonly id="empresa" />
+                
+            <div class="col-form form-group col-md-3">
+                <label for="email">E-mail:</label>
+                @Html.EditorFor(model => model.pres_email, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.pres_email, "", new {@class = "text-danger"})
             </div>
-            <div class="col-form form-group col-md-6">
-                <label for="email">Seu e-mail:</label>
-                <input type="text" class="form-control" readonly id="pres_email" name="pres_email" value="@Html.DisplayTextFor(model => model.pres_email)" />
+            <div class="col-form form-group col-md-3">
+                @Html.LabelFor(model => model.pres_cpf_cnpj, new { @class = "control-label" })
+                @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new { @class = "text-danger" })
             </div>
-            <div class="col-form form-group col-md-6">
-                <label for="endereco">Endereço:</label>
-                <input type="text" id="pres_endereco" name="pres_endereco" class="form-control" readonly value="@Html.DisplayFor(model => model.pres_endereco)" />
+            <div class="col-form form-group col-md-3">
+                @Html.LabelFor(model => model.pres_telefone_residencial, new {@class = "control-label"})
+                @Html.EditorFor(model => model.pres_telefone_residencial, new {htmlAttributes = new {@class = "form-control", @placeholder = "(16)99999-9999"}})
+                @Html.ValidationMessageFor(model => model.pres_telefone_residencial, "", new {@class = "text-danger"})
             </div>
 
             <div class="col-form form-group col-md-3">
-                <label for="telefone">Seu telefone:</label>
-                <input type="text" class="form-control" id="telefone" readonly value="@Html.DisplayFor(model => model.pres_telefone_residencial)" />
-            </div>
-            <div class="col-form form-group col-md-3">
-                <label for="telefone">Seu celular:</label>
-                <input type="text" class="form-control" id="telefone" readonly value="@Html.DisplayFor(model => model.pres_telefone_celular)" />
-            </div>
-            <div class="col-form form-group col-md-6">
-                <label for="raioatuacao">Raio de Atuação:</label>
-                <input type="text" class="form-control" id="raio" readonly value="@Html.DisplayFor(model => model.pres_raio_recebimento)" />
-            </div>
-            <div class="col-form form-group col-md-6">
-                <label for="apresentacaopessoal">Breve apresentação pessoal:</label>
-                <textarea class="form-control" rows="5" readonly="" id="apresentacaopessoal"></textarea>
-            </div>
-            <div class="col-form form-group col-md-6">
-                <label for="apresentacaoempresa">Breve apresentação da empresa:</label>
-                <textarea class="form-control" rows="5" readonly="" id="apresentacaoempresa"></textarea>
+                @Html.LabelFor(model => model.pres_telefone_celular, new {@class = "control-label"})
+                @Html.EditorFor(model => model.pres_telefone_celular, new {htmlAttributes = new {@class = "form-control", @placeholder = "(16)99999-9999"}})
+                @Html.ValidationMessageFor(model => model.pres_telefone_celular, "", new {@class = "text-danger"})
             </div>
 
-            <div class="sub-formulario ">
-                <h4><b>ÁREA DE ATUAÇÃO</b></h4>
+            <div class="col-form form-group col-md-8">
+                <label>Endereço:</label>
+                <input type="text" id="orc_Endereco" name="pres_Endereco" class="form-control" />
+                @Html.ValidationMessageFor(model => model.pres_Endereco, "", new {@class = "text-danger"})
+            </div>
+            <div class="col-form form-group col-md-4">
+                <label for="raioatuacao">Raio de atuação:</label>
+                <select class="form-control" id="pres_Raio_Recebimento" name="pres_Raio_Recebimento">
+                    <option>10</option>
+                    <option>30</option>
+                    <option>60</option>
+                    <option>70</option>
+                    <option>100</option>
+                    <option>150</option>
+                    <option>200</option>
+                </select>
+            </div>
+
+
+            <div class="mapa col-md-12">
+                <div id="mapa" class="map-mapa"></div>
+                <input type="hidden" id="orc_latitude" name="pres_Latitude" />
+                <input type="hidden" id="orc_longitude" name="pres_Longitude" />
+            </div>
+
+            <div class="col-form form-group col-md-6">
+                <label for="apresentacao_Pesssoal">Breve apresentação pessoal:</label>
+                <textarea class="form-control" rows="5" id="apresentacao_Pesssoal" name="apresentacao_Pessoal"></textarea>
             </div>
             <div class="col-form form-group col-md-6">
-                <label for="categorias">Categorias:</label>
-                <div class="col-form form-group">
-                    <label class="checkbox-inline"><input type="checkbox" checked readonly>Option 1</label>
-                </div>
+                <label for="apresentacao_Empresa">Breve apresentação da empresa:</label>
+                <textarea class="form-control" rows="5" id="apresentacao_Empresa" name="apresentacao_Empresa"></textarea>
             </div>
-            <div class="col-form form-group col-md-6">
-                <label for="subcaterias">Serviços:</label>
-                <div class="col-form form-group">
-                    <label class="checkbox-inline"><input type="checkbox" checked readonly>Option 1</label>
-                </div>
+
+            <div class="col-form form-group col-md-12">
+                @Html.CheckBoxFor(x => x.TermosECondicoes)
+                @Html.LabelFor(x => x.TermosECondicoes)
+                @Html.ValidationMessageFor(model => model.TermosECondicoes, "", new { @class = "text-danger" })
             </div>
-            <div class="col-form col-md-offset-8 col-md-2">
-                <button type="button" class="btn btn-formulario">Editar informações </button>
+                
+            <div class="col-form col-md-2" style="position: relative; float: right;">
+                <input type="submit" id="save" class="btn btn-formulario" />
             </div>
-            <div class="col-form col-md-2">
-                <input type="submit" class="btn btn-formulario" />
-            </div>
+
+            
+
 
         </div>
     </form>
+
+}
 </div>
+
+<script type="text/javascript">
+
+    $("#pres_cpf_cnpj").mask("99999999999");
+    $('#pres_telefone_celular').focusout(function () {
+        var phone, element;
+        element = $(this);
+        element.unmask();
+        phone = element.val().replace(/\D/g, '');
+        if (phone.length > 10) {
+            element.mask("(99)99999-999?9");
+        } else {
+            element.mask("(99)99999-9999?9");
+        }
+    }).trigger('focusout');
+    $('#pres_telefone_residencial').focusout(function () {
+        var phone, element;
+        element = $(this);
+        element.unmask();
+        phone = element.val().replace(/\D/g, '');
+        if (phone.length > 10) {
+            element.mask("(99)99999-999?9");
+        } else {
+            element.mask("(99)99999-9999?9");
+        }
+    }).trigger('focusout');
+    //$("#pres_telefone_celular").mask("(99)9999-9999");
+    //$("#pres_telefone_residencial").mask("(99)9999-9999");
+
+</script>
