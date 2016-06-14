@@ -328,6 +328,8 @@
     <Content Include="Images\Home\Profissionais\printores.png" />
     <Content Include="Images\Home\Profissionais\reforma.png" />
     <Content Include="Images\Home\Profissionais\reparos.png" />
+    <Content Include="Images\ImagemPerfil\11-06-2016-13-19-24_20160208043355 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\fotoperfil.png" />
     <Content Include="Images\ImagemPerfil\image_perfil.jpg" />
     <Content Include="Images\Orcamento\check.png" />
     <Content Include="Images\Orcamento\lupa.png" />

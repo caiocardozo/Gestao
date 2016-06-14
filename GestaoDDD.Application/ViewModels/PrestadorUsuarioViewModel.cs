@@ -56,6 +56,7 @@ namespace GestaoDDD.Application.ViewModels
 
         public string nome_Empresa { get; set; }
 
+        public string caminho_foto { get; set; }
         public string foto { get; set; }
 
         public string apresentacao_Pesssoal { get; set; }

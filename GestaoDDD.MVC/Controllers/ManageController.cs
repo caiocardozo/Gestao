@@ -51,6 +51,7 @@ namespace GestaoDDD.MVC.Controllers
             };
             var prestador = _prestadorApp.GetPorGuid(userId);
             ViewBag.Nome = prestador.pres_Nome;
+            ViewBag.CaminhoFoto = prestador.caminho_foto;
             return View(model);
         }
 

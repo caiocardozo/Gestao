@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using AutoMapper;
+using AutoMapper.Internal;
 using GeoCoordinatePortable;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
@@ -15,6 +17,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using EnumStatus = GestaoDDD.Domain.Entities.EnumStatus;
+using System.Web;
 
 
 namespace GestaoDDD.MVC.Controllers
@@ -225,7 +228,7 @@ namespace GestaoDDD.MVC.Controllers
 
             var prestadorVm = Mapper.Map<Prestador, PrestadorUsuarioViewModel>(prestador);
             ViewBag.Nome = prestador.pres_Nome;
-
+            ViewBag.CaminhoFoto = prestador.caminho_foto;
             var servicosList = new List<Servico>();
             var categoriaList = new List<Categoria>();
 
@@ -263,7 +266,7 @@ namespace GestaoDDD.MVC.Controllers
             {
                 var prestador = _prestadorApp.GetPorGuid(usuarioId);
                 ViewBag.Nome = prestador.pres_Nome;
-
+                ViewBag.CaminhoFoto = prestador.caminho_foto;
                 var prestadorViewModel = Mapper.Map<Prestador, PrestadorUsuarioViewModel>(prestador);
                 return View(prestadorViewModel);
             }
@@ -283,20 +286,38 @@ namespace GestaoDDD.MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditarPerfil(PrestadorUsuarioViewModel prestadorViewModel)
         {
             try
             {
+                DateTime weekDay = DateTime.Now;
+                string data = weekDay.ToString("dd-MM-yyyy-HH-mm-ss");
+
+                var file = this.Request.Files[0];
+                string savedFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images/ImagemPerfil");
+                savedFileName = Path.Combine(savedFileName, Path.GetFileName(data + "_" + file.FileName));
+                file.SaveAs(savedFileName);
+                prestadorViewModel.caminho_foto = Path.GetFileName(data + "_" + file.FileName);
+
+
                 ModelState["Senha"].Errors.Clear();
                 ModelState["ConfirmaSenha"].Errors.Clear();
                 
                 if (ModelState.IsValid)
                 {
                     var prestador = Mapper.Map<PrestadorUsuarioViewModel, Prestador>(prestadorViewModel);
-                    _prestadorApp.SaveOrUpdate(prestador);
+                    var prest = _prestadorApp.GetPorGuid(prestador.pres_Id);
+
+                    prestador = prest;
+
+                    _prestadorApp.Update(prestador);
+                    RedirectToAction("MeuPerfil");
                 }
                 else
                 {
+                    ModelState.AddModelError("", "");
                     return View (prestadorViewModel);
                 }
             }

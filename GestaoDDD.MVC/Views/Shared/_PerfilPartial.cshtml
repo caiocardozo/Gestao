@@ -7,12 +7,14 @@
     <div class="row header col-md-12">
 
         <div class="row header-foto col-md-2 col-sm-12">
-            <div class="image-upload">
-                <label for="file-input">
-                    <img src="~/Images/ImagemPerfil/image_perfil.jpg" class="header-foto col-md-12" />
+            <div class="image-upload" >
+                <label for="foto">
+                    
+                    <img src="~/Images/ImagemPerfil/@ViewBag.CaminhoFoto" class="header-foto col-md-12" />
                 </label>
 
-                <input id="file-input" type="file" />
+                <input id="foto" type="file" 
+                      name="foto" />
             </div>
         </div>
 
@@ -20,20 +22,6 @@
             <div class="header-texto-nome">
                 @ViewBag.Nome
             </div>
-
-            @*<div class="header-texto-msg">
-                Clique aqui para adicionar um foto pessoal
-            </div>*@
-
         </div>
-
-        @*<div class="botoes-header col-md-6 col-sm-12 col-xs-12">
-            <a href=""><input type="button" class="btn btn-header" value="Meu Perfil" /></a>
-            <a href=""><input type="button" class="btn btn-header" value="Atualizar Perfil" /></a>
-            <a href=""><input type="button" class="btn btn-header" value="Buscar Trabalhadores" /></a>
-        </div>*@
-
     </div>
-
-
 </div>

@@ -22,10 +22,10 @@ namespace GestaoDDD.Domain.Entities
         public string pres_Telefone_Celular { get; set; }
 
         public EnumStatus status { get; set; }
-        
+
         public string nome_Empresa { get; set; }
 
-        public string foto { get; set; }
+        public string caminho_foto { get; set; }
 
         public string apresentacao_Pesssoal { get; set; }
         public string apresentacao_Empresa { get; set; }
@@ -34,7 +34,6 @@ namespace GestaoDDD.Domain.Entities
         public string pres_longitude { get; set; }
         public virtual Usuario Usuario { get; set; }
         public ICollection<ServicoPrestador> ServicoPrestador { get; set; }
-      
     }
 
     [DataContract]

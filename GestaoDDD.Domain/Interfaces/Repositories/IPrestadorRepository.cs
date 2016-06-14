@@ -1,4 +1,5 @@
-﻿using GestaoDDD.Domain.Entities;
+﻿using System.Security.Cryptography.X509Certificates;
+using GestaoDDD.Domain.Entities;
 
 namespace GestaoDDD.Domain.Interfaces.Repositories
 {
@@ -9,5 +10,7 @@ namespace GestaoDDD.Domain.Interfaces.Repositories
 
         //retorna o prestador atraves do email
         Prestador GetPorEmail(string email);
+
+        
     }
 }

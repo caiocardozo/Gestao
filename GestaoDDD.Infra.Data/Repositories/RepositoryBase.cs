@@ -25,7 +25,8 @@ namespace GestaoDDD.Infra.Data.Repositories
 
         public void SaveOrUpdate(TEntity obj)
         {
-            _db.Set<TEntity>().Add(obj);
+            _db.Entry(obj).State = EntityState.Modified;
+            //_db.Set<TEntity>().Add(obj);
             _db.SaveChanges();
         }
 

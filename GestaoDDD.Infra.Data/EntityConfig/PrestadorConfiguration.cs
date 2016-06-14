@@ -39,7 +39,7 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.status).HasColumnName("status");
 
             
-            Property(c => c.foto).HasColumnName("caminho_foto");
+            Property(c => c.caminho_foto).HasColumnName("caminho_foto");
 
             Property(c => c.apresentacao_Empresa).HasColumnName("apresentacao_empresa");
 
@@ -50,7 +50,8 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.pres_latitude).HasColumnName("latitude");
 
             Property(c => c.pres_longitude).HasColumnName("longitude");
-            
+
+
         }
     }
 }
