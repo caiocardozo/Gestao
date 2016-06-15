@@ -45,6 +45,4 @@ namespace GestaoDDD.Application.ViewModels
 
         public Servico Servico { get; set; }
     }
-    [DataContract]
-   
 }
