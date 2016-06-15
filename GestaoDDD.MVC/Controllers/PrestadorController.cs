@@ -147,6 +147,13 @@ namespace GestaoDDD.MVC.Controllers
                             prestador.pres_latitude = prestadorUsuario.pres_Latitude;
                             prestador.pres_longitude = prestadorUsuario.pres_Longitude;
 
+
+                            var endereco = prestador.pres_Endereco;
+                            var x = endereco.Split(',');
+                            var y = x[1].Split('-');
+                            prestador.Cidade = y[0];
+                            prestador.Estado = (EnumEstados)Enum.Parse(typeof(EnumEstados), y[1]);
+
                             _prestadorApp.SaveOrUpdate(prestador);
                             //redireciona o cara para continuar o processo de cadastro dos serviços
                             return RedirectToAction("ServicosCategorias", "Servico",
@@ -313,8 +320,7 @@ namespace GestaoDDD.MVC.Controllers
                     var x = endereco.Split(',');
                     var y = x[1].Split('-');
                     prestador.Cidade = y[0];
-                    
-                    //prestador.Estado = (String)EnumEstados.Parse(typeof()) y[1];
+                    prestador.Estado = (EnumEstados) Enum.Parse(typeof (EnumEstados), y[1]);
 
                     _prestadorApp.Update(prestador);
                     RedirectToAction("MeuPerfil");

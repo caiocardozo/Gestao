@@ -60,6 +60,13 @@ namespace GestaoDDD.MVC.Controllers
                 {
                     var orcamentoEntity = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
 
+
+                    var endereco = orcamento.orc_Endereco;
+                    var x = endereco.Split(',');
+                    var y = x[1].Split('-');
+                    orcamento.orc_cidade= y[0];
+                    orcamento.orc_estado = (EnumEstados)Enum.Parse(typeof(EnumEstados), y[1]);
+
                     orcamentoEntity.serv_Id = servico_id;
                     _orcamentoApp.Add(orcamentoEntity);
 

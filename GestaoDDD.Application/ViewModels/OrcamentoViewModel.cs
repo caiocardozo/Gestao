@@ -45,7 +45,7 @@ namespace GestaoDDD.Application.ViewModels
         public string orc_cidade { get; set; }
 
         [Display(AutoGenerateField = false)]
-        public string orc_estado { get; set; }
+        public EnumEstados orc_estado { get; set; }
 
         // [Required(ErrorMessage = "Selecione a categoria na qual pertence seu orçamento.")]
         //public virtual Categoria categoria_id { get; set; }
