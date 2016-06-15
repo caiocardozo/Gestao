@@ -314,7 +314,7 @@ namespace GestaoDDD.MVC.Controllers
                     var y = x[1].Split('-');
                     prestador.Cidade = y[0];
                     
-                    prestador.Estado = (String)EnumEstados.Parse(typeof()) y[1];
+                    //prestador.Estado = (String)EnumEstados.Parse(typeof()) y[1];
 
                     _prestadorApp.Update(prestador);
                     RedirectToAction("MeuPerfil");
