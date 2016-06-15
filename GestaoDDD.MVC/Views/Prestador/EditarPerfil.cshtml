@@ -19,7 +19,9 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+    @Html.HiddenFor(model => model.pres_Id)
+    @*@Html.HiddenFor(model => model.Senha)*@
+    
 
     <div class="header container-fluid">
         <div class="row header col-md-12">

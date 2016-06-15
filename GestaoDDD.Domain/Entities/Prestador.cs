@@ -34,6 +34,9 @@ namespace GestaoDDD.Domain.Entities
         public string pres_longitude { get; set; }
         public virtual Usuario Usuario { get; set; }
         public ICollection<ServicoPrestador> ServicoPrestador { get; set; }
+
+        public string Cidade { get; set; }
+        public EnumEstados Estado { get; set; }
     }
 
     [DataContract]

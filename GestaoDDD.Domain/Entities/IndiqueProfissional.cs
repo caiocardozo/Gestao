@@ -13,7 +13,7 @@ namespace GestaoDDD.Domain.Entities
         public string  Nome { get; set; }
         public string Email_Solicitante { get; set; }
         public virtual Servico Servico { get; set; }
-
+        public EnumEstados Type { get; set; }
     }
 
     [DataContract]

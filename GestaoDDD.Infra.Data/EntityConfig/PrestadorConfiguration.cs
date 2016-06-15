@@ -50,7 +50,8 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.pres_latitude).HasColumnName("latitude");
 
             Property(c => c.pres_longitude).HasColumnName("longitude");
-
+            Property(c => c.Cidade).HasColumnName("cidade");
+            Property(c => c.Estado).HasColumnName("estado");
 
         }
     }

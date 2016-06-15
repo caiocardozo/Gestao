@@ -19,8 +19,10 @@
         //Wagner Nogueira 22-03-16
         public string orc_longitude { get; set; }
         public string orc_cidade { get; set; }
-        public string orc_estado { get; set; }
+        public EnumEstados orc_estado { get; set; }
         //public virtual Servico Servico { get; set; }
+
+       
     }
 
 }

@@ -308,16 +308,19 @@ namespace GestaoDDD.MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     var prestador = Mapper.Map<PrestadorUsuarioViewModel, Prestador>(prestadorViewModel);
-                    var prest = _prestadorApp.GetPorGuid(prestador.pres_Id);
 
-                    prestador = prest;
+                    var endereco = prestador.pres_Endereco;
+                    var x = endereco.Split(',');
+                    var y = x[1].Split('-');
+                    prestador.Cidade = y[0];
+                    
+                    prestador.Estado = (String)EnumEstados.Parse(typeof()) y[1];
 
                     _prestadorApp.Update(prestador);
                     RedirectToAction("MeuPerfil");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "");
                     return View (prestadorViewModel);
                 }
             }

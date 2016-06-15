@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDDD.Infra.Identity", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDDD.Infra.IoC", "GestaoDDD.Infra.IoC\GestaoDDD.Infra.IoC.csproj", "{644C98A9-DE1F-4300-ABA2-D9BD450D6D6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{1407AC52-6DC1-4912-BE44-489B9CFA5578}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{644C98A9-DE1F-4300-ABA2-D9BD450D6D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{644C98A9-DE1F-4300-ABA2-D9BD450D6D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{644C98A9-DE1F-4300-ABA2-D9BD450D6D6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1407AC52-6DC1-4912-BE44-489B9CFA5578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1407AC52-6DC1-4912-BE44-489B9CFA5578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1407AC52-6DC1-4912-BE44-489B9CFA5578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1407AC52-6DC1-4912-BE44-489B9CFA5578}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
