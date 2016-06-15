@@ -88,6 +88,13 @@ namespace GestaoDDD.MVC.Controllers
         public ActionResult Editar(int id)
         {
             var orcamento = _orcamentoApp.GetById(id);
+
+            var endereco = orcamento.orc_endereco;
+            var x = endereco.Split(',');
+            var y = x[1].Split('-');
+            orcamento.orc_cidade = y[0];
+            orcamento.orc_estado = (EnumEstados)Enum.Parse(typeof(EnumEstados), y[1]);
+
             var orcamentoViewModel = Mapper.Map<Orcamento, OrcamentoViewModel>(orcamento);
             return View(orcamentoViewModel);
         }
