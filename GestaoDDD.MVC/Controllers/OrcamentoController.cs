@@ -39,7 +39,9 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Orcamento/Details/5
         public ActionResult Detalhes(int id)
         {
-            return View();
+            var orcamentoEntity = Mapper.Map<Orcamento, OrcamentoViewModel>(_orcamentoApp.GetById(2));
+            ViewBag.Servico = _servicoApp.GetById(orcamentoEntity.serv_Id);
+            return View(orcamentoEntity);
         }
 
         //
@@ -64,8 +66,8 @@ namespace GestaoDDD.MVC.Controllers
                     var endereco = orcamento.orc_Endereco;
                     var x = endereco.Split(',');
                     var y = x[1].Split('-');
-                    orcamento.orc_cidade= y[0];
-                    orcamento.orc_estado = (EnumEstados)Enum.Parse(typeof(EnumEstados), y[1]);
+                    orcamentoEntity.orc_cidade = y[0];
+                    orcamentoEntity.orc_estado = (EnumEstados)Enum.Parse(typeof(EnumEstados), y[1]);
 
                     orcamentoEntity.serv_Id = servico_id;
                     _orcamentoApp.Add(orcamentoEntity);

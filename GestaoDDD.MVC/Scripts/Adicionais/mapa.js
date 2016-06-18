@@ -35,6 +35,7 @@ $(document).ready(function () {
 					
 		
 					$('#orc_Endereco').val(results[0].formatted_address);
+					$('#orc_endereco_solicitante').val(results[0].formatted_address);
 					$('#orc_latitude').val(latitude);
 					$('#orc_longitude').val(longitude);
 				
@@ -61,7 +62,8 @@ $(document).ready(function () {
 	google.maps.event.addListener(marker, 'drag', function () {
 		geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
-				if (results[0]) {  
+			    if (results[0]) {
+			        $('#orc_endereco_solicitante').val(results[0].formatted_address);
 					$('#orc_Endereco').val(results[0].formatted_address);
 					$('#orc_latitude').val(marker.getPosition().lat());
 					$('#orc_longitude').val(marker.getPosition().lng());

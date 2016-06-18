@@ -1,0 +1,165 @@
+﻿@model GestaoDDD.Application.ViewModels.OrcamentoViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<link href="~/Content/Orcamento/orcamento.css" rel="stylesheet" />
+
+<div class="container">
+
+    <div class="row banner col-md-12">
+        <div class="row banner-texto-esquerda col-md-6 pull-left">
+            <h1>ORÇAMENTOS</h1>
+        </div>
+        <div class="row banner-texto-direita col-md-6 pull-right">
+            <h3>
+                Muito mais agilidade</p>
+                na hora de buscar orçamentos</p>
+                de forma online e gratuita
+            </h3>
+        </div>
+    </div>
+    <div class="row banner-baixo col-md-12 center-block">
+        <div class="row texto-bannerbaixo col-md-12">
+            Você é um profissional e <b>busca novos clientes?</b>
+            <button type="button" class="btn">Cadastre-se</button>
+        </div>
+    </div>
+    <div class="row texto-body col-md-12">
+        <h3><b>Solicite orçamentos grátis</b></h3>
+        Aqui você encontra os melhores profissionais e empresas da sua região e recebe até 4 orçamentos de forma gratuita para comparar e escolher a melhor opção.
+    </div>
+
+    <div class="row corpo col-md-12">
+
+        <div class="row informacoes col-md-5">
+
+            <div class="row informacoes-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/lupa.png" />
+                </div>
+                <div class="row texto-icones col-md-8 col-xs-8">
+                    <hr id="linha" />
+                    Busque o tipo de serviço que você está procurando.
+                </div>
+            </div>
+
+            <div class="row informacoes-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/orcamentos.png" />
+                </div>
+                <div class="row texto-icones col-md-8 col-xs-8">
+                    <hr id="linha" />
+                    Receba até 4 orçamentos grátis e sem compromisso.
+                </div>
+            </div>
+
+            <div class="row informacoes-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/profissional.png" />
+                </div>
+                <div class="row texto-icones col-md-8 col-xs-8">
+                    <hr id="linha" />
+                    Compare e escolha a melhor opção.
+                </div>
+            </div>
+
+            <div class="row">
+                <hr id="linha2" />
+            </div>
+
+            <div class="row vantagens-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/check.png" />
+                </div>
+                <div class="row texto-vantagens col-md-8 col-xs-8">
+                    Encontre os melhores profissionais.
+                </div>
+            </div>
+
+            <div class="row vantagens-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/check.png" />
+                </div>
+                <div class="row texto-vantagens col-md-8 col-xs-8">
+                    Orçamentos grátis e sem compromisso.
+                </div>
+            </div>
+
+            <div class="row vantagens-linha">
+                <div class="row icones col-md-4 col-xs-4">
+                    <img src="~/Images/Orcamento/check.png" />
+                </div>
+                <div class="row texto-vantagens col-md-8 col-xs-8">
+                    Economize tempo e dinheiro.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row formulario col-md-7">
+
+            </br>
+            <h4><b>PEDIDO do Sr.   @Html.DisplayFor(model => model.orc_nome_solicitante)</b></h4>
+            </br>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+
+                <div class="form-group">
+                    <label for="descricao">Detalhes do serviço:</label>
+                    <textarea class="form-control" rows="8" readonly id="orc_descricao" name="orc_descricao">@Html.DisplayFor(model => model.orc_descricao)</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="sel1">Quando quer começar o trabalho:</label>
+                    <input type="text" value="@Html.DisplayFor(model => model.orc_prazo)" readonly class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label for="sel2">Tipo de Serviço:</label>
+                    <input type="text" value="@ViewBag.Servico" readonly class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Endereço a realizar o serviço:</label>
+                    <input type="text" id="orc_Endereco" readonly name="orc_Endereco" value="@Html.DisplayFor(model => model.orc_Endereco)" class=" form-control" />
+                </div>
+
+                <br/>
+                <h4><b>DADOS DO SOLICITANTE</b></h4>
+
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="orc_nome_solicitante" value="@Html.DisplayFor(model => model.orc_nome_solicitante)" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="text" class="form-control" readonly id="orc_email_solicitante" name="orc_email_solicitante" value="@Html.DisplayTextFor(model => model.orc_email_solicitante)">
+                </div>
+
+
+                <div class="row form-group col-md-6 col-sm-6">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" class="form-control" readonly id="orc_telefone_solicitante" name="orc_telefone_solicitante" value="@Html.DisplayFor(model => model.orc_telefone_solicitante)">
+                </div>
+
+                <div class="row form-group col-md-6 col-sm-6 form">
+                    <label>Endereço do solicitante:</label>
+                    <input type="text" class="form-control" readonly id="orc_endereco_solicitante" name="orc_endereco_solicitante" value="@Html.DisplayFor(model => model.orc_endereco_solicitante)">
+                </div>
+               
+                <div class="row col-md-6">
+                    <input type="submit" class="btn btn-enviar" value="Aceitar orçamento"/>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

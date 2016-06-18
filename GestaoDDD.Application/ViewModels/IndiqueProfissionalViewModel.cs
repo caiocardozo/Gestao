@@ -1,7 +1,7 @@
 ﻿using GestaoDDD.Domain.Entities;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
 
 namespace GestaoDDD.Application.ViewModels
 {
@@ -25,7 +25,7 @@ namespace GestaoDDD.Application.ViewModels
         public string Email_Empresa { get; set; }
 
         [DisplayName("UF")]
-        public EnumEstados Estado { get; set; }
+        public EnumClass.EnumEstados Estado { get; set; }
 
         [DisplayName("Cidade")]
         [Required(ErrorMessage = "Preencha o campo de cidade")]

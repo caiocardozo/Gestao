@@ -1,5 +1,7 @@
 ﻿ using System.Collections.Generic;
+ using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
 using System.Runtime.Serialization;
+ using GestaoDDD.Domain.Entities.NoSql;
 
 namespace GestaoDDD.Domain.Entities
 {
@@ -21,7 +23,7 @@ namespace GestaoDDD.Domain.Entities
 
         public string pres_Telefone_Celular { get; set; }
 
-        public EnumStatus status { get; set; }
+        public EnumClass.EnumStatus status { get; set; }
 
         public string nome_Empresa { get; set; }
 
@@ -36,15 +38,6 @@ namespace GestaoDDD.Domain.Entities
         public ICollection<ServicoPrestador> ServicoPrestador { get; set; }
 
         public string Cidade { get; set; }
-        public EnumEstados Estado { get; set; }
-    }
-
-    [DataContract]
-    public enum EnumStatus
-    {
-        Ativo,
-        Inativo,
-        Orcamento_bloqueado,
-        Orcamento_liberado
+        public EnumClass.EnumEstados Estado { get; set; }
     }
 }
