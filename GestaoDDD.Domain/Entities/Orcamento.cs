@@ -22,6 +22,8 @@ namespace GestaoDDD.Domain.Entities
         public EnumClass.EnumEstados orc_estado { get; set; }
         //public virtual Servico Servico { get; set; }
 
+        public EnumClass.EnumStatusOrcamento Status { get; set; }
+
        
     }
 

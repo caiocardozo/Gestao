@@ -11,6 +11,7 @@ namespace GestaoDDD.Domain.Entities.NoSql
         public enum EnumStatus
         {
             Ativo,
+            Pendente,
             Inativo
         }
         public enum EnumEstados

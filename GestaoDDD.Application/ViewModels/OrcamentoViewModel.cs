@@ -50,6 +50,7 @@ namespace GestaoDDD.Application.ViewModels
         //public virtual Categoria categoria_id { get; set; }
         public int serv_Id { get; set; }
 
+        public EnumClass.EnumStatusOrcamento Status { get; set; }
     }
 
 

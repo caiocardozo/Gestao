@@ -46,6 +46,8 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.orc_cidade).HasColumnName("cidade");
 
             Property(c => c.orc_estado).HasColumnName("estado");
+
+            Property(c => c.Status).HasColumnName("status");
         }
     }
 }

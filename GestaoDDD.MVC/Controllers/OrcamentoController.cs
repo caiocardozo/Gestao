@@ -6,6 +6,7 @@ using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
 using System.Collections.Generic;
+using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -67,7 +68,8 @@ namespace GestaoDDD.MVC.Controllers
                     var x = endereco.Split(',');
                     var y = x[1].Split('-');
                     orcamentoEntity.orc_cidade = y[0];
-                    orcamentoEntity.orc_estado = (EnumEstados)Enum.Parse(typeof(EnumEstados), y[1]);
+                    orcamentoEntity.orc_estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
+                    
 
                     orcamentoEntity.serv_Id = servico_id;
                     _orcamentoApp.Add(orcamentoEntity);
@@ -91,11 +93,7 @@ namespace GestaoDDD.MVC.Controllers
         {
             var orcamento = _orcamentoApp.GetById(id);
 
-            var endereco = orcamento.orc_endereco;
-            var x = endereco.Split(',');
-            var y = x[1].Split('-');
-            orcamento.orc_cidade = y[0].Trim();
-            orcamento.orc_estado = (EnumEstados)Enum.Parse(typeof(EnumEstados), y[1]);
+            
 
             var orcamentoViewModel = Mapper.Map<Orcamento, OrcamentoViewModel>(orcamento);
             return View(orcamentoViewModel);
@@ -112,6 +110,12 @@ namespace GestaoDDD.MVC.Controllers
                 try
                 {
                     var orcamentodomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
+                    var endereco = orcamentodomain.orc_endereco;
+                    var x = endereco.Split(',');
+                    var y = x[1].Split('-');
+                    orcamento.orc_cidade = y[0].Trim();
+                    orcamento.orc_estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
+            
                     _orcamentoApp.Update(orcamentodomain);
                     return RedirectToAction("Index");
                 }
