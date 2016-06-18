@@ -261,7 +261,11 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Editar(int id)
         {
+
+            
             var prestador = _prestadorApp.GetById(id);
+            ViewBag.Nome = prestador.pres_Nome;
+            ViewBag.CaminhoFoto = prestador.caminho_foto;
             var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
             return View(prestadorViewModel);
         }
@@ -319,11 +323,11 @@ namespace GestaoDDD.MVC.Controllers
                     var endereco = prestador.pres_Endereco;
                     var x = endereco.Split(',');
                     var y = x[1].Split('-');
-                    prestador.Cidade = y[0];
+                    prestador.Cidade = y[0].Trim();
                     prestador.Estado = (EnumEstados) Enum.Parse(typeof (EnumEstados), y[1]);
 
                     _prestadorApp.Update(prestador);
-                    RedirectToAction("MeuPerfil");
+                    return RedirectToAction("MeuPerfil", new { usuarioId = prestador.pres_Id});
                 }
                 else
                 {

@@ -92,7 +92,7 @@ namespace GestaoDDD.MVC.Controllers
             var endereco = orcamento.orc_endereco;
             var x = endereco.Split(',');
             var y = x[1].Split('-');
-            orcamento.orc_cidade = y[0];
+            orcamento.orc_cidade = y[0].Trim();
             orcamento.orc_estado = (EnumEstados)Enum.Parse(typeof(EnumEstados), y[1]);
 
             var orcamentoViewModel = Mapper.Map<Orcamento, OrcamentoViewModel>(orcamento);
