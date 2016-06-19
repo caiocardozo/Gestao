@@ -7,14 +7,21 @@
     <div class="row header col-md-12">
 
         <div class="row header-foto col-md-2 col-sm-12">
-            <div class="image-upload" >
+            <div class="image-upload">
                 <label for="foto">
-                    
-                    <img src="~/Images/ImagemPerfil/@ViewBag.CaminhoFoto" class="header-foto col-md-12" />
+                    @if (!string.IsNullOrEmpty(@ViewBag.CaminhoFoto))
+                    {
+                        <img src="~/Images/ImagemPerfil/@ViewBag.CaminhoFoto" class="header-foto col-md-12" />
+                    }
+                    else
+                    {
+                        <img src="~/Images/Conta/fotoperfil.png" class="header-foto col-md-12" />
+                    }
+
                 </label>
 
-                <input id="foto" type="file" 
-                      name="foto" />
+                <input id="foto" type="file"
+                       name="foto" />
             </div>
         </div>
 

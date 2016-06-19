@@ -31,7 +31,7 @@ namespace GestaoDDD.Application.ViewModels
         public string pres_email { get; set; }
 
         [DisplayName("Telefone residencial.")]
-        [StringLength(14, ErrorMessage = "A {0} deve conter {2} caracteres ao menos.", MinimumLength = 14)]
+        [StringLength(14, ErrorMessage = "A {0} deve conter {2} caracteres ao menos.", MinimumLength = 13)]
         [DataType(DataType.PhoneNumber)]
         public string pres_telefone_residencial { get; set; }
 
