@@ -16,13 +16,17 @@ namespace GestaoDDD.MVC.Controllers
         private readonly IOrcamentoAppService _orcamentoApp;
         private readonly ICategoriaAppService _categoriaApp;
         private readonly IServicoAppService _servicoApp;
-    
+        private readonly IPrestadorAppService _prestadorApp;
+        private readonly ICidadeAppService _cidadeApp;
+        
         public OrcamentoController(IOrcamentoAppService orcamentoApp, ICategoriaAppService categoriaApp,
-            IServicoAppService servicoApp)
+            IServicoAppService servicoApp, IPrestadorAppService prestadorApp, ICidadeAppService cidadeApp)
         {
             _orcamentoApp = orcamentoApp;
             _categoriaApp = categoriaApp;
             _servicoApp = servicoApp;
+            _prestadorApp = prestadorApp;
+            _cidadeApp = cidadeApp;
         }
 
         //
@@ -164,8 +168,14 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
-        public ActionResult BuscaTrabalhos()
+        public ActionResult BuscaTrabalhos(string usuarioId)
         {
+            var prestador = _prestadorApp.GetPorGuid(usuarioId);
+            ViewBag.Nome = prestador.pres_Nome;
+            ViewBag.CaminhoFoto = prestador.caminho_foto;
+
+
+            ViewBag.Cidades = new SelectList(_cidadeApp.GetAll(), "Id", "NomeCidade");
             ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
             var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetAll());
             return View(orcamentoVm);

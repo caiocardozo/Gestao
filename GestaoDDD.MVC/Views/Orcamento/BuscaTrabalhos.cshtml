@@ -1,6 +1,10 @@
 ﻿    @{
         Layout = "~/Views/Shared/_Layout2.cshtml";
+        
     }
+@using System.Web.Mvc.Html;
+@using GestaoDDD.Domain.Entities.NoSql;
+ 
 <script src="~/Scripts/jquery-2.2.3.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -21,6 +25,7 @@
             }
         });
     });
+
     $(document).ready(function () {
         $('#ListaCat').change(function () {
             var value = $("#ListaCat option:selected").val();
@@ -86,12 +91,13 @@
                             <h4><b>ESTADO</b></h4>
                         </div>
                         <div class="col-form form-group">
-                            <select class="form-control" id="cidade">
+                            @Html.DropDownList("EnumEstados", EnumHelper.GetSelectList(typeof(EnumClasses.EnumEstados)), "Selecione o Estado", new {@class = "form-control"} )
+                            @*<select class="form-control" id="cidade">
                                 <option>Anápolis</option>
                                 <option>Goiânia</option>
                                 <option>Divinópolis</option>
                                 <option>Trindade</option>
-                            </select>
+                            </select>*@
                         </div>
                         <div class="titulo-filtro">
                             <h4><b>CIDADE</b></h4>
