@@ -57,7 +57,7 @@ namespace GestaoDDD.MVC.Controllers
                 }
                 //inserir por email, assim nao tem como duplicar
                 var prestador = _iPrestadorApp.GetPorEmail(email);
-               _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
+                _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
                 return RedirectToAction("PrestadorCadastroSucesso", "Prestador");
             }
             catch
@@ -203,24 +203,6 @@ namespace GestaoDDD.MVC.Controllers
         {
             List<ServicoIdNome> retorno = _iServicoApp.RetornaServicoPelaCategoria(Convert.ToInt32(id));
             return Json(retorno, JsonRequestBehavior.AllowGet);
-            //List<Object> resultado = new List<object>();
-            //resultado.Add(new
-            //                {
-            //                    Nome = "Linha de Código",
-            //                    URL = "www.linhadecodigo.com.br"
-            //                });
-            //resultado.Add(new
-            //                {
-            //                    Nome = "DevMedia",
-            //                    URL = "www.devmedia.com.br"
-            //                });
-            //resultado.Add(new
-            //                {
-            //                    Nome = "Mr. Bool",
-            //                    URL = "www.mrbool.com.br"
-            //                });
-            //return Json(resultado, JsonRequestBehavior.AllowGet);
-
         }
 
         public ActionResult ServicosCadastrados()

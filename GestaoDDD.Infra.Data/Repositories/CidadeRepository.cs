@@ -2,8 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GestaoDDD.Domain.Entities.NoSql;
 using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Infra.Data.Contexto;
 
@@ -16,6 +15,18 @@ namespace GestaoDDD.Infra.Data.Repositories
             :base(dbContext)
         {
             _dbContext = new GestaoContext();
+        }
+
+        //retorna todos as cidades a partir de um estado
+        public List<CidadeIdNome> RetornaCidadePeloEstado(int estado)
+        {
+            var resultado = (from cid in _db.Cidade.Where(s => s.UF == estado)
+                             select new CidadeIdNome()
+                             {
+                                 Id = cid.Id,
+                                 NomeCidade = cid.NomeCidade
+                             }).ToList();
+            return resultado;
         }
     }
 }

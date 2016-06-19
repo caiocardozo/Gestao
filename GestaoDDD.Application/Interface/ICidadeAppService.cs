@@ -1,13 +1,12 @@
 ﻿using GestaoDDD.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GestaoDDD.Domain.Entities.NoSql;
 
 namespace GestaoDDD.Application.Interface
 {
     public interface ICidadeAppService : IAppServiceBase<Cidade>
     {
+         //retorna todos as cidades a partir de um estado
+        List<CidadeIdNome> RetornaCidadePeloEstado(int estado);
     }
 }
