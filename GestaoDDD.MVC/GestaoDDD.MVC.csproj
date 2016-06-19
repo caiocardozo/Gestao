@@ -363,6 +363,7 @@
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery-ui.custom.min.js" />
+    <Content Include="Scripts\jquery.bootpag.min.js" />
     <Content Include="Scripts\jquery.maskedinput.js" />
     <Content Include="Scripts\jquery.maskedinput.min.js" />
     <Content Include="Scripts\LoginsExternos.js" />
@@ -469,6 +470,7 @@
     <Content Include="Scripts\jquery-2.2.3.min.map" />
     <Content Include="Views\Prestador\EditarPerfil.cshtml" />
     <Content Include="Views\Orcamento\BuscaTrabalhosIndex.cshtml" />
+    <Content Include="Views\Orcamento\BuscaTrabalhosPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

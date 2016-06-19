@@ -12,10 +12,12 @@ namespace GestaoDDD.MVC
             //removi o arquivo .min, arquivo .min tanto em .js quanto .css nao pode estar aqui
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                       "~/Scripts/Adicionais/menufixo.js",
-                       "~/Scripts/Adicionais/mapa.js")                
-                        );
-
+                       "~/Scripts/Adicionais/menufixo.js"));
+            //arquivo de mapa.js estava atrapalhando o carregamento do jquery acima
+            //pois bundles gera um arquivo so minificado
+            bundles.Add(new ScriptBundle("~/bundles/mapa").Include(
+                       "~/Scripts/Adicionais/mapa.js"));
+            
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 

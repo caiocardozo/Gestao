@@ -1,4 +1,5 @@
-﻿using GestaoDDD.Domain.Entities;
+﻿using System.Collections.Generic;
+using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Domain.Interfaces.Services;
 
@@ -12,6 +13,12 @@ namespace GestaoDDD.Domain.Services
             :base(orcamentoRepository)
         {
             _orcamentoRepository = orcamentoRepository;
+        }
+
+        //retorna os orcamentos 
+        public IEnumerable<Orcamento> RetornaOrcamentos(int servico, string cidade)
+        {
+            return _orcamentoRepository.RetornaOrcamentos(servico, cidade);
         }
     }
 }

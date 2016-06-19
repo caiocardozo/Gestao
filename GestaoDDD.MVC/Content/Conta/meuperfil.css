@@ -199,9 +199,10 @@ body > .container {
     font-weight: bold;
 }
 
-.dados {
+/*estava dando um espaço desnecessario entao comentei*/
+/*.dados {
     margin-top: 20%;
-}
+}*/
 
 .valor {
     margin-top: 2%;

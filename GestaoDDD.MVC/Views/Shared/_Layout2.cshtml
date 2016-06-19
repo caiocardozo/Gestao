@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title Agiliza Orçamentos</title>
     <link rel="icon" href="~/Content/Imagens/icone.png" />
-  
-    @Styles.Render("~/Content/css")
-
+   @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/mapa")
     <link href="~/Content/_Layout/layout2.css" rel="stylesheet" />
-
   
 
 </head>
@@ -107,9 +107,7 @@
 
     @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-   
+
 
 </body>
        <div class="prefooter col-md-6">

@@ -1,8 +1,61 @@
-﻿@model IEnumerable<GestaoDDD.Application.ViewModels.OrcamentoViewModel>
-
-    @{
+﻿    @{
         Layout = "~/Views/Shared/_Layout2.cshtml";
     }
+<script src="~/Scripts/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var value = $("#ListaCat option:selected").val();
+        $.ajax({
+            type: 'POST',
+            url: '/Servico/RServicosPCategoria',
+            data: 'id=' + value,
+            dataType: "json",
+            cache: false,
+            async: true,
+            success: function (data) {
+                var options_servico = "";
+                $.each(data, function (key, value) {
+                    options_servico += '<option value="' + value.serv_Id + '">' + value.serv_Nome + '</option>';
+                });
+                $("#servico_id").html(options_servico);
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#ListaCat').change(function () {
+            var value = $("#ListaCat option:selected").val();
+            $.ajax({
+                type: 'POST',
+                url: '/Servico/RServicosPCategoria',
+                data: 'id=' + value,
+                dataType: "json",
+                cache: false,
+                async: true,
+                success: function (data) {
+                    var options_servico = "";
+                    $.each(data, function (key, value) {
+                        options_servico += '<option value="' + value.serv_Id + '">' + value.serv_Nome + '</option>';
+                    });
+                    $("#servico_id").html(options_servico);
+                }
+            });
+        });
+    });
+    function ProcuraOrcamento() {
+        var cidade = "Anapolis";
+        var servico = $("#servico_id option:selected").val();
+        $.ajax({
+            type: 'POST',
+            url: '/Orcamento/BuscaTrabalhosPartial',
+            data: 'servico=' + servico + '&cidade=' + cidade ,
+            dataType: 'html',
+            cache: false,
+            async: true,
+            success: function (data)
+            { $('#retornoPesquisa').html(data); }
+        });
+    };
+</script>
     @Html.Partial("_PerfilPartial")
 
     <div class="container">
@@ -10,131 +63,66 @@
             <div class="imagem-lupa col-md-3">
                 <img src="~/Images/Orcamento/lupa.png" />
             </div>
-            <div class="texto-imagem col-md-9">
+            <div class="texto-imagem col-md-5">
                 <h2>Buscar Orçamentos</h2>
                 Veja lista completa de oportunidades de trabalho.
             </div>
+            <div class="texto-imagem col-md-2">
+                <button type="button" class="btn btn-formulario" onclick="ProcuraOrcamento();"><span class="glyphicon glyphicon-search"></span> BUSCAR </button>
+            </div>
         </div>
-        <div class="row lista-trabalhos col-md-12">
-            <div class="texto-lista">
-                <b>FILTRAR POR:</b>
+        <div class="row" id="retornaOrcamentos">
+            <div id="loading" style="display: none;">
+                <img src="~/Content/Imagens/Carregando/carregando.png" />
             </div>
+            <div class="row lista-trabalhos col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="texto-lista">
+                    <b>FILTRAR POR:</b>
+                </div>
 
-            <div class="filtro col-md-3">
-                <form role="form">
-                    <div class="titulo-filtro">
-                        <h4><b>ESTADO</b></h4>
-                    </div>
-                    <div class="col-form form-group">
-                        <select class="form-control" id="cidade">
-                            <option>Anápolis</option>
-                            <option>Goiânia</option>
-                            <option>Divinópolis</option>
-                            <option>Trindade</option>
-                        </select>
-                    </div>
-                    <div class="titulo-filtro">
-                        <h4><b>CIDADE</b></h4>
-                    </div>
-                    <div class="col-form form-group">
-                        <select class="form-control" id="cidade">
-                            <option>Anápolis</option>
-                            <option>Goiânia</option>
-                            <option>Divinópolis</option>
-                            <option>Trindade</option>
-                        </select>
-                    </div>
-                    <div class="titulo-filtro">
-                        <h4><b>CATEGORIA</b></h4>
-                    </div>
-                    <div class="col-form form-group">
-                        <select class="form-control" id="cidade">
-                            <option>Anápolis</option>
-                            <option>Goiânia</option>
-                            <option>Divinópolis</option>
-                            <option>Trindade</option>
-                        </select>
-                    </div>
-                    <div class="titulo-filtro">
-                        <h4><b>SERVIÇO</b></h4>
-                    </div>
-                    <div class="col-form form-group">
-                        <select class="form-control" id="cidade">
-                            <option>Anápolis</option>
-                            <option>Goiânia</option>
-                            <option>Divinópolis</option>
-                            <option>Trindade</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="resultados-trabalhos col-md-9">
-                <div class="qtd-resultados">
-                    <div class="texto-resultados">
-                        <b>18 trabalhos encontrados</b>
-                    </div>
+                <div class="filtro col-md-3">
+                    <form role="form">
+                        <div class="titulo-filtro">
+                            <h4><b>ESTADO</b></h4>
+                        </div>
+                        <div class="col-form form-group">
+                            <select class="form-control" id="cidade">
+                                <option>Anápolis</option>
+                                <option>Goiânia</option>
+                                <option>Divinópolis</option>
+                                <option>Trindade</option>
+                            </select>
+                        </div>
+                        <div class="titulo-filtro">
+                            <h4><b>CIDADE</b></h4>
+                        </div>
+                        <div class="col-form form-group">
+                            <select class="form-control" id="cidade">
+                                <option>Anápolis</option>
+                                <option>Goiânia</option>
+                                <option>Divinópolis</option>
+                                <option>Trindade</option>
+                            </select>
+                        </div>
+                        <div class="titulo-filtro">
+                            <h4><b>CATEGORIA</b></h4>
+                        </div>
+                        <div class="col-form form-group">
+                            @Html.DropDownList("ListaCat", null, new { @class = "form-control" })
+                        </div>
+                        <div class="titulo-filtro">
+                            <h4><b>SERVIÇO</b></h4>
+                        </div>
+                        <div class="col-form form-group">
+                            <select class="form-control" id="servico_id" name="servico_id" style="text-transform: capitalize"></select>
+                        </div>
+                    </form>
                 </div>
-                <div class="resultados col-md-12">
-                    <div class="dados-trabalho col-md-7">
-                        <div class="titulo-resultado">
-                            Mudança de Anápolis para Brasília
-                        </div>
-                        <div class="descricao-resultado">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </div>
-                        <div class="localizacao-resultado">
-                            30km do seu negócio - Anápolis, Goiás.
-                        </div>
-                    </div>
-                    <div class="perfil-trabalho col-md-5">
-                        <div class="dados">
-                            Nome: João
-                            <br />
-                            E-mail: teste@gmail.com
-                            <br />
-                            Telefone: (62) 9925-4542
-                        </div>
-                        <div class="valor">
-                            R$ 5,00
-                        </div>
-                        <div class="botao">
-                            <button type="button" class="btn btn-formulario">COMPRAR ORÇAMENTO </button>
-
-                        </div>
-                    </div>
-                    <hr />
+                <div id="retornoPesquisa">
+                    @{
+                        Html.RenderPartial("BuscaTrabalhosPartial");
+                    }
                 </div>
-                @*Repetindo o bloco*@
-                <div class="resultados col-md-12">
-                    <div class="dados-trabalho col-md-7">
-                        <div class="titulo-resultado">
-                            Mudança de Anápolis para Brasília
-                        </div>
-                        <div class="descricao-resultado">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </div>
-                        <div class="localizacao-resultado">
-                            30km do seu negócio - Anápolis, Goiás.
-                        </div>
-                    </div>
-                    <div class="perfil-trabalho col-md-5">
-                        <div class="dados">
-                            Nome: João
-                            <br />
-                            E-mail: teste@gmail.com
-                            <br />
-                            Telefone: (62) 9925-4542
-                        </div>
-                        <div class="valor">
-                            R$ 5,00
-                        </div>
-                        <div class="botao">
-                            <button type="button" class="btn btn-formulario">COMPRAR ORÇAMENTO </button>
-                        </div>
-                    </div>
-                    <hr />
-                </div>
-                @*Fim do bloco repetido*@
             </div>
         </div>
     </div>
