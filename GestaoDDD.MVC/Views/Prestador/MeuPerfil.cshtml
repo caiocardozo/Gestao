@@ -56,11 +56,12 @@
             </div>
             <div class="col-form form-group col-md-6">
                 <label for="apresentacaopessoal">Breve apresentação pessoal:</label>
-                <textarea class="form-control" rows="5" readonly="" id="apresentacaopessoal"></textarea>
+                @*<textarea class="form-control" rows="5" readonly="" id="apresentacaopessoal"></textarea>*@
+                <input type="text" class="form-control" id="raio" readonly value="@Html.DisplayFor(model => model.apresentacao_Pesssoal)" />
             </div>
             <div class="col-form form-group col-md-6">
                 <label for="apresentacaoempresa">Breve apresentação da empresa:</label>
-                <textarea class="form-control" rows="5" readonly="" id="apresentacaoempresa"></textarea>
+                <input type="text" class="form-control" id="raio" readonly value="@Html.DisplayFor(model => model.apresentacao_Empresa)" />
             </div>
 
             <div class="sub-formulario ">

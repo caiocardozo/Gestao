@@ -46,7 +46,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Orcamento/Details/5
         public ActionResult Detalhes(int id, string usuarioId)
         {
-            var orcamentoEntity = Mapper.Map<Orcamento, OrcamentoViewModel>(_orcamentoApp.GetById(2));
+            var orcamentoEntity = Mapper.Map<Orcamento, OrcamentoViewModel>(_orcamentoApp.GetById(id));
             var servico = _servicoApp.GetById(orcamentoEntity.serv_Id);
             ViewBag.Servico = servico.serv_Nome;
             ViewBag.UsuarioId = usuarioId;
