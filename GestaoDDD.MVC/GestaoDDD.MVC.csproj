@@ -305,6 +305,7 @@
     <Content Include="Content\_ExternalLoginsListPartial\loginsExternos.css" />
     <Content Include="Content\_Layout\layout.css" />
     <Content Include="Content\_Layout\layout2.css" />
+    <Content Include="Content\_Layout\ModalLogin.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\Conta\fotoperfil.png" />
@@ -471,6 +472,7 @@
     <Content Include="Views\Prestador\EditarPerfil.cshtml" />
     <Content Include="Views\Orcamento\Detalhes.cshtml" />
     <Content Include="Views\Orcamento\BuscaTrabalhosPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial-2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

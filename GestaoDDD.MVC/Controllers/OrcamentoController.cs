@@ -54,6 +54,15 @@ namespace GestaoDDD.MVC.Controllers
             return View(orcamentoEntity);
         }
 
+        [HttpPost]
+
+        public ActionResult Detalhes(OrcamentoViewModel orcamentoVm)
+        {
+            var orcamentoEntity = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamentoVm);
+            orcamentoEntity.Status = EnumClass.EnumStatusOrcamento.Aceito;
+            _orcamentoApp.Update(orcamentoEntity);
+            return View(orcamentoEntity);
+        }
         //
         // GET: /Orcamento/Cadastrar
         public ActionResult Cadastrar()
