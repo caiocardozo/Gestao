@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using EnumStatus = GestaoDDD.Domain.Entities.EnumStatus;
+using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
 using System.Web;
 
 
@@ -142,7 +142,7 @@ namespace GestaoDDD.MVC.Controllers
                             prestador.pres_Endereco = prestadorUsuario.pres_Endereco;
                             prestador.pres_Telefone_Celular = prestadorUsuario.pres_telefone_celular;
                             prestador.pres_Telefone_Residencial = prestadorUsuario.pres_telefone_residencial;
-                            prestador.status = EnumStatus.Orcamento_bloqueado;
+                            prestador.status = EnumClass.EnumStatus.Ativo;
                             prestador.pres_Raio_Recebimento = prestadorUsuario.pres_Raio_Recebimento;
                             prestador.pres_latitude = prestadorUsuario.pres_Latitude;
                             prestador.pres_longitude = prestadorUsuario.pres_Longitude;
@@ -152,7 +152,7 @@ namespace GestaoDDD.MVC.Controllers
                             var x = endereco.Split(',');
                             var y = x[1].Split('-');
                             prestador.Cidade = y[0];
-                            prestador.Estado = (EnumEstados)Enum.Parse(typeof(EnumEstados), y[1]);
+                            prestador.Estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
 
                             _prestadorApp.SaveOrUpdate(prestador);
                             //redireciona o cara para continuar o processo de cadastro dos serviços
@@ -261,7 +261,11 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Editar(int id)
         {
+
+            
             var prestador = _prestadorApp.GetById(id);
+            ViewBag.Nome = prestador.pres_Nome;
+            ViewBag.CaminhoFoto = prestador.caminho_foto;
             var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
             return View(prestadorViewModel);
         }
@@ -319,11 +323,11 @@ namespace GestaoDDD.MVC.Controllers
                     var endereco = prestador.pres_Endereco;
                     var x = endereco.Split(',');
                     var y = x[1].Split('-');
-                    prestador.Cidade = y[0];
-                    prestador.Estado = (EnumEstados) Enum.Parse(typeof (EnumEstados), y[1]);
+                    prestador.Cidade = y[0].Trim();
+                    prestador.Estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
 
                     _prestadorApp.Update(prestador);
-                    RedirectToAction("MeuPerfil");
+                    return RedirectToAction("MeuPerfil", new { usuarioId = prestador.pres_Id});
                 }
                 else
                 {

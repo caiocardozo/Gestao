@@ -33,11 +33,6 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.orc_endereco_solicitante)
                 .HasMaxLength(200).HasColumnName("endereco_solicitante");
 
-            //mapeia o relacionamento 1 to N Categoria
-           // HasRequired(t => t.Servico)//determina que Categoria é obrigatorio em serviço
-           //.WithMany(t => t.Orcamento)//uma categoria tem varios serviços
-           //.HasForeignKey(t => t.Servico);//chave estangeira de categoria   
-
             Property(c => c.serv_Id).HasColumnName("servico_id");
 
             Property(c => c.orc_latitude).HasColumnName("latitude");
@@ -51,6 +46,8 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.orc_cidade).HasColumnName("cidade");
 
             Property(c => c.orc_estado).HasColumnName("estado");
+
+            Property(c => c.Status).HasColumnName("status");
         }
     }
 }

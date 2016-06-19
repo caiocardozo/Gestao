@@ -1,4 +1,5 @@
 ﻿using GestaoDDD.Domain.Entities;
+using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
 using System.ComponentModel.DataAnnotations;
 
 namespace GestaoDDD.Application.ViewModels
@@ -41,15 +42,16 @@ namespace GestaoDDD.Application.ViewModels
         [Display(AutoGenerateField = false)]
         public string orc_longitude { get; set; }
 
-        [Display(AutoGenerateField = false)]
         public string orc_cidade { get; set; }
 
-        [Display(AutoGenerateField = false)]
-        public EnumEstados orc_estado { get; set; }
+        public EnumClass.EnumEstados orc_estado { get; set; }
 
         // [Required(ErrorMessage = "Selecione a categoria na qual pertence seu orçamento.")]
         //public virtual Categoria categoria_id { get; set; }
         public int serv_Id { get; set; }
 
+        public EnumClass.EnumStatusOrcamento Status { get; set; }
     }
+
+
 }
