@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<GestaoDDD.Application.ViewModels.OrcamentoViewModel>
+    @{
+    var usuarioId = ViewBag.UsuarioId as string;
+    }
 
     @if (!Model.Any())
     {
@@ -7,48 +10,47 @@
     else
     {
         <div class="resultados-trabalhos col-md-9">
-        <div class="qtd-resultados">
-            <div class="texto-resultados">
-                <b>18 trabalhos encontrados</b>
+            <div class="qtd-resultados">
+                <div class="texto-resultados">
+                    <b>@ViewBag.FraseQtd</b>
+                </div>
             </div>
-        </div>
             @*looping dos trabalhos*@
             @foreach (var item in Model)
             {
                 <div class="resultados col-md-12">
-                <div class="dados-trabalho col-md-7">
-                    @*<div class="titulo-resultado">
-        @Html.DisplayFor(modelItem => item.)
-        Mudança de Anápolis para Brasília
-    </div>*@
+                    <div class="dados-trabalho col-md-7">
+                        @*<div class="titulo-resultado">
+                                @Html.DisplayFor(modelItem => item.)
+                                Mudança de Anápolis para Brasília
+                            </div>*@
                         <div class="descricao-resultado text-justify">
                             @Html.DisplayFor(modelItem => item.orc_descricao)
                         </div>
-                    @*<div class="localizacao-resultado">
-                        @Html.DisplayFor(modelItem => item.)
-                        30km do seu negócio - Anápolis, Goiás.
-                    </div>*@
+                        @*<div class="localizacao-resultado">
+                                @Html.DisplayFor(modelItem => item.)
+                                30km do seu negócio - Anápolis, Goiás.
+                            </div>*@
                     </div>
                     <div class="perfil-trabalho col-md-5">
                         <div class="dados">
-                          Nome: @Html.DisplayFor(modelItem => item.orc_nome_solicitante)
+                            Nome: @Html.DisplayFor(modelItem => item.orc_nome_solicitante)
                             <br />
-                            E-mail: @Html.DisplayFor(modelItem => item.orc_email_solicitante)
+                            E-mail: @Html.DisplayTextFor(modelItem => item.orc_email_solicitante)
                             <br />
                             Telefone: @Html.DisplayFor(modelItem => item.orc_telefone_solicitante)
                         </div>
-                        <div class="valor">
-                            R$ 5,00
-                        </div>
+                        @*<div class="valor">
+                                R$ 5,00
+                            </div>*@
                         <div class="botao">
-                            <button type="button" class="btn btn-formulario">COMPRAR ORÇAMENTO </button>
-
+                            <button type="button" class="btn btn-formulario">
+                                @Html.ActionLink("VISUALIZAR ORÇAMENTO", "Detalhes", new { id = item.orc_Id, usuarioId = usuarioId })
+                            </button>
                         </div>
                     </div>
                     <hr />
-                
-                    </div>
-               }
                 </div>
-      
+            }
+        </div>
     }

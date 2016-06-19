@@ -469,8 +469,8 @@
     <Content Include="Views\Prestador\PrestadorCadastroSucesso.cshtml" />
     <Content Include="Scripts\jquery-2.2.3.min.map" />
     <Content Include="Views\Prestador\EditarPerfil.cshtml" />
-    <Content Include="Views\Orcamento\BuscaTrabalhosIndex.cshtml" />
     <Content Include="Views\Orcamento\Detalhes.cshtml" />
+    <Content Include="Views\Orcamento\BuscaTrabalhosPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
