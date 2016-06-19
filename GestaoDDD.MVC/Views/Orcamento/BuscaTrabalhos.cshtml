@@ -9,6 +9,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var value = $("#ListaCat option:selected").val();
+        var value2 = $("#EnumEstados option:selected").val();
         $.ajax({
             type: 'POST',
             url: '/Servico/RServicosPCategoria',
@@ -24,8 +25,22 @@
                 $("#servico_id").html(options_servico);
             }
         });
+        $.ajax({
+            type: 'POST',
+            url: '/Cidade/RCidadePEstado',
+            data: 'id=' + value,
+            dataType: "json",
+            cache: false,
+            async: true,
+            success: function (data) {
+                var options_cidade = "";
+                $.each(data, function (key, value) {
+                    options_cidade += '<option value="' + value.Id + '">' + value.NomeCidade + '</option>';
+                });
+                $("#cidade_id").html(options_cidade);
+            }
+        });
     });
-
     $(document).ready(function () {
         $('#ListaCat').change(function () {
             var value = $("#ListaCat option:selected").val();
@@ -42,6 +57,26 @@
                         options_servico += '<option value="' + value.serv_Id + '">' + value.serv_Nome + '</option>';
                     });
                     $("#servico_id").html(options_servico);
+                }
+            });
+        });
+    });
+    $(document).ready(function () {
+        $('#EnumEstados').change(function () {
+            var value = $("#EnumEstados option:selected").val();
+            $.ajax({
+                type: 'POST',
+                url: '/Cidade/RCidadePEstado',
+                data: 'id=' + value,
+                dataType: "json",
+                cache: false,
+                async: true,
+                success: function (data) {
+                    var options_cidade = "";
+                    $.each(data, function (key, value) {
+                        options_cidade += '<option value="' + value.Id + '">' + value.NomeCidade + '</option>';
+                    });
+                    $("#cidade_id").html(options_cidade);
                 }
             });
         });
@@ -92,23 +127,12 @@
                         </div>
                         <div class="col-form form-group">
                             @Html.DropDownList("EnumEstados", EnumHelper.GetSelectList(typeof(EnumClasses.EnumEstados)), "Selecione o Estado", new {@class = "form-control"} )
-                            @*<select class="form-control" id="cidade">
-                                <option>Anápolis</option>
-                                <option>Goiânia</option>
-                                <option>Divinópolis</option>
-                                <option>Trindade</option>
-                            </select>*@
-                        </div>
+                    </div>
                         <div class="titulo-filtro">
                             <h4><b>CIDADE</b></h4>
                         </div>
                         <div class="col-form form-group">
-                            <select class="form-control" id="cidade">
-                                <option>Anápolis</option>
-                                <option>Goiânia</option>
-                                <option>Divinópolis</option>
-                                <option>Trindade</option>
-                            </select>
+                            <select class="form-control" id="cidade_id" name="cidade_id" style="text-transform: capitalize"></select>
                         </div>
                         <div class="titulo-filtro">
                             <h4><b>CATEGORIA</b></h4>

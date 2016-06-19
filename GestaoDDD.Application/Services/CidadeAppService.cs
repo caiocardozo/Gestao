@@ -1,9 +1,6 @@
 ﻿using GestaoDDD.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GestaoDDD.Domain.Entities.NoSql;
 using GestaoDDD.Domain.Interfaces.Services;
 using GestaoDDD.Application.Interface;
 
@@ -16,6 +13,12 @@ namespace GestaoDDD.Application.Services
             : base(cidadeService)
         {
             _cidadeService = cidadeService;
+        }
+
+         //retorna todos as cidades a partir de um estado
+        public List<CidadeIdNome> RetornaCidadePeloEstado(int estado)
+        {
+            return _cidadeService.RetornaCidadePeloEstado(estado);
         }
     }
 }

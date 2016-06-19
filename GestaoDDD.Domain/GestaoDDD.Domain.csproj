@@ -49,6 +49,7 @@
     <Compile Include="Entities\Identity\Client.cs" />
     <Compile Include="Entities\IndiqueProfissional.cs" />
     <Compile Include="Entities\Log.cs" />
+    <Compile Include="Entities\NoSql\CidadeIdNome.cs" />
     <Compile Include="Entities\NoSql\EnumClasses.cs" />
     <Compile Include="Entities\NoSql\ServicoIdNome.cs" />
     <Compile Include="Entities\Orcamento.cs" />
