@@ -8,6 +8,8 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
 <script src="~/Scripts/Adicionais/mapa.js"></script>
 <script src="~/Scripts/jquery-ui.custom.min.js"></script>
+<script src="~/Scripts/jquery-2.2.3.js"></script>
+<script src="~/Scripts/jquery.maskedinput.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         var value = $("#ListaCat option:selected").val();
@@ -153,16 +155,17 @@
 
                 <div class="form-group">
                     <label for="descricao">Escreva detalhadamente o serviço que você precisa:</label>
-                    <textarea class="form-control" rows="8" id="orc_descricao" name="orc_descricao"></textarea>
+                    <textarea class="form-control" rows="8" id="orc_descricao" name="orc_descricao" 
+                              placeholder="Ex: Realizar pintura interna e externa de casa, com 4 quartos, uma cozinha e duas sala. Tamanho da casa é de aproximadamente 20 mt²."
+                              ></textarea>
                     @Html.ValidationMessageFor(model => model.orc_descricao, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     <label for="sel1">Quando você quer começar o trabalho:</label>
                     <select class="form-control" id="sel1" name="orc_prazo">
-                        <option> </option>
                         <option>Agora</option>
-                        <option value="13123">Daqui uma semana</option>
+                        <option>Daqui uma semana</option>
                         <option>Daqui um mês</option>
                         <option>Ainda não sabe</option>
                     </select>
@@ -183,7 +186,7 @@
 
                 <div class="form-group">
                     <label>Endereço a realizar o serviço:</label>
-                    <input type="text" id="orc_Endereco" name="orc_Endereco" class="form-control" />
+                    <input type="text" id="orc_Endereco" name="orc_Endereco" class="form-control" placeholder="Ex: Jundiaí Anápolis e aperte a tecla Tab" />
                     @Html.ValidationMessageFor(model => model.orc_Endereco, "", new { @class = "text-danger" })
                 </div>
                 @*<div>
@@ -192,9 +195,6 @@
                 <div id="mapa" class="map-mapa" style="top: 2px;"></div>
                 <input type="hidden" id="orc_latitude" name="orc_latitude" />
                 <input type="hidden" id="orc_longitude" name="orc_longitude" />
-                <input type="hidden" id="orc_cidade" name="orc_cidade" />
-                <input type="hidden" id="orc_estado" name="orc_estado" />
-
 
                 @*</br>*@
                 <h4><b>SEUS DADOS</b></h4>
@@ -202,26 +202,27 @@
 
                 <div class="form-group">
                     <label for="nome">Seu Nome:</label>
-                    <input type="text" class="form-control" id="nome" name="orc_nome_solicitante">
+                    <input type="text" class="form-control" id="nome" name="orc_nome_solicitante" placeholder="Ex: Luiz Roberto Guimarães">
                     @Html.ValidationMessageFor(model => model.orc_nome_solicitante, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     <label for="email">E-mail:</label>
-                    <input type="text" class="form-control" id="orc_email_solicitante" name="orc_email_solicitante">
+                    <input type="text" class="form-control" id="orc_email_solicitante" name="orc_email_solicitante" placeholder="Ex: solicitante@email.com">
                     @Html.ValidationMessageFor(model => model.orc_email_solicitante, "", new { @class = "text-danger" })
                 </div>
 
 
                 <div class="row form-group col-md-6 col-sm-6">
                     <label for="telefone">Telefone:</label>
-                    <input type="text" class="form-control" id="orc_telefone_solicitante" name="orc_telefone_solicitante">
-                    @Html.ValidationMessageFor(model => model.orc_email_solicitante, "", new { @class = "text-danger" })
+                    @*<input type="text" class="form-control" id="orc_telefone_solicitante" name="orc_telefone_solicitante">*@
+                    @Html.EditorFor(model => model.orc_telefone_solicitante, new { htmlAttributes = new { @class = "form-control", @placeholder = "(16)99999-9999" } })
+                    @Html.ValidationMessageFor(model => model.orc_telefone_solicitante, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="row form-group col-md-6 col-sm-6 form">
                     <label >Endereço:</label>
-                    <input type="text" class="form-control" id="orc_endereco_solicitante" name="orc_endereco_solicitante">
+                    <input type="text" class="form-control" id="orc_endereco_solicitante" name="orc_endereco_solicitante" placeholder="Ex: Meu endereço Qd. 01 Lt. 01 Jardim do Édem">
                     @Html.ValidationMessageFor(model => model.orc_endereco_solicitante, "", new { @class = "text-danger" })
                 </div>
 
@@ -236,3 +237,19 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+
+    $('#orc_telefone_solicitante').focusout(function () {
+        var phone, element;
+        element = $(this);
+        element.unmask();
+        phone = element.val().replace(/\D/g, '');
+        if (phone.length > 10) {
+            element.mask("(99)99999-999?9");
+        } else {
+            element.mask("(99)9999-9999?9");
+        }
+    }).trigger('focusout');
+</script>
