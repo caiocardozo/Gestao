@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using GestaoDDD.Application.Interface;
@@ -18,7 +19,7 @@ namespace GestaoDDD.MVC.Controllers
         private readonly IServicoAppService _servicoApp;
         private readonly IPrestadorAppService _prestadorApp;
         private readonly ICidadeAppService _cidadeApp;
-        
+
         public OrcamentoController(IOrcamentoAppService orcamentoApp, ICategoriaAppService categoriaApp,
             IServicoAppService servicoApp, IPrestadorAppService prestadorApp, ICidadeAppService cidadeApp)
         {
@@ -36,17 +37,20 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
-        public ActionResult OrcamentoEnviadoSucesso() 
+        public ActionResult OrcamentoEnviadoSucesso()
         {
             return View();
         }
 
         //
         // GET: /Orcamento/Details/5
-        public ActionResult Detalhes(int id)
+        public ActionResult Detalhes(int id, string usuarioId)
         {
             var orcamentoEntity = Mapper.Map<Orcamento, OrcamentoViewModel>(_orcamentoApp.GetById(2));
-            ViewBag.Servico = _servicoApp.GetById(orcamentoEntity.serv_Id);
+            var servico = _servicoApp.GetById(orcamentoEntity.serv_Id);
+            ViewBag.Servico = servico.serv_Nome;
+            ViewBag.UsuarioId = usuarioId;
+
             return View(orcamentoEntity);
         }
 
@@ -74,7 +78,7 @@ namespace GestaoDDD.MVC.Controllers
                     var y = x[1].Split('-');
                     orcamentoEntity.orc_cidade = y[0];
                     orcamentoEntity.orc_estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
-                    
+
 
                     orcamentoEntity.serv_Id = servico_id;
                     _orcamentoApp.Add(orcamentoEntity);
@@ -98,7 +102,7 @@ namespace GestaoDDD.MVC.Controllers
         {
             var orcamento = _orcamentoApp.GetById(id);
 
-            
+
 
             var orcamentoViewModel = Mapper.Map<Orcamento, OrcamentoViewModel>(orcamento);
             return View(orcamentoViewModel);
@@ -120,7 +124,7 @@ namespace GestaoDDD.MVC.Controllers
                     var y = x[1].Split('-');
                     orcamento.orc_cidade = y[0].Trim();
                     orcamento.orc_estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
-            
+
                     _orcamentoApp.Update(orcamentodomain);
                     return RedirectToAction("Index");
                 }
@@ -173,19 +177,28 @@ namespace GestaoDDD.MVC.Controllers
             var prestador = _prestadorApp.GetPorGuid(usuarioId);
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
+            ViewBag.UsuarioId = prestador.pres_Id;
 
 
             ViewBag.Cidades = new SelectList(_cidadeApp.GetAll(), "Id", "NomeCidade");
             ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
             var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetAll());
+
+            var frase = "";
+            if (orcamentoVm.Count() == 1)
+                frase = "Foi encontrado " + orcamentoVm.Count().ToString() + " orçamento.";
+            else
+                frase = "Foram encontrados " + orcamentoVm.Count().ToString() + " orçamentos";
+            ViewBag.FraseQtd = frase;
+
             return View(orcamentoVm);
         }
 
-       public PartialViewResult BuscaTrabalhosPartial( string servico, string cidade)
+        public PartialViewResult BuscaTrabalhosPartial(string servico, string cidade)
         {
-           // var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetAll());
-           var retorno = _orcamentoApp.RetornaOrcamentos(Convert.ToInt32(servico), cidade);
-           return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
+            // var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetAll());
+            var retorno = _orcamentoApp.RetornaOrcamentos(Convert.ToInt32(servico), cidade);
+            return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
         }
     }
 

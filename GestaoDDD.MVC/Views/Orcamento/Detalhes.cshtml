@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
+    var usuarioId = ViewBag.UsuarioId as string;
 }
 
 <link href="~/Content/Orcamento/orcamento.css" rel="stylesheet" />
@@ -10,7 +11,7 @@
 
     <div class="row banner col-md-12">
         <div class="row banner-texto-esquerda col-md-6 pull-left">
-            <h1>ORÇAMENTOS</h1>
+            <h1>DETALHES DO ORÇAMENTO</h1>
         </div>
         <div class="row banner-texto-direita col-md-6 pull-right">
             <h3>
@@ -27,9 +28,11 @@
         </div>
     </div>
     <div class="row texto-body col-md-12">
-        <h3><b>Solicite orçamentos grátis</b></h3>
-        Aqui você encontra os melhores profissionais e empresas da sua região e recebe até 4 orçamentos de forma gratuita para comparar e escolher a melhor opção.
+        @*<h3><b>Solicite orçamentos grátis</b></h3>
+            Aqui você encontra os melhores profissionais e empresas da sua região e recebe até 4 orçamentos de forma gratuita para comparar e escolher a melhor opção.*@
     </div>
+
+
 
     <div class="row corpo col-md-12">
 
@@ -131,7 +134,7 @@
                     <input type="text" id="orc_Endereco" readonly name="orc_Endereco" value="@Html.DisplayFor(model => model.orc_Endereco)" class=" form-control" />
                 </div>
 
-                <br/>
+                <br />
                 <h4><b>DADOS DO SOLICITANTE</b></h4>
 
                 <div class="form-group">
@@ -154,12 +157,14 @@
                     <label>Endereço do solicitante:</label>
                     <input type="text" class="form-control" readonly id="orc_endereco_solicitante" name="orc_endereco_solicitante" value="@Html.DisplayFor(model => model.orc_endereco_solicitante)">
                 </div>
-               
-                <div class="row col-md-6">
-                    <input type="submit" class="btn btn-enviar" value="Aceitar orçamento"/>
+
+                <div class="row col-md-3">
+                    <input type="submit" class="btn btn-enviar" value="Aceitar orçamento" />
                 </div>
-                <div class="row col-md-6">
-                    @Html.ActionLink("Voltar", "BuscaTrabalhos")
+                <div class="row col-md-3" style="position:relative; left: 100px;">
+                    <button class="btn btn-enviar">
+                        @Html.ActionLink("Voltar", "BuscaTrabalhos", new { usuarioId = usuarioId, @class = "btn btn-enviar" })
+                    </button>
                 </div>
             }
         </div>
