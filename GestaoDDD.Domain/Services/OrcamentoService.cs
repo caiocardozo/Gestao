@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GestaoDDD.Domain.Entities;
+using GestaoDDD.Domain.Entities.NoSql;
 using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Domain.Interfaces.Services;
 
@@ -16,9 +17,9 @@ namespace GestaoDDD.Domain.Services
         }
 
         //retorna os orcamentos 
-        public IEnumerable<Orcamento> RetornaOrcamentos(int servico, string cidade)
+        public IEnumerable<Orcamento> RetornaOrcamentos(int servico, string cidade, EnumClasses.EnumEstados estado)
         {
-            return _orcamentoRepository.RetornaOrcamentos(servico, cidade);
+            return _orcamentoRepository.RetornaOrcamentos(servico, cidade, estado);
         }
     }
 }
