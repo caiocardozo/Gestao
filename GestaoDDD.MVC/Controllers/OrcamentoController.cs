@@ -203,10 +203,10 @@ namespace GestaoDDD.MVC.Controllers
             return View(orcamentoVm);
         }
 
-        public PartialViewResult BuscaTrabalhosPartial(string servico, string cidade)
+        public PartialViewResult BuscaTrabalhosPartial(string servico, string cidade, string estado)
         {
-            // var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetAll());
-            var retorno = _orcamentoApp.RetornaOrcamentos(Convert.ToInt32(servico), cidade);
+            EnumClass.EnumEstados estados = EnumClass.EnumEstados.AC;
+           var retorno = _orcamentoApp.RetornaOrcamentos(Convert.ToInt32(servico), cidade, estados);
             return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
         }
     }
