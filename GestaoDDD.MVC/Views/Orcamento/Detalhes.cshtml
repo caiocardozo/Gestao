@@ -112,7 +112,11 @@
 
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-
+            @Html.HiddenFor(model => model.orc_Id)
+                @Html.HiddenFor(model => model.orc_latitude)
+                @Html.HiddenFor(model => model.orc_longitude)
+                @Html.HiddenFor(model  => model.orc_prazo)
+                @Html.HiddenFor(model => model.serv_Id)
 
                 <div class="form-group">
                     <label for="descricao">Detalhes do serviço:</label>

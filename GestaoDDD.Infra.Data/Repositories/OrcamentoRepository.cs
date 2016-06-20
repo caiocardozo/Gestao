@@ -21,7 +21,7 @@ namespace GestaoDDD.Infra.Data.Repositories
         //retorna os orcamentos 
         public IEnumerable<Orcamento> RetornaOrcamentos(int servico, string cidade, EnumClasses.EnumEstados estado)
         {
-            return _db.Orcamento.Where(o => o.serv_Id == servico && o.orc_estado == estado && o.orc_cidade.Equals(cidade));
+            return _db.Orcamento.Where(o => o.serv_Id == servico && o.orc_estado == estado && o.orc_cidade.ToLower().Equals(cidade));
         } 
     }
 }
