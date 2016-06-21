@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
@@ -8,6 +7,7 @@ using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
 using System.Collections.Generic;
 using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
+
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -19,15 +19,19 @@ namespace GestaoDDD.MVC.Controllers
         private readonly IServicoAppService _servicoApp;
         private readonly IPrestadorAppService _prestadorApp;
         private readonly ICidadeAppService _cidadeApp;
+        private readonly ILogAppService _logAppService;
+
+        private string _userId;
 
         public OrcamentoController(IOrcamentoAppService orcamentoApp, ICategoriaAppService categoriaApp,
-            IServicoAppService servicoApp, IPrestadorAppService prestadorApp, ICidadeAppService cidadeApp)
+            IServicoAppService servicoApp, IPrestadorAppService prestadorApp, ICidadeAppService cidadeApp, ILogAppService logAppService)
         {
             _orcamentoApp = orcamentoApp;
             _categoriaApp = categoriaApp;
             _servicoApp = servicoApp;
             _prestadorApp = prestadorApp;
             _cidadeApp = cidadeApp;
+            _logAppService = logAppService;
         }
 
         //
@@ -46,22 +50,52 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Orcamento/Details/5
         public ActionResult Detalhes(int id, string usuarioId)
         {
-            var orcamentoEntity = Mapper.Map<Orcamento, OrcamentoViewModel>(_orcamentoApp.GetById(id));
-            var servico = _servicoApp.GetById(orcamentoEntity.serv_Id);
-            ViewBag.Servico = servico.serv_Nome;
-            ViewBag.UsuarioId = usuarioId;
+            try
+            {
+                _userId = usuarioId;
+                var orcamentoEntity = Mapper.Map<Orcamento, OrcamentoViewModel>(_orcamentoApp.GetById(id));
+                var servico = _servicoApp.GetById(orcamentoEntity.serv_Id);
+                ViewBag.Servico = servico.serv_Nome;
+                ViewBag.UsuarioId = usuarioId;
 
-            return View(orcamentoEntity);
+                return View(orcamentoEntity);
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Orçamento";
+                logVm.View = "Detalhes Get";
+
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoCadastrar");
+            }
         }
 
         [HttpPost]
 
-        public ActionResult Detalhes(OrcamentoViewModel orcamentoVm)
+        public ActionResult Detalhes(OrcamentoViewModel orcamentoVm, string usuarioId)
         {
-            var orcamentoEntity = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamentoVm);
-            orcamentoEntity.Status = EnumClass.EnumStatusOrcamento.Aceito;
-            _orcamentoApp.Update(orcamentoEntity);
-            return View(orcamentoEntity);
+            try
+            {
+                var orcamentoEntity = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamentoVm);
+                orcamentoEntity.Status = EnumClass.EnumStatusOrcamento.Aceito;
+                _orcamentoApp.Update(orcamentoEntity);
+
+                return RedirectToAction("BuscaTrabalhos", new { usuarioId = usuarioId });
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Orçamento";
+                logVm.View = "Detalhes Post";
+                return RedirectToAction("ErroAoCadastrar");
+            }
+            
+            
         }
         //
         // GET: /Orcamento/Cadastrar
@@ -85,7 +119,7 @@ namespace GestaoDDD.MVC.Controllers
                     var endereco = orcamento.orc_Endereco;
                     var x = endereco.Split(',');
                     var y = x[1].Split('-');
-                    orcamentoEntity.orc_cidade = y[0].ToLower();
+                    orcamentoEntity.orc_cidade = y[0].Trim().ToUpper();
                     orcamentoEntity.orc_estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
 
 
@@ -101,8 +135,17 @@ namespace GestaoDDD.MVC.Controllers
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Orçamento";
+                logVm.View = "Cadastrar Post";
+
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
         }
@@ -137,9 +180,16 @@ namespace GestaoDDD.MVC.Controllers
                     _orcamentoApp.Update(orcamentodomain);
                     return RedirectToAction("Index");
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    //inserir pagina de erro
+                    var logVm = new LogViewModel();
+                    logVm.Mensagem = e.Message;
+                    logVm.Controller = "Orçamento";
+                    logVm.View = "Editar Post";
+
+                    var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                    _logAppService.SaveOrUpdate(log);
                     return RedirectToAction("ErroAoCadastrar");
                 }
             }
@@ -183,33 +233,65 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult BuscaTrabalhos(string usuarioId)
         {
-            var prestador = _prestadorApp.GetPorGuid(usuarioId);
-            ViewBag.Nome = prestador.pres_Nome;
-            ViewBag.CaminhoFoto = prestador.caminho_foto;
-            ViewBag.UsuarioId = prestador.pres_Id;
+            try
+            {
+                _userId = usuarioId;
+                var prestador = _prestadorApp.GetPorGuid(usuarioId);
+                ViewBag.Nome = prestador.pres_Nome;
+                ViewBag.CaminhoFoto = prestador.caminho_foto;
+                ViewBag.UsuarioId = prestador.pres_Id;
 
 
-            //ViewBag.Cidades = new SelectList(_cidadeApp.GetAll(), "Id", "NomeCidade");
-            ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
-            var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetAll());
+                //ViewBag.Cidades = new SelectList(_cidadeApp.GetAll(), "Id", "NomeCidade");
+                ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
+                var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetAll());
 
-            var frase = "";
-            if (orcamentoVm.Count() == 1)
-                frase = "Foi encontrado " + orcamentoVm.Count().ToString() + " orçamento.";
-            else
-                frase = "Foram encontrados " + orcamentoVm.Count().ToString() + " orçamentos";
-            ViewBag.FraseQtd = frase;
+                var orcamentosAbertos = orcamentoVm.Where(s => s.Status == EnumClass.EnumStatusOrcamento.Aberto);
+                var frase = "";
+                if (orcamentosAbertos.Count() == 1)
+                    frase = "Foi encontrado " + orcamentosAbertos.Count().ToString() + " orçamento.";
+                else
+                    frase = "Foram encontrados " + orcamentosAbertos.Count().ToString() + " orçamentos";
+                ViewBag.FraseQtd = frase;
 
-            return View(orcamentoVm);
+                return View(orcamentosAbertos);
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Orçamento";
+                logVm.View = "Editar Post";
+
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoCadastrar");
+            }
+           
         }
 
         public PartialViewResult BuscaTrabalhosPartial(string servico, string cidade, string estado)
         {
 
             var cidades = _cidadeApp.GetById(int.Parse(cidade));
-            var estados = (EnumClass.EnumEstados) Enum.Parse(typeof (EnumClass.EnumEstados), estado);
-            var retorno = _orcamentoApp.RetornaOrcamentos(Convert.ToInt32(servico), cidades.NomeCidade.ToLower(), estados);
+            var estados = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), estado);
+            var retorno = _orcamentoApp.RetornaOrcamentos(Convert.ToInt32(servico), cidades.NomeCidade, estados);
+
+            var frase = "";
+            if (retorno.Count() == 1)
+                frase = "Foi encontrado " + retorno.Count().ToString() + " orçamento para " + cidades.NomeCidade + "-" + estados;
+            else
+                frase = "Foram encontrados " + retorno.Count().ToString() + " orçamentos para " + cidades.NomeCidade + "-" + estados;
+            ViewBag.FraseQtd = frase;
+
             return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
+        }
+
+        public ActionResult Pagamento(string code)
+        {
+            
+            return View();
         }
     }
 

@@ -473,6 +473,8 @@
     <Content Include="Views\Orcamento\Detalhes.cshtml" />
     <Content Include="Views\Orcamento\BuscaTrabalhosPartial.cshtml" />
     <Content Include="Views\Shared\_LoginPartial-2.cshtml" />
+    <Content Include="Views\Orcamento\Pagamento.cshtml" />
+    <Content Include="Views\Account\ErroAoCadastrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -501,6 +503,10 @@
     <ProjectReference Include="..\GestaoDDD.Infra.IoC\GestaoDDD.Infra.IoC.csproj">
       <Project>{644c98a9-de1f-4300-aba2-d9bd450d6d6f}</Project>
       <Name>GestaoDDD.Infra.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PagSeguro\PagSeguro.csproj">
+      <Project>{5b8d3375-754a-414a-8e04-9a40a8497a8a}</Project>
+      <Name>PagSeguro</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -117,6 +117,8 @@
                 @Html.HiddenFor(model => model.orc_longitude)
                 @Html.HiddenFor(model  => model.orc_prazo)
                 @Html.HiddenFor(model => model.serv_Id)
+                @Html.HiddenFor(model => model.orc_cidade)
+                @Html.HiddenFor(model => model.orc_estado)
 
                 <div class="form-group">
                     <label for="descricao">Detalhes do serviço:</label>
@@ -163,7 +165,7 @@
                 </div>
 
                 <div class="row col-md-3">
-                    <input type="submit" class="btn btn-enviar" value="Aceitar orçamento" />
+                    <input type="submit" class="btn btn-enviar" value="Aceitar orçamento" onclick="usuarioId = usuarioId" />
                 </div>
                 <div class="row col-md-3" style="position:relative; left: 100px;">
                     <button class="btn btn-enviar">

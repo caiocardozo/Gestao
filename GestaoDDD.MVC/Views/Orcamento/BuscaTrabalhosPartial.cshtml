@@ -44,9 +44,37 @@
                                 R$ 5,00
                             </div>*@
                         <div class="botao">
-                            <button type="button" class="btn btn-formulario">
+                            
+                            
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <input type="hidden" name="cmd" value="_xclick">
+                                <input type="hidden" name="business" value="wagnogueira19@gmail.com">
+                                <input type="hidden" name="lc" value="BR">
+                                <input type="hidden" name="item_name" value="Orcamento Agiliza">
+                                <input type="hidden" name="amount" value="0.01">
+                                <input type="hidden" name="currency_code" value="BRL">
+                                <input type="hidden" name="button_subtype" value="services">
+                                <input type="hidden" name="no_note" value="0">
+                                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHostedGuest">
+                                <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - A maneira fácil e segura de enviar pagamentos online!">
+                                <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
+                            </form>
+
+                            
+
+                            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                            @*<form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+                                <input type="hidden" name="code" value="C28A89C77070DB09945A7F8483ABCA63" />
+                                <input type="hidden" name="iot" value="button" />
+                                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/120x53-comprar-laranja.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+                            </form>
+                            <script  type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>*@
+                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                          
+                            
+    @*<button type="button" class="btn btn-formulario">
                                 @Html.ActionLink("VISUALIZAR ORÇAMENTO", "Detalhes", new { id = item.orc_Id, usuarioId = usuarioId })
-                            </button>
+                            </button>*@
                         </div>
                     </div>
                     <hr />
