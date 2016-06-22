@@ -21,7 +21,7 @@ namespace GestaoDDD.MVC.Controllers
         private readonly ICidadeAppService _cidadeApp;
         private readonly ILogAppService _logAppService;
 
-        private string _userId;
+        private static string _userId;
 
         public OrcamentoController(IOrcamentoAppService orcamentoApp, ICategoriaAppService categoriaApp,
             IServicoAppService servicoApp, IPrestadorAppService prestadorApp, ICidadeAppService cidadeApp, ILogAppService logAppService)
@@ -288,9 +288,16 @@ namespace GestaoDDD.MVC.Controllers
             return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
         }
 
-        public ActionResult Pagamento(string code)
+        public ActionResult Pagamento(string token, string amt, string cc, string item_name, string st, string tx)
         {
-            
+
+            if (st.Equals("Completed"))
+            {
+                var separarId = item_name.Split('-');
+                var id = separarId[1];
+
+                return RedirectToAction("Detalhes", new { id = id, usuarioId = _userId });
+            }
             return View();
         }
     }
