@@ -1,6 +1,8 @@
-﻿using GestaoDDD.Domain.Entities;
-using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
+﻿using System.Collections.Generic;
+using GestaoDDD.Domain.Entities;
+using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GestaoDDD.Application.ViewModels
 {
@@ -49,8 +51,11 @@ namespace GestaoDDD.Application.ViewModels
         // [Required(ErrorMessage = "Selecione a categoria na qual pertence seu orçamento.")]
         //public virtual Categoria categoria_id { get; set; }
         public int serv_Id { get; set; }
-
         public EnumClass.EnumStatusOrcamento Status { get; set; }
+
+        [NotMapped]
+        public string Distancia { get; set; }
+        public virtual ICollection<Prestador> PrestadorFk { get; set; } 
     }
 
 

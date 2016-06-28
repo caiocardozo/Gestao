@@ -1,23 +1,20 @@
-﻿using System.IO;
-using System.Linq;
-using AutoMapper;
-using AutoMapper.Internal;
+﻿using AutoMapper;
 using GeoCoordinatePortable;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
-using GestaoDDD.Domain.Interfaces.Services;
 using GestaoDDD.Infra.Identity.Configuration;
 using GestaoDDD.Infra.Identity.Model;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
-using System.Web;
+using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 
 
 namespace GestaoDDD.MVC.Controllers
@@ -197,38 +194,6 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
-        public ActionResult ExibirOrcamentos()
-        {
-            //Essa view ta aqui so por questao de teste... Ela nao existe no sistema, era so pra chamar ela e debugar esse processo aqui.
-            var list = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetAll());
-            var lstCoord = new List<double>();
-
-            foreach (var l in list)
-            {
-
-                //Coordenada de cada orçamento
-                var coordenada_orcamento = new GeoCoordinate();
-                coordenada_orcamento.Latitude = double.Parse(l.orc_latitude.Replace(",", "."), CultureInfo.InvariantCulture);
-                coordenada_orcamento.Longitude = double.Parse(l.orc_longitude.Replace(",", "."), CultureInfo.InvariantCulture);
-
-                //Coordenada fixa de cada prestador... Deve-se passar o id do prestador logado.
-                string lat = "-16.2744242";
-                string longt = "-48.95429619999999";
-
-                var coordenada_prestador = new GeoCoordinate();
-                coordenada_prestador.Latitude = double.Parse(lat.Replace(",", "."), CultureInfo.InvariantCulture);
-                coordenada_prestador.Longitude = double.Parse(longt.Replace(",", "."), CultureInfo.InvariantCulture);
-                // Coordenada fixa do parque dos pirineus.
-
-
-                var distancia = coordenada_prestador.GetDistanceTo(coordenada_orcamento);
-            }
-
-            ViewBag.Coordenadas = lstCoord;
-
-            return View();
-        }
-
         public ActionResult MeuPerfil(string usuarioId)
         {
             var prestador = _prestadorApp.GetPorGuid(usuarioId);
@@ -261,13 +226,26 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Editar(int id)
         {
+            try
+            {
+                var prestador = _prestadorApp.GetById(id);
+                ViewBag.Nome = prestador.pres_Nome;
+                ViewBag.CaminhoFoto = prestador.caminho_foto;
+                var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
+                return View(prestadorViewModel);
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Prestador";
+                logVm.View = "Get Editar Perfil";
 
-            
-            var prestador = _prestadorApp.GetById(id);
-            ViewBag.Nome = prestador.pres_Nome;
-            ViewBag.CaminhoFoto = prestador.caminho_foto;
-            var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
-            return View(prestadorViewModel);
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoCadastrar");
+            }
         }
 
 
@@ -346,9 +324,6 @@ namespace GestaoDDD.MVC.Controllers
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
-            
-
-            return View();
         }
 
         //

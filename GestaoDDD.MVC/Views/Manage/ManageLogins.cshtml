@@ -1,21 +1,20 @@
 ﻿@using Microsoft.Owin.Security
 @model GestaoDDD.Infra.Identity.Model.ManageLoginsViewModel
 @{
-    ViewBag.Title = "Manage your external logins";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+
 
 @Html.Partial("_PerfilPartial")
 
-<h2>@ViewBag.Title.</h2>
-
+<h1>Administre seu login com facebook</h1>
 <p class="text-success">@ViewBag.StatusMessage</p>
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     if (loginProviders.Count() == 0) {
         <div>
             <p>
-                There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
-                for details on setting up this ASP.NET application to support logging in via external services.
+                O sistema não tem nenhum login externo configurado no momento.
             </p>
         </div>
     }
@@ -23,7 +22,7 @@
     {
         if (Model.CurrentLogins.Count > 0)
         {
-            <h4>Registered Logins</h4>
+            <h4>Registre-se</h4>
             <table class="table">
                 <tbody>
                     @foreach (var account in Model.CurrentLogins)
@@ -39,7 +38,7 @@
                                         <div>
                                             @Html.Hidden("loginProvider", account.LoginProvider)
                                             @Html.Hidden("providerKey", account.ProviderKey)
-                                            <input type="submit" class="btn btn-default" value="Remove" title="Remove this @account.LoginProvider login from your account" />
+                                            <input type="submit" class="btn btn-default" value="Remove" title="Remove sua conta do @account.LoginProvider" />
                                         </div>
                                     }
                                 }
@@ -62,7 +61,7 @@
                 <p>
                     @foreach (AuthenticationDescription p in Model.OtherLogins)
                     {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Entre utilizando sua @p.Caption conta">@p.AuthenticationType</button>
                     }
                 </p>
                 </div>

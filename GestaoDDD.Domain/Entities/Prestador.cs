@@ -1,5 +1,5 @@
 ﻿ using System.Collections.Generic;
- using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
+ using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 using System.Runtime.Serialization;
  using GestaoDDD.Domain.Entities.NoSql;
 
@@ -36,8 +36,8 @@ namespace GestaoDDD.Domain.Entities
         public string pres_longitude { get; set; }
         public virtual Usuario Usuario { get; set; }
         public ICollection<ServicoPrestador> ServicoPrestador { get; set; }
-
         public string Cidade { get; set; }
-        public EnumClass.EnumEstados Estado { get; set; }
+        public EnumEstados Estado { get; set; }
+        public virtual ICollection<Orcamento> OrcamentoFk { get; set; }
     }
 }

@@ -268,6 +268,7 @@
     <Content Include="Content\Prestador\pagina_captura.css" />
     <Content Include="Content\Servico\modal_accept.css" />
     <Content Include="Content\site.css" />
+    <Content Include="Content\TermoUso.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -340,6 +341,7 @@
     <Content Include="Images\Prestador\background.png" />
     <Content Include="Images\Prestador\man.png" />
     <Content Include="Scripts\Adicionais\administrativo.js" />
+    <Content Include="Scripts\Adicionais\EscolherImagem.js" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
     <Content Include="Scripts\Adicionais\loginsExternos.js" />
     <Content Include="Scripts\Adicionais\mapaPrestador.js" />
@@ -357,6 +359,7 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\v.001.pubxml" />
+    <Content Include="Scripts\Adicionais\TermoUso.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
@@ -475,6 +478,8 @@
     <Content Include="Views\Shared\_LoginPartial-2.cshtml" />
     <Content Include="Views\Orcamento\Pagamento.cshtml" />
     <Content Include="Views\Account\ErroAoCadastrar.cshtml" />
+    <Content Include="Views\Orcamento\BuscaTrabalhosPagos.cshtml" />
+    <Content Include="Views\Orcamento\TestarImagem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

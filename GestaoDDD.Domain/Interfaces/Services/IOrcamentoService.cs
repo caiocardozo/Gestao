@@ -6,7 +6,10 @@ namespace GestaoDDD.Domain.Interfaces.Services
 {
     public interface IOrcamentoService : IServiceBase<Orcamento>
     {
+        IEnumerable<Orcamento> RetornaOrcamentosPagos(int servico, string cidade, EnumEstados estado, string usuarioId);
         //retorna os orcamentos 
-        IEnumerable<Orcamento> RetornaOrcamentos(int servico, string cidade, EnumClasses.EnumEstados estado);
+        IEnumerable<Orcamento> RetornaOrcamentos(int servico, string cidade, EnumEstados estado);
+        IEnumerable<Orcamento> RetornaOrcamentosAbertos();
+        IEnumerable<Orcamento> GetOrcamentoPagosPeloPrestador(string usuarioId);
     }
 }

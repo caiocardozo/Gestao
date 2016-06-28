@@ -1,4 +1,5 @@
-﻿using GestaoDDD.Domain.Entities;
+﻿using System.Collections;
+using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Infra.Data.Contexto;
 using System.Linq;

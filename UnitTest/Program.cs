@@ -11,11 +11,7 @@ namespace UnitTest
     {
         static void Main(string[] args)
         {
-           var _pay  = new Pagamento();
-
-            _pay.Pay();
-
-
+            //logic unit test where.
         }
     }
 }

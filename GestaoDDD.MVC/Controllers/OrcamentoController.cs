@@ -6,7 +6,7 @@ using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
 using System.Collections.Generic;
-using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
+using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 
 
 namespace GestaoDDD.MVC.Controllers
@@ -94,8 +94,8 @@ namespace GestaoDDD.MVC.Controllers
                 logVm.View = "Detalhes Post";
                 return RedirectToAction("ErroAoCadastrar");
             }
-            
-            
+
+
         }
         //
         // GET: /Orcamento/Cadastrar
@@ -241,64 +241,176 @@ namespace GestaoDDD.MVC.Controllers
                 ViewBag.CaminhoFoto = prestador.caminho_foto;
                 ViewBag.UsuarioId = prestador.pres_Id;
 
-
                 //ViewBag.Cidades = new SelectList(_cidadeApp.GetAll(), "Id", "NomeCidade");
                 ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
-                var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetAll());
+                var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>
+                    (_orcamentoApp.RetornarOrcamentosComDistanciaCalculada(prestador.pres_latitude, prestador.pres_longitude, prestador.pres_Raio_Recebimento, prestador.pres_Id));
 
-                var orcamentosAbertos = orcamentoVm.Where(s => s.Status == EnumClass.EnumStatusOrcamento.Aberto);
+                //var orcamentosAbertos = orcamentoVm.Where(s => s.Status == EnumClass.EnumStatusOrcamento.Aberto);
                 var frase = "";
-                if (orcamentosAbertos.Count() == 1)
-                    frase = "Foi encontrado " + orcamentosAbertos.Count().ToString() + " orçamento.";
+                if (orcamentoVm.Count() == 1)
+                    frase = "Foi encontrado " + orcamentoVm.Count().ToString() + " orçamento.";
                 else
-                    frase = "Foram encontrados " + orcamentosAbertos.Count().ToString() + " orçamentos";
+                    frase = "Foram encontrados " + orcamentoVm.Count().ToString() + " orçamentos";
                 ViewBag.FraseQtd = frase;
 
-                return View(orcamentosAbertos);
+                return View(orcamentoVm);
             }
             catch (Exception e)
             {
                 var logVm = new LogViewModel();
                 logVm.Mensagem = e.Message;
                 logVm.Controller = "Orçamento";
-                logVm.View = "Editar Post";
+                logVm.View = "BuscaTraballhos";
+
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoCadastrar");
+
+
+            }
+
+        }
+
+        public PartialViewResult BuscaTrabalhosPagosPartial(string servico, string cidade, string estado)
+        {
+            try
+            {
+
+                var cidades = _cidadeApp.GetById(int.Parse(cidade));
+                var estados = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), estado);
+                var retorno = _orcamentoApp.RetornaOrcamentosPagos(Convert.ToInt32(servico), cidades.NomeCidade, estados, _userId);
+
+                var frase = "";
+                if (retorno.Count() == 1)
+                    frase = "Foi encontrado " + retorno.Count().ToString() + " orçamento para " + cidades.NomeCidade + "-" + estados;
+                else
+                    frase = "Foram encontrados " + retorno.Count().ToString() + " orçamentos para " + cidades.NomeCidade + "-" + estados;
+                ViewBag.FraseQtd = frase;
+
+                return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
+            }
+            catch (Exception)
+            {
+                return PartialView();
+            }
+        }
+
+        public ActionResult TestarImagem()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TestarImagem(FormCollection collection)
+        {
+            return View();
+        }
+
+
+        public PartialViewResult BuscaTrabalhosPartial(string servico, string cidade, string estado)
+        {
+            try
+            {
+
+                var cidades = _cidadeApp.GetById(int.Parse(cidade));
+                var estados = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), estado);
+                var retorno = _orcamentoApp.RetornaOrcamentos(Convert.ToInt32(servico), cidades.NomeCidade, estados);
+
+                var frase = "";
+                if (retorno.Count() == 1)
+                    frase = "Foi encontrado " + retorno.Count().ToString() + " orçamento para " + cidades.NomeCidade + "-" + estados;
+                else
+                    frase = "Foram encontrados " + retorno.Count().ToString() + " orçamentos para " + cidades.NomeCidade + "-" + estados;
+                ViewBag.FraseQtd = frase;
+
+                return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Orçamento";
+                logVm.View = "BuscaTraballhos";
+
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return PartialView();
+            }
+        }
+
+        public ActionResult Pagamento(string token, string amt, string cc, string item_name, string st, string tx)
+        {
+            try
+            {
+                if (st.Equals("Completed"))
+                {
+                    var separarId = item_name.Split('-');
+
+                    var id = separarId[1];
+
+                    var orcamento = _orcamentoApp.GetById(int.Parse(id));
+                    var prestador = _prestadorApp.GetPorGuid(_userId);
+
+                    orcamento.PrestadorFk = new List<Prestador>();
+                    orcamento.PrestadorFk.Add(prestador);
+
+                    prestador.OrcamentoFk = new List<Orcamento>();
+                    prestador.OrcamentoFk.Add(orcamento);
+
+                    _prestadorApp.Update(prestador);
+                    _orcamentoApp.Update(orcamento);
+
+                    return RedirectToAction("Detalhes", new { id = id, usuarioId = _userId });
+                }
+                return View();
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Orçamento";
+                logVm.View = "Pagamento";
 
                 var log = Mapper.Map<LogViewModel, Log>(logVm);
 
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
-           
         }
 
-        public PartialViewResult BuscaTrabalhosPartial(string servico, string cidade, string estado)
+        public ActionResult BuscaTrabalhosPagos(string usuarioId)
         {
-
-            var cidades = _cidadeApp.GetById(int.Parse(cidade));
-            var estados = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), estado);
-            var retorno = _orcamentoApp.RetornaOrcamentos(Convert.ToInt32(servico), cidades.NomeCidade, estados);
-
-            var frase = "";
-            if (retorno.Count() == 1)
-                frase = "Foi encontrado " + retorno.Count().ToString() + " orçamento para " + cidades.NomeCidade + "-" + estados;
-            else
-                frase = "Foram encontrados " + retorno.Count().ToString() + " orçamentos para " + cidades.NomeCidade + "-" + estados;
-            ViewBag.FraseQtd = frase;
-
-            return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
-        }
-
-        public ActionResult Pagamento(string token, string amt, string cc, string item_name, string st, string tx)
-        {
-
-            if (st.Equals("Completed"))
+            try
             {
-                var separarId = item_name.Split('-');
-                var id = separarId[1];
+                _userId = usuarioId;
+                var prestador = _prestadorApp.GetPorGuid(usuarioId);
+                ViewBag.Nome = prestador.pres_Nome;
+                ViewBag.CaminhoFoto = prestador.caminho_foto;
+                ViewBag.UsuarioId = prestador.pres_Id;
 
-                return RedirectToAction("Detalhes", new { id = id, usuarioId = _userId });
+
+                //ViewBag.Cidades = new SelectList(_cidadeApp.GetAll(), "Id", "NomeCidade");
+                ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
+                var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetOrcamentoPagosPeloPrestador(usuarioId));
+
+                //var orcamentosAbertos = orcamentoVm.Where(s => s.Status == EnumClass.EnumStatusOrcamento.Aberto);
+                var frase = "";
+                if (orcamentoVm.Count() == 1)
+                    frase = "Você possui " + orcamentoVm.Count().ToString() + " orçamento.";
+                else
+                    frase = "Você possui " + orcamentoVm.Count().ToString() + " orçamentos";
+                ViewBag.FraseQtd = frase;
+
+                return View(orcamentoVm);
             }
-            return View();
+            catch (Exception e)
+            {
+                return View();
+            }
+
         }
     }
 

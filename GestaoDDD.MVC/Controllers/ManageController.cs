@@ -16,7 +16,7 @@ namespace GestaoDDD.MVC.Controllers
         private readonly ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private readonly IPrestadorAppService _prestadorApp;
-        private string _usuarioId;
+        private static string _usuarioId;
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IPrestadorAppService prestadorApp)
         {
             _userManager = userManager;
@@ -114,7 +114,7 @@ namespace GestaoDDD.MVC.Controllers
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "Your security code is: " + code
+                    Body = "Seu código de segurança é:  " + code
                 };
                 await _userManager.SmsService.SendAsync(message);
             }
@@ -328,8 +328,8 @@ namespace GestaoDDD.MVC.Controllers
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.RemoveLoginSuccess ? "Os logins externos foram removidos"
+                : message == ManageMessageId.Error ? "Ops. Ocorreu algum erro."
                 : "";
             var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)
@@ -377,9 +377,13 @@ namespace GestaoDDD.MVC.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
-            ViewBag.Nome = prestador.pres_Nome;
-            ViewBag.CaminhoFoto = prestador.caminho_foto;
+            if (string.IsNullOrEmpty(_usuarioId))
+            {
+                var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+                ViewBag.Nome = prestador.pres_Nome;
+                ViewBag.CaminhoFoto = prestador.caminho_foto;
+            }
+            
             if (disposing && _userManager != null)
             {
                 _userManager.Dispose();

@@ -1,7 +1,7 @@
 ﻿using GestaoDDD.Domain.Entities;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
+using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 
 namespace GestaoDDD.Application.ViewModels
 {

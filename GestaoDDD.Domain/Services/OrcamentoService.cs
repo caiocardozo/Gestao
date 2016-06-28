@@ -17,9 +17,25 @@ namespace GestaoDDD.Domain.Services
         }
 
         //retorna os orcamentos 
-        public IEnumerable<Orcamento> RetornaOrcamentos(int servico, string cidade, EnumClasses.EnumEstados estado)
+        public IEnumerable<Orcamento> RetornaOrcamentos(int servico, string cidade, EnumEstados estado)
         {
             return _orcamentoRepository.RetornaOrcamentos(servico, cidade, estado);
+        }
+
+
+        public IEnumerable<Orcamento> RetornaOrcamentosAbertos()
+        {
+            return _orcamentoRepository.RetornaOrcamentosAbertos();
+        }
+
+        public IEnumerable<Orcamento> RetornaOrcamentosPagos(int servico, string cidade, EnumEstados estado, string usuarioId)
+        {
+            return _orcamentoRepository.RetornaOrcamentosPagos(servico, cidade, estado, usuarioId);
+        }
+
+        public IEnumerable<Orcamento> GetOrcamentoPagosPeloPrestador(string usuarioId)
+        {
+            return _orcamentoRepository.GetOrcamentoPagosPeloPrestador(usuarioId);
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿@model GestaoDDD.Infra.Identity.Model.VerifyCodeViewModel
 @{
-    ViewBag.Title = "Validação de código de verificação";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-
-<h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("VerifyCode", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
     @Html.AntiForgeryToken()

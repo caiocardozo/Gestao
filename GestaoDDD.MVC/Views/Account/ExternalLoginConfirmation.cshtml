@@ -1,13 +1,15 @@
 ﻿@model GestaoDDD.Infra.Identity.Model.ExternalLoginConfirmationViewModel
 @{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+
+
 <h3>Conectar com a conta do @ViewBag.LoginProvider.</h3>
 
 @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4>Association Form</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <p class="text-info">

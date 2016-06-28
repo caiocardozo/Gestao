@@ -1,4 +1,4 @@
-﻿using EnumClass = GestaoDDD.Domain.Entities.NoSql.EnumClasses;
+﻿using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 
 namespace GestaoDDD.Domain.Entities
 {

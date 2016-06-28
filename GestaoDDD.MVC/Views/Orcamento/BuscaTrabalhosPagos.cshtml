@@ -1,10 +1,10 @@
-﻿    @{
-        Layout = "~/Views/Shared/_Layout2.cshtml";
-        
-    }
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
 @using System.Web.Mvc.Html;
 @using GestaoDDD.Domain.Entities.NoSql;
- 
+
 <script src="~/Scripts/jquery-2.2.3.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -24,7 +24,7 @@
                 $("#servico_id").html(options_servico);
             }
         });
-        });
+    });
     $(document).ready(function () {
         $('#ListaCat').change(function () {
             var value = $("#ListaCat option:selected").val();
@@ -81,63 +81,63 @@
         });
     };
 </script>
-    @Html.Partial("_PerfilPartial")
+@Html.Partial("_PerfilPartial")
 
-    <div class="container">
-        <div class="corpo col-md-12">
-            <div class="imagem-lupa col-md-3">
-                <img src="~/Images/Orcamento/lupa.png" />
-            </div>
-            <div class="texto-imagem col-md-5">
-                <h2>Buscar Orçamentos</h2>
-                Veja lista completa de oportunidades de trabalho.
-            </div>
-            <div class="texto-imagem col-md-2">
-                <button type="button" class="btn btn-formulario" onclick="ProcuraOrcamento();"><span class="glyphicon glyphicon-search"></span> BUSCAR </button>
-            </div>
+<div class="container">
+    <div class="corpo col-md-12">
+        <div class="imagem-lupa col-md-3">
+            <img src="~/Images/Orcamento/lupa.png" />
         </div>
-        <div class="row" id="retornaOrcamentos">
-            <div id="loading" style="display: none;">
-                <img src="~/Content/Imagens/Carregando/carregando.png" />
+        <div class="texto-imagem col-md-5">
+            <h2>Buscar Orçamentos</h2>
+            Veja lista completa de oportunidades de trabalho.
+        </div>
+        <div class="texto-imagem col-md-2">
+            <button type="button" class="btn btn-formulario" onclick="ProcuraOrcamento();"><span class="glyphicon glyphicon-search"></span> BUSCAR </button>
+        </div>
+    </div>
+    <div class="row" id="retornaOrcamentos">
+        <div id="loading" style="display: none;">
+            <img src="~/Content/Imagens/Carregando/carregando.png" />
+        </div>
+        <div class="row lista-trabalhos col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="texto-lista">
+                <b>FILTRAR POR:</b>
             </div>
-            <div class="row lista-trabalhos col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                <div class="texto-lista">
-                    <b>FILTRAR POR:</b>
-                </div>
 
-                <div class="filtro col-md-3">
-                    <form role="form">
-                        <div class="titulo-filtro">
-                            <h4><b>ESTADO</b></h4>
-                        </div>
-                        <div class="col-form form-group">
-                            @Html.DropDownList("EnumEstados", EnumHelper.GetSelectList(typeof(EnumEstados)), " ", new {@class = "form-control"} )
+            <div class="filtro col-md-3">
+                <form role="form">
+                    <div class="titulo-filtro">
+                        <h4><b>ESTADO</b></h4>
                     </div>
-                        <div class="titulo-filtro">
-                            <h4><b>CIDADE</b></h4>
-                        </div>
-                        <div class="col-form form-group">
-                            <select class="form-control" id="cidade_id" name="cidade_id" style="text-transform: capitalize"></select>
-                        </div>
-                        <div class="titulo-filtro">
-                            <h4><b>CATEGORIA</b></h4>
-                        </div>
-                        <div class="col-form form-group">
-                            @Html.DropDownList("ListaCat", null, new { @class = "form-control" })
-                        </div>
-                        <div class="titulo-filtro">
-                            <h4><b>SERVIÇO</b></h4>
-                        </div>
-                        <div class="col-form form-group">
-                            <select class="form-control" id="servico_id" name="servico_id" style="text-transform: capitalize"></select>
-                        </div>
-                    </form>
-                </div>
-                <div id="retornoPesquisa">
-                    @{
-                        Html.RenderPartial("BuscaTrabalhosPartial");
-                    }
-                </div>
+                    <div class="col-form form-group">
+                        @Html.DropDownList("EnumEstados", EnumHelper.GetSelectList(typeof(EnumEstados)), " ", new { @class = "form-control" })
+                    </div>
+                    <div class="titulo-filtro">
+                        <h4><b>CIDADE</b></h4>
+                    </div>
+                    <div class="col-form form-group">
+                        <select class="form-control" id="cidade_id" name="cidade_id" style="text-transform: capitalize"></select>
+                    </div>
+                    <div class="titulo-filtro">
+                        <h4><b>CATEGORIA</b></h4>
+                    </div>
+                    <div class="col-form form-group">
+                        @Html.DropDownList("ListaCat", null, new { @class = "form-control" })
+                    </div>
+                    <div class="titulo-filtro">
+                        <h4><b>SERVIÇO</b></h4>
+                    </div>
+                    <div class="col-form form-group">
+                        <select class="form-control" id="servico_id" name="servico_id" style="text-transform: capitalize"></select>
+                    </div>
+                </form>
+            </div>
+            <div id="retornoPesquisa">
+                @{
+                    Html.RenderPartial("BuscaTrabalhosPartial");
+                }
             </div>
         </div>
     </div>
+</div>

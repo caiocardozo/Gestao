@@ -1,4 +1,5 @@
-﻿using GestaoDDD.Domain.Entities;
+﻿using System;
+using GestaoDDD.Domain.Entities;
 using System.Data.Entity.ModelConfiguration;
 
 namespace GestaoDDD.Infra.Data.EntityConfig
@@ -48,6 +49,17 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.orc_estado).HasColumnName("estado");
 
             Property(c => c.Status).HasColumnName("status");
+
+            Property(c => c.Distancia).HasColumnName("distancia");
+
+            HasMany<Prestador>(p => p.PrestadorFk)
+                .WithMany(o => o.OrcamentoFk)
+                .Map(po =>
+                {
+                    po.MapLeftKey("orcamento_id_fk");
+                    po.MapRightKey("prestador_id_fk");
+                    po.ToTable("OrcamentoPrestador");
+                });
         }
     }
 }
