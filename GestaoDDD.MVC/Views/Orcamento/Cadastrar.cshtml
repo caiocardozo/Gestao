@@ -226,9 +226,15 @@
                     @Html.ValidationMessageFor(model => model.orc_endereco_solicitante, "", new { @class = "text-danger" })
                 </div>
 
-                <div class="checkbox col-md-6">
-                    <label><input type="checkbox" value="">Li e aceito as condições.</label>
-                </div>
+                <div class="col-form form-group col-md-12">
+                @Html.CheckBoxFor(x => x.TermosECondicoes)
+                @Html.LabelFor(x => x.TermosECondicoes) presentes no <a href="@Url.Action("Index", "TermosDeUso")"
+                                                                        type="submit"
+                                                                        id="runReport"
+                                                                        target="_blank"
+                                                                        style="color:blue">termo de uso</a>
+                @Html.ValidationMessageFor(model => model.TermosECondicoes, "", new { @class = "text-danger" })
+            </div>
 
                 <div class="row col-md-6">
                     <input type="submit" class="btn btn-enviar" />

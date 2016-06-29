@@ -115,12 +115,29 @@ namespace GestaoDDD.MVC.Controllers
                 {
                     var orcamentoEntity = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
 
-
                     var endereco = orcamento.orc_Endereco;
-                    var x = endereco.Split(',');
-                    var y = x[1].Split('-');
-                    orcamentoEntity.orc_cidade = y[0].Trim().ToUpper();
-                    orcamentoEntity.orc_estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
+                    var partes = endereco.Split(',');
+                    foreach (var parte in partes.Where(s => s.Contains("-")))
+                    {
+
+                        var separar = parte.Split('-');
+                        var ufs = " AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA,PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO";
+                        if (ufs.Contains(separar[1]))
+                        {
+                            orcamento.orc_estado =
+                                (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), separar[1]);
+                            orcamento.orc_cidade = separar[0];
+                        }
+                        else
+                            continue;
+
+                    }
+
+                    //var endereco = orcamento.orc_Endereco;
+                    //var x = endereco.Split(',');
+                    //var y = x[1].Split('-');
+                    //orcamentoEntity.orc_cidade = y[0].Trim().ToUpper();
+                    //orcamentoEntity.orc_estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
 
 
                     orcamentoEntity.serv_Id = servico_id;
@@ -296,18 +313,6 @@ namespace GestaoDDD.MVC.Controllers
                 return PartialView();
             }
         }
-
-        public ActionResult TestarImagem()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult TestarImagem(FormCollection collection)
-        {
-            return View();
-        }
-
 
         public PartialViewResult BuscaTrabalhosPartial(string servico, string cidade, string estado)
         {

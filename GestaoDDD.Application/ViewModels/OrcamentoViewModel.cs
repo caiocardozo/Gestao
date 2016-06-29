@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using GestaoDDD.Domain.Entities;
 using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 using System.ComponentModel.DataAnnotations;
@@ -55,7 +56,13 @@ namespace GestaoDDD.Application.ViewModels
 
         [NotMapped]
         public string Distancia { get; set; }
-        public virtual ICollection<Prestador> PrestadorFk { get; set; } 
+        public virtual ICollection<Prestador> PrestadorFk { get; set; }
+
+
+        [DisplayName("Li e aceito as condições")]
+        [Range(typeof(bool), "true", "true", ErrorMessage = "Aceite os termos e condições")]
+        public bool TermosECondicoes { get; set; }
+
     }
 
 

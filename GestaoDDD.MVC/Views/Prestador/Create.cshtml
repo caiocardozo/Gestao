@@ -92,9 +92,9 @@
                 @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new { @class = "text-danger" })
             </div>
-         
+
             <div class="col-form form-group col-md-9">
-                <label >Endereço:</label>
+                <label>Endereço:</label>
                 <input type="text" id="orc_Endereco" name="pres_Endereco" class="form-control" />
                 @Html.ValidationMessageFor(model => model.pres_Endereco, "", new { @class = "text-danger" })
             </div>
@@ -121,9 +121,15 @@
                 <input type="hidden" id="orc_longitude" name="pres_Longitude" />
             </div>
 
+
+
             <div class="col-form form-group col-md-12">
                 @Html.CheckBoxFor(x => x.TermosECondicoes)
-                @Html.LabelFor(x => x.TermosECondicoes)
+                @Html.LabelFor(x => x.TermosECondicoes) presentes no <a href="@Url.Action("Index", "TermosDeUso")"
+                                                                        type="submit"
+                                                                        id="runReport"
+                                                                        target="_blank"
+                                                                        style="color:blue">termo de uso</a>
                 @Html.ValidationMessageFor(model => model.TermosECondicoes, "", new { @class = "text-danger" })
             </div>
 
@@ -161,7 +167,20 @@
             element.mask("(99)9999-9999");
         }
     }).trigger('focusout');
-    //$("#pres_telefone_celular").mask("(99)9999-9999");
-    //$("#pres_telefone_residencial").mask("(99)9999-9999");
+
+    //$("#pres_cpf_cnpj").keydown(function () {
+    //    try {
+    //        $("#pres_cpf_cnpj").unmask();
+    //    } catch (e) { }
+
+    //    var tamanho = $("#pres_cpf_cnpj").val().length;
+        
+
+    //    if (tamanho < 11) {
+    //        $("#pres_cpf_cnpj").mask("999.999.999-99");
+    //    } else {
+    //        $("#pres_cpf_cnpj").mask("99.999.999/9999-99");
+    //    }
+    //});
 
 </script>

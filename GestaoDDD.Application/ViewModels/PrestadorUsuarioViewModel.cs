@@ -67,7 +67,7 @@ namespace GestaoDDD.Application.ViewModels
         [Required]
         public string pres_Longitude { get; set; }
 
-        [DisplayName("Li e aceito as condições.")]
+        [DisplayName("Li e aceito as condições")]
         [Range(typeof(bool), "true", "true", ErrorMessage = "Aceite os termos e condições")]
         public bool TermosECondicoes { get; set; }
 

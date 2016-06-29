@@ -332,6 +332,18 @@
     <Content Include="Images\Home\Profissionais\reforma.png" />
     <Content Include="Images\Home\Profissionais\reparos.png" />
     <Content Include="Images\ImagemPerfil\11-06-2016-13-19-24_20160208043355 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\12-06-2016-01-53-31_20160208043424 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\12-06-2016-02-29-24_20160208043424 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\12-06-2016-02-35-54_20160208043424 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\12-06-2016-02-45-28_20160208043424 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\12-06-2016-02-46-14_20160208043424 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\13-06-2016-21-24-33_20160208043424 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\13-06-2016-23-28-03_20160208043424 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\13-06-2016-23-48-27_20160208043424 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\14-06-2016-21-06-36_20160208043424 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\14-06-2016-22-24-34_20160208043424 %281%29.jpg" />
+    <Content Include="Images\ImagemPerfil\15-06-2016-20-02-59_13295165_969074616541749_810352198_n.jpg" />
+    <Content Include="Images\ImagemPerfil\26-06-2016-00-23-47_20160208043432.jpg" />
     <Content Include="Images\ImagemPerfil\fotoperfil.png" />
     <Content Include="Images\ImagemPerfil\image_perfil.jpg" />
     <Content Include="Images\Orcamento\check.png" />
@@ -358,6 +370,11 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Images\ImagemPerfil\12-06-2016-02-35-15_" />
+    <Content Include="Images\ImagemPerfil\14-06-2016-22-29-01_" />
+    <Content Include="Images\ImagemPerfil\15-06-2016-19-16-29_" />
+    <Content Include="Images\ImagemPerfil\15-06-2016-19-25-57_" />
+    <Content Include="Images\ImagemPerfil\24-06-2016-23-29-43_" />
     <None Include="Properties\PublishProfiles\v.001.pubxml" />
     <Content Include="Scripts\Adicionais\TermoUso.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -480,6 +497,7 @@
     <Content Include="Views\Account\ErroAoCadastrar.cshtml" />
     <Content Include="Views\Orcamento\BuscaTrabalhosPagos.cshtml" />
     <Content Include="Views\Orcamento\TestarImagem.cshtml" />
+    <Content Include="Views\Orcamento\BuscaTrabalhosPagosPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
