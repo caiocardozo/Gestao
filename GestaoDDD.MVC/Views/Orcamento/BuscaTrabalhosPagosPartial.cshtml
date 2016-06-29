@@ -69,11 +69,7 @@
                                 R$ 5,00
                             </div>*@
                         <div class="botao">
-                            <a href="~/Orcamento/Detalhes">
-                                <button type="button" class="btn btn-formulario">VISUALIZAR</button>
-                            </a>
-                             
-                            @*@Html.ActionLink("VISUALIZAR", "Detalhes", "Orcamento", new { id =, usuarioId = usuarioId }, null)*@
+                                <button type="button" class="btn btn-formulario" onclick="">@Html.ActionLink("VISUALIZAR", "Detalhes", "Orcamento", new { id = Html.DisplayTextFor(modelItem => item.orc_Id), usuarioId = usuarioId }, null)</button>    
                         </div>
                     </div>
                     <hr />

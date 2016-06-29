@@ -81,7 +81,7 @@ namespace GestaoDDD.MVC.Controllers
             try
             {
                 var orcamentoEntity = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamentoVm);
-                orcamentoEntity.Status = EnumClass.EnumStatusOrcamento.Aceito;
+                orcamentoEntity.Status = EnumClass.EnumStatusOrcamento.Fechado;
                 _orcamentoApp.Update(orcamentoEntity);
 
                 return RedirectToAction("BuscaTrabalhos", new { usuarioId = usuarioId });
