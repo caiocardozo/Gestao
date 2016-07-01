@@ -370,11 +370,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Images\ImagemPerfil\12-06-2016-02-35-15_" />
-    <Content Include="Images\ImagemPerfil\14-06-2016-22-29-01_" />
-    <Content Include="Images\ImagemPerfil\15-06-2016-19-16-29_" />
-    <Content Include="Images\ImagemPerfil\15-06-2016-19-25-57_" />
-    <Content Include="Images\ImagemPerfil\24-06-2016-23-29-43_" />
     <None Include="Properties\PublishProfiles\v.001.pubxml" />
     <Content Include="Scripts\Adicionais\TermoUso.js" />
     <Content Include="Scripts\bootstrap.js" />

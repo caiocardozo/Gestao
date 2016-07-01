@@ -30,8 +30,14 @@
 
                 @if (!string.IsNullOrEmpty(@ViewBag.CaminhoFoto))
                 {
-                    <img id="blah" width="250" height="200" src="~/Images/ImagemPerfil/@ViewBag.CaminhoFoto" class="header-foto col-md-12" />
-                    @*<img id="blah" alt="your image" width="100" height="100" />*@
+                     if (@ViewBag.CaminhoFoto.ToString().Contains(".jpg") || @ViewBag.CaminhoFoto.ToString().Contains(".png"))
+                        {
+                            <img width="250" height="200" src="~/Images/ImagemPerfil/@ViewBag.CaminhoFoto" class="header-foto col-md-12" />
+                        }
+                        else
+                        {
+                            <img width="250" height="200" src="~/Images/Conta/fotoperfil.png" class="header-foto col-md-12" />
+                        }
 
                 }
                 else
@@ -138,7 +144,7 @@
 
                 <div class="col-form form-group col-md-6">
                     <label for="apresentacao_Pesssoal">Breve apresentação pessoal:</label>
-                    <textarea class="form-control" rows="5" id="apresentacao_Pesssoal" name="apresentacao_Pessoal"></textarea>
+                    <textarea class="form-control" rows="5" id="apresentacao_Pesssoal" name="apresentacao_Pesssoal"></textarea>
                 </div>
                 <div class="col-form form-group col-md-6">
                     <label for="apresentacao_Empresa">Breve apresentação da empresa:</label>

@@ -11,7 +11,14 @@
                 <label for="foto">
                     @if (!string.IsNullOrEmpty(@ViewBag.CaminhoFoto))
                     {
-                        <img width="250" height="200" src="~/Images/ImagemPerfil/@ViewBag.CaminhoFoto" class="header-foto col-md-12" />
+                        if (@ViewBag.CaminhoFoto.ToString().Contains(".jpg") || @ViewBag.CaminhoFoto.ToString().Contains(".png"))
+                        {
+                            <img width="250" height="200" src="~/Images/ImagemPerfil/@ViewBag.CaminhoFoto" class="header-foto col-md-12" />
+                        }
+                        else
+                        {
+                            <img width="250" height="200" src="~/Images/Conta/fotoperfil.png" class="header-foto col-md-12" />
+                        }
                     }
                     else
                     {

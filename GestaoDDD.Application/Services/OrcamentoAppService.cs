@@ -32,9 +32,10 @@ namespace GestaoDDD.Application.Services
         }
 
 
-        public IEnumerable<Orcamento> RetornarOrcamentosComDistanciaCalculada(string prestadorLatitude, string prestadorLongitude, string raio, string usuarioId)
+        public IEnumerable<Orcamento> RetornarOrcamentosComDistanciaCalculada(string prestadorLatitude,
+            string prestadorLongitude, string raio, string usuarioId)
         {
-            var orcamentos = _orcamentoService.RetornaOrcamentosAbertos();
+            var orcamentos = _orcamentoService.RetornaOrcamentosAbertos().ToList();
             var orcamentosPagos = GetOrcamentoPagosPeloPrestador(usuarioId).ToList();
 
 
@@ -42,42 +43,9 @@ namespace GestaoDDD.Application.Services
             var orcamentosView = new List<Orcamento>();
             foreach (var orcamento in orcamentos)
             {
-                if (orcamentosPagos.Count > 0)
+
+                if (orcamentosPagos.All(s => s.orc_Id != orcamento.orc_Id))
                 {
-                    foreach (var orcamentosPago in orcamentosPagos)
-                    {
-                        if (orcamentosPago.orc_Id != orcamento.orc_Id)
-                        {
-                            var coord_orcamento = new GeoCoordinate();
-                            coord_orcamento.Latitude = double.Parse(orcamento.orc_latitude.Replace(",", "."),
-                                CultureInfo.InvariantCulture);
-                            coord_orcamento.Longitude = double.Parse(orcamento.orc_longitude.Replace(",", "."),
-                                CultureInfo.InvariantCulture);
-
-                            var coordenada_prestador = new GeoCoordinate();
-                            coordenada_prestador.Latitude = double.Parse(prestadorLatitude.Replace(",", "."),
-                                CultureInfo.InvariantCulture);
-                            coordenada_prestador.Longitude = double.Parse(prestadorLongitude.Replace(",", "."),
-                                CultureInfo.InvariantCulture);
-
-                            var distancia = (coordenada_prestador.GetDistanceTo(coord_orcamento) / 1000);
-                            var endereco = orcamento.orc_endereco;
-                            var separar = endereco.Split(',');
-                            var cidadeEstado = separar[1].Split('-');
-                            orcamento.Distancia = Math.Round(distancia, 2).ToString() + " do seu negócio em " +
-                                                  cidadeEstado[0] +
-                                                  " - " + cidadeEstado[1] + " ";
-
-                            if (distancia <= double.Parse(raio))
-                                orcamentosView.Add(orcamento);
-                        }
-                        else
-                            continue;
-                    }
-                }
-                else
-                {
-
                     var coord_orcamento = new GeoCoordinate();
                     coord_orcamento.Latitude = double.Parse(orcamento.orc_latitude.Replace(",", "."),
                         CultureInfo.InvariantCulture);
@@ -94,7 +62,8 @@ namespace GestaoDDD.Application.Services
                     var endereco = orcamento.orc_endereco;
                     var separar = endereco.Split(',');
                     var cidadeEstado = separar[1].Split('-');
-                    orcamento.Distancia = Math.Round(distancia, 2).ToString() + " do seu negócio em " + cidadeEstado[0] +
+                    orcamento.Distancia = Math.Round(distancia, 2).ToString() + " do seu negócio em " +
+                                          cidadeEstado[0] +
                                           " - " + cidadeEstado[1] + " ";
 
                     if (distancia <= double.Parse(raio))
@@ -103,6 +72,9 @@ namespace GestaoDDD.Application.Services
             }
             return orcamentosView;
         }
+
+
+
 
 
         public IEnumerable<Orcamento> GetOrcamentoPagosPeloPrestador(string usuarioId)

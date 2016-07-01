@@ -31,7 +31,7 @@
             </div>
             <div class="col-form form-group col-md-6">
                 <label for="empresa">Nome da sua empresa:</label>
-                <input type="text" class="form-control" readonly id="empresa" />
+                <input type="text" class="form-control" readonly id="nome_empresa" value="@Html.DisplayFor(model => model.nome_Empresa)" />
             </div>
             <div class="col-form form-group col-md-6">
                 <label for="email">Seu e-mail:</label>
@@ -61,7 +61,7 @@
             </div>
             <div class="col-form form-group col-md-6">
                 <label for="apresentacaoempresa">Breve apresentação da empresa:</label>
-                <input type="text" class="form-control" id="raio" readonly value="@Html.DisplayFor(model => model.apresentacao_Empresa)" />
+                <input type="text"  class="form-control" id="raio" readonly value="@Html.DisplayFor(model => model.apresentacao_Empresa)" />
             </div>
 
             <div class="sub-formulario ">
@@ -87,8 +87,8 @@
                 </div>
             </div>
             @*<div hidden class="col-form col-md-2">
-                <input type="submit" class="btn btn-formulario" />
-            </div>*@
+                    <input type="submit" class="btn btn-formulario" />
+                </div>*@
             <div class="col-form col-md-offset-8 col-md-2">
                 <button type="button" class="btn btn-formulario">
                     @Html.ActionLink("Editar Informações", "EditarPerfil", new { usuarioId = usuarioId })

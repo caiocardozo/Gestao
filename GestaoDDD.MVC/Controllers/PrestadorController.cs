@@ -297,24 +297,40 @@ namespace GestaoDDD.MVC.Controllers
                 string data = weekDay.ToString("dd-MM-yyyy-HH-mm-ss");
 
                 var file = this.Request.Files[0];
-                string savedFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images/ImagemPerfil");
-                savedFileName = Path.Combine(savedFileName, Path.GetFileName(data + "_" + file.FileName));
-                file.SaveAs(savedFileName);
-                prestadorViewModel.caminho_foto = Path.GetFileName(data + "_" + file.FileName);
-
+                if (!string.IsNullOrEmpty(file.FileName))
+                {
+                    string savedFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images/ImagemPerfil");
+                    savedFileName = Path.Combine(savedFileName, Path.GetFileName(data + "_" + file.FileName));
+                    file.SaveAs(savedFileName);
+                    prestadorViewModel.caminho_foto = Path.GetFileName(data + "_" + file.FileName);
+                }
 
                 ModelState["Senha"].Errors.Clear();
                 ModelState["ConfirmaSenha"].Errors.Clear();
 
                 if (ModelState.IsValid)
                 {
+                    
                     var prestador = Mapper.Map<PrestadorUsuarioViewModel, Prestador>(prestadorViewModel);
 
+
                     var endereco = prestador.pres_Endereco;
-                    var x = endereco.Split(',');
-                    var y = x[1].Split('-');
-                    prestador.Cidade = y[0].Trim();
-                    prestador.Estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
+                    var partes = endereco.Split(',');
+                    foreach (var parte in partes.Where(s => s.Contains("-")))
+                    {
+
+                        var separar = parte.Split('-');
+                        var ufs = " AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA,PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO";
+                        if (ufs.Contains(separar[1]))
+                        {
+                            prestador.Estado =
+                                (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), separar[1]);
+                            prestador.Cidade = separar[0];
+                        }
+                        else
+                            continue;
+
+                    }
 
                     _prestadorApp.Update(prestador);
                     return RedirectToAction("MeuPerfil", new { usuarioId = prestador.pres_Id });
