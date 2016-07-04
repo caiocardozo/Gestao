@@ -1,13 +1,10 @@
 ﻿@model GestaoDDD.Application.ViewModels.ServicoViewModel
 
 @{
-    ViewBag.Title = "Cadastrar";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Cadastrar</h2>
-
-@using (Html.BeginForm()) 
+    @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     

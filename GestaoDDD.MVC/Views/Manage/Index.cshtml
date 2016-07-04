@@ -3,7 +3,7 @@
 <link href="~/Content/Conta/meuperfil.css" rel="stylesheet" />
 
 @{
-    Layout="~/Views/Shared/_Layout2.cshtml";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 @Html.Partial("_PerfilPartial")
@@ -25,14 +25,14 @@
             }
             ]
         </dd>
-        <dt>Redes sociais:</dt>
-        <dd>
-            Logins Sociais: @Model.Logins.Count
-            @Html.ActionLink("[ Gerenciar ]", "ManageLogins")
-        </dd>
+        @*<dt>Redes sociais:</dt>
+            <dd>
+                Logins Sociais: @Model.Logins.Count
+                @Html.ActionLink("[ Gerenciar ]", "ManageLogins")
+            </dd>*@
         <dt>Dados cadastrais:</dt>
         <dd>
-            @Html.ActionLink("[ Meu Perfil ]", "MeuPerfil", "Prestador", new {usuarioId = @Model.UsuarioId}, null)
+            @Html.ActionLink("[ Meu Perfil ]", "MeuPerfil", "Prestador", new { usuarioId = @Model.UsuarioId }, null)
         </dd>
         <dt>Orçamentos:</dt>
         <dd>
@@ -41,10 +41,17 @@
         <dd>
             @Html.ActionLink("[ Meus Orçamentos ]", "BuscaTrabalhosPagos", "Orcamento", new { usuarioId = @Model.UsuarioId }, null)
         </dd>
-        
+        @if(Model.Role == "Admin")
+        {
+        <dt>Área administrativa:</dt>
+        <dd>
+            @Html.ActionLink("[ Administrar ]", "Index", "Prestador", new { usuarioId = @Model.UsuarioId }, null)
+        </dd>
+        }
+
 
         @*<dt>Número de telefone:</dt>*@
-            @*<dd>
+        @*<dd>
                 Número do Telefone: @(Model.PhoneNumber ?? "Nenhum") [
                 @if (Model.PhoneNumber != null)
                 {
@@ -61,50 +68,50 @@
         @*<dt>Two-Factor Authentication:</dt>*@
         @*<dd>
 
-            @if (Model.TwoFactor)
-            {
-                using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                @if (Model.TwoFactor)
                 {
-                    @Html.AntiForgeryToken()
-                    <p>
-                        Two Factor está habilitado:
-                        <input type="submit" value="Desabilitar" class="btn btn-default"/>
-                    </p>
+                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                    {
+                        @Html.AntiForgeryToken()
+                        <p>
+                            Two Factor está habilitado:
+                            <input type="submit" value="Desabilitar" class="btn btn-default"/>
+                        </p>
+                    }
                 }
-            }
-            else
-            {
-                using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                else
                 {
-                    @Html.AntiForgeryToken()
-                    <p>
-                        Two Factor está desabilitado:
-                        <input type="submit" value="Habilitar" class="btn btn-default"/>
-                    </p>
+                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                    {
+                        @Html.AntiForgeryToken()
+                        <p>
+                            Two Factor está desabilitado:
+                            <input type="submit" value="Habilitar" class="btn btn-default"/>
+                        </p>
+                    }
                 }
-            }
-        </dd>*@
+            </dd>*@
         @*<dt>Two-Factor Authentication:</dt>
-        <dd>
+            <dd>
 
-            @if (Model.BrowserRemembered)
-            {
-                <form method="post" action="/Manage/ForgetBrowser">
-                    <p>
-                        O browser será lembrado para Two Factor:
-                        <input type="submit" value="Esquecer Browser" class="btn btn-default" />
-                    </p>
-                </form>
-            }
-            else
-            {
-                <form method="post" action="/Manage/RememberBrowser">
-                    <p>
-                        O browser NÃO será lembrado para Two Factor:
-                        <input type="submit" value="Lembrar Browser" class="btn btn-default" />
-                    </p>
-                </form>
-            }
-        </dd>*@
-</dl>
+                @if (Model.BrowserRemembered)
+                {
+                    <form method="post" action="/Manage/ForgetBrowser">
+                        <p>
+                            O browser será lembrado para Two Factor:
+                            <input type="submit" value="Esquecer Browser" class="btn btn-default" />
+                        </p>
+                    </form>
+                }
+                else
+                {
+                    <form method="post" action="/Manage/RememberBrowser">
+                        <p>
+                            O browser NÃO será lembrado para Two Factor:
+                            <input type="submit" value="Lembrar Browser" class="btn btn-default" />
+                        </p>
+                    </form>
+                }
+            </dd>*@
+    </dl>
 </div>

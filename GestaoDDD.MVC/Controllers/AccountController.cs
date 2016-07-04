@@ -61,14 +61,23 @@ namespace GestaoDDD.MVC.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
                 var prestador = _prestadorAppService.GetPorEmail(model.Email);
                 var userId = prestador.pres_Id;
+                var rolesPrestador = _userManager.GetRoles(userId);
+                var role = "";
+
+                role = rolesPrestador != null ? rolesPrestador[0] : null;
+
+
 
                 switch (result)
                 {
                     case SignInStatus.Success:
                         //joga o usuario para a tela inicial 
                         //@Html.ActionLink("[ Disponíveis ]", "BuscaTrabalhos", "Orcamento", new { usuarioId = @Model.UsuarioId }, null)
-                        return RedirectToAction("BuscaTrabalhos", "Orcamento", new { usuarioId = userId });
-                        //return RedirectToAction("Index", "Home");
+                        if (role == "Prestador")
+                            return RedirectToAction("BuscaTrabalhos", "Orcamento", new { usuarioId = userId });
+                        else
+                            return RedirectToAction("Admin", "Home", new { usuarioId = userId });
+                    //return RedirectToAction("Index", "Home");
                     //return RedirectToLocal(returnUrl);
                     case SignInStatus.LockedOut:
                         return View("Lockout");
@@ -403,7 +412,7 @@ namespace GestaoDDD.MVC.Controllers
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
-            
+
         }
 
         //
@@ -467,7 +476,7 @@ namespace GestaoDDD.MVC.Controllers
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
-           
+
         }
 
         //
@@ -519,7 +528,7 @@ namespace GestaoDDD.MVC.Controllers
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
-            
+
         }
 
         //

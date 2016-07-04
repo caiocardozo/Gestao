@@ -35,5 +35,11 @@ namespace GestaoDDD.Infra.Data.Repositories
         {
             return _db.ServicoPrestador.Where(s => s.Prestador.pres_Id.Equals(prestadorId));
         }
+
+
+        public IEnumerable<ServicoPrestador> GetByServicoId(int servicoId)
+        {
+            return _db.ServicoPrestador.Where(s => s.Servico.serv_Id.Equals(servicoId));
+        }
     }
 }

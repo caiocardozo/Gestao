@@ -33,10 +33,10 @@
                 @{
                     if (Request.IsAuthenticated)
                     {
-                        if (User.IsInRole("Admin"))
+                        @*if (User.IsInRole("Admin"))
                         {
                             <li>@Html.ActionLink("Prestadores", "Index", "Prestador")</li>
-                        }
+                        }*@
 
                         var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
                         var claim = claimsIdentity.FindFirst(c => c.Type == "AdmUsers");
@@ -136,8 +136,6 @@
 
 
 @RenderSection("scripts", required: false)
-
-
 
 </html>
 

@@ -66,12 +66,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PagSeguro\PagSeguro.csproj">
-      <Project>{5b8d3375-754a-414a-8e04-9a40a8497a8a}</Project>
-      <Name>PagSeguro</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

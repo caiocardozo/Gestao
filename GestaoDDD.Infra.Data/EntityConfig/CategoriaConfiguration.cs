@@ -17,7 +17,6 @@ namespace GestaoDDD.Infra.Data.EntityConfig
             Property(c => c.data_alteracao).HasColumnName("data_alteracao").HasColumnOrder(3);
 
             Property(c => c.data_inclusao).HasColumnName("data_inclusao").HasColumnOrder(2);
-
         }
     }
 }

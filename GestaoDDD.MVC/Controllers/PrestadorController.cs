@@ -51,7 +51,7 @@ namespace GestaoDDD.MVC.Controllers
         public ActionResult Index()
         {
             var prestadorViewModel =
-                Mapper.Map<IEnumerable<Prestador>, IEnumerable<PrestadorViewModel>>(_prestadorApp.GetAll());
+                Mapper.Map<IEnumerable<Prestador>, IEnumerable<PrestadorUsuarioViewModel>>(_prestadorApp.GetAll());
             return View(prestadorViewModel);
         }
 
@@ -171,7 +171,8 @@ namespace GestaoDDD.MVC.Controllers
                                     cpf = prestador.pres_Cpf_Cnpj,
                                     nome = prestador.pres_Nome,
                                     email = prestador.pres_Email,
-                                    celular = prestador.pres_Telefone_Celular
+                                    celular = prestador.pres_Telefone_Celular,
+                                    editarPerfil = false
                                 });
                         }
                         else
@@ -304,7 +305,11 @@ namespace GestaoDDD.MVC.Controllers
                     file.SaveAs(savedFileName);
                     prestadorViewModel.caminho_foto = Path.GetFileName(data + "_" + file.FileName);
                 }
-
+                else
+                {
+                    var prestadorOld = _prestadorApp.GetPorGuid(prestadorViewModel.pres_Id);
+                    prestadorViewModel.caminho_foto = prestadorOld.caminho_foto;
+                }
                 ModelState["Senha"].Errors.Clear();
                 ModelState["ConfirmaSenha"].Errors.Clear();
 
@@ -313,6 +318,7 @@ namespace GestaoDDD.MVC.Controllers
                     
                     var prestador = Mapper.Map<PrestadorUsuarioViewModel, Prestador>(prestadorViewModel);
 
+                    
 
                     var endereco = prestador.pres_Endereco;
                     var partes = endereco.Split(',');
@@ -333,7 +339,18 @@ namespace GestaoDDD.MVC.Controllers
                     }
 
                     _prestadorApp.Update(prestador);
-                    return RedirectToAction("MeuPerfil", new { usuarioId = prestador.pres_Id });
+                    //redireciona o cara para continuar o processo de cadastro dos serviços
+                    return RedirectToAction("ServicosCategorias", "Servico",
+                        new
+                        {
+                            cpf = prestador.pres_Cpf_Cnpj,
+                            nome = prestador.pres_Nome,
+                            email = prestador.pres_Email,
+                            celular = prestador.pres_Telefone_Celular,
+                            editarPerfil = true
+                        });
+
+                    //return RedirectToAction("MeuPerfil", new { usuarioId = prestador.pres_Id });
                 }
                 else
                 {

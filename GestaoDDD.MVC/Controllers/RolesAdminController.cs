@@ -22,8 +22,6 @@ namespace GestaoDDD.MVC.Controllers
             _roleManager = roleManager;
         }
 
-
-
         //
         // GET: /Roles/
         public ActionResult Index()

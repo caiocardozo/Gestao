@@ -17,19 +17,19 @@ namespace GestaoDDD.MVC.Controllers
         private ApplicationUserManager _userManager;
         private readonly IPrestadorAppService _prestadorApp;
         private static string _usuarioId;
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IPrestadorAppService prestadorApp)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
+            IPrestadorAppService prestadorApp)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _prestadorApp = prestadorApp;
-
         }
 
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
-            
+
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "A senha foi alterada."
                 : message == ManageMessageId.SetPasswordSuccess ? "A senha foi enviada."
@@ -40,6 +40,11 @@ namespace GestaoDDD.MVC.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var rolePrestador = _userManager.GetRoles(userId);
+            var role = "";
+
+            role = rolePrestador != null ? rolePrestador[0] : null;
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -47,8 +52,10 @@ namespace GestaoDDD.MVC.Controllers
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await _userManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                UsuarioId = userId
+                UsuarioId = userId,
+                Role = role
             };
+
             _usuarioId = userId;
             var prestador = _prestadorApp.GetPorGuid(userId);
             ViewBag.Nome = prestador.pres_Nome;
@@ -383,7 +390,7 @@ namespace GestaoDDD.MVC.Controllers
                 ViewBag.Nome = prestador.pres_Nome;
                 ViewBag.CaminhoFoto = prestador.caminho_foto;
             }
-            
+
             if (disposing && _userManager != null)
             {
                 _userManager.Dispose();

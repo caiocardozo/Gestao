@@ -3,189 +3,136 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Agiliza – Gerenciador</title>
-
+    <title>@ViewBag.Title Agiliza Orçamentos</title>
     <link rel="icon" href="~/Content/Imagens/icone.png" />
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
-    <script src="~/Scripts/jquery-2.1.4.js"></script>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/_Layout/layout.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/mapa")
+    <link href="~/Content/_Layout/layout2.css" rel="stylesheet" />
 
 </head>
 <body>
-    
-    
-    <nav class="navbar navbar-inverse navbar-fixed-top animate">
-        <div class="container navbar-more visible-xs">
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <div class="input-group">
-                        @*<input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">Submit</button>
-                        </span>*@
-                    </div>
-                </div>
-            </form>
-            @Html.Partial("_LoginPartial")
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-picture-o"></span>
-                        Prestador
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-bell-o"></span>
-                        Orçamentos
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-picture-o"></span>
-                        Categoria
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-bell-o"></span>
-                        Serviçosd
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-picture-o"></span>
-                        Photos
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-bell-o"></span>
-                        Reservations
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-picture-o"></span>
-                        Photos
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-bell-o"></span>
-                        Reservations
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-picture-o"></span>
-                        Photos
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-bell-o"></span>
-                        Reservations
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-picture-o"></span>
-                        Photos
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-bell-o"></span>
-                        Reservations
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-picture-o"></span>
-                        Photos
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-bell-o"></span>
-                        Reservations
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="container">
-            <div class="navbar-header hidden-xs">
-                <a class="navbar-brand" href="#">Agiliza Orçamentos</a>
-            </div>
 
-            <ul class="nav navbar-nav navbar-right mobile-bar">
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-home"></span>
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-info"></span>
-                        <span class="hidden-xs">About the Boat</span>
-                        <span class="visible-xs">About</span>
-                    </a>
-                </li>
-                <li class="hidden-xs">
-                    <a href="#">
-                        <span class="menu-icon fa fa-picture-o"></span>
-                        Photos
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-ship"></span>
-                        Cruises
-                    </a>
-                </li>
-                <li class="hidden-xs">
-                    <a href="#">
-                        <span class="menu-icon fa fa-bell-o"></span>
-                        Reservations
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-icon fa fa-phone"></span>
-                        <span class="hidden-xs">Contact Us</span>
-                        <span class="visible-xs">Contact</span>
-                    </a>
-                </li>
-                <li class="visible-xs">
-                    <a href="#navbar-more-show">
-                        <span class="menu-icon fa fa-bars"></span>
-                        More
-                    </a>
-                </li>
-            </ul>
+
+    <nav class="navbar navbar-default" id="navibar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="color: white" href="~/Home/Index">Agiliza Orçamentos</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+
+
+                @Html.Partial("_LoginPartial")
+                @*@Html.Partial("_LoginPartial-2")*@
+                @{
+                    if (Request.IsAuthenticated)
+                    {
+                        @*if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Prestadores", "Index", "Prestador")</li>
+                        }*@
+
+                        var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+                        var claim = claimsIdentity.FindFirst(c => c.Type == "AdmUsers");
+
+                        if (claim != null)
+                        {
+                            if (claim.Value == "True")
+                            {
+                                <li>@Html.ActionLink("Admin Users", "Index", "UsersAdmin")</li>
+                            }
+                        }
+
+                        claim = claimsIdentity.FindFirst(c => c.Type == "AdmClaims");
+                        if (claim != null)
+                        {
+                            if (claim.Value == "True")
+                            {
+                                <li>@Html.ActionLink("Admin Claims", "Index", "ClaimsAdmin")</li>
+                            }
+                        }
+                    }
+
+                }
+            </div>
         </div>
     </nav>
 
+
+
+    <div class="menunavegacao col-md-12 col-sm-12 col-xs-12" id="menuHeader">
+        <div class="row logomenu col-md-4 col-sm-4 col-xs-10">
+            <img src="~/Images/Home/logomenu.png">
+        </div>
+        <div class="navbarmenu col-md-7">
+            <nav class="navbar navbar-findcond">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#teste">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                    </div>
+                    <div class="collapse navbar-collapse" id="teste">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="active"><a href="~/Home">Ínicio<span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="~/Prestador/Index">Prestador <span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="~/Orcamento/ListarTodos">Orçamentos <span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="~/Servico/ListarTodos">Serviço <span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="~/Categoria/Index">Categoria <span class="sr-only">(current)</span></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        <div class="redessociaistopo col-md-1 col-sm-2">
+            <span><a href="#"><img src="~/Images/Home/instagram2.png" id="redessociais"></a></span>
+            <span><a href="#"><img src="~/Images/Home/facebook2.png" id="redessociais"></a></span>
+        </div>
+
+    </div>
+
+
     @RenderBody()
 
+
+
 </body>
-<footer class="footer" style="bottom: 0px">
+<div class="prefooter col-md-6">
+    <section class="row logorodape col-md-4 col-sm-4">
+        <img src="~/Images/Home/logo.png">
+    </section>
+    <div class="row texto-rodape col-md-7 col-sm-7">
+        <a href="/QuemSomos">Quem Somos</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="/TermosDeUso">Termos de Uso</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="~/Contato">Contato</a>
+    </div>
+    <div class="row redessociais col-md-1 col-sm-2">
+        <span><a href="#"><img src="~/Images/Home/instagram.png" id="redessociais"></a></span>
+        <span><a href="#"><img src="~/Images/Home/facebook.png" id="redessociais"></a></span>
+    </div>
+
+    <hr id="linha-rodape" />
+</div>
+<footer class="footer" style="bottom: 0px;">
+
     <div class="center">
-        <p><small><b>agiliza orçamentos</b> | <a href="mailto:contato@agilizapracamentos.com.br">contato@agilizaorcamentos.com.br</a></small></p>
+        <p><small><b>Agiliza Orçamentos</b>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<a href="mailto:contato@agilizapracamentos.com.br">contato@agilizaorcamentos.com.br</a></small></p>
     </div>
 </footer>
-
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/Content/css")
-@Scripts.Render("~/Scripts/jquery-2.1.4.js")
-@Scripts.Render("~/Scripts/jquery-2.1.4.min.js")
-@Scripts.Render("~/bundles/jqueryval")
 
 
 

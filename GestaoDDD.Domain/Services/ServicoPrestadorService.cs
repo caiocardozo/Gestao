@@ -8,6 +8,7 @@ namespace GestaoDDD.Domain.Services
     public class ServicoPrestadorService : ServiceBase<ServicoPrestador>, IServicoPrestadorService
     {
         private readonly IServicoPrestadorRepository _servPrestRepo;
+
         public ServicoPrestadorService(IServicoPrestadorRepository servPrestRepo)
             : base(servPrestRepo)
         {
@@ -24,5 +25,11 @@ namespace GestaoDDD.Domain.Services
         {
             return _servPrestRepo.GetServicoPorPrestadorId(prestadorId);
         }
+
+        public IEnumerable<ServicoPrestador> GetByServicoId(int servicoId)
+        {
+            return _servPrestRepo.GetByServicoId(servicoId);
+        }
     }
 }
+    

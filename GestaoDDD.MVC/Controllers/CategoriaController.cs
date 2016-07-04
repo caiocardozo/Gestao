@@ -11,22 +11,28 @@ namespace GestaoDDD.MVC.Controllers
     public class CategoriaController : Controller
     {
         private readonly ICategoriaAppService _categoriaApp;
+        private readonly IServicoAppService _servicoApp;
+        private static string msgRetorno = "";
 
-        public CategoriaController(ICategoriaAppService categoriaApp)
+        public CategoriaController(ICategoriaAppService categoriaApp, IServicoAppService servicoApp)
         {
             _categoriaApp = categoriaApp;
+            _servicoApp = servicoApp;
         }
 
 
-        public ActionResult IndexServicos() 
+        public ActionResult IndexServicos()
         {
-            var categoriaViewModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
+            var categoriaViewModel =
+                Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
             return View(categoriaViewModel);
         }
+
         public ActionResult Index()
         {
-            //retorna todas as caategorias
-            var categoriaViewModel = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
+            ViewBag.Retorno = msgRetorno;
+            var categoriaViewModel =
+                Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(_categoriaApp.GetAll());
             return View(categoriaViewModel);
         }
 
@@ -69,6 +75,7 @@ namespace GestaoDDD.MVC.Controllers
                 return RedirectToAction("ErroAoCadastrar");
             }
         }
+
         //
         // GET: /Categoria/Edit/5
 
@@ -91,14 +98,14 @@ namespace GestaoDDD.MVC.Controllers
                 {
                     var categoriadomain = Mapper.Map<CategoriaViewModel, Categoria>(categoria);
                     _categoriaApp.Update(categoriadomain);
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 }
                 catch (Exception)
                 {
                     //inserir pagina de erro
                     return RedirectToAction("ErroAoCadastrar");
                 }
-                }
+            }
             else
             {
                 return View(categoria);
@@ -110,10 +117,26 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Deletar(int id)
         {
-            var categoria = _categoriaApp.GetById(id);
-            var categoriaViewModel = Mapper.Map<Categoria, CategoriaViewModel>(categoria);
-            return View(categoriaViewModel);
-            
+            try
+            {
+
+                var categoria = _categoriaApp.GetById(id);
+                var servicoCategoria = _servicoApp.RetornaServicoPelaCategoria(id);
+                if (servicoCategoria != null)
+                {
+                    msgRetorno = "Esta categoria não pode ser excluída, pois existem serviços vinculados a ela.";
+                }
+                else
+                {
+                    _categoriaApp.Remove(categoria);
+                    msgRetorno = "Categoria excluída com sucesso";
+                }
+                return RedirectToAction("ListarTodos");
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
         //
@@ -135,3 +158,4 @@ namespace GestaoDDD.MVC.Controllers
     }
 }
 
+    ;

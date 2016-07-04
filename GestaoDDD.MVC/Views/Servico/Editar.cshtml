@@ -1,8 +1,7 @@
 ﻿@model GestaoDDD.Application.ViewModels.ServicoViewModel
 
 @{
-    ViewBag.Title = "Editar";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h3>Editar serviço</h3>
@@ -34,7 +33,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
-                <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Servico")'" />
+                <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("ListarTodos", "Servico")'" />
             </div>
         </div>
     </div>

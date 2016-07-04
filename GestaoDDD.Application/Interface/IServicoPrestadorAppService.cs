@@ -9,5 +9,7 @@ namespace GestaoDDD.Application.Interface
 
         IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(string prestadorId);
 
+        IEnumerable<ServicoPrestador> GetByServicoId(int servicoId);
+
     }
 }

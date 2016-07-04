@@ -16,6 +16,7 @@ namespace GestaoDDD.Application.ViewModels
         [Required(ErrorMessage = "Preencha uma breve descrição")]
         [MaxLength(250, ErrorMessage = "Tamanho máximo de {0} caracteres.")]
         [MinLength(10, ErrorMessage = "Tamanho minímo de {0} caracteres.")]
+        [DisplayName("Descrição:")]
         public string orc_descricao { get; set; }
 
         [Required(ErrorMessage = "Preencha o endereço do serviço.")]
@@ -58,6 +59,8 @@ namespace GestaoDDD.Application.ViewModels
         public string Distancia { get; set; }
         public virtual ICollection<Prestador> PrestadorFk { get; set; }
 
+        [NotMapped]
+        public string NomeServico { get; set; }
 
         [DisplayName("Li e aceito as condições")]
         [Range(typeof(bool), "true", "true", ErrorMessage = "Aceite os termos e condições")]

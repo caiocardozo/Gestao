@@ -16,17 +16,35 @@ namespace GestaoDDD.MVC.Controllers
         private readonly ICategoriaAppService _iCategoriaApp;
         private readonly IPrestadorAppService _iPrestadorApp;
         private readonly IServicoPrestadorAppService _iServicoPrestadorApp;
+        private readonly ILogAppService _logAppService;
+        private readonly IServicoPrestadorAppService _servicoPrestadorAppService;
+        private static string msgRetorno = "";
+
         public ServicoController(IServicoAppService iServicoApp, ICategoriaAppService iCategoriaApp,
-            IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestadorApp)
+            IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestadorApp, ILogAppService logAppService, IServicoPrestadorAppService servicoPrestadorAppService)
         {
             _iServicoApp = iServicoApp;
             _iCategoriaApp = iCategoriaApp;
             _iPrestadorApp = iPrestadorApp;
             _iServicoPrestadorApp = iServicoPrestadorApp;
+            _logAppService = logAppService;
+            _servicoPrestadorAppService = servicoPrestadorAppService;
         }
 
         //
         // GET: /Servico/
+        public ActionResult ListarTodos()
+        {
+            var servicos = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(_iServicoApp.GetAll());
+            foreach (var servico in servicos)
+            {
+                var categoria = _iCategoriaApp.GetById(servico.cat_Id);
+                servico.Categoria = categoria;
+            }
+            ViewBag.Retorno = msgRetorno;
+            return View(servicos.OrderBy(s => s.serv_Nome));
+        }
+
 
         public ActionResult ServicosCategorias(string cpf, string nome, string celular, string email)
         {
@@ -43,7 +61,7 @@ namespace GestaoDDD.MVC.Controllers
 
         [HttpPost]
         public ActionResult ServicosCategorias(FormCollection collection, string cpf,
-            string nome, string celular, string email)
+            string nome, string celular, string email, bool editarPerfil)
         {
             try
             {
@@ -58,7 +76,12 @@ namespace GestaoDDD.MVC.Controllers
                 //inserir por email, assim nao tem como duplicar
                 var prestador = _iPrestadorApp.GetPorEmail(email);
                 _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
-                return RedirectToAction("PrestadorCadastroSucesso", "Prestador");
+                if (editarPerfil)
+                    return RedirectToAction("MeuPerfil", "Prestador", new { usuarioId = prestador.pres_Id });
+                else
+                {
+                    return RedirectToAction("PrestadorCadastroSucesso", "Prestador");
+                }
             }
             catch
             {
@@ -116,7 +139,9 @@ namespace GestaoDDD.MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     var servicoDomain = Mapper.Map<ServicoViewModel, Servico>(servico);
-                    _iServicoApp.Add(servicoDomain);
+                    var categoria = _iCategoriaApp.GetById(servico.cat_Id);
+                    servicoDomain.Categoria = categoria;
+                    _iServicoApp.SaveOrUpdate(servicoDomain);
                     return RedirectToAction("Index");
                 }
                 else
@@ -155,7 +180,7 @@ namespace GestaoDDD.MVC.Controllers
                 {
                     var servicoViewModel = Mapper.Map<ServicoViewModel, Servico>(servico);
                     _iServicoApp.Update(servicoViewModel);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ListarTodos");
                 }
                 catch (Exception)
                 {
@@ -172,12 +197,36 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Deletar(int id)
         {
-            var servico = _iServicoApp.GetById(id);
-            var servicoViewModel = Mapper.Map<Servico, ServicoViewModel>(servico);
-            return View(servicoViewModel);
-            //if (categoriaId == null)
-            //    return HttpNotFound("Não Foi Encontrado Nenhum Registro. Favor verifique, ou entre em contato com o Administrador.");
-            //return View(categoriaId);
+            try
+            {
+                var servico = _iServicoApp.GetById(id);
+                var servicoPrestador = _servicoPrestadorAppService.GetById(id);
+                if (servicoPrestador != null)
+                    msgRetorno =
+                        "Este serviço não pode ser excluido pois está vinculado aos serviços oferecidos por algum prestador";
+                else
+                {
+                    msgRetorno = "Serviço deletado com sucesso";
+                    _iServicoApp.Remove(servico);    
+                }
+                return RedirectToAction("ListarTodos");
+                
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Servico";
+                logVm.View = "Deletar";
+
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoCadastrar");   
+            }
+           
+            //var servicoViewModel = Mapper.Map<Servico, ServicoViewModel>(servico);
+            //return View(servicoViewModel);
         }
 
         //

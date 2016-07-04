@@ -247,6 +247,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\Admin\admin.css" />
+    <Content Include="Content\Admin\ListaPrestadoresAdmin.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -355,6 +356,7 @@
     <Content Include="Scripts\Adicionais\administrativo.js" />
     <Content Include="Scripts\Adicionais\EscolherImagem.js" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
+    <Content Include="Scripts\Adicionais\ListaPrestadorAdmin.js" />
     <Content Include="Scripts\Adicionais\loginsExternos.js" />
     <Content Include="Scripts\Adicionais\mapaPrestador.js" />
     <Content Include="Scripts\Adicionais\mapa.js" />
@@ -403,7 +405,6 @@
     <Content Include="Views\Usuario\Delete.cshtml" />
     <Content Include="Views\Servico\Cadastrar.cshtml" />
     <Content Include="Views\Servico\ErroAoCadastrar.cshtml" />
-    <Content Include="Views\Servico\Index.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -417,8 +418,6 @@
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -445,7 +444,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Orcamento\ErroAoCadastrar.cshtml" />
     <Content Include="Views\Orcamento\OrcamentoEnviadoSucesso.cshtml" />
-    <Content Include="Views\Prestador\Index.cshtml" />
     <Content Include="Views\Prestador\Detalhes.cshtml" />
     <Content Include="Views\Prestador\Deletar.cshtml" />
     <Content Include="Views\Prestador\ErroAoCadastrar.cshtml" />
@@ -493,6 +491,11 @@
     <Content Include="Views\Orcamento\BuscaTrabalhosPagos.cshtml" />
     <Content Include="Views\Orcamento\TestarImagem.cshtml" />
     <Content Include="Views\Orcamento\BuscaTrabalhosPagosPartial.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Prestador\Index.cshtml" />
+    <Content Include="Views\Orcamento\ListarTodos.cshtml" />
+    <Content Include="Views\Servico\Index.cshtml" />
+    <Content Include="Views\Servico\ListarTodos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -521,10 +524,6 @@
     <ProjectReference Include="..\GestaoDDD.Infra.IoC\GestaoDDD.Infra.IoC.csproj">
       <Project>{644c98a9-de1f-4300-aba2-d9bd450d6d6f}</Project>
       <Name>GestaoDDD.Infra.IoC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PagSeguro\PagSeguro.csproj">
-      <Project>{5b8d3375-754a-414a-8e04-9a40a8497a8a}</Project>
-      <Name>PagSeguro</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

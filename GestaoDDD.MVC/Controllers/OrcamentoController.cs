@@ -20,11 +20,13 @@ namespace GestaoDDD.MVC.Controllers
         private readonly IPrestadorAppService _prestadorApp;
         private readonly ICidadeAppService _cidadeApp;
         private readonly ILogAppService _logAppService;
+        private static string _msgRetorno = "";
 
         private static string _userId;
 
         public OrcamentoController(IOrcamentoAppService orcamentoApp, ICategoriaAppService categoriaApp,
-            IServicoAppService servicoApp, IPrestadorAppService prestadorApp, ICidadeAppService cidadeApp, ILogAppService logAppService)
+            IServicoAppService servicoApp, IPrestadorAppService prestadorApp, ICidadeAppService cidadeApp,
+            ILogAppService logAppService)
         {
             _orcamentoApp = orcamentoApp;
             _categoriaApp = categoriaApp;
@@ -32,6 +34,22 @@ namespace GestaoDDD.MVC.Controllers
             _prestadorApp = prestadorApp;
             _cidadeApp = cidadeApp;
             _logAppService = logAppService;
+        }
+
+
+        public ActionResult ListarTodos()
+        {
+            var orcamentos =
+                Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(
+                    _orcamentoApp.RetornaOrcamentosAbertos());
+            foreach (var orcamento in orcamentos)
+            {
+                var servico = _servicoApp.GetById(orcamento.serv_Id);
+                if (servico != null)
+                    orcamento.NomeServico = servico.serv_Nome;
+            }
+            ViewBag.Retorno = _msgRetorno;
+            return View(orcamentos);
         }
 
         //
@@ -97,6 +115,7 @@ namespace GestaoDDD.MVC.Controllers
 
 
         }
+
         //
         // GET: /Orcamento/Cadastrar
         public ActionResult Cadastrar()
@@ -121,7 +140,8 @@ namespace GestaoDDD.MVC.Controllers
                     {
 
                         var separar = parte.Split('-');
-                        var ufs = " AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA,PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO";
+                        var ufs =
+                            " AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA,PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO";
                         if (ufs.Contains(separar[1]))
                         {
                             orcamento.orc_estado =
@@ -183,32 +203,14 @@ namespace GestaoDDD.MVC.Controllers
         [HttpPost]
         public ActionResult Editar(OrcamentoViewModel orcamento)
         {
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
                     var orcamentodomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
+                    orcamentodomain.orc_descricao = orcamento.orc_descricao;
 
-                    var endereco = orcamentodomain.orc_endereco;
-                    var partes = endereco.Split(',');
-                    foreach (var parte in partes.Where(s => s.Contains("-")))
-                    {
-
-                        var separar = parte.Split('-');
-                        var ufs = " AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA,PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO";
-                        if (ufs.Contains(separar[1]))
-                        {
-                            orcamentodomain.orc_estado =
-                                (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), separar[1]);
-                            orcamentodomain.orc_cidade = separar[0];
-                        }
-                        else
-                            continue;
-
-                    }
-                    
                     _orcamentoApp.Update(orcamentodomain);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ListarTodos");
                 }
                 catch (Exception e)
                 {
@@ -222,20 +224,23 @@ namespace GestaoDDD.MVC.Controllers
                     _logAppService.SaveOrUpdate(log);
                     return RedirectToAction("ErroAoCadastrar");
                 }
-            }
-            else
-            {
-                return View(orcamento);
-            }
+           
         }
 
 
         public ActionResult Deletar(int id)
         {
             var orcamento = _orcamentoApp.GetById(id);
-            var orcamentoViewModel = Mapper.Map<Orcamento, OrcamentoViewModel>(orcamento);
-            return View(orcamentoViewModel);
 
+            if (orcamento.PrestadorFk.Count > 0)
+                _msgRetorno = "Este orçamento foi comprado por um prestador, não é possível excluir.";
+            else
+            {
+                _msgRetorno = "Orçamento excluído com sucesso";
+                _orcamentoApp.Remove(orcamento);
+            }
+
+            return RedirectToAction("ListarTodos");
         }
 
         //
@@ -274,7 +279,8 @@ namespace GestaoDDD.MVC.Controllers
                 //ViewBag.Cidades = new SelectList(_cidadeApp.GetAll(), "Id", "NomeCidade");
                 ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
                 var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>
-                    (_orcamentoApp.RetornarOrcamentosComDistanciaCalculada(prestador.pres_latitude, prestador.pres_longitude, prestador.pres_Raio_Recebimento, prestador.pres_Id));
+                    (_orcamentoApp.RetornarOrcamentosComDistanciaCalculada(prestador.pres_latitude,
+                        prestador.pres_longitude, prestador.pres_Raio_Recebimento, prestador.pres_Id));
 
                 //var orcamentosAbertos = orcamentoVm.Where(s => s.Status == EnumClass.EnumStatusOrcamento.Aberto);
                 var frase = "";
@@ -310,13 +316,16 @@ namespace GestaoDDD.MVC.Controllers
 
                 var cidades = _cidadeApp.GetById(int.Parse(cidade));
                 var estados = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), estado);
-                var retorno = _orcamentoApp.RetornaOrcamentosPagos(Convert.ToInt32(servico), cidades.NomeCidade, estados, _userId);
+                var retorno = _orcamentoApp.RetornaOrcamentosPagos(Convert.ToInt32(servico), cidades.NomeCidade, estados,
+                    _userId);
 
                 var frase = "";
                 if (retorno.Count() == 1)
-                    frase = "Foi encontrado " + retorno.Count().ToString() + " orçamento para " + cidades.NomeCidade + "-" + estados;
+                    frase = "Foi encontrado " + retorno.Count().ToString() + " orçamento para " + cidades.NomeCidade +
+                            "-" + estados;
                 else
-                    frase = "Foram encontrados " + retorno.Count().ToString() + " orçamentos para " + cidades.NomeCidade + "-" + estados;
+                    frase = "Foram encontrados " + retorno.Count().ToString() + " orçamentos para " + cidades.NomeCidade +
+                            "-" + estados;
                 ViewBag.FraseQtd = frase;
 
                 return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
@@ -338,9 +347,11 @@ namespace GestaoDDD.MVC.Controllers
 
                 var frase = "";
                 if (retorno.Count() == 1)
-                    frase = "Foi encontrado " + retorno.Count().ToString() + " orçamento para " + cidades.NomeCidade + "-" + estados;
+                    frase = "Foi encontrado " + retorno.Count().ToString() + " orçamento para " + cidades.NomeCidade +
+                            "-" + estados;
                 else
-                    frase = "Foram encontrados " + retorno.Count().ToString() + " orçamentos para " + cidades.NomeCidade + "-" + estados;
+                    frase = "Foram encontrados " + retorno.Count().ToString() + " orçamentos para " + cidades.NomeCidade +
+                            "-" + estados;
                 ViewBag.FraseQtd = frase;
 
                 return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
@@ -412,7 +423,9 @@ namespace GestaoDDD.MVC.Controllers
 
                 //ViewBag.Cidades = new SelectList(_cidadeApp.GetAll(), "Id", "NomeCidade");
                 ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
-                var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(_orcamentoApp.GetOrcamentoPagosPeloPrestador(usuarioId));
+                var orcamentoVm =
+                    Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(
+                        _orcamentoApp.GetOrcamentoPagosPeloPrestador(usuarioId));
 
                 //var orcamentosAbertos = orcamentoVm.Where(s => s.Status == EnumClass.EnumStatusOrcamento.Aberto);
                 var frase = "";
