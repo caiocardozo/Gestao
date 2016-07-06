@@ -7,6 +7,7 @@
 <link href="~/Content/Prestador/prestador.css" rel="stylesheet" />
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
 <script src="~/Scripts/Adicionais/mapaPrestador.js"></script>
+<script src="~/Scripts/Adicionais/progress_bar_prestador.js"></script>
 <script src="~/Scripts/jquery-ui.custom.min.js"></script>
 <script src="~/Scripts/jquery-2.2.3.js"></script>
 <script src="~/Scripts/jquery.maskedinput.min.js"></script>
@@ -134,7 +135,7 @@
             </div>
 
             <div class="col-form col-md-12">
-                <input type="submit" class="btn btn-enviar" />
+                <input type="submit" class="btn btn-enviar" data-style="expand-right" onclick="waitingDialog.show();setTimeout(function () {waitingDialog.hide();}, 50000);" />
             </div>
 
         }

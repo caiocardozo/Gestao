@@ -31,7 +31,7 @@ namespace GestaoDDD.MVC.Controllers
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private static string _msgRetorno;
         public PrestadorController(IPrestadorAppService prestadorApp, IOrcamentoAppService orcamentoApp,
             IUsuarioAppService usuarioApp, IServicoPrestadorAppService servicoPrestadorApp, ILogAppService logApp, IServicoAppService servicoApp,
             ICategoriaAppService categoriaApp, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -50,9 +50,10 @@ namespace GestaoDDD.MVC.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
+            ViewBag.Retorno = _msgRetorno;
             var prestadorViewModel =
                 Mapper.Map<IEnumerable<Prestador>, IEnumerable<PrestadorUsuarioViewModel>>(_prestadorApp.GetAll());
-            return View(prestadorViewModel);
+            return View(prestadorViewModel.Where(s => s.status == EnumClass.EnumStatus.Ativo));
         }
 
 
@@ -82,6 +83,7 @@ namespace GestaoDDD.MVC.Controllers
         private async Task EnviaEmailConfirmacao(ApplicationUser user)
         {
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
             await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
         }
@@ -117,15 +119,13 @@ namespace GestaoDDD.MVC.Controllers
                         //cria o usuario
                         var result = _userManager.Create(user, prestadorUsuario.Senha);
 
+                        //EnviaEmailConfirmacao(user);
 
                         ////envia o email de confirmação para o usuario
-                        //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        //await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
-
-                        var code = _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var code = _userManager.GenerateEmailConfirmationToken(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
+
+                        _userManager.SendEmail(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link:  <a href=" + '\u0022' + callbackUrl + '\u0022' + ">Clique aqui</a>");
 
                         if (result.Succeeded)
                         {
@@ -155,14 +155,14 @@ namespace GestaoDDD.MVC.Controllers
                                 if (ufs.Contains(separar[1]))
                                 {
                                     prestador.Estado =
-                                        (EnumClass.EnumEstados) Enum.Parse(typeof (EnumClass.EnumEstados), separar[1]);
+                                        (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), separar[1]);
                                     prestador.Cidade = separar[0];
                                 }
                                 else
                                     continue;
 
                             }
-                           
+
                             _prestadorApp.SaveOrUpdate(prestador);
                             //redireciona o cara para continuar o processo de cadastro dos serviços
                             return RedirectToAction("ServicosCategorias", "Servico",
@@ -315,10 +315,10 @@ namespace GestaoDDD.MVC.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    
+
                     var prestador = Mapper.Map<PrestadorUsuarioViewModel, Prestador>(prestadorViewModel);
 
-                    
+
 
                     var endereco = prestador.pres_Endereco;
                     var partes = endereco.Split(',');
@@ -396,8 +396,6 @@ namespace GestaoDDD.MVC.Controllers
 
                     _logAppService.SaveOrUpdate(log);
                     return RedirectToAction("ErroAoCadastrar");
-                    //inserir pagina de erro
-                    return RedirectToAction("ErroAoCadastrar");
                 }
             }
             else
@@ -407,23 +405,25 @@ namespace GestaoDDD.MVC.Controllers
         }
 
 
-        public ActionResult Deletar(int id)
+        public ActionResult Deletar(string id)
         {
-            var prestador = _prestadorApp.GetById(id);
-            var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
-            return View(prestadorViewModel);
+            var prestador = _prestadorApp.GetPorGuid(id);
+            var prestadorVm = Mapper.Map<Prestador, PrestadorUsuarioViewModel>(prestador);
 
+            return View(prestadorVm);
         }
 
         //
         // POST: /Prestador/Delete/5
         [HttpPost, ActionName("Deletar")]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarDeletar(int id)
+        public ActionResult ConfirmarDeletar(string id)
         {
-            var adm_grupo = _prestadorApp.GetById(id);
-            _prestadorApp.Remove(adm_grupo);
+            var prestador = _prestadorApp.GetPorGuid(id);
+            prestador.status = EnumClass.EnumStatus.Inativo;
+            _prestadorApp.Update(prestador);
 
+            _msgRetorno = "Prestador excluído com sucesso.";
             return RedirectToAction("Index");
         }
 

@@ -62,7 +62,7 @@ namespace GestaoDDD.Application.Services
                     var endereco = orcamento.orc_endereco;
                     var separar = endereco.Split(',');
                     var cidadeEstado = separar[1].Split('-');
-                    orcamento.Distancia = Math.Round(distancia, 2).ToString() + " do seu negócio em " +
+                    orcamento.Distancia = Math.Round(distancia, 2).ToString() + " Km do seu negócio em " +
                                           cidadeEstado[0] +
                                           " - " + cidadeEstado[1] + " ";
 

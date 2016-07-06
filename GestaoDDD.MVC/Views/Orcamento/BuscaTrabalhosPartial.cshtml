@@ -77,55 +77,28 @@
                                 <input type="hidden" name="cmd" value="_xclick" />
 
                                 <!--Vendedor e URL de retorno, cancelamento e notificação-->
-                                <input type="hidden" name="business" value="elisregina.mendes360@gmail.com" />
-                                <input type="hidden" name="return" value="http://www.agilizaorcamentos.com.br/Orcamento/Pagamento" />
-                                <input type="hidden" name="cancel" value="http://www.agilizaorcamentos.com.br/Orcamento/Pagamento" />
-                                <input type="hidden" name="notify_url" value="http://www.agilizaorcamentos.com.br/Orcamento/Pagamento" />
+                                <input type="hidden" name="business" value="wagnogueira19@hotmail.com" />
+                                @*<input type="hidden" name="return" value="http://www.agilizaorcamentos.com.br/Orcamento/Pagamento" />
+    <input type="hidden" name="cancel" value="http://www.agilizaorcamentos.com.br/Orcamento/Pagamento" />
+    <input type="hidden" name="notify_url" value="http://www.agilizaorcamentos.com.br/Orcamento/Pagamento" />*@
                                 
-                                @*<input type="hidden" name="return" value="http://localhost:55793/Orcamento/Pagamento" />
+                                <input type="hidden" name="return" value="http://localhost:55793/Orcamento/Pagamento" />
                                 <input type="hidden" name="cancel" value="http://localhost:55793/Orcamento/Pagamento" />
-                                <input type="hidden" name="notify_url" value="http://localhost:55793/Orcamento/Pagamento" />*@
-                                <!--Internacionalização e localização da página de pagamento-->
+                                <input type="hidden" name="notify_url" value="http://localhost:55793/Orcamento/Pagamento" />
+                                @*Internacionalização e localização da página de pagamento*@
                                 <input type="hidden" name="charset" value="utf-8" />
                                 <input type="hidden" name="lc" value="BR" />
                                 <input type="hidden" name="country_code" value="BR" />
                                 <input type="hidden" name="currency_code" value="BRL" />
 
                                 <!--Informações sobre o produto e seu valor-->
-                                <input type="hidden" name="amount" value="0.01" />
+                                <input type="hidden" name="amount" value="10.00" />
                                 <input type="hidden" name="item_name" value="Orcamento-@Html.DisplayTextFor(modelItem => item.orc_Id)" />
                                 <input type="hidden" name="quantity" value="1" />
 
                                 <!--Botão para submissão do formulário-->
                                 <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" />
                             </form>
-
-
-
-
-                            @*<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                    <input type="hidden" name="cmd" value="_xclick">
-
-                                    <input type="hidden" name="business" value="wagnogueira19@hotmail.com">
-                                    <input type="hidden" name="return" value="http://http://localhost:55793/Orcamento/Pagamento" />
-                                    <input type="hidden" name="cancel" value="http://http://localhost:55793/Orcamento/Pagamento" />
-
-                                    <input type="hidden" name="charset" value="utf-8" />
-                                    <input type="hidden" name="lc" value="BR">
-                                    <input type="hidden" name="currency_code" value="BRL">
-                                    <input type="hidden" name="country_code" value="BR" />
-
-                                    <input type="hidden" name="item_name" value="Orcamento Agiliza">
-                                    <input type="hidden" name="amount" value="0.01">
-                                    <input type="hidden" name="quantity" value="1" />
-
-                                    <input type="hidden" name="button_subtype" value="services">
-                                    <input type="hidden" name="no_note" value="0">
-
-                                    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHostedGuest">
-                                    <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - A maneira fácil e segura de enviar pagamentos online!">
-                                    <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
-                                </form>*@
                         </div>
                     </div>
                     <hr />

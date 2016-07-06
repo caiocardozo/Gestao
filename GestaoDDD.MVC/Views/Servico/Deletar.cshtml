@@ -1,42 +1,30 @@
 ﻿@model GestaoDDD.Application.ViewModels.ServicoViewModel
 
 @{
-    ViewBag.Title = "Deletar";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<h3>Deletar serviço</h3>
-
-<h4>Tem certeza que deseja deletar este serviço?</h4>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.serv_Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.serv_Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Categoria")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Categoria.cat_Nome)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Deletar" class="btn btn-primary" />
-            <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Categoria")'" />
-        </div>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title custom_align" id="Heading">Excluir</h4>
     </div>
-    }
+    <div class="modal-body">
+        <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> Deseja realmente excluir o serviço @Html.DisplayFor(model => model.serv_Nome)?</div>
+    </div>
+    <div class="modal-footer ">
+        <input type="hidden" name="id" />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="submit" value="Deletar" class="btn btn-primary" />
+            <a href="~/Servico/ListarTodos" class="btn btn-default">
+
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        }
+
+    </div>
 </div>
+

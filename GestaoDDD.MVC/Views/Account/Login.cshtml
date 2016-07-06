@@ -7,6 +7,7 @@
 
 
 <link href="~/Content/Conta/login.css" rel="stylesheet" />
+<script src="~/Scripts/Adicionais/progress_bar_login.js"></script>
 <script src="~/Scripts/jquery-2.2.3.js"></script>
     <script src="~/Scripts/jquery-2.2.3.min.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
@@ -47,13 +48,13 @@
                 </div>
                 <div class="btn1 form-group">
                     <div class="col-md-12">
-                        <input type="submit" value="Login" class="botao" />
+                        <input type="submit" value="Login" class="botao" data-style="expand-right" onclick="waitingDialog.show();setTimeout(function () {waitingDialog.hide();}, 50000);" />
                     </div>
                 </div>
 
                 <div class="links col-md-12">
                     <p>
-                        @Html.ActionLink("Registrar uma nova conta?", "Register")
+                        @Html.ActionLink("Registrar uma nova conta?", "Create", "Prestador")
                     </p>
                     <p>
                         @Html.ActionLink("Esqueceu sua senha?", "ForgotPassword")

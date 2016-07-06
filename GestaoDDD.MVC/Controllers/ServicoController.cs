@@ -200,17 +200,21 @@ namespace GestaoDDD.MVC.Controllers
             try
             {
                 var servico = _iServicoApp.GetById(id);
-                var servicoPrestador = _servicoPrestadorAppService.GetById(id);
-                if (servicoPrestador != null)
-                    msgRetorno =
-                        "Este serviço não pode ser excluido pois está vinculado aos serviços oferecidos por algum prestador";
-                else
-                {
-                    msgRetorno = "Serviço deletado com sucesso";
-                    _iServicoApp.Remove(servico);    
-                }
-                return RedirectToAction("ListarTodos");
-                
+                var servicoVm = Mapper.Map<Servico, ServicoViewModel>(servico);
+                return View(servicoVm);
+
+                //var servico = _iServicoApp.GetById(id);
+                //var servicoPrestador = _servicoPrestadorAppService.GetById(id);
+                //if (servicoPrestador != null)
+                //    msgRetorno =
+                //        "Este serviço não pode ser excluido pois está vinculado aos serviços oferecidos por algum prestador";
+                //else
+                //{
+                //    msgRetorno = "Serviço deletado com sucesso";
+                //    _iServicoApp.Remove(servico);    
+                //}
+                //return RedirectToAction("ListarTodos");
+
             }
             catch (Exception e)
             {
@@ -236,9 +240,16 @@ namespace GestaoDDD.MVC.Controllers
         public ActionResult ConfirmarDeletar(int id)
         {
             var servico = _iServicoApp.GetById(id);
-            _iServicoApp.Remove(servico);
-
-            return RedirectToAction("Index");
+            var servicoPrestador = _servicoPrestadorAppService.GetById(id);
+            if (servicoPrestador != null)
+                msgRetorno =
+                    "Este serviço não pode ser excluido pois está vinculado aos serviços oferecidos por algum prestador";
+            else
+            {
+                msgRetorno = "Serviço deletado com sucesso";
+                _iServicoApp.Remove(servico);
+            }
+            return RedirectToAction("ListarTodos");
         }
 
 

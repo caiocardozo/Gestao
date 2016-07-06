@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<GestaoDDD.Application.ViewModels.ServicoViewModel>
 
-@{
-    var msg = ViewBag.Retorno as string;
+    @{
+        var msg = ViewBag.Retorno as string;
         Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     }
 
@@ -16,11 +16,14 @@
     <div class="container">
         <div class="row">
 
-                
+
             <div class="col-md-12">
                 <h4>Lista de prestadores</h4>
                 <br />
-                <strong>@msg</strong>
+                <div class="container" style="position:relative; left: 40%; color: #dc143c" >
+                    <strong>@msg</strong>    
+                </div>
+                
                 <div class="container">
                     <p>
                         <strong>Novo Serviço:</strong>
@@ -67,27 +70,15 @@
                                     </td>
 
                                     <td>
-                                        <a class="btn btn-danger btn-xs" data-toggle="modal" id="@item.serv_Id" data-target="#delete" data-placement="top" rel="tooltip" data-title="Excluir">
+                                        <a class="btn btn-danger btn-xs" href="~/Servico/Deletar/@item.serv_Id" data-toggle="modal" data-target="#delete" data-placement="top" rel="tooltip" data-title="Excluir">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </a>
                                     </td>
                                 </tr>
-                                 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-hidden="false">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                <h4 class="modal-title custom_align" id="Heading">Excluir</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> Deseja realmente excluir este serviço?</div>
-                                            </div>
-                                            <div class="modal-footer ">
-                                                <a class="btn btn-success" href="~/Servico/Deletar/@item.serv_Id">
-                                                    <span class="glyphicon glyphicon-ok-sign"></span>
-                                                </a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -101,36 +92,5 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="moxdal-title custom_align" id="Heading">Editar Prestador</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input class="form-control " type="text" placeholder="Mohsin">
-                    </div>
-                    <div class="form-group">
-
-                        <input class="form-control " type="text" placeholder="Irshad">
-                    </div>
-                    <div class="form-group">
-                        <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
-
-
-                    </div>
-                </div>
-                <div class="modal-footer ">
-                    <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
     </div>
 

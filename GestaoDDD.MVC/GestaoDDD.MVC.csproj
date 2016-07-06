@@ -308,6 +308,7 @@
     <Content Include="Content\_Layout\layout.css" />
     <Content Include="Content\_Layout\layout2.css" />
     <Content Include="Content\_Layout\ModalLogin.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\Conta\fotoperfil.png" />
@@ -354,6 +355,7 @@
     <Content Include="Images\Prestador\background.png" />
     <Content Include="Images\Prestador\man.png" />
     <Content Include="Scripts\Adicionais\administrativo.js" />
+    <Content Include="Scripts\Adicionais\cpfcnpj.js" />
     <Content Include="Scripts\Adicionais\EscolherImagem.js" />
     <Content Include="Scripts\Adicionais\lerCheckbox.js" />
     <Content Include="Scripts\Adicionais\ListaPrestadorAdmin.js" />
@@ -373,6 +375,9 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\v.001.pubxml" />
+    <Content Include="Scripts\Adicionais\progress_bar_login.js" />
+    <Content Include="Scripts\Adicionais\progress_bar_prestador.js" />
+    <Content Include="Scripts\Adicionais\telefones.js" />
     <Content Include="Scripts\Adicionais\TermoUso.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

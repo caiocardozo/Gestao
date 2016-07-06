@@ -110,6 +110,9 @@ namespace GestaoDDD.MVC.Controllers
                 logVm.Mensagem = e.Message;
                 logVm.Controller = "Orçamento";
                 logVm.View = "Detalhes Post";
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
 
@@ -120,8 +123,23 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Orcamento/Cadastrar
         public ActionResult Cadastrar()
         {
-            ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
-            return View();
+            try
+            {
+                ViewBag.ListaCat = new SelectList(_categoriaApp.GetAll(), "cat_Id", "cat_Nome");
+                return View();
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Orçamento";
+                logVm.View = "Cadastrar GET";
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoCadastrar");
+            }
+            
         }
 
         // POST: /Orcamento/Cadastrar
@@ -201,15 +219,17 @@ namespace GestaoDDD.MVC.Controllers
         // POST: /\Orcamento/Edit/5
 
         [HttpPost]
-        public ActionResult Editar(OrcamentoViewModel orcamento)
+        public ActionResult Editar(OrcamentoViewModel orcamentoVm)
         {
             
                 try
                 {
-                    var orcamentodomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
-                    orcamentodomain.orc_descricao = orcamento.orc_descricao;
+                    //var orcamentodomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
+                    var orcamento = _orcamentoApp.GetById(orcamentoVm.orc_Id);
+                   // orcamentodomain.orc_descricao = orcamento.orc_descricao;
+                    orcamento.orc_descricao = orcamentoVm.orc_descricao;
 
-                    _orcamentoApp.Update(orcamentodomain);
+                    _orcamentoApp.Update(orcamento);
                     return RedirectToAction("ListarTodos");
                 }
                 catch (Exception e)
@@ -232,7 +252,7 @@ namespace GestaoDDD.MVC.Controllers
         {
             var orcamento = _orcamentoApp.GetById(id);
 
-            if (orcamento.PrestadorFk.Count > 0)
+            if (orcamento.PrestadorFk != null)
                 _msgRetorno = "Este orçamento foi comprado por um prestador, não é possível excluir.";
             else
             {

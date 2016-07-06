@@ -121,17 +121,8 @@ namespace GestaoDDD.MVC.Controllers
             {
 
                 var categoria = _categoriaApp.GetById(id);
-                var servicoCategoria = _servicoApp.RetornaServicoPelaCategoria(id);
-                if (servicoCategoria != null)
-                {
-                    msgRetorno = "Esta categoria não pode ser excluída, pois existem serviços vinculados a ela.";
-                }
-                else
-                {
-                    _categoriaApp.Remove(categoria);
-                    msgRetorno = "Categoria excluída com sucesso";
-                }
-                return RedirectToAction("ListarTodos");
+                var categoriaVm = Mapper.Map<Categoria, CategoriaViewModel>(categoria);
+                return View(categoriaVm);
             }
             catch (Exception e)
             {
@@ -145,9 +136,17 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmarDeletar(int id)
         {
-            var catDelete = _categoriaApp.GetById(id);
-            _categoriaApp.Remove(catDelete);
-
+            var categoria = _categoriaApp.GetById(id);
+            var servicoCategoria = _servicoApp.RetornaServicoPelaCategoria(id);
+            if (servicoCategoria.Count > 0)
+            {
+                msgRetorno = "Esta categoria não pode ser excluída, pois existem serviços vinculados a ela.";
+            }
+            else
+            {
+                _categoriaApp.Remove(categoria);
+                msgRetorno = "Categoria excluída com sucesso";
+            }
             return RedirectToAction("Index");
         }
 
