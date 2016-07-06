@@ -56,7 +56,7 @@ namespace GestaoDDD.MVC.Controllers
             return View(prestadorViewModel.Where(s => s.status == EnumClass.EnumStatus.Ativo));
         }
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Detalhes(int id)
         {
             var prestador = _prestadorApp.GetById(id);
@@ -236,7 +236,7 @@ namespace GestaoDDD.MVC.Controllers
 
             return View(prestadorVm);
         }
-
+        
         public ActionResult Editar(int id)
         {
             try

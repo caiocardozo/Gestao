@@ -77,8 +77,6 @@ namespace GestaoDDD.MVC.Controllers
                             return RedirectToAction("BuscaTrabalhos", "Orcamento", new { usuarioId = userId });
                         else
                             return RedirectToAction("Index", "Prestador", new { usuarioId = userId });
-                    //return RedirectToAction("Index", "Home");
-                    //return RedirectToLocal(returnUrl);
                     case SignInStatus.LockedOut:
                         return View("Lockout");
                     case SignInStatus.RequiresVerification:
