@@ -80,12 +80,43 @@ namespace GestaoDDD.MVC.Controllers
         }
 
 
-        private async Task EnviaEmailConfirmacao(ApplicationUser user)
+        private void EnviaEmailConfirmacao(ApplicationUser user)
         {
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            ////envia o email de confirmação para o usuario]
+            var logVm = new LogViewModel();
+            logVm.Mensagem = "Gerar email de confirmação";
+            logVm.Controller = "Prestador";
+            logVm.View = "Create";
+            var log = Mapper.Map<LogViewModel, Log>(logVm);
+            _logAppService.SaveOrUpdate(log);
+            //
+            var code = _userManager.GenerateEmailConfirmationToken(user.Id);
 
+            var logVm1 = new LogViewModel();
+            logVm1.Mensagem = "Gerou email de confirmação e vai acionar o UrlAction";
+            logVm1.Controller = "Prestador";
+            logVm1.View = "Create";
+            var log1 = Mapper.Map<LogViewModel, Log>(logVm1);
+            _logAppService.SaveOrUpdate(log1);
+            //
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-            await _userManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
+
+            var logVm2 = new LogViewModel();
+            logVm2.Mensagem = "acionou o UrlAction e vai pro send email";
+            logVm2.Controller = "Prestador";
+            logVm2.View = "Create";
+            var log2 = Mapper.Map<LogViewModel, Log>(logVm2);
+            _logAppService.SaveOrUpdate(log2);
+            //
+            _userManager.SendEmail(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link:  <a href=" + '\u0022' + callbackUrl + '\u0022' + ">Clique aqui</a>");
+
+            var logVm3 = new LogViewModel();
+            logVm3.Mensagem = "saiu do send email";
+            logVm3.Controller = "Prestador";
+            logVm3.View = "Create";
+            var log3 = Mapper.Map<LogViewModel, Log>(logVm3);
+            _logAppService.SaveOrUpdate(log3);
+
         }
 
         [HttpPost]
@@ -119,14 +150,9 @@ namespace GestaoDDD.MVC.Controllers
                         //cria o usuario
                         var result = _userManager.Create(user, prestadorUsuario.Senha);
 
-                        //EnviaEmailConfirmacao(user);
+                        EnviaEmailConfirmacao(user);
 
-                        ////envia o email de confirmação para o usuario
-                        var code = _userManager.GenerateEmailConfirmationToken(user.Id);
-                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-
-                        _userManager.SendEmail(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link:  <a href=" + '\u0022' + callbackUrl + '\u0022' + ">Clique aqui</a>");
-
+                        
                         if (result.Succeeded)
                         {
                             //pega o usuario cadastrado e adiciona ele no objeto prestador

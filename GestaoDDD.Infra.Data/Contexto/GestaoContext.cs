@@ -11,7 +11,7 @@ namespace GestaoDDD.Infra.Data.Contexto
             : base("ConnectionLocalCaio")
         {
             Configuration.ProxyCreationEnabled = false;
-            Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = true;
         }
 
         #region objetos
