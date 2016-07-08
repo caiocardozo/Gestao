@@ -80,43 +80,26 @@ namespace GestaoDDD.MVC.Controllers
         }
 
 
-        private void EnviaEmailConfirmacao(ApplicationUser user)
+        private void EnviaEmailConfirmacao (ApplicationUser user)
         {
-            ////envia o email de confirmação para o usuario]
+            //var code =  _userManager.GenerateEmailConfirmationToken(user.Id);
             var logVm = new LogViewModel();
-            logVm.Mensagem = "Gerar email de confirmação";
+            logVm.Mensagem = "Gerar URL";
             logVm.Controller = "Prestador";
             logVm.View = "Create";
             var log = Mapper.Map<LogViewModel, Log>(logVm);
             _logAppService.SaveOrUpdate(log);
-            //
-            var code = _userManager.GenerateEmailConfirmationToken(user.Id);
+
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id }, protocol: Request.Url.Scheme);
 
             var logVm1 = new LogViewModel();
-            logVm1.Mensagem = "Gerou email de confirmação e vai acionar o UrlAction";
+            logVm1.Mensagem = "Enviar Email";
             logVm1.Controller = "Prestador";
             logVm1.View = "Create";
             var log1 = Mapper.Map<LogViewModel, Log>(logVm1);
-            _logAppService.SaveOrUpdate(log1);
-            //
-            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            _logAppService.SaveOrUpdate(log);
 
-            var logVm2 = new LogViewModel();
-            logVm2.Mensagem = "acionou o UrlAction e vai pro send email";
-            logVm2.Controller = "Prestador";
-            logVm2.View = "Create";
-            var log2 = Mapper.Map<LogViewModel, Log>(logVm2);
-            _logAppService.SaveOrUpdate(log2);
-            //
             _userManager.SendEmail(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link:  <a href=" + '\u0022' + callbackUrl + '\u0022' + ">Clique aqui</a>");
-
-            var logVm3 = new LogViewModel();
-            logVm3.Mensagem = "saiu do send email";
-            logVm3.Controller = "Prestador";
-            logVm3.View = "Create";
-            var log3 = Mapper.Map<LogViewModel, Log>(logVm3);
-            _logAppService.SaveOrUpdate(log3);
-
         }
 
         [HttpPost]

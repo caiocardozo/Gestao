@@ -229,19 +229,29 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
-        //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public ActionResult ConfirmEmail(string userId)
         {
             try
             {
-                if (userId == null || code == null)
+                bool emailConfirmed = false;
+                if (userId == null)
                 {
                     return View("Error");
                 }
-                var result = await _userManager.ConfirmEmailAsync(userId, code);
-                return View(result.Succeeded ? "ConfirmEmail" : "Error");
+
+                var user = _userManager.FindById(userId);
+                if (user != null)
+                {
+                    user.EmailConfirmed = true;
+                    _userManager.Update(user);
+                    emailConfirmed = true;
+                }
+
+                
+                //var result = await _userManager.ConfirmEmailAsync(userId, code);
+                return View(emailConfirmed ? "EmailConfirmadoOk" : "Error");
             }
             catch (Exception e)
             {
@@ -253,10 +263,39 @@ namespace GestaoDDD.MVC.Controllers
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
-
         }
 
-        //
+        public ActionResult EmailConfirmadoOk()
+        {
+            return View();
+        }
+
+
+        //[AllowAnonymous]
+        //public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        //{
+        //    try
+        //    {
+        //        if (userId == null || code == null)
+        //        {
+        //            return View("Error");
+        //        }
+        //        var result = await _userManager.ConfirmEmailAsync(userId, code);
+        //        return View(result.Succeeded ? "ConfirmEmail" : "Error");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        var logVm = new LogViewModel();
+        //        logVm.Mensagem = e.Message;
+        //        logVm.Controller = "Account";
+        //        logVm.View = "Register";
+        //        var log = Mapper.Map<LogViewModel, Log>(logVm);
+        //        _logAppService.SaveOrUpdate(log);
+        //        return RedirectToAction("ErroAoCadastrar");
+        //    }
+
+        //}
+
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()

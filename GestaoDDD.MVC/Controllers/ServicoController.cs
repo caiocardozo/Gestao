@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
 using GestaoDDD.Domain.Entities.NoSql;
+using GestaoDDD.Infra.Identity.Model;
+using GestaoDDD.Infra.Identity.Configuration;
+using Microsoft.AspNet.Identity;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -19,6 +22,7 @@ namespace GestaoDDD.MVC.Controllers
         private readonly ILogAppService _logAppService;
         private readonly IServicoPrestadorAppService _servicoPrestadorAppService;
         private static string msgRetorno = "";
+        private ApplicationUserManager _userManager;
 
         public ServicoController(IServicoAppService iServicoApp, ICategoriaAppService iCategoriaApp,
             IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestadorApp, ILogAppService logAppService, IServicoPrestadorAppService servicoPrestadorAppService)
@@ -77,7 +81,9 @@ namespace GestaoDDD.MVC.Controllers
                 var prestador = _iPrestadorApp.GetPorEmail(email);
                 _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
                 if (editarPerfil)
+                {
                     return RedirectToAction("MeuPerfil", "Prestador", new { usuarioId = prestador.pres_Id });
+                }
                 else
                 {
                     return RedirectToAction("PrestadorCadastroSucesso", "Prestador");
@@ -88,7 +94,6 @@ namespace GestaoDDD.MVC.Controllers
                 return RedirectToAction("ErroAoCadastrar");
             }
         }
-
 
         public ActionResult Index(string pesquisa_servico, string pesquisa_categoria)
         {
@@ -226,9 +231,9 @@ namespace GestaoDDD.MVC.Controllers
                 var log = Mapper.Map<LogViewModel, Log>(logVm);
 
                 _logAppService.SaveOrUpdate(log);
-                return RedirectToAction("ErroAoCadastrar");   
+                return RedirectToAction("ErroAoCadastrar");
             }
-           
+
             //var servicoViewModel = Mapper.Map<Servico, ServicoViewModel>(servico);
             //return View(servicoViewModel);
         }

@@ -501,6 +501,7 @@
     <Content Include="Views\Orcamento\ListarTodos.cshtml" />
     <Content Include="Views\Servico\Index.cshtml" />
     <Content Include="Views\Servico\ListarTodos.cshtml" />
+    <Content Include="Views\Account\EmailConfirmadoOk.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
