@@ -7,6 +7,7 @@ using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
 using System.Collections.Generic;
 using EnumClass = GestaoDDD.Domain.Entities.NoSql;
+using GestaoDDD.MVC.Util;
 
 
 namespace GestaoDDD.MVC.Controllers
@@ -20,8 +21,10 @@ namespace GestaoDDD.MVC.Controllers
         private readonly IPrestadorAppService _prestadorApp;
         private readonly ICidadeAppService _cidadeApp;
         private readonly ILogAppService _logAppService;
-        private static string _msgRetorno = "";
 
+        private EnviaEmail _enviaEmail;
+
+        private static string _msgRetorno = "";
         private static string _userId;
 
         public OrcamentoController(IOrcamentoAppService orcamentoApp, ICategoriaAppService categoriaApp,
@@ -87,6 +90,8 @@ namespace GestaoDDD.MVC.Controllers
 
                 var log = Mapper.Map<LogViewModel, Log>(logVm);
 
+
+                
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
@@ -170,17 +175,13 @@ namespace GestaoDDD.MVC.Controllers
                             continue;
 
                     }
-
-                    //var endereco = orcamento.orc_Endereco;
-                    //var x = endereco.Split(',');
-                    //var y = x[1].Split('-');
-                    //orcamentoEntity.orc_cidade = y[0].Trim().ToUpper();
-                    //orcamentoEntity.orc_estado = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), y[1]);
-
-
                     orcamentoEntity.serv_Id = servico_id;
                     _orcamentoApp.Add(orcamentoEntity);
 
+                    var corpo = "Olá " + orcamento.orc_nome_solicitante + "seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você. Obrigado por nos escolher!" ;
+                    var assunto = "Orçamento Enviado";
+
+                    _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpo, assunto);
                     return RedirectToAction("OrcamentoEnviadoSucesso");
                 }
                 else

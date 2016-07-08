@@ -5,6 +5,7 @@ using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
 using GestaoDDD.Infra.Identity.Configuration;
 using GestaoDDD.Infra.Identity.Model;
+using GestaoDDD.MVC.Util;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -31,6 +32,7 @@ namespace GestaoDDD.MVC.Controllers
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private EnviaEmail _enviarEmail;
         private static string _msgRetorno;
         public PrestadorController(IPrestadorAppService prestadorApp, IOrcamentoAppService orcamentoApp,
             IUsuarioAppService usuarioApp, IServicoPrestadorAppService servicoPrestadorApp, ILogAppService logApp, IServicoAppService servicoApp,
@@ -82,24 +84,24 @@ namespace GestaoDDD.MVC.Controllers
 
         private void EnviaEmailConfirmacao (ApplicationUser user)
         {
-            //var code =  _userManager.GenerateEmailConfirmationToken(user.Id);
-            var logVm = new LogViewModel();
-            logVm.Mensagem = "Gerar URL";
-            logVm.Controller = "Prestador";
-            logVm.View = "Create";
-            var log = Mapper.Map<LogViewModel, Log>(logVm);
-            _logAppService.SaveOrUpdate(log);
 
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id }, protocol: Request.Url.Scheme);
+            _enviarEmail = new EnviaEmail();
+            var corpo = "Por favor confirme sua conta clicando neste link:  <a href=" + '\u0022' + callbackUrl +
+                        '\u0022' + ">Clique aqui</a>";
+            var assunto = "Confirme seu email";
 
-            var logVm1 = new LogViewModel();
-            logVm1.Mensagem = "Enviar Email";
-            logVm1.Controller = "Prestador";
-            logVm1.View = "Create";
-            var log1 = Mapper.Map<LogViewModel, Log>(logVm1);
-            _logAppService.SaveOrUpdate(log);
+            var send = _enviarEmail.EnviaEmailConfirmacao(user.Email, corpo, assunto);
 
-            _userManager.SendEmail(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link:  <a href=" + '\u0022' + callbackUrl + '\u0022' + ">Clique aqui</a>");
+            if (!send)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = "Falha ao enviar o email";
+                logVm.Controller = "Prestador";
+                logVm.View = "EnviaEmailConfirmacao";
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+                _logAppService.SaveOrUpdate(log);
+            }
         }
 
         [HttpPost]
