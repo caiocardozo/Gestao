@@ -24,12 +24,12 @@ namespace GestaoDDD.MVC.Util
                message.IsBodyHtml = true;
                message.Priority = MailPriority.Normal;
 
-               var smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
+               var smtpClient = new SmtpClient(ConfigurationManager.AppSettings["SmtpCliente"], Int32.Parse(ConfigurationManager.AppSettings["SmtpPorta"]));
                var credentials = new NetworkCredential(ConfigurationManager.AppSettings["ContaDeEmail"],
                    ConfigurationManager.AppSettings["SenhaEmail"]);
                smtpClient.UseDefaultCredentials = false;
                smtpClient.Credentials = credentials;
-               smtpClient.Port = 587;
+               smtpClient.Port = Int32.Parse(ConfigurationManager.AppSettings["SmtpPorta"]);
                smtpClient.EnableSsl = true;
                smtpClient.Send(message);
 
