@@ -8,13 +8,13 @@ using GestaoDDD.Domain.Entities;
 using System.Collections.Generic;
 using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 using GestaoDDD.MVC.Util;
+using System.Text;
 
 
 namespace GestaoDDD.MVC.Controllers
 {
     public class OrcamentoController : Controller
     {
-
         private readonly IOrcamentoAppService _orcamentoApp;
         private readonly ICategoriaAppService _categoriaApp;
         private readonly IServicoAppService _servicoApp;
@@ -91,7 +91,7 @@ namespace GestaoDDD.MVC.Controllers
                 var log = Mapper.Map<LogViewModel, Log>(logVm);
 
 
-                
+
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
@@ -107,7 +107,7 @@ namespace GestaoDDD.MVC.Controllers
                 orcamentoEntity.Status = EnumClass.EnumStatusOrcamento.Fechado;
                 _orcamentoApp.Update(orcamentoEntity);
 
-                return RedirectToAction("BuscaTrabalhos", new { usuarioId = usuarioId });
+                return RedirectToAction("BuscaTrabalhos", new { usuarioId });
             }
             catch (Exception e)
             {
@@ -144,7 +144,7 @@ namespace GestaoDDD.MVC.Controllers
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
-            
+
         }
 
         // POST: /Orcamento/Cadastrar
@@ -178,10 +178,22 @@ namespace GestaoDDD.MVC.Controllers
                     orcamentoEntity.serv_Id = servico_id;
                     _orcamentoApp.Add(orcamentoEntity);
 
-                    var corpo = "Olá " + orcamento.orc_nome_solicitante + "seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você. Obrigado por nos escolher!" ;
-                    var assunto = "Orçamento Enviado";
+                    var body = new StringBuilder()
+                        .AppendLine("Olá " + orcamento.orc_nome_solicitante + ".")
+                        .AppendLine("<br /><br />")
+                        .AppendLine(
+                            "Seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você.")
+                        .AppendLine("<br /><br />")
+                        .AppendLine("Obrigado por nos escolher!<br /><br />")
+                        .AppendLine("Att, <br />")
+                        .AppendLine("Equipe Agiliza Orçamentos");
 
-                    _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpo, assunto);
+
+
+
+                    var assunto = "Orçamento Enviado";
+                    _enviaEmail = new EnviaEmail();
+                    _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, body.ToString(), assunto);
                     return RedirectToAction("OrcamentoEnviadoSucesso");
                 }
                 else
@@ -222,30 +234,30 @@ namespace GestaoDDD.MVC.Controllers
         [HttpPost]
         public ActionResult Editar(OrcamentoViewModel orcamentoVm)
         {
-            
-                try
-                {
-                    //var orcamentodomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
-                    var orcamento = _orcamentoApp.GetById(orcamentoVm.orc_Id);
-                   // orcamentodomain.orc_descricao = orcamento.orc_descricao;
-                    orcamento.orc_descricao = orcamentoVm.orc_descricao;
 
-                    _orcamentoApp.Update(orcamento);
-                    return RedirectToAction("ListarTodos");
-                }
-                catch (Exception e)
-                {
-                    var logVm = new LogViewModel();
-                    logVm.Mensagem = e.Message;
-                    logVm.Controller = "Orçamento";
-                    logVm.View = "Editar Post";
+            try
+            {
+                //var orcamentodomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
+                var orcamento = _orcamentoApp.GetById(orcamentoVm.orc_Id);
+                // orcamentodomain.orc_descricao = orcamento.orc_descricao;
+                orcamento.orc_descricao = orcamentoVm.orc_descricao;
 
-                    var log = Mapper.Map<LogViewModel, Log>(logVm);
+                _orcamentoApp.Update(orcamento);
+                return RedirectToAction("ListarTodos");
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Orçamento";
+                logVm.View = "Editar Post";
 
-                    _logAppService.SaveOrUpdate(log);
-                    return RedirectToAction("ErroAoCadastrar");
-                }
-           
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoCadastrar");
+            }
+
         }
 
 
@@ -275,7 +287,6 @@ namespace GestaoDDD.MVC.Controllers
 
             return RedirectToAction("Index");
         }
-
 
         public ActionResult ErroAoCadastrar()
         {

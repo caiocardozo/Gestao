@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
@@ -8,7 +9,7 @@ namespace GestaoDDD.MVC.Util
 {
     public class EnviaEmail
     {
-        public bool EnviaEmailConfirmacao(string enviadoPara, string corpo, string assunto)
+        public KeyValuePair<bool, string> EnviaEmailConfirmacao(string enviadoPara, string corpo, string assunto)
         {
             
             try
@@ -28,14 +29,15 @@ namespace GestaoDDD.MVC.Util
                    ConfigurationManager.AppSettings["SenhaEmail"]);
                smtpClient.UseDefaultCredentials = false;
                smtpClient.Credentials = credentials;
+               smtpClient.Port = 587;
                smtpClient.EnableSsl = true;
                smtpClient.Send(message);
 
-                return true;
+                return new KeyValuePair<bool, string>(true, "OK"); 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                return new KeyValuePair<bool, string>(false, e.Message);
             }
 
         }

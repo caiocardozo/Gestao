@@ -10,7 +10,27 @@ namespace UnitTest
     {
         static void Main(string[] args)
         {
-            //logic unit test where.
+
+            string x = "";
+
+            if (x == "a")
+            {
+                x = "b";
+            }
+            else
+            {
+                x = "c";
+            }
+
+            var a = "a";
+            var b = "b";
+            var list = new List<String>();
+            list.Add(x);
+            list.Add(b);
+            list.Add(a);
+            var bb = "";
+
+           
         }
     }
 }
