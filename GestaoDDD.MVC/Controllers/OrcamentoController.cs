@@ -193,7 +193,17 @@ namespace GestaoDDD.MVC.Controllers
 
                     var assunto = "Orçamento Enviado";
                     _enviaEmail = new EnviaEmail();
-                    _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, body.ToString(), assunto);
+                    var enviou = _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, body.ToString(), assunto);
+                    if (!enviou.Key)
+                    {
+                        var logVm = new LogViewModel();
+                        logVm.Mensagem = enviou.Value;
+                        logVm.Controller = "Enviar Email";
+                        logVm.View = "Cadastrar Orçamento";
+                        var log = Mapper.Map<LogViewModel, Log>(logVm);
+                        _logAppService.SaveOrUpdate(log);
+                    }
+
                     return RedirectToAction("OrcamentoEnviadoSucesso");
                 }
                 else
