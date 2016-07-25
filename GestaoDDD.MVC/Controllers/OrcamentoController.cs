@@ -167,9 +167,9 @@ namespace GestaoDDD.MVC.Controllers
                             " AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA,PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO";
                         if (ufs.Contains(separar[1]))
                         {
-                            orcamento.orc_estado =
+                            orcamentoEntity.orc_estado =
                                 (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), separar[1]);
-                            orcamento.orc_cidade = separar[0];
+                            orcamentoEntity.orc_cidade = separar[0];
                         }
                         else
                             continue;
@@ -325,11 +325,12 @@ namespace GestaoDDD.MVC.Controllers
                         prestador.pres_longitude, prestador.pres_Raio_Recebimento, prestador.pres_Id));
 
                 //var orcamentosAbertos = orcamentoVm.Where(s => s.Status == EnumClass.EnumStatusOrcamento.Aberto);
-                var frase = "";
-                if (orcamentoVm.Count() == 1)
-                    frase = "Foi encontrado " + orcamentoVm.Count().ToString() + " orçamento.";
+                string frase;
+                var orcamentoViewModels = orcamentoVm as OrcamentoViewModel[] ?? orcamentoVm.ToArray();
+                if (orcamentoViewModels.Count() == 1)
+                    frase = "Foi encontrado " + orcamentoViewModels.Count().ToString() + " orçamento.";
                 else
-                    frase = "Foram encontrados " + orcamentoVm.Count().ToString() + " orçamentos";
+                    frase = "Foram encontrados " + orcamentoViewModels.Count().ToString() + " orçamentos";
                 ViewBag.FraseQtd = frase;
 
                 return View(orcamentoVm);
