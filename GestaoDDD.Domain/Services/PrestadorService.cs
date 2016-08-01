@@ -1,4 +1,5 @@
-﻿using GestaoDDD.Domain.Entities;
+﻿using System.Collections.Generic;
+using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Domain.Interfaces.Services;
 
@@ -28,6 +29,12 @@ namespace GestaoDDD.Domain.Services
         public Prestador GetPorEmail(string email)
         {
             return _prestadorRepository.GetPorEmail(email);
+        }
+
+        //retorna os pretadores que nao estao ligados ao orçamento selecionado
+        public IEnumerable<Prestador> GetPrestadores(int orcamentoId)
+        {
+            return _prestadorRepository.GetPrestadores(orcamentoId);
         }
     }
 }

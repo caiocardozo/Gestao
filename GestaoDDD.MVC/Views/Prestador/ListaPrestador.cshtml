@@ -1,0 +1,58 @@
+﻿@model IEnumerable<GestaoDDD.Application.ViewModels.PrestadorViewModel>
+    @{
+        Layout = null;
+    }
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Styles/sweetalert.css" rel="stylesheet" />
+    <script>
+        $(function () {
+            $(".ligarOrcPrestador").click(function () {
+                var prestador = $(this).attr("data-matricula");
+                var orc = $("#orcamento").val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/Orcamento/AtribuirPrestadorOrcamento',
+                    data: 'orc=' + orc + '&prestador=' + prestador,
+                    dataType: 'html',
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        if (data == 1) {
+                            swal("Orçamento atribuido com sucesso", "", "success");
+                            $("#modal").dialog("close");
+                        } else {
+                            swal("Orçamento atribuido com sucesso", "", "error");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <h2>ListaPrestador</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pres_nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pres_cpf_cnpj)
+            </th>
+
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pres_nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pres_cpf_cnpj)
+                </td>
+                <td>
+                    <a class="ligarOrcPrestador btn btn-primary btn-xs" data-matricula="@item.pres_Id">clique</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <input type="hidden" id="orcamento" value="@ViewBag.Orcamento" />

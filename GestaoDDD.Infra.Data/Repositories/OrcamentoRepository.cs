@@ -45,5 +45,10 @@ namespace GestaoDDD.Infra.Data.Repositories
         {
             return _db.Orcamento.Where(o => o.PrestadorFk.Any(p => p.pres_Id == usuarioId));
         }
+
+        public Orcamento RetornaOrcamentoPorId(int id)
+        {
+            return _db.Orcamento.SingleOrDefault(o => o.orc_Id == id);
+        }
     }
 }

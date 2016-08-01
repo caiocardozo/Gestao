@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Services;
@@ -29,6 +30,12 @@ namespace GestaoDDD.Application.Services
         public Prestador GetPorEmail(string email)
         {
             return _prestadorService.GetPorEmail(email);
+        }
+
+        //retorna os pretadores que nao estao ligados ao orçamento selecionado
+        public IEnumerable<Prestador> GetPrestadores(int orcamentoId)
+        {
+            return _prestadorService.GetPrestadores(orcamentoId);
         }
     }
 }

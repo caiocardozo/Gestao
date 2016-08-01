@@ -86,5 +86,12 @@ namespace GestaoDDD.Application.Services
         {
             return _orcamentoService.RetornaOrcamentosPagos(servico, cidade, estado, usuarioId);
         }
+
+        //retorna o orçamento pelo id
+        public Orcamento RetornaOrcamentoPorId(int id)
+        {
+            return _orcamentoService.RetornaOrcamentoPorId(id);
+        }
     }
+
 }

@@ -9,7 +9,7 @@ namespace GestaoDDD.Application.ViewModels
     {
         [Key]
         [ScaffoldColumn(false)]
-        public int pres_Id { get; set; }
+        public string pres_Id { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo nome")]
 

@@ -26,6 +26,11 @@ namespace GestaoDDD.Domain.Entities
         public string Distancia { get; set; }
         public virtual ICollection<Prestador> PrestadorFk  { get; set; } 
        
+        // public Orcamento()
+        //{
+        //    PrestadorFk = new HashSet<Prestador>();
+        //   // Usuario = new HashSet<ADM_USUARIO>();
+        //}
     }
 
 }

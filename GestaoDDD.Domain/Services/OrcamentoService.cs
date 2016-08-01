@@ -37,5 +37,11 @@ namespace GestaoDDD.Domain.Services
         {
             return _orcamentoRepository.GetOrcamentoPagosPeloPrestador(usuarioId);
         }
+
+        //retorna o orçamento pelo id
+        public Orcamento RetornaOrcamentoPorId(int id)
+        {
+            return _orcamentoRepository.RetornaOrcamentoPorId(id);
+        }
     }
 }

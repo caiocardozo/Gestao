@@ -39,5 +39,11 @@ namespace GestaoDDD.Domain.Entities
         public string Cidade { get; set; }
         public EnumEstados Estado { get; set; }
         public virtual ICollection<Orcamento> OrcamentoFk { get; set; }
+
+        //public Prestador()
+        //{
+        //    OrcamentoFk = new HashSet<Orcamento>();
+        //   // Usuario = new HashSet<ADM_USUARIO>();
+        //}
     }
 }

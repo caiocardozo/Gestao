@@ -12,5 +12,8 @@ namespace GestaoDDD.Application.Interface
         IEnumerable<Orcamento> RetornaOrcamentosAbertos();
         IEnumerable<Orcamento> RetornarOrcamentosComDistanciaCalculada(string prestador_latitude, string prestador_longitude, string raio, string usuarioId);
         IEnumerable<Orcamento> GetOrcamentoPagosPeloPrestador(string usuarioId);
+
+        //retorna o orçamento pelo id
+        Orcamento RetornaOrcamentoPorId(int id);
     }
 }

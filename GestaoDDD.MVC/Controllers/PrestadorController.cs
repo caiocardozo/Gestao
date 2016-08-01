@@ -443,5 +443,16 @@ namespace GestaoDDD.MVC.Controllers
         {
             return View();
         }
+
+        public ActionResult ListaPrestador(string id)
+        {
+            ViewBag.Orcamento = id;
+            var prestadorViewModel =
+            Mapper.Map<IEnumerable<Prestador>,
+            IEnumerable<PrestadorViewModel>>(_prestadorApp.GetAll());
+            //var prestadorViewModel =
+            //     Mapper.Map<IEnumerable<Prestador>, IEnumerable<PrestadorViewModel>>(_prestadorApp.GetPrestadores(Convert.ToInt32(id)));
+            return PartialView(prestadorViewModel);
+        }
     }
 }

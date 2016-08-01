@@ -39,5 +39,38 @@ namespace GestaoDDD.MVC.Util
             }
 
         }
+
+
+        public bool EnviaEmailCaio(string enviadoPara, string corpo, string assunto)
+        {
+
+            if (string.IsNullOrEmpty(enviadoPara));
+            string email = "suporte@fai.ufscar.br";
+            SmtpClient client = new SmtpClient();
+            client.Host = "faiadm1007.fai2008.ufscar.br";
+            client.EnableSsl = false;
+            client.Credentials = new NetworkCredential("suporte@fai.ufscar.br", "Sup0rte@2013");
+            client.Port = 25;
+            MailMessage message = new MailMessage();
+            message.Sender = new MailAddress(email, "Suporte FAI UFSCar");
+            message.From = new MailAddress(email, "Suporte FAI UFSCar");
+            message.To.Add(new MailAddress(enviadoPara, "Coordenador"));
+            message.Bcc.Add(new MailAddress("caio.cardozo@fai.ufscar.br"));
+           message.Subject = assunto;
+            message.Body = corpo;
+            message.IsBodyHtml = true;
+            message.Priority = MailPriority.High;
+          try
+            {
+                client.Send(message);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //throw new Exception(ex.Message);
+                return false;
+            }
+
+        }
     }
 }

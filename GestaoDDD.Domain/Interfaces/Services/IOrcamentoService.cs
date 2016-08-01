@@ -11,5 +11,8 @@ namespace GestaoDDD.Domain.Interfaces.Services
         IEnumerable<Orcamento> RetornaOrcamentos(int servico, string cidade, EnumEstados estado);
         IEnumerable<Orcamento> RetornaOrcamentosAbertos();
         IEnumerable<Orcamento> GetOrcamentoPagosPeloPrestador(string usuarioId);
+
+        //retorna o orçamento pelo id
+        Orcamento RetornaOrcamentoPorId(int id);
     }
 }
