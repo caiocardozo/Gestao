@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using GestaoDDD.Infra.Identity.Configuration;
 using GestaoDDD.Infra.Identity.Model;
 using Microsoft.AspNet.Identity;
@@ -89,10 +88,7 @@ namespace GestaoDDD.MVC.Controllers
             }
             catch (Exception e)
             {
-                var logVm = new LogViewModel();
-                logVm.Mensagem = e.Message;
-                logVm.Controller = "Account";
-                logVm.View = "Login";
+                var logVm = new LogViewModel {Mensagem = e.Message, Controller = "Account", View = "Login"};
                 var log = Mapper.Map<LogViewModel, Log>(logVm);
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
@@ -126,10 +122,7 @@ namespace GestaoDDD.MVC.Controllers
             catch (Exception e)
             {
 
-                var logVm = new LogViewModel();
-                logVm.Mensagem = e.Message;
-                logVm.Controller = "Account";
-                logVm.View = "VerifyCode";
+                var logVm = new LogViewModel {Mensagem = e.Message, Controller = "Account", View = "VerifyCode"};
                 var log = Mapper.Map<LogViewModel, Log>(logVm);
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");

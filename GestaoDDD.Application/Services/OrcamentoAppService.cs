@@ -59,12 +59,48 @@ namespace GestaoDDD.Application.Services
                         CultureInfo.InvariantCulture);
 
                     var distancia = (coordenada_prestador.GetDistanceTo(coord_orcamento) / 1000);
+
+
+                    /* var endereco = prestador.pres_Endereco;
+                    var partes = endereco.Split(',');
+                    foreach (var parte in partes.Where(s => s.Contains("-")))
+                    {
+
+                        var separar = parte.Split('-');
+                        var ufs = " AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA,PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO";
+                        if (ufs.Contains(separar[1]))
+                        {
+                            prestador.Estado =
+                                (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), separar[1]);
+                            prestador.Cidade = separar[0];
+                        }
+                        else
+                            continue;
+
+                    }*/
+
                     var endereco = orcamento.orc_endereco;
-                    var separar = endereco.Split(',');
-                    var cidadeEstado = separar[1].Split('-');
+                    var cidade = "";
+                    var estado = new EnumAppEstados();
+                    var partes = endereco.Split(',');
+                    foreach (var parte in partes.Where(s => s.Contains("-")))
+                    {
+
+                        var separar = parte.Split('-');
+                        var ufs = " AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA,PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO";
+                        if (ufs.Contains(separar[1]))
+                        {
+                            estado = (EnumAppEstados)Enum.Parse(typeof(EnumAppEstados), separar[1]);
+                            cidade = separar[0];
+                        }
+                        else
+                            continue;
+
+                    }
+
                     orcamento.Distancia = Math.Round(distancia, 2).ToString() + " Km do seu negócio em " +
-                                          cidadeEstado[0] +
-                                          " - " + cidadeEstado[1] + " ";
+                                          estado +
+                                          " - " + cidade + " ";
 
                     if (distancia <= double.Parse(raio))
                         orcamentosView.Add(orcamento);
@@ -72,10 +108,6 @@ namespace GestaoDDD.Application.Services
             }
             return orcamentosView;
         }
-
-
-
-
 
         public IEnumerable<Orcamento> GetOrcamentoPagosPeloPrestador(string usuarioId)
         {
@@ -87,11 +119,36 @@ namespace GestaoDDD.Application.Services
             return _orcamentoService.RetornaOrcamentosPagos(servico, cidade, estado, usuarioId);
         }
 
-        //retorna o orçamento pelo id
-        public Orcamento RetornaOrcamentoPorId(int id)
-        {
-            return _orcamentoService.RetornaOrcamentoPorId(id);
-        }
     }
-
+    public enum EnumAppEstados
+    {
+        AC,
+        AL,
+        AP,
+        AM,
+        BA,
+        CE,
+        DF,
+        ES,
+        GO,
+        MA,
+        MT,
+        MS,
+        MG,
+        PA,
+        PB,
+        PR,
+        PE,
+        PI,
+        RJ,
+        RN,
+        RS,
+        RO,
+        RR,
+        SC,
+        SP,
+        SE,
+        TO
+    }
 }
+

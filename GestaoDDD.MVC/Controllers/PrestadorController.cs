@@ -93,10 +93,10 @@ namespace GestaoDDD.MVC.Controllers
 
             var send = _enviarEmail.EnviaEmailConfirmacao(user.Email, corpo, assunto);
 
-            if (!send)
+            if (!send.Key)
             {
                 var logVm = new LogViewModel();
-                logVm.Mensagem = "Falha ao enviar o email";
+                logVm.Mensagem = send.Value;
                 logVm.Controller = "Prestador";
                 logVm.View = "EnviaEmailConfirmacao";
                 var log = Mapper.Map<LogViewModel, Log>(logVm);
