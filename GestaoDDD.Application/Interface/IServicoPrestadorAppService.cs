@@ -1,4 +1,5 @@
 ﻿using GestaoDDD.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace GestaoDDD.Application.Interface
@@ -10,6 +11,8 @@ namespace GestaoDDD.Application.Interface
         IEnumerable<ServicoPrestador> GetServicoPorPrestadorId(string prestadorId);
 
         IEnumerable<ServicoPrestador> GetByServicoId(int servicoId);
+
+        IEnumerable<Guid> PrestadoresOferecemServico(int servicoId);
 
     }
 }

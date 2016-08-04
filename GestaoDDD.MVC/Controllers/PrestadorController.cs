@@ -220,7 +220,7 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult MeuPerfil(string usuarioId)
         {
-            var prestador = _prestadorApp.GetPorGuid(usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(usuarioId));
 
             var prestadorVm = Mapper.Map<Prestador, PrestadorUsuarioViewModel>(prestador);
             ViewBag.Nome = prestador.pres_Nome;
@@ -277,7 +277,7 @@ namespace GestaoDDD.MVC.Controllers
         {
             try
             {
-                var prestador = _prestadorApp.GetPorGuid(usuarioId);
+                var prestador = _prestadorApp.GetPorGuid(Guid.Parse(usuarioId));
                 ViewBag.Nome = prestador.pres_Nome;
                 ViewBag.CaminhoFoto = prestador.caminho_foto;
                 var prestadorViewModel = Mapper.Map<Prestador, PrestadorUsuarioViewModel>(prestador);
@@ -318,7 +318,7 @@ namespace GestaoDDD.MVC.Controllers
                 }
                 else
                 {
-                    var prestadorOld = _prestadorApp.GetPorGuid(prestadorViewModel.pres_Id);
+                    var prestadorOld = _prestadorApp.GetPorGuid(Guid.Parse(prestadorViewModel.pres_Id));
                     prestadorViewModel.caminho_foto = prestadorOld.caminho_foto;
                 }
                 ModelState["Senha"].Errors.Clear();
@@ -418,7 +418,7 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult Deletar(string id)
         {
-            var prestador = _prestadorApp.GetPorGuid(id);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(id));
             var prestadorVm = Mapper.Map<Prestador, PrestadorUsuarioViewModel>(prestador);
 
             return View(prestadorVm);
@@ -430,7 +430,7 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmarDeletar(string id)
         {
-            var prestador = _prestadorApp.GetPorGuid(id);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(id));
             prestador.status = EnumClass.EnumStatus.Inativo;
             _prestadorApp.Update(prestador);
 

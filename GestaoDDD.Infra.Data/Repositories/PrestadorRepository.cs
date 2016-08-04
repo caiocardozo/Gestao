@@ -4,6 +4,7 @@ using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Infra.Data.Contexto;
 using System.Linq;
+using System;
 
 namespace GestaoDDD.Infra.Data.Repositories
 {
@@ -22,9 +23,9 @@ namespace GestaoDDD.Infra.Data.Repositories
             return _db.Prestador.FirstOrDefault(s => s.pres_Cpf_Cnpj.Equals(cpf));
         }
 
-        public Prestador GetPorGuid(string guid)
+        public Prestador GetPorGuid(Guid guid)
         {
-            return _db.Prestador.FirstOrDefault(s => s.pres_Id.Equals(guid));
+            return _db.Prestador.FirstOrDefault(s => s.pres_Id.Equals(guid.ToString()));
         }
 
         //retorna o prestador atraves do email
@@ -39,6 +40,11 @@ namespace GestaoDDD.Infra.Data.Repositories
             return (from pres in _db.Prestador
                     from orc in pres.OrcamentoFk.Where(p => p.orc_Id != orcamentoId)
                     select pres);
+        }
+
+        public IEnumerable<Prestador> GetPrestadoresComServicos()
+        {
+            return _db.Prestador.Include("ServicoPrestador");
         }
     }
 }

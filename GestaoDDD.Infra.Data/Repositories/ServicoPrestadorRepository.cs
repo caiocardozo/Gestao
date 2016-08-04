@@ -3,6 +3,7 @@ using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Infra.Data.Contexto;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace GestaoDDD.Infra.Data.Repositories
 {
@@ -40,6 +41,18 @@ namespace GestaoDDD.Infra.Data.Repositories
         public IEnumerable<ServicoPrestador> GetByServicoId(int servicoId)
         {
             return _db.ServicoPrestador.Where(s => s.Servico.serv_Id.Equals(servicoId));
+        }
+
+        // public IEnumerable<Guid> PrestadoresOferecemServico(int servicoId)
+        public IEnumerable<Guid> PrestadoresOferecemServico(int servicoId)
+        {
+            var servicos = _db.ServicoPrestador.Where(s => s.Servico.serv_Id.Equals(servicoId));
+            var list = new List<Guid>();
+            foreach (var guid in servicos)
+            {
+                list.Add(Guid.Parse(guid.pres_Id));
+            }
+            return list;
         }
     }
 }

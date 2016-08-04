@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Domain.Entities;
@@ -21,7 +22,7 @@ namespace GestaoDDD.Application.Services
         }
 
 
-        public Prestador GetPorGuid(string guid)
+        public Prestador GetPorGuid(Guid guid)
         {
             return _prestadorService.GetPorGuid(guid);
         }
@@ -36,6 +37,11 @@ namespace GestaoDDD.Application.Services
         public IEnumerable<Prestador> GetPrestadores(int orcamentoId)
         {
             return _prestadorService.GetPrestadores(orcamentoId);
+        }
+
+        public IEnumerable<Prestador> GetPrestadoresComServicos()
+        {
+            return _prestadorService.GetPrestadoresComServicos();
         }
     }
 }

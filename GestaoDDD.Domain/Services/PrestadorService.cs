@@ -2,6 +2,7 @@
 using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Domain.Interfaces.Services;
+using System;
 
 namespace GestaoDDD.Domain.Services
 {
@@ -20,7 +21,7 @@ namespace GestaoDDD.Domain.Services
             return _prestadorRepository.GetPorCpf(cpf);
         }
 
-        public Prestador GetPorGuid(string guid)
+        public Prestador GetPorGuid(Guid guid)
         {
             return _prestadorRepository.GetPorGuid(guid);
         }
@@ -35,6 +36,11 @@ namespace GestaoDDD.Domain.Services
         public IEnumerable<Prestador> GetPrestadores(int orcamentoId)
         {
             return _prestadorRepository.GetPrestadores(orcamentoId);
+        }
+
+        public IEnumerable<Prestador> GetPrestadoresComServicos()
+        {
+            return _prestadorRepository.GetPrestadoresComServicos();
         }
     }
 }

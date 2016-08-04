@@ -7,6 +7,7 @@ using Microsoft.Owin.Security;
 using GestaoDDD.Infra.Identity.Configuration;
 using GestaoDDD.Infra.Identity.Model;
 using GestaoDDD.Application.Interface;
+using System;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -57,7 +58,7 @@ namespace GestaoDDD.MVC.Controllers
             };
 
             _usuarioId = userId;
-            var prestador = _prestadorApp.GetPorGuid(userId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(userId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             return View(model);
@@ -69,7 +70,7 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
 
@@ -95,7 +96,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             return View();
@@ -107,7 +108,7 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             if (!ModelState.IsValid)
@@ -132,7 +133,7 @@ namespace GestaoDDD.MVC.Controllers
         [HttpPost]
         public ActionResult RememberBrowser()
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             var rememberBrowserIdentity = AuthenticationManager.CreateTwoFactorRememberBrowserIdentity(User.Identity.GetUserId());
@@ -145,7 +146,7 @@ namespace GestaoDDD.MVC.Controllers
         [HttpPost]
         public ActionResult ForgetBrowser()
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
@@ -158,7 +159,7 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             await _userManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
@@ -189,7 +190,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Manage/VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             // This code allows you exercise the flow without actually sending codes
@@ -208,7 +209,7 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             if (!ModelState.IsValid)
@@ -235,7 +236,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Manage/RemovePhoneNumber
         public async Task<ActionResult> RemovePhoneNumber()
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             var result = await _userManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
@@ -256,7 +257,7 @@ namespace GestaoDDD.MVC.Controllers
         public ActionResult ChangePassword()
         {
 
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             return View();
@@ -268,7 +269,7 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             if (!ModelState.IsValid)
@@ -293,7 +294,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             return View();
@@ -305,7 +306,7 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             if (ModelState.IsValid)
@@ -331,7 +332,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Manage/ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             ViewBag.StatusMessage =
@@ -359,7 +360,7 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             // Request a redirect to the external login provider to link a login for the current user
@@ -370,7 +371,7 @@ namespace GestaoDDD.MVC.Controllers
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
-            var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
             ViewBag.Nome = prestador.pres_Nome;
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
@@ -386,7 +387,7 @@ namespace GestaoDDD.MVC.Controllers
         {
             if (string.IsNullOrEmpty(_usuarioId))
             {
-                var prestador = _prestadorApp.GetPorGuid(_usuarioId);
+                var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_usuarioId));
                 ViewBag.Nome = prestador.pres_Nome;
                 ViewBag.CaminhoFoto = prestador.caminho_foto;
             }

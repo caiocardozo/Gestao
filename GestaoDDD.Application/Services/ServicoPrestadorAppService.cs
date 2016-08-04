@@ -2,6 +2,7 @@
 using GestaoDDD.Domain.Entities;
 using GestaoDDD.Domain.Interfaces.Services;
 using System.Collections.Generic;
+using System;
 
 namespace GestaoDDD.Application.Services
 {
@@ -28,6 +29,11 @@ namespace GestaoDDD.Application.Services
         public IEnumerable<ServicoPrestador> GetByServicoId(int servicoId)
         {
             return _servicoPresService.GetByServicoId(servicoId);
+        }
+
+        public IEnumerable<Guid> PrestadoresOferecemServico(int servicoId)
+        {
+           return _servicoPresService.PrestadoresOferecemServico(servicoId);
         }
     }
 }

@@ -64,6 +64,7 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult OrcamentoEnviadoSucesso()
         {
+            
             return View();
         }
 
@@ -178,10 +179,10 @@ namespace GestaoDDD.MVC.Controllers
                     orcamentoEntity.serv_Id = servico_id;
                     _orcamentoApp.Add(orcamentoEntity);
 
-                    var corpo = "Olá " + orcamento.orc_nome_solicitante + "seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você. Obrigado por nos escolher!" ;
+                    var corpo = "Olá " + orcamento.orc_nome_solicitante + " seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você. Obrigado por nos escolher!" ;
                     var assunto = "Orçamento Enviado";
                     _enviaEmail = new EnviaEmail();
-                    var enviou = _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, body.ToString(), assunto);
+                    var enviou = _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpo, assunto);
                     if (!enviou.Key)
                     {
                         var logVm = new LogViewModel();
@@ -193,6 +194,50 @@ namespace GestaoDDD.MVC.Controllers
                     }
 
                     _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpo, assunto);
+
+                    var prestadores  = _orcamentoApp.EnviaEmailParaPrestadoresQueOferecemOServico(orcamentoEntity.serv_Id);
+                    foreach(var prestadorID in prestadores)
+                    {
+                        var prestador = _prestadorApp.GetPorGuid(prestadorID);
+                        var envia = _orcamentoApp.EnviaEmailNotificacao(prestador, orcamentoEntity);
+                        if (envia.Key)
+                        {
+                            var saudacao = "";
+                            var date = DateTime.Now;
+                            if (date.Hour > 12 && date.Hour < 18)
+                            {
+                                saudacao = "boa tarde";
+                            }
+                            else if (date.Hour > 0 && date.Hour < 12)
+                            {
+                                saudacao = "bom dia";
+                            }
+                            else
+                            {
+                                saudacao = "boa noite";
+                            } 
+
+                            var corpoNotificacao = "Olá, " + prestador.pres_Nome.Trim() + ", " + saudacao + "!" + " <br /><br /> Chegou mais um orçamento para você." +
+                                " <br /> Este orçamento está à uma distância de " + envia.Value.Trim() + ". <br />" +
+                                "<br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br" + '\u0022' + "><strong>Clique aqui</strong></a> para visualizar os orçamentos disponíveis para você. " +
+                                "<br /><br /> Att, <br />" +
+                                " Equipe Agiliza.";
+
+                            var assuntoNotificacao = "Novo orçamento encontrado";
+                            _enviaEmail = new EnviaEmail();
+                            var enviouNotificacao = _enviaEmail.EnviaEmailConfirmacao(prestador.pres_Email, corpoNotificacao, assuntoNotificacao);
+                            if (!enviou.Key)
+                            {
+                                var logVm = new LogViewModel();
+                                logVm.Mensagem = enviou.Value;
+                                logVm.Controller = "Enviar Email Notificação";
+                                logVm.View = "Enviar email notificação de novo orçamento.";
+                                var log = Mapper.Map<LogViewModel, Log>(logVm);
+                                _logAppService.SaveOrUpdate(log);
+                            }
+                        }
+                    }
+
                     return RedirectToAction("OrcamentoEnviadoSucesso");
                 }
                 else
@@ -302,7 +347,7 @@ namespace GestaoDDD.MVC.Controllers
             try
             {
                 _userId = usuarioId;
-                var prestador = _prestadorApp.GetPorGuid(usuarioId);
+                var prestador = _prestadorApp.GetPorGuid(Guid.Parse(usuarioId));
                 ViewBag.Nome = prestador.pres_Nome;
                 ViewBag.CaminhoFoto = prestador.caminho_foto;
                 ViewBag.UsuarioId = prestador.pres_Id;
@@ -413,7 +458,7 @@ namespace GestaoDDD.MVC.Controllers
                     var id = separarId[1];
 
                     var orcamento = _orcamentoApp.GetById(int.Parse(id));
-                    var prestador = _prestadorApp.GetPorGuid(_userId);
+                    var prestador = _prestadorApp.GetPorGuid(Guid.Parse(_userId));
 
                     orcamento.PrestadorFk = new List<Prestador>();
                     orcamento.PrestadorFk.Add(prestador);
@@ -447,7 +492,7 @@ namespace GestaoDDD.MVC.Controllers
             try
             {
                 _userId = usuarioId;
-                var prestador = _prestadorApp.GetPorGuid(usuarioId);
+                var prestador = _prestadorApp.GetPorGuid(Guid.Parse(usuarioId));
                 ViewBag.Nome = prestador.pres_Nome;
                 ViewBag.CaminhoFoto = prestador.caminho_foto;
                 ViewBag.UsuarioId = prestador.pres_Id;
@@ -481,7 +526,7 @@ namespace GestaoDDD.MVC.Controllers
             try
             {
                 var orcamento = _orcamentoApp.GetById(Convert.ToInt32(orc));
-               var prestadorRecuperado = _prestadorApp.GetPorGuid(prestador);
+               var prestadorRecuperado = _prestadorApp.GetPorGuid(Guid.Parse(prestador));
               
                 orcamento.PrestadorFk = new List<Prestador>();
                 orcamento.PrestadorFk.Add(prestadorRecuperado);
