@@ -85,56 +85,63 @@
                 @Html.EditorFor(model => model.pres_telefone_celular, new { htmlAttributes = new { @class = "form-control", @placeholder = "(16)99999-9999" } })
                 @Html.ValidationMessageFor(model => model.pres_telefone_celular, "", new { @class = "text-danger" })
             </div>
-
             <div class="col-form-2 form-group col-md-4">
                 @Html.LabelFor(model => model.pres_cpf_cnpj, new { @class = "control-label" })
-                @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new { @class = "text-danger" })
+                <input type="text" name="cpf" id="cpf" class="form-control" data-val="true"
+                       data-val-require="Campo obrigatório" />
+                <input type="text" name="cnpj" id="cnpj" style="display: none" class="form-control" data-val="true"
+                       data-val-require="Campo obrigatório" />
             </div>
 
-            <div class="col-form form-group col-md-9">
-                <label>Endereço:</label>
-                <input type="text" id="orc_Endereco" name="pres_Endereco" class="form-control" />
-                @Html.ValidationMessageFor(model => model.pres_Endereco, "", new { @class = "text-danger" })
-            </div>
-
-            @*<div class="botao-marcar col-md-2 ">
-                    <input type="button" class="botao btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
+                @*<div class="col-form-2 form-group col-md-4">
+                    @Html.LabelFor(model => model.pres_cpf_cnpj, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new { @class = "text-danger" })
                 </div>*@
-            <div class="col-form form-group col-md-3">
-                <label for="raioatuacao">Raio de Atuação em KM:</label>
-                <select class="form-control" id="pres_Raio_Recebimento" name="pres_Raio_Recebimento">
-                    <option>10</option>
-                    <option>30</option>
-                    <option>60</option>
-                    <option>70</option>
-                    <option>100</option>
-                    <option>150</option>
-                    <option>200</option>
-                </select>
-            </div>
 
-            <div class="mapa col-md-12">
-                <div id="mapa" class="map-mapa"></div>
-                <input type="hidden" id="orc_latitude" name="pres_Latitude" />
-                <input type="hidden" id="orc_longitude" name="pres_Longitude" />
-            </div>
+                <div class="col-form form-group col-md-9">
+                    <label>Endereço:</label>
+                    <input type="text" id="orc_Endereco" name="pres_Endereco" class="form-control" />
+                    @Html.ValidationMessageFor(model => model.pres_Endereco, "", new { @class = "text-danger" })
+                </div>
+
+                @*<div class="botao-marcar col-md-2 ">
+                        <input type="button" class="botao btn btn-marcamapa" id="btnEndereco" name="btnEndereco" value="Marcar no mapa" />
+                    </div>*@
+                <div class="col-form form-group col-md-3">
+                    <label for="raioatuacao">Raio de Atuação em KM:</label>
+                    <select class="form-control" id="pres_Raio_Recebimento" name="pres_Raio_Recebimento">
+                        <option>10</option>
+                        <option>30</option>
+                        <option>60</option>
+                        <option>70</option>
+                        <option>100</option>
+                        <option>150</option>
+                        <option>200</option>
+                    </select>
+                </div>
+
+                <div class="mapa col-md-12">
+                    <div id="mapa" class="map-mapa"></div>
+                    <input type="hidden" id="orc_latitude" name="pres_Latitude" />
+                    <input type="hidden" id="orc_longitude" name="pres_Longitude" />
+                </div>
 
 
 
-            <div class="col-form form-group col-md-12">
-                @Html.CheckBoxFor(x => x.TermosECondicoes)
-                @Html.LabelFor(x => x.TermosECondicoes) presentes no <a href="@Url.Action("Index", "TermosDeUso")"
-                                                                        type="submit"
-                                                                        id="runReport"
-                                                                        target="_blank"
-                                                                        style="color:blue">termo de uso</a>
-                @Html.ValidationMessageFor(model => model.TermosECondicoes, "", new { @class = "text-danger" })
-            </div>
+                <div class="col-form form-group col-md-12">
+                    @Html.CheckBoxFor(x => x.TermosECondicoes)
+                    @Html.LabelFor(x => x.TermosECondicoes) presentes no <a href="@Url.Action("Index", "TermosDeUso")"
+                                                                            type="submit"
+                                                                            id="runReport"
+                                                                            target="_blank"
+                                                                            style="color:blue">termo de uso</a>
+                    @Html.ValidationMessageFor(model => model.TermosECondicoes, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="col-form col-md-12">
-                <input type="submit" class="btn btn-enviar" data-style="expand-right" onclick="waitingDialog.show();setTimeout(function () {waitingDialog.hide();}, 50000);" />
-            </div>
+                <div class="col-form col-md-12">
+                    <input type="submit" class="btn btn-enviar" data-style="expand-right" onclick="waitingDialog.show(); setTimeout(function () { waitingDialog.hide(); }, 50000); cpf; cnpj;" />
+                </div>
 
         }
     </div>
@@ -167,19 +174,23 @@
         }
     }).trigger('focusout');
 
-    //$("#pres_cpf_cnpj").keydown(function () {
-    //    try {
-    //        $("#pres_cpf_cnpj").unmask();
-    //    } catch (e) { }
+    $(document).on({
+        ready: function () {
+            var masks = {
+                cpf: "999.999.999-999",
+                cnpj: "99.999.999/9999-99"
+            }
 
-    //    var tamanho = $("#pres_cpf_cnpj").val().length;
-        
-
-    //    if (tamanho < 11) {
-    //        $("#pres_cpf_cnpj").mask("999.999.999-99");
-    //    } else {
-    //        $("#pres_cpf_cnpj").mask("99.999.999/9999-99");
-    //    }
-    //});
-
+            $('input#cpf').mask(masks.cpf, {
+                autoclear: false, completed: function () {
+                    var concated = this.val().match(/\d+/g).join('')
+                    var newMask = "";
+                    debugger;
+                    this.unmask();
+                    newMask = concated.length === 12 ? masks.cnpj : masks.cpf
+                    this.mask(newMask).val(concated).trigger('paste')
+                }
+            })
+        }
+    })
 </script>
