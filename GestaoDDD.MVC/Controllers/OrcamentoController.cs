@@ -154,8 +154,25 @@ namespace GestaoDDD.MVC.Controllers
         {
             try
             {
+
                 if (ModelState.IsValid)
                 {
+                    var saudacao = "";
+                    var date = DateTime.Now;
+                    if (date.Hour > 12 && date.Hour < 18)
+                    {
+                        saudacao = "boa tarde";
+                    }
+                    else if (date.Hour > 0 && date.Hour < 12)
+                    {
+                        saudacao = "bom dia";
+                    }
+                    else
+                    {
+                        saudacao = "boa noite";
+                    }
+
+
                     var orcamentoEntity = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
 
                     var endereco = orcamento.orc_Endereco;
@@ -179,10 +196,17 @@ namespace GestaoDDD.MVC.Controllers
                     orcamentoEntity.serv_Id = servico_id;
                     _orcamentoApp.Add(orcamentoEntity);
 
-                    var corpo = "Olá " + orcamento.orc_nome_solicitante + " seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você. Obrigado por nos escolher!" ;
+                    //var corpoCadastro = "Olá " + orcamento.orc_nome_solicitante + " seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você. Obrigado por nos escolher!" ;
+
+                    var corpoCadastro = "Olá, " + orcamento.orc_nome_solicitante.Trim() + ", " + saudacao + "!" + " <br /><br /> Seu orçamento já está cadastro em nosso sistema." +
+                        "<br /> Fique atento que logo o prestador do seu serviço entrará em contato com você."+       
+                        "<br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br/Orcamento/Cadastrar" + '\u0022' + "><strong>Clique aqui</strong></a> para fazer uma nova solicitação de orçamento para você. " +
+                               "<br /><br /> Att, <br />" +
+                               " Equipe Agiliza.";
+
                     var assunto = "Orçamento Enviado";
                     _enviaEmail = new EnviaEmail();
-                    var enviou = _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpo, assunto);
+                    var enviou = _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpoCadastro, assunto);
                     if (!enviou.Key)
                     {
                         var logVm = new LogViewModel();
@@ -193,7 +217,7 @@ namespace GestaoDDD.MVC.Controllers
                         _logAppService.SaveOrUpdate(log);
                     }
 
-                    _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpo, assunto);
+                    _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpoCadastro, assunto);
 
                     var prestadores  = _orcamentoApp.EnviaEmailParaPrestadoresQueOferecemOServico(orcamentoEntity.serv_Id);
                     foreach(var prestadorID in prestadores)
@@ -202,24 +226,10 @@ namespace GestaoDDD.MVC.Controllers
                         var envia = _orcamentoApp.EnviaEmailNotificacao(prestador, orcamentoEntity);
                         if (envia.Key)
                         {
-                            var saudacao = "";
-                            var date = DateTime.Now;
-                            if (date.Hour > 12 && date.Hour < 18)
-                            {
-                                saudacao = "boa tarde";
-                            }
-                            else if (date.Hour > 0 && date.Hour < 12)
-                            {
-                                saudacao = "bom dia";
-                            }
-                            else
-                            {
-                                saudacao = "boa noite";
-                            } 
-
+                           
                             var corpoNotificacao = "Olá, " + prestador.pres_Nome.Trim() + ", " + saudacao + "!" + " <br /><br /> Chegou mais um orçamento para você." +
                                 " <br /> Este orçamento está à uma distância de " + envia.Value.Trim() + ". <br />" +
-                                "<br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br" + '\u0022' + "><strong>Clique aqui</strong></a> para visualizar os orçamentos disponíveis para você. " +
+                                "<br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br/Orcamento/BuscaTrabalhos?usuarioId=" + prestador.pres_Id +  '\u0022' + "><strong>Clique aqui</strong></a> para visualizar os orçamentos disponíveis para você. " +
                                 "<br /><br /> Att, <br />" +
                                 " Equipe Agiliza.";
 
@@ -337,11 +347,13 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public ActionResult BuscaTrabalhosIndex()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public ActionResult BuscaTrabalhos(string usuarioId)
         {
             try
@@ -386,6 +398,7 @@ namespace GestaoDDD.MVC.Controllers
 
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public PartialViewResult BuscaTrabalhosPagosPartial(string servico, string cidade, string estado)
         {
             try
@@ -413,6 +426,7 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public PartialViewResult BuscaTrabalhosPartial(string servico, string cidade, string estado)
         {
             try
@@ -447,6 +461,7 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public ActionResult Pagamento(string token, string amt, string cc, string item_name, string st, string tx)
         {
             try
@@ -487,6 +502,7 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public ActionResult BuscaTrabalhosPagos(string usuarioId)
         {
             try
@@ -521,6 +537,7 @@ namespace GestaoDDD.MVC.Controllers
 
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public byte AtribuirPrestadorOrcamento(string orc, string prestador)
         {
             try
