@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<GestaoDDD.Application.ViewModels.PrestadorViewModel>
-    @{
-        Layout = null;
+@{
+Layout = null;
     }
     <script src="~/Scripts/sweetalert.min.js"></script>
     <link href="~/Styles/sweetalert.css" rel="stylesheet" />
@@ -11,20 +11,39 @@
                 var orc = $("#orcamento").val();
                 $.ajax({
                     type: 'POST',
-                    url: '/Orcamento/AtribuirPrestadorOrcamento',
+                    url: '/Orcamento/VerificaSeEstaLigado',
                     data: 'orc=' + orc + '&prestador=' + prestador,
                     dataType: 'html',
                     cache: false,
                     async: true,
                     success: function (data) {
                         if (data == 1) {
-                            swal("Orçamento atribuido com sucesso", "", "success");
-                            $("#modal").dialog("close");
-                        } else {
-                            swal("Orçamento atribuido com sucesso", "", "error");
+                            swal("Orçamento ja esta ligado a este prestador", "", "error");
+                        } else if (data == 0) {
+                            $.ajax({
+                                type: 'POST',
+                                url: '/Orcamento/AtribuirPrestadorOrcamento',
+                                data: 'orc=' + orc + '&prestador=' + prestador,
+                                dataType: 'html',
+                                cache: false,
+                                async: true,
+                                success: function (data) {
+                                    if (data == 1) {
+                                        swal("Orçamento atribuido com sucesso", "", "success");
+                                        $("#modal").dialog("close");
+                                    } else {
+                                        swal("Erro para atribuir orçamento, entre com contato com o administrador.", "", "error");
+                                    }
+                                }
+                            });
+                        }
+                        else {
+                            swal("Problema ao executar operação, entre em contato com o administrador", "", "error");
                         }
                     }
                 });
+
+
             });
         });
     </script>

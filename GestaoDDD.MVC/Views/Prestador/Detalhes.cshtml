@@ -1,102 +1,71 @@
 ﻿@model GestaoDDD.Application.ViewModels.PrestadorViewModel
 
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link href="~/Content/Prestador/prestador.css" rel="stylesheet" />
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD1XAgGp958RP_0j3cOgUo5DJdfART5j3k&amp;sensor=true"></script>
+<script src="~/Scripts/Adicionais/mapaPrestador.js"></script>
+<script src="~/Scripts/Adicionais/progress_bar_prestador.js"></script>
+<script src="~/Scripts/jquery-ui.custom.min.js"></script>
+<script src="~/Scripts/jquery-2.2.3.js"></script>
+<script src="~/Scripts/jquery.maskedinput.min.js"></script>
+<div class="container">
+    <div class="row texto-formulario col-md-12">
+        <h2><b>Detalhes cadastro de prestador</b></h2>
+    </div>
+    <div class="row formulario col-md-12">
 
-@*<div>
-    <h4>PrestadorViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.pres_nome)
-        </dt>
+        <div class="titulo-formulario">
+            <h4><b>DADOS DO PROFISSIONAL OU EMPRESA</b></h4>
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.pres_nome, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.pres_nome, new { @class = "form-control", @readonly = "readonly" })
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.pres_nome)
-        </dd>
+        <div class="col-form form-group col-md-5">
+            @Html.LabelFor(model => model.pres_email, new { @class = "control-label" })
+            @Html.EditorFor(model => model.pres_email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+        <div class="col-form-2 form-group col-md-4">
+            @Html.LabelFor(model => model.pres_cpf_cnpj, new { @class = "control-label" })
+            @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+        <div class="col-form form-group col-md-4">
+            @Html.LabelFor(model => model.pres_telefone_residencial, new { @class = "control-label" })
+            @Html.EditorFor(model => model.pres_telefone_residencial, new { htmlAttributes = new { @class = "form-control", @placeholder = "(16)9999-9999", @readonly = "readonly" } })
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pres_cpf_cnpj)
-        </dt>
+        <div class="col-form form-group col-md-4">
+            @Html.LabelFor(model => model.pres_telefone_celular, new { @class = "control-label" })
+            @Html.EditorFor(model => model.pres_telefone_celular, new { htmlAttributes = new { @class = "form-control", @placeholder = "(16)99999-9999", @readonly = "readonly" } })
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.pres_cpf_cnpj)
-        </dd>
+        <div class="col-form form-group col-md-9">
+            @Html.LabelFor(model => model.pres_Endereco, new { @class = "control-label" })
+            @Html.EditorFor(model => model.pres_Endereco, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pres_raio_recebimento)
-        </dt>
+        <div class="col-form form-group col-md-3">
+            <label for="raioatuacao">Raio de Atuação em KM:</label>
+            @Html.EditorFor(model => model.pres_raio_recebimento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.pres_raio_recebimento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pres_email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pres_email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pres_telefone_residencial)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pres_telefone_residencial)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pres_telefone_celular)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pres_telefone_celular)
-        </dd>
-
-    </dl>
-</div>*@
-
-
-<script src="~/Scripts/Adicionais/ListaPrestadorAdmin.js"></script>
-@*---*@
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-
-
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                <h4 class="moxdal-title custom_align" id="Heading">Editar Prestador</h4>
+        @*<div class="mapa col-md-12">
+                <div id="mapa" class="map-mapa"></div>
+                <input type="hidden" id="orc_latitude" name="pres_Latitude" />
+                <input type="hidden" id="orc_longitude" name="pres_Longitude" />
+            </div>*@
+    </div>
+    <div class="row">
+       <div class="col-md-offset-1 col-md-5">
+           <input type="button" value="Voltar" class="btn btn-enviar btn-lg btn-block" onclick="location.href='@Url.Action("Index", "Prestador")'" /> />
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <input class="form-control " type="text" placeholder="Mohsin">
-                </div>
-                <div class="form-group">
-
-                    <input class="form-control " type="text" placeholder="Irshad">
-                </div>
-                <div class="form-group">
-                    <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
-
-
-                </div>
-            </div>
-            <div class="modal-footer ">
-                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+            <div class="col-md-5">
+                <a href="~/Prestador/EditarPerfil/@Model.pres_Id" class="btn btn-enviar btn-lg btn-block" title="Editar">Editar</a>
             </div>
         </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
-<div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-        <input type="button" value="Voltar" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Prestador")'" />
-    </div>
 </div>

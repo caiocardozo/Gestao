@@ -8,5 +8,8 @@ namespace GestaoDDD.Application.Interface
 
         //obtem o usuario atraves do email
         Usuario ObterPorEmail(string email);
+
+        //obtem usuario por id
+        Usuario ObterPorId(string id);
     }
 }

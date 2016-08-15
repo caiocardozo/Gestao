@@ -10,10 +10,10 @@ namespace GestaoDDD.Infra.Data.Repositories
     public class UsuarioRepository : RepositoryBase<Usuario>, IUsuarioRepository
     {
         private readonly GestaoContext _gestaoContext;
-        public UsuarioRepository(GestaoContext gestaoContexto)
-            : base(gestaoContexto)
+        public UsuarioRepository(GestaoContext dbContext)
+            : base(dbContext)
         {
-            _gestaoContext = new GestaoContext();
+            _gestaoContext = dbContext;
         }
 
         public Usuario ObterPorId(string id)

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GeoCoordinatePortable;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
@@ -10,10 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 
@@ -59,9 +56,9 @@ namespace GestaoDDD.MVC.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Detalhes(int id)
+        public ActionResult Detalhes(string id)
         {
-            var prestador = _prestadorApp.GetById(id);
+            var prestador = _prestadorApp.GetPorGuid(Guid.Parse(id));
             var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
             return View(prestadorViewModel);
 
@@ -248,11 +245,11 @@ namespace GestaoDDD.MVC.Controllers
             return View(prestadorVm);
         }
         
-        public ActionResult Editar(int id)
+        public ActionResult Editar(string id)
         {
             try
             {
-                var prestador = _prestadorApp.GetById(id);
+                var prestador = _prestadorApp.GetPorGuid(Guid.Parse(id));
                 ViewBag.Nome = prestador.pres_Nome;
                 ViewBag.CaminhoFoto = prestador.caminho_foto;
                 var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
@@ -273,11 +270,11 @@ namespace GestaoDDD.MVC.Controllers
         }
 
 
-        public ActionResult EditarPerfil(string usuarioId)
+        public ActionResult EditarPerfil(string id)
         {
             try
             {
-                var prestador = _prestadorApp.GetPorGuid(Guid.Parse(usuarioId));
+                var prestador = _prestadorApp.GetPorGuid(Guid.Parse(id));
                 ViewBag.Nome = prestador.pres_Nome;
                 ViewBag.CaminhoFoto = prestador.caminho_foto;
                 var prestadorViewModel = Mapper.Map<Prestador, PrestadorUsuarioViewModel>(prestador);
@@ -433,8 +430,10 @@ namespace GestaoDDD.MVC.Controllers
             var prestador = _prestadorApp.GetPorGuid(Guid.Parse(id));
             prestador.status = EnumClass.EnumStatus.Inativo;
             _prestadorApp.Update(prestador);
-
-            _msgRetorno = "Prestador excluído com sucesso.";
+            var usuario = _usuarioApp.ObterPorId(id);
+            usuario.LockoutEnabled = false;
+            _usuarioApp.Update(usuario);
+            _msgRetorno = "Prestador inativo.";
             return RedirectToAction("Index");
         }
 
@@ -449,7 +448,7 @@ namespace GestaoDDD.MVC.Controllers
             ViewBag.Orcamento = id;
             var prestadorViewModel =
             Mapper.Map<IEnumerable<Prestador>,
-            IEnumerable<PrestadorViewModel>>(_prestadorApp.GetAll());
+            IEnumerable<PrestadorViewModel>>(_prestadorApp.RetornaPrestadoresAtivos());
             //var prestadorViewModel =
             //     Mapper.Map<IEnumerable<Prestador>, IEnumerable<PrestadorViewModel>>(_prestadorApp.GetPrestadores(Convert.ToInt32(id)));
             return PartialView(prestadorViewModel);

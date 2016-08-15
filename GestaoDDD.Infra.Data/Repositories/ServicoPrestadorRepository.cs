@@ -9,12 +9,12 @@ namespace GestaoDDD.Infra.Data.Repositories
 {
     public class ServicoPrestadorRepository : RepositoryBase<ServicoPrestador>, IServicoPrestadorRepository
     {
-        private readonly GestaoContext _db;
+        private readonly GestaoContext _dbContext;
 
-        public ServicoPrestadorRepository(GestaoContext gestaoContext)
-            :base(gestaoContext)
+        public ServicoPrestadorRepository(GestaoContext dbContext)
+            : base(dbContext)
         {
-            _db = new GestaoContext();
+            _dbContext = dbContext;
         }
 
         public void SalvarServicosPrestador(IEnumerable<Servico> servicos, Prestador prestador) 

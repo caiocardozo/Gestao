@@ -14,7 +14,7 @@ namespace GestaoDDD.Infra.Data.Repositories
         public CidadeRepository(GestaoContext dbContext)
             :base(dbContext)
         {
-            _dbContext = new GestaoContext();
+            _dbContext = dbContext;
         }
 
         //retorna todos as cidades a partir de um estado

@@ -10,8 +10,8 @@ namespace GestaoDDD.Infra.Data.Contexto
         public GestaoContext()
             : base("ConnectionLocalCaio")
         {
-            Configuration.ProxyCreationEnabled = false;
-            Configuration.LazyLoadingEnabled = true;
+            //Configuration.ProxyCreationEnabled = false;
+            //Configuration.LazyLoadingEnabled = true;
         }
 
         #region objetos

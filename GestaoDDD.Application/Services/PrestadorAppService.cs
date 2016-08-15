@@ -43,5 +43,11 @@ namespace GestaoDDD.Application.Services
         {
             return _prestadorService.GetPrestadoresComServicos();
         }
+
+        //retorna todos os prestadores ativos
+        public IEnumerable<Prestador> RetornaPrestadoresAtivos()
+        {
+            return _prestadorService.RetornaPrestadoresAtivos();
+        }
     }
 }

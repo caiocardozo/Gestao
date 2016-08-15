@@ -13,7 +13,7 @@ namespace GestaoDDD.Application.ViewModels
 
         [Required(ErrorMessage = "Preencha o campo nome")]
 
-        [DisplayName("Nome")]
+        [DisplayName("Nome do profissional ou empresa")]
         public string pres_nome { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo.")]
@@ -31,7 +31,7 @@ namespace GestaoDDD.Application.ViewModels
 
         [Required(ErrorMessage = "Preencha o e-mail")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Insira um email válido.")]
-        [DisplayName("Email")]
+        [DisplayName("E-mail")]
         public string pres_email { get; set; }
 
         [DisplayName("Telefone residencial.")]

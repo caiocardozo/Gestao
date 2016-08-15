@@ -69,7 +69,7 @@
                                     </td>
 
 
-                                    <td>
+                                    <td class="text-center">
                                         <p data-placement="top" data-toggle="tooltip" title="Editar">
                                             <a href="~/Orcamento/Editar/@item.orc_Id" class="btn btn-primary btn-xs" title="Editar">
                                                 <span class="glyphicon glyphicon-pencil"></span>
@@ -77,19 +77,20 @@
                                         </p>
                                     </td>
 
-                                    <td>
+                                    <td class="text-center">
                                         <p data-placement="top" data-toggle="tooltip" title="Delete">
                                             <a class="btn btn-danger btn-xs" href="~/Orcamento/Deletar/@item.orc_Id" data-toggle="modal" data-target="#delete" data-placement="top" rel="tooltip" data-title="Excluir">
                                                 <span class="glyphicon glyphicon-trash"></span>
                                             </a>
                                         </p>
                                     </td>
-                                    <td>
-                                        @*<p data-placement="top" data-toggle="tooltip" title="Atribuir">*@
-                                        <a class="atribuirOrcamento btn btn-danger btn-xs" data-matricula="@item.orc_Id">clique</a>
-                                        @*<a class="" href="~/Orcamento/Deletar/@item.orc_Id" data-toggle="modal" data-target="#delete" data-placement="top" rel="tooltip" data-title="Atribuir"></a>*@
-                                        @*</p>*@
-                                    </td>
+                                    <td class="text-center">
+                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                        <a class="atribuirOrcamento btn btn-danger btn-xs" data-matricula="@item.orc_Id" data-placement="top" rel="tooltip" data-title="Atribuir">
+                                            <span class="glyphicon glyphicon-share-alt"></span>
+                                        </a>
+                                            </p>
+</td>
                                 </tr>
                                 //MODAL DELETE
                                 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-hidden="false">

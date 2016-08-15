@@ -17,5 +17,11 @@ namespace GestaoDDD.Domain.Services
         {
             return _usuarioRepositorio.ObterPorEmail(email);
         }
+
+        //obtem usuario por id
+       public Usuario ObterPorId(string id)
+        {
+           return _usuarioRepositorio.ObterPorId(id);
+        }
     }
 }

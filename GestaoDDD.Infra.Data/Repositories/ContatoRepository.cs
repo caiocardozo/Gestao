@@ -7,10 +7,10 @@ namespace GestaoDDD.Infra.Data.Repositories
    public  class ContatoRepository : RepositoryBase<Contato>, IContatoRepository
    {
        private readonly GestaoContext _db;
-       public ContatoRepository(GestaoContext db)
-           :base(db)
+       public ContatoRepository(GestaoContext dbContext)
+           : base(dbContext)
        {
-           _db = new GestaoContext();
+           _db = dbContext;
        }
     }
 }

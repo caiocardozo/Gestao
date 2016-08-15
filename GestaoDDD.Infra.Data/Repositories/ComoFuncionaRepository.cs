@@ -7,10 +7,10 @@ namespace GestaoDDD.Infra.Data.Repositories
     public class ComoFuncionaRepository : RepositoryBase<ComoFunciona>, IComoFuncionaRepository
     {
         private readonly GestaoContext _db;
-        public ComoFuncionaRepository(GestaoContext gestaoContexto)
-            : base(gestaoContexto)
+        public ComoFuncionaRepository(GestaoContext dbContext)
+            : base(dbContext)
         {
-            _db = new GestaoContext();
+            _db = dbContext;
 
         }
     }

@@ -9,10 +9,10 @@ namespace GestaoDDD.Infra.Data.Repositories
     {
         private readonly GestaoContext _db;
 
-        public PessoaRepository(GestaoContext gestaoContexto)
-            : base(gestaoContexto)
+        public PessoaRepository(GestaoContext dbContext)
+            : base(dbContext)
         {
-            _db = new GestaoContext();
+            _db = dbContext;
         }
 
         //retorna a pessoa atraves do id

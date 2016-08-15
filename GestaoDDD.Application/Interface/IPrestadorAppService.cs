@@ -15,5 +15,8 @@ namespace GestaoDDD.Application.Interface
         //retorna os pretadores que nao estao ligados ao orçamento selecionado
         IEnumerable<Prestador> GetPrestadores(int orcamentoId);
         IEnumerable<Prestador> GetPrestadoresComServicos();
+
+        //retorna todos os prestadores ativos
+        IEnumerable<Prestador> RetornaPrestadoresAtivos();
     }
 }

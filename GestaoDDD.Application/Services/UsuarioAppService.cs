@@ -30,5 +30,11 @@ namespace GestaoDDD.Application.Services
         {
             return _usuarioService.ObterPorEmail(email);
         }
+
+        //obtem usuario por id
+        public Usuario ObterPorId(string id)
+        {
+           return _usuarioService.ObterPorId(id);
+        }
     }
 }

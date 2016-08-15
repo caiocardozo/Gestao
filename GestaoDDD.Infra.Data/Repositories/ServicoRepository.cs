@@ -10,10 +10,10 @@ namespace GestaoDDD.Infra.Data.Repositories
     public class ServicoRepository : RepositoryBase<Servico>, IServicoRepository
     {
         private readonly GestaoContext _db;
-        public ServicoRepository(GestaoContext gestaoContexto)
-            : base(gestaoContexto)
+        public ServicoRepository(GestaoContext dbContext)
+            : base(dbContext)
         {
-            _db = new GestaoContext();
+            _db = dbContext;
         }
 
         //retorna todos os serviços a partir de uma categoria

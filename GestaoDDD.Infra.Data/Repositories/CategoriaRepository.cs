@@ -7,10 +7,11 @@ namespace GestaoDDD.Infra.Data.Repositories
     public class CategoriaRepository : RepositoryBase<Categoria>, ICategoriaRepository
     {
         private readonly GestaoContext _db;
-        public CategoriaRepository(GestaoContext gestaoContexto)
-            : base(gestaoContexto)
+        public CategoriaRepository(GestaoContext dbContext)
+            : base(dbContext)
         {
-            _db = new GestaoContext();
+            //nao ppode ser new gestaocontext para nao instanciar novamente o contexto
+            _db = dbContext;
         }
 
         //retorna todas as cetegorias especias
