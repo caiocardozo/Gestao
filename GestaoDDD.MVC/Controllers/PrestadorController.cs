@@ -102,7 +102,7 @@ namespace GestaoDDD.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(PrestadorUsuarioViewModel prestadorUsuario)
+        public ActionResult Create(PrestadorUsuarioViewModel prestadorUsuario, string cpf, string cnpj)
         {
             try
             {
@@ -137,6 +137,7 @@ namespace GestaoDDD.MVC.Controllers
                         
                         if (result.Succeeded)
                         {
+                            prestadorUsuario.pres_cpf_cnpj = cpf.Replace("-", "").Replace("/", "").Replace(".", "");
                             //pega o usuario cadastrado e adiciona ele no objeto prestador
                             Usuario usuarioCadastrado = new Usuario();
                             usuarioCadastrado = _usuarioApp.ObterPorEmail(prestadorUsuario.pres_email);

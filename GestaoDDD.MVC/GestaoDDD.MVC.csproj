@@ -400,13 +400,11 @@
     <Content Include="Scripts\Adicionais\progress_bar_prestador.js" />
     <Content Include="Scripts\Adicionais\telefones.js" />
     <Content Include="Scripts\Adicionais\TermoUso.js" />
+    <None Include="Properties\PublishProfiles\Wagner.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
-    <Content Include="Scripts\jquery-3.1.0.min.js" />
-    <Content Include="Scripts\jquery-3.1.0.slim.js" />
-    <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.0.js" />
     <Content Include="Scripts\jquery-ui-1.12.0.min.js" />
     <Content Include="Scripts\jquery-ui.custom.min.js" />
@@ -527,8 +525,6 @@
     <Content Include="Views\Servico\Index.cshtml" />
     <Content Include="Views\Servico\ListarTodos.cshtml" />
     <Content Include="Views\Account\EmailConfirmadoOk.cshtml" />
-    <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.0.min.map" />
     <Content Include="Views\Prestador\ListaPrestador.cshtml" />
     <Content Include="Views\Prestador\Detalhes.cshtml" />
   </ItemGroup>

@@ -16,7 +16,6 @@ namespace GestaoDDD.Application.ViewModels
         [DisplayName("Nome")]
         public string pres_nome { get; set; }
 
-        [Required(ErrorMessage = "Preencha o campo CPF/CNPJ.")]
         [DisplayName("CPF / CNPJ:")]
         public string pres_cpf_cnpj { get; set; }
 

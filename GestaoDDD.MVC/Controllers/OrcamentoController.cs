@@ -39,7 +39,7 @@ namespace GestaoDDD.MVC.Controllers
             _logAppService = logAppService;
         }
 
-        [Authorize(Roles = "Admin")]
+
         public ActionResult ListarTodos()
         {
             var orcamentos =
@@ -64,7 +64,7 @@ namespace GestaoDDD.MVC.Controllers
 
         public ActionResult OrcamentoEnviadoSucesso()
         {
-
+            
             return View();
         }
 
@@ -92,13 +92,14 @@ namespace GestaoDDD.MVC.Controllers
                 var log = Mapper.Map<LogViewModel, Log>(logVm);
 
 
-
+                
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
         }
 
         [HttpPost]
+
         public ActionResult Detalhes(OrcamentoViewModel orcamentoVm, string usuarioId)
         {
             try
@@ -144,7 +145,7 @@ namespace GestaoDDD.MVC.Controllers
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
             }
-
+            
         }
 
         // POST: /Orcamento/Cadastrar
@@ -153,8 +154,25 @@ namespace GestaoDDD.MVC.Controllers
         {
             try
             {
+
                 if (ModelState.IsValid)
                 {
+                    var saudacao = "";
+                    var date = DateTime.Now;
+                    if (date.Hour > 12 && date.Hour < 18)
+                    {
+                        saudacao = "boa tarde";
+                    }
+                    else if (date.Hour > 0 && date.Hour < 12)
+                    {
+                        saudacao = "bom dia";
+                    }
+                    else
+                    {
+                        saudacao = "boa noite";
+                    }
+
+
                     var orcamentoEntity = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
 
                     var endereco = orcamento.orc_Endereco;
@@ -178,10 +196,17 @@ namespace GestaoDDD.MVC.Controllers
                     orcamentoEntity.serv_Id = servico_id;
                     _orcamentoApp.Add(orcamentoEntity);
 
-                    var corpo = "Olá " + orcamento.orc_nome_solicitante + " seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você. Obrigado por nos escolher!";
+                    //var corpoCadastro = "Olá " + orcamento.orc_nome_solicitante + " seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você. Obrigado por nos escolher!" ;
+
+                    var corpoCadastro = "Olá, " + orcamento.orc_nome_solicitante.Trim() + ", " + saudacao + "!" + " <br /><br /> Seu orçamento já está cadastro em nosso sistema." +
+                        "<br /> Fique atento que logo o prestador do seu serviço entrará em contato com você."+       
+                        "<br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br/Orcamento/Cadastrar" + '\u0022' + "><strong>Clique aqui</strong></a> para fazer uma nova solicitação de orçamento para você. " +
+                               "<br /><br /> Att, <br />" +
+                               " Equipe Agiliza.";
+
                     var assunto = "Orçamento Enviado";
                     _enviaEmail = new EnviaEmail();
-                    var enviou = _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpo, assunto);
+                    var enviou = _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpoCadastro, assunto);
                     if (!enviou.Key)
                     {
                         var logVm = new LogViewModel();
@@ -192,33 +217,19 @@ namespace GestaoDDD.MVC.Controllers
                         _logAppService.SaveOrUpdate(log);
                     }
 
-                    _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpo, assunto);
+                    _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpoCadastro, assunto);
 
-                    var prestadores = _orcamentoApp.EnviaEmailParaPrestadoresQueOferecemOServico(orcamentoEntity.serv_Id);
-                    foreach (var prestadorID in prestadores)
+                    var prestadores  = _orcamentoApp.EnviaEmailParaPrestadoresQueOferecemOServico(orcamentoEntity.serv_Id);
+                    foreach(var prestadorID in prestadores)
                     {
                         var prestador = _prestadorApp.GetPorGuid(prestadorID);
                         var envia = _orcamentoApp.EnviaEmailNotificacao(prestador, orcamentoEntity);
                         if (envia.Key)
                         {
-                            var saudacao = "";
-                            var date = DateTime.Now;
-                            if (date.Hour > 12 && date.Hour < 18)
-                            {
-                                saudacao = "boa tarde";
-                            }
-                            else if (date.Hour > 0 && date.Hour < 12)
-                            {
-                                saudacao = "bom dia";
-                            }
-                            else
-                            {
-                                saudacao = "boa noite";
-                            }
-
+                           
                             var corpoNotificacao = "Olá, " + prestador.pres_Nome.Trim() + ", " + saudacao + "!" + " <br /><br /> Chegou mais um orçamento para você." +
                                 " <br /> Este orçamento está à uma distância de " + envia.Value.Trim() + ". <br />" +
-                                "<br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br" + '\u0022' + "><strong>Clique aqui</strong></a> para visualizar os orçamentos disponíveis para você. " +
+                                "<br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br/Orcamento/BuscaTrabalhos?usuarioId=" + prestador.pres_Id +  '\u0022' + "><strong>Clique aqui</strong></a> para visualizar os orçamentos disponíveis para você. " +
                                 "<br /><br /> Att, <br />" +
                                 " Equipe Agiliza.";
 
@@ -277,30 +288,30 @@ namespace GestaoDDD.MVC.Controllers
         [HttpPost]
         public ActionResult Editar(OrcamentoViewModel orcamentoVm)
         {
+            
+                try
+                {
+                    //var orcamentodomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
+                    var orcamento = _orcamentoApp.GetById(orcamentoVm.orc_Id);
+                   // orcamentodomain.orc_descricao = orcamento.orc_descricao;
+                    orcamento.orc_descricao = orcamentoVm.orc_descricao;
 
-            try
-            {
-                //var orcamentodomain = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
-                var orcamento = _orcamentoApp.GetById(orcamentoVm.orc_Id);
-                // orcamentodomain.orc_descricao = orcamento.orc_descricao;
-                orcamento.orc_descricao = orcamentoVm.orc_descricao;
+                    _orcamentoApp.Update(orcamento);
+                    return RedirectToAction("ListarTodos");
+                }
+                catch (Exception e)
+                {
+                    var logVm = new LogViewModel();
+                    logVm.Mensagem = e.Message;
+                    logVm.Controller = "Orçamento";
+                    logVm.View = "Editar Post";
 
-                _orcamentoApp.Update(orcamento);
-                return RedirectToAction("ListarTodos");
-            }
-            catch (Exception e)
-            {
-                var logVm = new LogViewModel();
-                logVm.Mensagem = e.Message;
-                logVm.Controller = "Orçamento";
-                logVm.View = "Editar Post";
+                    var log = Mapper.Map<LogViewModel, Log>(logVm);
 
-                var log = Mapper.Map<LogViewModel, Log>(logVm);
-
-                _logAppService.SaveOrUpdate(log);
-                return RedirectToAction("ErroAoCadastrar");
-            }
-
+                    _logAppService.SaveOrUpdate(log);
+                    return RedirectToAction("ErroAoCadastrar");
+                }
+           
         }
 
 
@@ -336,11 +347,13 @@ namespace GestaoDDD.MVC.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public ActionResult BuscaTrabalhosIndex()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public ActionResult BuscaTrabalhos(string usuarioId)
         {
             try
@@ -356,6 +369,7 @@ namespace GestaoDDD.MVC.Controllers
                 var orcamentoVm = Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>
                     (_orcamentoApp.RetornarOrcamentosComDistanciaCalculada(prestador.pres_latitude,
                         prestador.pres_longitude, prestador.pres_Raio_Recebimento, prestador.pres_Id));
+
                 //var orcamentosAbertos = orcamentoVm.Where(s => s.Status == EnumClass.EnumStatusOrcamento.Aberto);
                 string frase;
                 var orcamentoViewModels = orcamentoVm as OrcamentoViewModel[] ?? orcamentoVm.ToArray();
@@ -373,16 +387,23 @@ namespace GestaoDDD.MVC.Controllers
                 logVm.Mensagem = e.Message;
                 logVm.Controller = "Orçamento";
                 logVm.View = "BuscaTraballhos";
+
                 var log = Mapper.Map<LogViewModel, Log>(logVm);
+
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
-                }
+
+
             }
 
+        }
+
+        [Authorize(Roles = "Admin, Prestador")]
         public PartialViewResult BuscaTrabalhosPagosPartial(string servico, string cidade, string estado)
         {
             try
             {
+
                 var cidades = _cidadeApp.GetById(int.Parse(cidade));
                 var estados = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), estado);
                 var retorno = _orcamentoApp.RetornaOrcamentosPagos(Convert.ToInt32(servico), cidades.NomeCidade, estados,
@@ -405,6 +426,7 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public PartialViewResult BuscaTrabalhosPartial(string servico, string cidade, string estado)
         {
             try
@@ -439,6 +461,7 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public ActionResult Pagamento(string token, string amt, string cc, string item_name, string st, string tx)
         {
             try
@@ -479,6 +502,7 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public ActionResult BuscaTrabalhosPagos(string usuarioId)
         {
             try
@@ -513,18 +537,22 @@ namespace GestaoDDD.MVC.Controllers
 
         }
 
+        [Authorize(Roles = "Admin, Prestador")]
         public byte AtribuirPrestadorOrcamento(string orc, string prestador)
         {
             try
             {
-                //busca o objeto orcamento
                 var orcamento = _orcamentoApp.GetById(Convert.ToInt32(orc));
-                //busca o objeto prestador
-                var prestadorRecuperado = _prestadorApp.GetPorGuid(Guid.Parse(prestador));
-                //atribui o prestador ao orçamento
+               var prestadorRecuperado = _prestadorApp.GetPorGuid(Guid.Parse(prestador));
+              
+                orcamento.PrestadorFk = new List<Prestador>();
                 orcamento.PrestadorFk.Add(prestadorRecuperado);
-                //salva no banco
-                _orcamentoApp.Update(orcamento);
+
+                prestadorRecuperado.OrcamentoFk = new List<Orcamento>();
+                prestadorRecuperado.OrcamentoFk.Add(orcamento);
+
+                _prestadorApp.Update(prestadorRecuperado);
+               // _orcamentoApp.Update(orcamento);
                 return 1;
             }
             catch (Exception e)
@@ -538,36 +566,6 @@ namespace GestaoDDD.MVC.Controllers
 
                 _logAppService.SaveOrUpdate(log);
                 return 0;
-            }
-
-        }
-
-        public byte VerificaSeEstaLigado(string orc, string prestador)
-        {
-            try
-            {
-                Orcamento retorno = _orcamentoApp.RetornaOrcamentoPorId(Convert.ToInt32(orc));
-                //percorre a lista de orçamento para ver se o prestador ja esta ligado
-                foreach (var item in retorno.PrestadorFk)
-                {
-                    if (item.pres_Id == prestador)
-                    {
-                        //retorna um se econtrar o prestador na lista
-                        return 1;
-                    }
-                }
-                //senao encontrar o prestador na lista retorna 0 nao esta ligado
-                return 0;
-            }
-            catch (Exception e)
-            {
-                var logVm = new LogViewModel();
-                logVm.Mensagem = e.Message;
-                logVm.Controller = "Orçamento";
-                logVm.View = "AtribuirPrestadorOrcamento";
-                var log = Mapper.Map<LogViewModel, Log>(logVm);
-                _logAppService.SaveOrUpdate(log);
-                return 2;
             }
 
         }
