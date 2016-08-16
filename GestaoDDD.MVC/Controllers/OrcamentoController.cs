@@ -8,8 +8,6 @@ using GestaoDDD.Domain.Entities;
 using System.Collections.Generic;
 using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 using GestaoDDD.MVC.Util;
-using System.Text;
-
 
 namespace GestaoDDD.MVC.Controllers
 {
