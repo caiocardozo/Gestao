@@ -55,13 +55,12 @@
                 <input type="text" class="form-control" id="raio" readonly value="@Html.DisplayFor(model => model.pres_Raio_Recebimento)" />
             </div>
             <div class="col-form form-group col-md-6">
-                <label for="apresentacaopessoal">Breve apresentação pessoal:</label>
-                @*<textarea class="form-control" rows="5" readonly="" id="apresentacaopessoal"></textarea>*@
-                <input type="text" class="form-control" id="raio" readonly value="@Html.DisplayFor(model => model.apresentacao_Pesssoal)" />
+                @Html.LabelFor(model => model.apresentacao_Pesssoal, new { @class = "control-label" })
+               @Html.TextAreaFor(model => model.apresentacao_Empresa, new { @class = "form-control", @rows = 5, @readonly = "readonly" })
             </div>
             <div class="col-form form-group col-md-6">
-                <label for="apresentacaoempresa">Breve apresentação da empresa:</label>
-                <input type="text"  class="form-control" id="raio" readonly value="@Html.DisplayFor(model => model.apresentacao_Empresa)" />
+                @Html.LabelFor(model => model.apresentacao_Empresa, new { @class = "control-label" })
+                @Html.TextAreaFor(model => model.apresentacao_Empresa, new { @class = "form-control", @rows = 5, @readonly = "readonly" })
             </div>
 
             <div class="sub-formulario ">
@@ -91,7 +90,7 @@
                 </div>*@
             <div class="col-form col-md-offset-8 col-md-2">
                 <button type="button" class="btn btn-formulario">
-                    @Html.ActionLink("Editar Informações", "EditarPerfil", new { usuarioId = usuarioId })
+                    @Html.ActionLink("Editar Informações", "Editar", new { id = usuarioId })
                 </button>
             </div>
 

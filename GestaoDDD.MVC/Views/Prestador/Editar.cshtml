@@ -1,0 +1,136 @@
+﻿@model GestaoDDD.Application.ViewModels.PrestadorEditarViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link href="~/Content/Prestador/prestador.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.custom.min.js"></script>
+<script src="~/Scripts/jquery-2.2.3.js"></script>
+<script src="~/Scripts/jquery.maskedinput.min.js"></script>
+<link href="~/Content/Conta/meuperfil.css" rel="stylesheet" />
+
+@using (Html.BeginForm("Editar", "Prestador", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.pres_Id)
+    <div class="header container-fluid">
+        <div class="row header col-md-12">
+            <div class="row header-foto col-md-2 col-sm-12">
+                @if (!string.IsNullOrEmpty(@ViewBag.CaminhoFoto))
+                {
+                    if (@ViewBag.CaminhoFoto.ToString().Contains(".jpg") || @ViewBag.CaminhoFoto.ToString().Contains(".png"))
+                    {
+                        <img width="250" height="200" src="~/Images/ImagemPerfil/@ViewBag.CaminhoFoto" class="header-foto col-md-12" />
+                    }
+                    else
+                    {
+                        <img width="250" height="200" src="~/Images/Conta/fotoperfil.png" class="header-foto col-md-12" />
+                    }
+
+                }
+                else
+                {
+                    <img id="blah" width="250" height="200" src="~/Images/Conta/fotoperfil.png" class="header-foto col-md-12" />
+                    @*<img id="blah" alt="your image" width="100" height="100" />*@
+                }
+                <input type="file" style="position:relative; left:30%;" id="foto" name="foto" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+            </div>
+            <div class="row header-texto col-md-3">
+                <div class="header-texto-nome">
+                    @ViewBag.Nome
+                    </div>
+                </div>
+        </div>
+        </div>
+    <div class="container">
+        <div class="row texto-antesform col-md-12">
+            <div class="texto-superior">
+                <h2>Meu Perfil</h2>
+            </div>
+            <div class="texto-inferior">
+                Olá! Aqui estão suas informações pessoais e do seu negócio, é importante manter seus dados sempre atualizados.
+            </div>
+        </div>
+        <form role="form">
+            <div class="row formulario col-md-12">
+                <div class="col-form form-group col-md-6">
+                    @Html.LabelFor(model => model.pres_nome, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pres_nome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pres_nome, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-form form-group col-md-6">
+                    @Html.LabelFor(model => model.nome_Empresa, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.nome_Empresa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nome_Empresa, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-form form-group col-md-3">
+                    @Html.LabelFor(model => model.pres_email, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pres_email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pres_email, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-form form-group col-md-3">
+                    @Html.LabelFor(model => model.pres_cpf_cnpj, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pres_cpf_cnpj, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pres_cpf_cnpj, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-form form-group col-md-3">
+                    @Html.LabelFor(model => model.pres_telefone_residencial, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pres_telefone_residencial, new { htmlAttributes = new { @class = "form-control", @placeholder = "(16)99999-9999" } })
+                    @Html.ValidationMessageFor(model => model.pres_telefone_residencial, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-form form-group col-md-3">
+                    @Html.LabelFor(model => model.pres_telefone_celular, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pres_telefone_celular, new { htmlAttributes = new { @class = "form-control", @placeholder = "(16)99999-9999" } })
+                    @Html.ValidationMessageFor(model => model.pres_telefone_celular, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-form form-group col-md-6">
+                    @Html.LabelFor(model => model.apresentacao_Pesssoal, new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.apresentacao_Pesssoal, new{ @class = "form-control", @rows = 5})
+                    @Html.ValidationMessageFor(model => model.apresentacao_Pesssoal, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-form form-group col-md-6">
+                    @Html.LabelFor(model => model.apresentacao_Empresa, new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.apresentacao_Empresa, new { @class = "form-control", @rows = 5 })
+                    @Html.ValidationMessageFor(model => model.apresentacao_Empresa, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-form col-md-2" style="position: relative; float: right;">
+                    <input type="submit" id="save" class="btn btn-formulario" value="Continuar" />
+                </div>
+            </div>
+        </form>
+    </div>
+}
+
+<script type="text/javascript">
+
+    $("#pres_cpf_cnpj").mask("99999999999");
+    $('#pres_telefone_celular').focusout(function () {
+        var phone, element;
+        element = $(this);
+        element.unmask();
+        phone = element.val().replace(/\D/g, '');
+        if (phone.length > 10) {
+            element.mask("(99)99999-999?9");
+        } else {
+            element.mask("(99)99999-9999?9");
+        }
+    }).trigger('focusout');
+    $('#pres_telefone_residencial').focusout(function () {
+        var phone, element;
+        element = $(this);
+        element.unmask();
+        phone = element.val().replace(/\D/g, '');
+        if (phone.length > 10) {
+            element.mask("(99)99999-999?9");
+        } else {
+            element.mask("(99)99999-9999?9");
+        }
+    }).trigger('focusout');
+    //$("#pres_telefone_celular").mask("(99)9999-9999");
+    //$("#pres_telefone_residencial").mask("(99)9999-9999");
+
+</script>
+@*  *@

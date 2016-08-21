@@ -26,6 +26,7 @@ namespace GestaoDDD.MVC.AutoMapper
             Mapper.CreateMap<PrestadorUsuarioViewModel, Prestador>();
             Mapper.CreateMap<LogViewModel, Log>();
             Mapper.CreateMap<ServicoPrestadorViewModel, ServicoPrestador>();
+            Mapper.CreateMap<PrestadorEditarViewModel, Prestador>();
         }
     }
 }

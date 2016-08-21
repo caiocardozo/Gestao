@@ -83,6 +83,7 @@
     <Compile Include="ViewModels\LogViewModel.cs" />
     <Compile Include="ViewModels\OrcamentoViewModel.cs" />
     <Compile Include="ViewModels\PessoaViewModel.cs" />
+    <Compile Include="ViewModels\PrestadorEditarViewModel.cs" />
     <Compile Include="ViewModels\PrestadorUsuarioViewModel.cs" />
     <Compile Include="ViewModels\ServicoPrestadorViewModel.cs" />
     <Compile Include="ViewModels\ServicoViewModel.cs" />

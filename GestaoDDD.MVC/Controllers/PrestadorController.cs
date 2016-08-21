@@ -225,16 +225,15 @@ namespace GestaoDDD.MVC.Controllers
             ViewBag.CaminhoFoto = prestador.caminho_foto;
             var servicosList = new List<Servico>();
             var categoriaList = new List<Categoria>();
-
+            var servico = new Servico();
             var servicoPrestador = _servicoPrestadorApp.GetServicoPorPrestadorId(prestadorVm.pres_Id);
             foreach (var servicoPres in servicoPrestador)
             {
-                var servico = _servicoAppService.GetById(servicoPres.serv_Id);
-                var categoria = _categoriaApp.GetById(servico.cat_Id);
-                categoriaList.Add(categoria);
+                servico = _servicoAppService.GetById(servicoPres.serv_Id);
+                categoriaList.Add(_categoriaApp.GetById(servico.cat_Id));
                 servicosList.Add(servico);
             }
-
+            
             var servicosVm = Mapper.Map<IEnumerable<Servico>, IEnumerable<ServicoViewModel>>(servicosList);
             var categoriasVm = Mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaViewModel>>(categoriaList.Distinct());
 
@@ -246,31 +245,6 @@ namespace GestaoDDD.MVC.Controllers
             return View(prestadorVm);
         }
         
-        public ActionResult Editar(string id)
-        {
-            try
-            {
-                var prestador = _prestadorApp.GetPorGuid(Guid.Parse(id));
-                ViewBag.Nome = prestador.pres_Nome;
-                ViewBag.CaminhoFoto = prestador.caminho_foto;
-                var prestadorViewModel = Mapper.Map<Prestador, PrestadorViewModel>(prestador);
-                return View(prestadorViewModel);
-            }
-            catch (Exception e)
-            {
-                var logVm = new LogViewModel();
-                logVm.Mensagem = e.Message;
-                logVm.Controller = "Prestador";
-                logVm.View = "Get Editar Perfil";
-
-                var log = Mapper.Map<LogViewModel, Log>(logVm);
-
-                _logAppService.SaveOrUpdate(log);
-                return RedirectToAction("ErroAoCadastrar");
-            }
-        }
-
-
         public ActionResult EditarPerfil(string id)
         {
             try
@@ -326,14 +300,10 @@ namespace GestaoDDD.MVC.Controllers
                 {
 
                     var prestador = Mapper.Map<PrestadorUsuarioViewModel, Prestador>(prestadorViewModel);
-
-
-
                     var endereco = prestador.pres_Endereco;
                     var partes = endereco.Split(',');
                     foreach (var parte in partes.Where(s => s.Contains("-")))
                     {
-
                         var separar = parte.Split('-');
                         var ufs = " AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA,PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO";
                         if (ufs.Contains(separar[1]))
@@ -380,19 +350,82 @@ namespace GestaoDDD.MVC.Controllers
             }
         }
 
-        //
-        // POST: /\Prestador/Edit/5
+
+        public ActionResult Editar(string id)
+        {
+            try
+            {
+                var prestador = _prestadorApp.GetPorGuid(Guid.Parse(id));
+                ViewBag.Nome = prestador.pres_Nome;
+                ViewBag.CaminhoFoto = prestador.caminho_foto;
+                var prestadorViewModel = Mapper.Map<Prestador, PrestadorEditarViewModel>(prestador);
+                return View(prestadorViewModel);
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Prestador";
+                logVm.View = "Get Editar Perfil";
+
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoCadastrar");
+            }
+        }
 
         [HttpPost]
-        public ActionResult Editar(PrestadorViewModel prestador)
+        [ValidateAntiForgeryToken]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Editar(PrestadorEditarViewModel prestador)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var prestadordomain = Mapper.Map<PrestadorViewModel, Prestador>(prestador);
+                    DateTime weekDay = DateTime.Now;
+                    string data = weekDay.ToString("dd-MM-yyyy-HH-mm-ss");
+
+                    var file = this.Request.Files[0];
+                    if (!string.IsNullOrEmpty(file.FileName))
+                    {
+                        string savedFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images/ImagemPerfil");
+                        savedFileName = Path.Combine(savedFileName, Path.GetFileName(data + "_" + file.FileName));
+                        file.SaveAs(savedFileName);
+                        prestador.caminho_foto = Path.GetFileName(data + "_" + file.FileName);
+                    }
+                    else
+                    {
+                        var prestadorOld = _prestadorApp.GetPorGuid(Guid.Parse(prestador.pres_Id));
+                        prestador.caminho_foto = prestadorOld.caminho_foto;
+                    }
+                    //inicia a distribuição das propriedades do prestador
+                    var prestadordomain = _prestadorApp.GetPorGuid(Guid.Parse(prestador.pres_Id));
+                    prestadordomain.pres_Nome = prestador.pres_nome;
+                    prestadordomain.pres_Email = prestador.pres_email;
+                    prestadordomain.nome_Empresa = prestador.nome_Empresa;
+                    prestadordomain.apresentacao_Empresa = prestador.apresentacao_Empresa;
+                    prestadordomain.apresentacao_Pesssoal = prestador.apresentacao_Pesssoal;
+                    prestadordomain.pres_Cpf_Cnpj = prestador.pres_cpf_cnpj;
+                    prestadordomain.pres_Telefone_Celular = prestador.pres_telefone_celular;
+                    prestadordomain.pres_Telefone_Residencial = prestador.pres_telefone_residencial;
+                    //atualiza o email do usuario no aspnetuser tambem
+                    prestadordomain.Usuario.Email = prestador.pres_email;
+                    prestadordomain.Usuario.PasswordHash = prestador.pres_email;
+                    //grava os dados
                     _prestadorApp.Update(prestadordomain);
-                    return RedirectToAction("Index");
+                    //redireciona o cara para continuar o processo de cadastro dos serviços
+                    return RedirectToAction("ServicosCategorias", "Servico",
+                        new
+                        {
+                            cpf = prestador.pres_cpf_cnpj,
+                            nome = prestador.pres_nome,
+                            email = prestador.pres_email,
+                            celular = prestador.pres_telefone_celular,
+                            editarPerfil = true
+                        });
+                    //return RedirectToAction("MeuPerfil", new { usuarioId = prestador.pres_Id });
                 }
                 catch (Exception e)
                 {

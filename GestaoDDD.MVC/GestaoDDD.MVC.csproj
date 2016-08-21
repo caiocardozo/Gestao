@@ -527,6 +527,7 @@
     <Content Include="Views\Account\EmailConfirmadoOk.cshtml" />
     <Content Include="Views\Prestador\ListaPrestador.cshtml" />
     <Content Include="Views\Prestador\Detalhes.cshtml" />
+    <Content Include="Views\Prestador\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -34,6 +34,10 @@
         <dd>
             @Html.ActionLink("[ Meu Perfil ]", "MeuPerfil", "Prestador", new { usuarioId = @Model.UsuarioId }, null)
         </dd>
+        <dt>Alterar senha:</dt>
+        <dd>
+            @Html.ActionLink("[ Alterar Senha ]", "ChangePassword", "Manage", new { usuarioId = @Model.UsuarioId }, null)
+        </dd>
         <dt>Orçamentos:</dt>
         <dd>
             @Html.ActionLink("[ Disponíveis ]", "BuscaTrabalhos", "Orcamento", new { usuarioId = @Model.UsuarioId }, null)

@@ -196,7 +196,7 @@ namespace GestaoDDD.MVC.Controllers
                     var corpo = "Olá " + orcamento.orc_nome_solicitante + " seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você. Obrigado por nos escolher!";
                     var assunto = "Orçamento Enviado";
                     _enviaEmail = new EnviaEmail();
-                    var enviou = _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpoCadastro, assunto);
+                    var enviou = _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpo, assunto);
                     if (!enviou.Key)
                     {
                         var logVm = new LogViewModel();
@@ -207,7 +207,7 @@ namespace GestaoDDD.MVC.Controllers
                         _logAppService.SaveOrUpdate(log);
                     }
 
-                    _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpoCadastro, assunto);
+                    _enviaEmail.EnviaEmailConfirmacao(orcamentoEntity.orc_email_solicitante, corpo, assunto);
 
                     var prestadores = _orcamentoApp.EnviaEmailParaPrestadoresQueOferecemOServico(orcamentoEntity.serv_Id);
                     foreach (var prestadorID in prestadores)
