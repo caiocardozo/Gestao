@@ -12,6 +12,7 @@ using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
 using AutoMapper;
+using GestaoDDD.MVC.Util;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -308,7 +309,7 @@ namespace GestaoDDD.MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     var user = await _userManager.FindByNameAsync(model.Email);
-                    if (user == null || !(await _userManager.IsEmailConfirmedAsync(user.Id)))
+                    if (user == null)
                     {
                         // Não revelar se o usuario nao existe ou nao esta confirmado
                         return View("ForgotPasswordConfirmation");
@@ -316,10 +317,45 @@ namespace GestaoDDD.MVC.Controllers
 
                     var code = await _userManager.GeneratePasswordResetTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await _userManager.SendEmailAsync(user.Id, "Esqueci minha senha", "Por favor altere sua senha clicando aqui: <a href='" + callbackUrl + "'></a>");
-                    ViewBag.Link = callbackUrl;
-                    ViewBag.Status = "DEMO: Caso o link não chegue: ";
-                    ViewBag.LinkAcesso = callbackUrl;
+                    //await _userManager.SendEmailAsync(user.Id, "Esqueci minha senha", "Por favor altere sua senha clicando aqui: <a href='" + callbackUrl + "'></a>");
+                    //ViewBag.Link = callbackUrl;
+                    //ViewBag.Status = "DEMO: Caso o link não chegue: ";
+                    //ViewBag.LinkAcesso = callbackUrl;
+                    
+
+                    var saudacao = "";
+                    var date = DateTime.Now;
+                    if (date.Hour > 12 && date.Hour < 18)
+                    {
+                        saudacao = "boa tarde";
+                    }
+                    else if (date.Hour > 0 && date.Hour < 12)
+                    {
+                        saudacao = "bom dia";
+                    }
+                    else
+                    {
+                        saudacao = "boa noite";
+                    }
+
+
+                    var corpoNotificacao = "Olá, " + saudacao + "!" + " <br /><br /> Troque agora sua senha." +
+                                "<br /> <a href=" + '\u0022' + callbackUrl + '\u0022' + "><strong>Clique aqui</strong></a> para alterar sua senha. " +
+                                "<br /><br /> Att, <br />" +
+                                " Equipe Agiliza.";
+
+                    var assuntoNotificacao = "Solicitação de nova senha";
+                   var _enviaEmail = new EnviaEmail();
+                    var enviouNotificacao = _enviaEmail.EnviaEmailConfirmacao(model.Email, corpoNotificacao, assuntoNotificacao);
+                    if (!enviouNotificacao.Key)
+                    {
+                        var logVm = new LogViewModel();
+                        logVm.Mensagem = enviouNotificacao.Value;
+                        logVm.Controller = "Enviar Email Nova Senha";
+                        logVm.View = "Enviar email notificação de nova senha.";
+                        var log = Mapper.Map<LogViewModel, Log>(logVm);
+                        _logAppService.SaveOrUpdate(log);
+                    }
                     return View("ForgotPasswordConfirmation");
                 }
 
@@ -371,12 +407,12 @@ namespace GestaoDDD.MVC.Controllers
                 if (user == null)
                 {
                     // Não revelar se o usuario nao existe ou nao esta confirmado
-                    return RedirectToAction("ResetPasswordConfirmation", "Account");
+                    return RedirectToAction("Login", "Account");
                 }
                 var result = await _userManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("ResetPasswordConfirmation", "Account");
+                    return RedirectToAction("Login", "Account");
                 }
                 AddErrors(result);
                 return View();
