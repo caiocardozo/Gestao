@@ -10,6 +10,7 @@ using System;
 using System.Web.Mvc;
 using Microsoft.Owin.Security.Facebook;
 using System.Threading.Tasks;
+using Autofac;
 
 namespace GestaoDDD.MVC
 {
@@ -19,11 +20,18 @@ namespace GestaoDDD.MVC
         public static IDataProtectionProvider DataProtectionProvider { get; set; }
         public void ConfigureAuth(IAppBuilder app)
         {
+
+            DataProtectionProvider = app.GetDataProtectionProvider();
+
+            var builder = new ContainerBuilder();
+
+            builder.Register<IDataProtectionProvider>(c => DataProtectionProvider)
+                    .InstancePerLifetimeScope();
+
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationUserManager>());
-            ////
-            //app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationSignInManager>());
-            //app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationRoleManager>());
+            app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationSignInManager>());
+            app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationRoleManager>());
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider

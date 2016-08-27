@@ -308,16 +308,16 @@ namespace GestaoDDD.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = await _userManager.FindByNameAsync(model.Email);
+                  var user = _userManager.FindByName(model.Email);
                     if (user == null)
                     {
                         // Não revelar se o usuario nao existe ou nao esta confirmado
                         return View("ForgotPasswordConfirmation");
                     }
 
-                    var code = await _userManager.GeneratePasswordResetTokenAsync(user.Id);
+                    var code = _userManager.GeneratePasswordResetToken(user.Id);
                     var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    //await _userManager.SendEmailAsync(user.Id, "Esqueci minha senha", "Por favor altere sua senha clicando aqui: <a href='" + callbackUrl + "'></a>");
+                    await _userManager.SendEmailAsync(user.Id, "Esqueci minha senha", "Por favor altere sua senha clicando aqui: <a href='" + callbackUrl + "'></a>");
                     //ViewBag.Link = callbackUrl;
                     //ViewBag.Status = "DEMO: Caso o link não chegue: ";
                     //ViewBag.LinkAcesso = callbackUrl;

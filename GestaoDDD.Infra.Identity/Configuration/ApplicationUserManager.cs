@@ -8,10 +8,11 @@ namespace GestaoDDD.Infra.Identity.Configuration
 {
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
+        public static IDataProtectionProvider DataProtectionProvider { get; set; }
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
-            // Configurando validator para nome de usuario
+
             UserValidator = new UserValidator<ApplicationUser>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
@@ -51,10 +52,23 @@ namespace GestaoDDD.Infra.Identity.Configuration
             // Definindo a classe de serviço de SMS
             SmsService = new SmsService();
 
-            var provider = new DpapiDataProtectionProvider("Agiliza");
-            var dataProtector = provider.Create("AGILIZA ORCAMENTOS");
 
-            UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtector);
+            //var dataProtectionProvider = Startup.DataProtectionProvider;
+            //UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+
+            //var provider = new DpapiDataProtectionProvider("ASP.NET Identity");
+            //var dataProtector = provider.Create("ASP.NET Identity");
+
+            //UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtector)
+            //{
+            //    TokenLifespan = TimeSpan.FromMinutes(5)
+            //};
+
+            var provider = new DpapiDataProtectionProvider("Identity");
+            UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(provider.Create("EmailConfirmation"))
+            {
+                TokenLifespan = TimeSpan.FromHours(24),
+            };
 
         }
     }
