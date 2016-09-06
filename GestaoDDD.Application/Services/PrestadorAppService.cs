@@ -49,5 +49,21 @@ namespace GestaoDDD.Application.Services
         {
             return _prestadorService.RetornaPrestadoresAtivos();
         }
+
+        //verifica se o prestador ja esta cadastrado
+        public byte VeriricaPrestadorExiste(string email)
+        {
+            var prestador = _prestadorService.GetPorEmail(email);
+            if (prestador != null)
+            {
+                //retorna 1 caso o prestador exista
+                return 1;
+            }
+            else
+            {
+                //prestador nao existe retorna 0
+                return 0;
+            }
+        }
     }
 }

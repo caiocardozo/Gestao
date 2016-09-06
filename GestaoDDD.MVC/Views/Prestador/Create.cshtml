@@ -11,8 +11,8 @@
 <script src="~/Scripts/jquery-ui.custom.min.js"></script>
 <script src="~/Scripts/jquery-2.2.3.js"></script>
 <script src="~/Scripts/jquery.maskedinput.min.js"></script>
-
-
+<script src="~/Scripts/sweetalert.min.js"></script>
+<link href="~/Styles/sweetalert.css" rel="stylesheet" />
 <div class="container">
 
     <div class="row banner col-md-12">
@@ -140,7 +140,7 @@
                 </div>
 
                 <div class="col-form col-md-12">
-                    <input type="submit" class="btn btn-enviar" data-style="expand-right" onclick="waitingDialog.show(); setTimeout(function () { waitingDialog.hide(); }, 50000); cpf; cnpj;" />
+                    <input type="button" class="btn btn-enviar" data-style="expand-right" onclick="CadastrarPrestador();" value="Cadastrar"/>
                 </div>
 
         }
@@ -179,10 +179,11 @@
             var masks = {
                 cpf: "999.999.999-999",
                 cnpj: "99.999.999/9999-99"
-            }
+            };
 
             $('input#cpf').mask(masks.cpf, {
-                autoclear: false, completed: function () {
+                autoclear: false,
+                completed: function() {
                     var concated = this.val().match(/\d+/g).join('')
                     var newMask = "";
                     debugger;
@@ -190,7 +191,69 @@
                     newMask = concated.length === 12 ? masks.cnpj : masks.cpf
                     this.mask(newMask).val(concated).trigger('paste')
                 }
-            })
+            });
         }
-    })
+    });
+
+    function CadastrarPrestador() {
+        //insira aqui sua validação
+        $.ajax({
+            type: 'POST',
+            url: '/Prestador/VerifcaPrestadorExiste',
+            data: 'email=' + $('#pres_email').val(),
+            dataType: "json",
+            cache: false,
+            async: true,
+            success: function (data) {
+                //veririca se o prestador existe
+                //se existe retorna 1 e toma ação, senao nao faz nada e segue o cadastro
+                if (data == 1) {
+                    swal({
+                        title: "Prestador ja cadastrado",
+                        text: "Prestador ja esta cadastrado deseja recuperar a senha?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "SIM!",
+                        cancelButtonText: "Não!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    }, function(isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                type: 'POST',
+                                url: '/Prestador/AtivaStatusPrestador',
+                                data: 'email=' + $("#pres_email").val(),
+                                dataType: "json",
+                                cache: false,
+                                async: true,
+                                success: function(dataRetorno) {
+                                    if (dataRetorno == 1) {
+                                        swal({
+                                            title: "Email Enviado!", text: "Você será redirecionado em 5 segundos. verifique seu email",
+                                            timer: 5000,
+                                            showConfirmButton: false
+                                        }, setTimeout(function ()
+                                        { window.location.href = "/Account/Login"; }, 4000));
+                                      } else {
+                                        swal("Houve um problema para recuperar sua senha, entra em contato conosco", "error");
+                                    }
+                                }
+                            });
+                        } else {
+                            swal({
+                                title: "Procedimento cancelado!", text: "Recarregando a página.",
+                                timer: 5000,
+                                showConfirmButton: false
+                            }, setTimeout(function ()
+                            { window.location.reload()}, 4000));
+                            }
+                    });
+
+                } else {
+                    $("form").submit();
+                }
+            }
+        });
+    };
 </script>
