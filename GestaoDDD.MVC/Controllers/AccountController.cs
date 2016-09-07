@@ -13,6 +13,7 @@ using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
 using AutoMapper;
 using GestaoDDD.MVC.Util;
+using System.Security.Cryptography;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -315,9 +316,9 @@ namespace GestaoDDD.MVC.Controllers
                         return View("ForgotPasswordConfirmation");
                     }
 
-                    var code = _userManager.GeneratePasswordResetToken(user.Id);
-                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await _userManager.SendEmailAsync(user.Id, "Esqueci minha senha", "Por favor altere sua senha clicando aqui: <a href='" + callbackUrl + "'></a>");
+                    //var code = _userManager.GeneratePasswordResetToken(user.Id);
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id }, protocol: Request.Url.Scheme);
+                    //await _userManager.SendEmailAsync(user.Id, "Esqueci minha senha", "Por favor altere sua senha clicando aqui: <a href='" + callbackUrl + "'></a>");
                     //ViewBag.Link = callbackUrl;
                     //ViewBag.Status = "DEMO: Caso o link não chegue: ";
                     //ViewBag.LinkAcesso = callbackUrl;
@@ -387,7 +388,7 @@ namespace GestaoDDD.MVC.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            return code == null ? View("Error") : View();
+            return View();
         }
 
         //
@@ -403,18 +404,24 @@ namespace GestaoDDD.MVC.Controllers
                 {
                     return View(model);
                 }
+
                 var user = await _userManager.FindByNameAsync(model.Email);
                 if (user == null)
                 {
                     // Não revelar se o usuario nao existe ou nao esta confirmado
                     return RedirectToAction("Login", "Account");
                 }
-                var result = await _userManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Login", "Account");
-                }
-                AddErrors(result);
+
+                user.PasswordHash = HashPassword(model.Password);
+                var update =_userManager.Update(user);
+                return RedirectToAction("Login", "Account");
+
+
+                //if (result.Succeeded)
+                //{
+                //    return RedirectToAction("Login", "Account");
+                //}
+                //AddErrors(result);
                 return View();
             }
             catch (Exception e)
@@ -429,6 +436,26 @@ namespace GestaoDDD.MVC.Controllers
             }
 
         }
+
+        private static string HashPassword(string password)
+        {
+            byte[] salt;
+            byte[] buffer2;
+            if (password == null)
+            {
+                throw new ArgumentNullException("password");
+            }
+            using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, 0x10, 0x3e8))
+            {
+                salt = bytes.Salt;
+                buffer2 = bytes.GetBytes(0x20);
+            }
+            byte[] dst = new byte[0x31];
+            Buffer.BlockCopy(salt, 0, dst, 1, 0x10);
+            Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
+            return Convert.ToBase64String(dst);
+        }
+
 
         //
         // GET: /Account/ResetPasswordConfirmation
