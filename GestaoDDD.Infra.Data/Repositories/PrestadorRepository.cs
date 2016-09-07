@@ -55,5 +55,10 @@ namespace GestaoDDD.Infra.Data.Repositories
             return _db.Prestador.Where(p => p.status == (EnumStatus) 0);
             //return _db.Prestador;
         }
+
+        //public Prestador VeriricaPrestadorExiste(string email)
+        //{
+        //    return _db.Prestador.FirstOrDefault(p => p.pres_Email == email);
+        //}
     }
 }

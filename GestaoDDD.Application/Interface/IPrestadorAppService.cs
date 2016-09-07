@@ -18,5 +18,8 @@ namespace GestaoDDD.Application.Interface
 
         //retorna todos os prestadores ativos
         IEnumerable<Prestador> RetornaPrestadoresAtivos();
+
+        //verifica se o prestador ja esta cadastrado
+        byte VeriricaPrestadorExiste(string email);
     }
 }

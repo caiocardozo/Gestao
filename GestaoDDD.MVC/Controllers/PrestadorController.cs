@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using GestaoDDD.Application.Interface;
 using GestaoDDD.Application.ViewModels;
 using GestaoDDD.Domain.Entities;
@@ -208,6 +209,39 @@ namespace GestaoDDD.MVC.Controllers
 
                 _logAppService.SaveOrUpdate(log);
                 return RedirectToAction("ErroAoCadastrar");
+            }
+        }
+
+        public byte VerifcaPrestadorExiste(string email)
+        {
+            //retorna 1 se o prestador existe
+            return _prestadorApp.VeriricaPrestadorExiste(email);
+        }
+
+        public async Task<byte> AtivaStatusPrestador(string email)
+        {
+            try
+            {
+                Prestador prestador = _prestadorApp.GetPorEmail(email);
+                prestador.status = EnumClass.EnumStatus.Ativo;
+                _prestadorApp.Update(prestador);
+                var user = _userManager.FindByName(email);
+                   var code = _userManager.GeneratePasswordResetToken(user.Id);
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await _userManager.SendEmailAsync(user.Id, "Esqueci minha senha", "Por favor altere sua senha clicando aqui: <a href='" + callbackUrl + "'></a>");
+                //retorna 1 para procedimento realizado com sucesso
+                return 1;
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Prestador";
+                logVm.View = "Ativar status prestador";
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+                _logAppService.SaveOrUpdate(log);
+                //retorna 0 senao deu certo efetuar o update
+                return 0;
             }
         }
 
