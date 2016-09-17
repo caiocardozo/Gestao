@@ -15,5 +15,6 @@ namespace GestaoDDD.Application.Interface
         Orcamento RetornaOrcamentoPorId(int id);
         IEnumerable<Guid> EnviaEmailParaPrestadoresQueOferecemOServico(int servicoId);
         KeyValuePair<bool, string> EnviaEmailNotificacao(Prestador prestador, Orcamento orcamento);
+        IEnumerable<Orcamento> VerificaSeOrcamentoPertenceAoUsuario(IEnumerable<Orcamento> orcamentos, string raio, string pLatitude, string pLongitude);
     }
 }

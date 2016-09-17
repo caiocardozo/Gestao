@@ -8,6 +8,7 @@ using GestaoDDD.Domain.Entities;
 using System.Collections.Generic;
 using EnumClass = GestaoDDD.Domain.Entities.NoSql;
 using GestaoDDD.MVC.Util;
+using System.Globalization;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -21,6 +22,7 @@ namespace GestaoDDD.MVC.Controllers
         private readonly ILogAppService _logAppService;
 
         private EnviaEmail _enviaEmail;
+        private readonly Utils _utils;
 
         private static string _msgRetorno = "";
         private static string _userId;
@@ -35,6 +37,8 @@ namespace GestaoDDD.MVC.Controllers
             _prestadorApp = prestadorApp;
             _cidadeApp = cidadeApp;
             _logAppService = logAppService;
+
+            _utils = new Utils();
         }
 
         [Authorize(Roles = "Admin")]
@@ -154,22 +158,6 @@ namespace GestaoDDD.MVC.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var saudacao = "";
-                    var date = DateTime.Now;
-                    if (date.Hour > 12 && date.Hour < 18)
-                    {
-                        saudacao = "boa tarde";
-                    }
-                    else if (date.Hour > 0 && date.Hour < 12)
-                    {
-                        saudacao = "bom dia";
-                    }
-                    else
-                    {
-                        saudacao = "boa noite";
-                    }
-
-
                     var orcamentoEntity = Mapper.Map<OrcamentoViewModel, Orcamento>(orcamento);
 
                     var endereco = orcamento.orc_Endereco;
@@ -216,8 +204,7 @@ namespace GestaoDDD.MVC.Controllers
                         var envia = _orcamentoApp.EnviaEmailNotificacao(prestador, orcamentoEntity);
                         if (envia.Key)
                         {
-
-                            var corpoNotificacao = "Olá, " + prestador.pres_Nome.Trim() + ", " + saudacao + "!" + " <br /><br /> Chegou mais um orçamento para você." +
+                            var corpoNotificacao = "Olá, " + _utils.PrimeiraLetraMaiuscula(prestador.pres_Nome.Trim()) + ", " + _utils.DefineSaudacao() + "!" + " <br /><br /> Chegou mais um orçamento para você." +
                                 " <br /> Este orçamento está à uma distância de " + envia.Value.Trim() + ". <br />" +
                                 "<br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br/Orcamento/BuscaTrabalhos?usuarioId=" + prestador.pres_Id + '\u0022' + "><strong>Clique aqui</strong></a> para visualizar os orçamentos disponíveis para você. " +
                                 "<br /><br /> Att, <br />" +
@@ -237,6 +224,44 @@ namespace GestaoDDD.MVC.Controllers
                             }
                         }
                     }
+
+                    //Enviar email para administradores de novo orçamento
+
+                    var servico = _servicoApp.GetById(servico_id);
+
+                    var admins = _prestadorApp.GetAdministradores();
+
+                    foreach (var admin in admins)
+                    {
+                        var corpoNovoUsuario = "Olá, " + _utils.PrimeiraLetraMaiuscula(admin.pres_Nome.Trim()) + ", " + _utils.DefineSaudacao() + "!" + " <br /><br /> Chegou mais um novo orçamento para Agiliza." +
+                        " <br /><strong>Solicitante:</strong>  " + orcamento.orc_nome_solicitante +
+                        " <br /><strong>Email:</strong>  " + orcamento.orc_email_solicitante +
+                        " <br /><strong>Telefone:</strong>  " + orcamento.orc_telefone_solicitante +
+                        " <br /><strong>Tipo de serviço:</strong>  " + servico.serv_Nome +
+                        " <br /><strong>Descrição:</strong>  " + orcamento.orc_descricao  +
+                        " <br /><strong>Local para realizar o trabalho:</strong>  " + orcamento.orc_Endereco +
+                        " <br /><strong>Prazo previsto:</strong>  " + orcamento.orc_prazo +
+
+                        " <br /><strong>Descrição:</strong>  " + orcamento.orc_descricao +
+                        "<br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br/Orcamento/ListarTodos" + '\u0022' + "><strong>Clique aqui</strong></a> para visualizar os orçamentos. " +
+                        "<br /><br /> Att, <br />" +
+                        " Equipe Agiliza.";
+
+                        var assuntoNotificacao = "Novo orçamento Cadastrado";
+                        _enviaEmail = new EnviaEmail();
+                        var enviouNotificacao = _enviaEmail.EnviaEmailConfirmacao(admin.pres_Email, corpoNovoUsuario, assuntoNotificacao);
+                        if (!enviou.Key)
+                        {
+                            var logVm = new LogViewModel();
+                            logVm.Mensagem = enviou.Value;
+                            logVm.Controller = "Enviar Email Notificação para admin de novo orçamento";
+                            logVm.View = "Enviar email notificação para admin de novo orçamento.";
+                            var log = Mapper.Map<LogViewModel, Log>(logVm);
+                            _logAppService.SaveOrUpdate(log);
+                        }
+                    }
+
+
 
                     return RedirectToAction("OrcamentoEnviadoSucesso");
                 }
@@ -261,6 +286,8 @@ namespace GestaoDDD.MVC.Controllers
                 return RedirectToAction("ErroAoCadastrar");
             }
         }
+
+
 
         public ActionResult Editar(int id)
         {
@@ -410,25 +437,53 @@ namespace GestaoDDD.MVC.Controllers
         }
 
         [Authorize(Roles = "Admin, Prestador")]
-        public PartialViewResult BuscaTrabalhosPartial(string servico, string cidade, string estado)
+        public PartialViewResult
+            BuscaTrabalhosPartial(string servico, string cidade, string estado)
         {
             try
             {
-
                 var cidades = _cidadeApp.GetById(int.Parse(cidade));
+                var nomeCidade = _utils.PrimeiraLetraMaiuscula(cidades.NomeCidade);
                 var estados = (EnumClass.EnumEstados)Enum.Parse(typeof(EnumClass.EnumEstados), estado);
                 var retorno = _orcamentoApp.RetornaOrcamentos(Convert.ToInt32(servico), cidades.NomeCidade, estados);
 
+                var usuario = _prestadorApp.GetPorGuid(new Guid(_userId));
+                var servicos = _prestadorApp.GetPrestadoresComServicos().Where(s => s.pres_Id == usuario.pres_Id)
+                    .Select(y => y.ServicoPrestador).Select(j => j.Select(u => u.serv_Id)).ToList();
+
+                retorno = _orcamentoApp.VerificaSeOrcamentoPertenceAoUsuario(retorno, usuario.pres_Raio_Recebimento, usuario.pres_latitude, usuario.pres_longitude);
+
+
+                var lstOrc = new List<Orcamento>();
+                var lst = new List<int>();
+                foreach (var s in servicos)
+                {
+                    foreach (var sv in s)
+                    {
+                        lst.Add(sv);
+                    }
+                }
+
+                foreach (var orc in retorno)
+                {
+                    if (lst.Any(s => s.Equals(orc.serv_Id)))
+                    {
+                        lstOrc.Add(orc);
+                    }
+                }
+
+
+
                 var frase = "";
-                if (retorno.Count() == 1)
-                    frase = "Foi encontrado " + retorno.Count().ToString() + " orçamento para " + cidades.NomeCidade +
+                if (lstOrc.Count() == 1)
+                    frase = "Foi encontrado " + lstOrc.Count().ToString() + " orçamento para " + cidades.NomeCidade +
                             "-" + estados;
                 else
-                    frase = "Foram encontrados " + retorno.Count().ToString() + " orçamentos para " + cidades.NomeCidade +
+                    frase = "Foram encontrados " + lstOrc.Count().ToString() + " orçamentos para " + cidades.NomeCidade +
                             "-" + estados;
                 ViewBag.FraseQtd = frase;
 
-                return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(retorno));
+                return PartialView(Mapper.Map<IEnumerable<Orcamento>, IEnumerable<OrcamentoViewModel>>(lstOrc));
             }
             catch (Exception e)
             {

@@ -18,5 +18,6 @@ namespace GestaoDDD.Domain.Interfaces.Services
 
         //retorna todos os prestadores ativos
         IEnumerable<Prestador> RetornaPrestadoresAtivos();
+        IEnumerable<Prestador> GetAdministradores();
     }
 }

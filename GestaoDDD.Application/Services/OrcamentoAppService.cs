@@ -32,6 +32,55 @@ namespace GestaoDDD.Application.Services
             return _orcamentoService.RetornaOrcamentosAbertos();
         }
 
+        public IEnumerable<Orcamento> VerificaSeOrcamentoPertenceAoUsuario(IEnumerable<Orcamento> orcamentos, string raio, string pLatitude, string pLongitude)
+        {
+            var orcamentosView = new List<Orcamento>();
+            foreach (var orcamento in orcamentos)
+            {
+                {
+                    var coord_orcamento = new GeoCoordinate();
+                    coord_orcamento.Latitude = double.Parse(orcamento.orc_latitude.Replace(",", "."),
+                        CultureInfo.InvariantCulture);
+                    coord_orcamento.Longitude = double.Parse(orcamento.orc_longitude.Replace(",", "."),
+                        CultureInfo.InvariantCulture);
+
+                    var coordenada_prestador = new GeoCoordinate();
+                    coordenada_prestador.Latitude = double.Parse(pLatitude.Replace(",", "."),
+                        CultureInfo.InvariantCulture);
+                    coordenada_prestador.Longitude = double.Parse(pLongitude.Replace(",", "."),
+                        CultureInfo.InvariantCulture);
+
+                    var distancia = (coordenada_prestador.GetDistanceTo(coord_orcamento) / 1000);
+
+                    var endereco = orcamento.orc_endereco;
+                    var cidade = "";
+                    var estado = new EnumAppEstados();
+                    var partes = endereco.Split(',');
+                    foreach (var parte in partes.Where(s => s.Contains("-")))
+                    {
+                        var separar = parte.Split('-');
+                        var ufs = " AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA,PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO";
+                        if (ufs.Contains(separar[1]))
+                        {
+                            estado = (EnumAppEstados)Enum.Parse(typeof(EnumAppEstados), separar[1]);
+                            cidade = separar[0];
+                        }
+                        else
+                            continue;
+                    }
+
+                    orcamento.Distancia = Math.Round(distancia, 2).ToString() + " Km do seu negócio em " +
+                                         cidade.ToString().Trim() +
+                                         " - " + estado.ToString().Trim() + " ";
+
+                    if (distancia <= double.Parse(raio))
+                        orcamentosView.Add(orcamento);
+                }
+            }
+            return orcamentosView;
+        }
+
+
         public IEnumerable<Orcamento> RetornarOrcamentosComDistanciaCalculada(string prestadorLatitude,
             string prestadorLongitude, string raio, string usuarioId)
         {
@@ -124,7 +173,7 @@ namespace GestaoDDD.Application.Services
 
             }
 
-            var fraseDistancia =  Math.Round(distancia, 2).ToString() + " Km de distância do seu negócio em " +
+            var fraseDistancia = Math.Round(distancia, 2).ToString() + " Km de distância do seu negócio em " +
                                   cidade.ToString().Trim() +
                                   " - " + estado.ToString().Trim() + " ";
 
@@ -152,7 +201,7 @@ namespace GestaoDDD.Application.Services
 
         public IEnumerable<Guid> EnviaEmailParaPrestadoresQueOferecemOServico(int servicoId)
         {
-           return _servicoPrestador.PrestadoresOferecemServico(servicoId);
+            return _servicoPrestador.PrestadoresOferecemServico(servicoId);
         }
     }
     public enum EnumAppEstados

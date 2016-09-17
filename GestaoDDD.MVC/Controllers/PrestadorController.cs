@@ -30,6 +30,7 @@ namespace GestaoDDD.MVC.Controllers
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly Utils _utils;
         private EnviaEmail _enviarEmail;
         private static string _msgRetorno;
         public PrestadorController(IPrestadorAppService prestadorApp, IOrcamentoAppService orcamentoApp,
@@ -45,6 +46,7 @@ namespace GestaoDDD.MVC.Controllers
             _logAppService = logApp;
             _servicoAppService = servicoApp;
             _categoriaApp = categoriaApp;
+            _utils = new Utils();
         }
 
         [Authorize(Roles = "Admin")]
@@ -184,6 +186,9 @@ namespace GestaoDDD.MVC.Controllers
                                     celular = prestador.pres_Telefone_Celular,
                                     editarPerfil = false
                                 });
+                            
+
+
                         }
                         else
                         {

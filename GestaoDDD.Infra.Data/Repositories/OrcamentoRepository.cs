@@ -31,7 +31,7 @@ namespace GestaoDDD.Infra.Data.Repositories
         {
             return _db.Orcamento.Where(o => o.serv_Id == servico &&
                 o.orc_estado == estado &&
-                o.orc_cidade.Equals(cidade) && 
+                o.orc_cidade.Trim().Equals(cidade) && 
                 o.Status == EnumStatusOrcamento.Aberto);
         }
 

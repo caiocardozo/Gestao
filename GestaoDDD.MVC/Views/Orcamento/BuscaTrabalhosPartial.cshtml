@@ -6,9 +6,9 @@
 <script src="~/Scripts/jquery-2.2.3.min.js"></script>
 
 
-    @if (!Model.Any())
+    @if (Model == null || !Model.Any())
     {
-        <div class="alert alert-danger text-center" role="alert">Nenhum Registro encontrado</div>
+        <div class="alert alert-danger text-center" role="alert">Nenhum Registro encontrado. Verifique os filtros utilizados.</div>
     }
     else
     {
@@ -51,6 +51,7 @@
                                 @Html.DisplayFor(modelItem => item.)
                                 Mudança de Anápolis para Brasília
                             </div>*@
+                        
                         <div class="descricao-resultado text-justify">
                             @Html.DisplayFor(modelItem => item.orc_descricao)
                         </div>

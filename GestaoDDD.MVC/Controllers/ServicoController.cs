@@ -10,6 +10,8 @@ using GestaoDDD.Domain.Entities.NoSql;
 using GestaoDDD.Infra.Identity.Model;
 using GestaoDDD.Infra.Identity.Configuration;
 using Microsoft.AspNet.Identity;
+using GestaoDDD.MVC.Util;
+using System.Text;
 
 namespace GestaoDDD.MVC.Controllers
 {
@@ -23,6 +25,8 @@ namespace GestaoDDD.MVC.Controllers
         private readonly IServicoPrestadorAppService _servicoPrestadorAppService;
         private static string msgRetorno = "";
         private ApplicationUserManager _userManager;
+        private readonly Utils _utils;
+
 
         public ServicoController(IServicoAppService iServicoApp, ICategoriaAppService iCategoriaApp,
             IPrestadorAppService iPrestadorApp, IServicoPrestadorAppService iServicoPrestadorApp, ILogAppService logAppService, IServicoPrestadorAppService servicoPrestadorAppService)
@@ -33,6 +37,7 @@ namespace GestaoDDD.MVC.Controllers
             _iServicoPrestadorApp = iServicoPrestadorApp;
             _logAppService = logAppService;
             _servicoPrestadorAppService = servicoPrestadorAppService;
+            _utils = new Utils();
         }
 
         //
@@ -69,23 +74,60 @@ namespace GestaoDDD.MVC.Controllers
         {
             try
             {
-                var checkboxes = new List<Servico>();
+                var sbEmail = new StringBuilder();
+                var servicos = new List<Servico>();
                 foreach (var col in collection)
                 {
                     int servId;
                     Int32.TryParse(col.ToString(), out servId);
                     var servico = _iServicoApp.GetById(servId);
-                    checkboxes.Add(servico);
+
+                    sbEmail.Append(servico.serv_Nome);
+                    sbEmail.Append(", ");
+
+                    servicos.Add(servico);
                 }
                 //inserir por email, assim nao tem como duplicar
                 var prestador = _iPrestadorApp.GetPorEmail(email);
-                _iServicoPrestadorApp.SalvarServicosPrestador(checkboxes, prestador);
+                _iServicoPrestadorApp.SalvarServicosPrestador(servicos, prestador);
                 if (editarPerfil)
                 {
                     return RedirectToAction("MeuPerfil", "Prestador", new { usuarioId = prestador.pres_Id });
                 }
                 else
                 {
+                    //Enviar email para admins de novo usuario
+                    var admins = _iPrestadorApp.GetAdministradores();
+
+                    foreach (var admin in admins)
+                    {
+                        var corpoNovoUsuario = "Olá, " + _utils.PrimeiraLetraMaiuscula(admin.pres_Nome.Trim()) + ", " + _utils.DefineSaudacao() + "!" + " <br /><br /> Chegou mais um prestador para Agiliza." +
+                        " <br /><strong>Nome:</strong>  " + prestador.pres_Nome +
+                        " <br /><strong>Email:</strong>  " + prestador.pres_Email +
+                        " <br /><strong>Telefone:</strong>  " + prestador.pres_Telefone_Residencial +
+                        " <br /><strong>Celular:</strong>  " + prestador.pres_Telefone_Celular +
+                        " <br /><strong>Endereço:</strong>  " + prestador.pres_Endereco +
+                        " <br /><strong>Serviços:</strong><br />  " + sbEmail.ToString().Substring(0, sbEmail.ToString().Length - 2) + "." +
+
+                        "<br /><br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br/Prestador/Index" + '\u0022' + "><strong>Clique aqui</strong></a> para visualizar os prestadores cadastrados. " +
+                        "<br /><br /> Att, <br />" +
+                        " Equipe Agiliza.";
+
+                        var assuntoNotificacao = "Novo orçamento Cadastrado";
+                        var _enviaEmail = new EnviaEmail();
+                        var enviouNotificacao = _enviaEmail.EnviaEmailConfirmacao(admin.pres_Email, corpoNovoUsuario, assuntoNotificacao);
+                        if (!enviouNotificacao.Key)
+                        {
+                            var logVm = new LogViewModel();
+                            logVm.Mensagem = enviouNotificacao.Value;
+                            logVm.Controller = "Enviar Email Notificação para admin de novo prestador";
+                            logVm.View = "Enviar email notificação para admin de novo prestador.";
+                            var log = Mapper.Map<LogViewModel, Log>(logVm);
+                            _logAppService.SaveOrUpdate(log);
+                        }
+                    }
+
+
                     return RedirectToAction("PrestadorCadastroSucesso", "Prestador");
                 }
             }

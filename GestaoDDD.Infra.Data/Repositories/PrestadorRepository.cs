@@ -6,17 +6,20 @@ using GestaoDDD.Domain.Interfaces.Repositories;
 using GestaoDDD.Infra.Data.Contexto;
 using System.Linq;
 using System;
+using GestaoDDD.Infra.Data.DataLayerDAO;
 
 namespace GestaoDDD.Infra.Data.Repositories
 {
     public class PrestadorRepository : RepositoryBase<Prestador>, IPrestadorRepository
     {
         private readonly GestaoContext _db;
+        private ConnectionDAO _con;
 
         public PrestadorRepository(GestaoContext dbContext)
             : base(dbContext)
         {
             _db = dbContext;
+            
         }
 
         public Prestador GetPorCpf(string cpf)
@@ -39,8 +42,9 @@ namespace GestaoDDD.Infra.Data.Repositories
         public IEnumerable<Prestador> GetPrestadores(int orcamentoId)
         {
             Orcamento orc2 = _db.Orcamento.Where(p => p.orc_Id == orcamentoId).SingleOrDefault();
-          return (from pres in _db.Prestador
-                    from orc in pres.OrcamentoFk where !pres.OrcamentoFk.Contains(orc2)
+            return (from pres in _db.Prestador
+                    from orc in pres.OrcamentoFk
+                    where !pres.OrcamentoFk.Contains(orc2)
                     select pres);
         }
 
@@ -49,10 +53,18 @@ namespace GestaoDDD.Infra.Data.Repositories
             return _db.Prestador.Include("ServicoPrestador");
         }
 
+        public IEnumerable<Prestador> GetAdministradores()
+        {
+            _con = new ConnectionDAO();
+            return _con.GetPrestadorAdmin();
+        }
+
+
         //retorna todos os prestadores ativos
         public IEnumerable<Prestador> RetornaPrestadoresAtivos()
         {
-            return _db.Prestador.Where(p => p.status == (EnumStatus) 0);
+            
+            return _db.Prestador.Where(p => p.status == (EnumStatus)0);
             //return _db.Prestador;
         }
 

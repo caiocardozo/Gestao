@@ -21,5 +21,6 @@ namespace GestaoDDD.Application.Interface
 
         //verifica se o prestador ja esta cadastrado
         byte VeriricaPrestadorExiste(string email);
+        IEnumerable<Prestador> GetAdministradores();
     }
 }

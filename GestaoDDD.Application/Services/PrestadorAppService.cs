@@ -65,5 +65,10 @@ namespace GestaoDDD.Application.Services
                 return 0;
             }
         }
+
+        public IEnumerable<Prestador> GetAdministradores()
+        {
+            return _prestadorService.GetAdministradores();
+        }
     }
 }
