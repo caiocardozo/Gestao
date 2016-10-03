@@ -19,17 +19,21 @@ namespace GestaoDDD.Application.ViewModels
         [DisplayName("Descrição:")]
         public string orc_descricao { get; set; }
 
+         [DisplayName("Endereço")]
         [Required(ErrorMessage = "Preencha o endereço do serviço.")]
         [MaxLength(200, ErrorMessage = "Tamanho máximo de {0} caracteres.")]
         [MinLength(10, ErrorMessage = "Tamanho minímo de {0} caracteres.")]
         public string orc_Endereco { get; set; }
-        
+
+         [DisplayName("Prazo")]
         [Required(ErrorMessage = "Preencha o prazo do serviço.")]
         public string orc_prazo { get; set; }
 
+        [DisplayName("Nome")]
         [Required(ErrorMessage = "Preencha o campo nome.")]
         public string orc_nome_solicitante { get; set; }
 
+        [DisplayName("Email:")]
         [DataType(DataType.EmailAddress,  ErrorMessage = "Digite um E-mail válido.")]
         [Required(ErrorMessage = "Preencha o campo email.")]
         public string orc_email_solicitante { get; set; }

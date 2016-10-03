@@ -483,7 +483,6 @@
     <Content Include="Views\Prestador\ErroAoCadastrar.cshtml" />
     <Content Include="Views\Orcamento\Cadastrar.cshtml" />
     <Content Include="Views\Orcamento\Editar.cshtml" />
-    <Content Include="Views\Orcamento\Deletar.cshtml" />
     <Content Include="Views\ComoFunciona\Index.cshtml" />
     <Content Include="Views\ComoFunciona\Details.cshtml" />
     <Content Include="Views\ComoFunciona\Create.cshtml" />
@@ -533,6 +532,8 @@
     <Content Include="Views\Prestador\ListaPrestador.cshtml" />
     <Content Include="Views\Prestador\Detalhes.cshtml" />
     <Content Include="Views\Prestador\Editar.cshtml" />
+    <Content Include="Views\Orcamento\Deletar.cshtml" />
+    <Content Include="Views\Orcamento\ErroAoDeletar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

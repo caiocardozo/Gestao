@@ -238,7 +238,7 @@ namespace GestaoDDD.MVC.Controllers
                         " <br /><strong>Email:</strong>  " + orcamento.orc_email_solicitante +
                         " <br /><strong>Telefone:</strong>  " + orcamento.orc_telefone_solicitante +
                         " <br /><strong>Tipo de serviço:</strong>  " + servico.serv_Nome +
-                        " <br /><strong>Descrição:</strong>  " + orcamento.orc_descricao  +
+                        " <br /><strong>Descrição:</strong>  " + orcamento.orc_descricao +
                         " <br /><strong>Local para realizar o trabalho:</strong>  " + orcamento.orc_Endereco +
                         " <br /><strong>Prazo previsto:</strong>  " + orcamento.orc_prazo +
 
@@ -331,21 +331,28 @@ namespace GestaoDDD.MVC.Controllers
 
         }
 
+        //verifica se um orçamento esta vinculado para poder excluir em seguida.
+        public bool VerificaOrcamentoAtribuido(string id )
+        {
+            var orcamento = _orcamentoApp.GetById(Convert.ToInt32(id));
+            if (orcamento.PrestadorFk.Count > 0)
+            {
+                //retorna true para orçamento vinculado 
+                return true;
+            }
+            else
+            {//retorna false senao possui nenhum orçamento vinculado.
+                return false;
+            }
+        }
 
         public ActionResult Deletar(int id)
         {
+            //agora verifica na action result se pode excluir
             var orcamento = _orcamentoApp.GetById(id);
-
-            if (orcamento.PrestadorFk != null)
-                _msgRetorno = "Este orçamento foi comprado por um prestador, não é possível excluir.";
-            else
-            {
-                _msgRetorno = "Orçamento excluído com sucesso";
-                _orcamentoApp.Remove(orcamento);
+            var orcamentoVM = Mapper.Map<Orcamento, OrcamentoViewModel>(orcamento);
+                return View(orcamentoVM);
             }
-
-            return RedirectToAction("ListarTodos");
-        }
 
         //
         // POST: /Orcamento/Delete/5
@@ -353,13 +360,30 @@ namespace GestaoDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmarDeletar(int id)
         {
-            var adm_grupo = _orcamentoApp.GetById(id);
-            _orcamentoApp.Remove(adm_grupo);
-
-            return RedirectToAction("Index");
+            try
+            {
+                var orcamento = _orcamentoApp.GetById(id);
+                _orcamentoApp.Remove(orcamento);
+                return RedirectToAction("ListarTodos");
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Orçamento";
+                logVm.View = "Deletar Orcamento";
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoDeletar");
+            }
         }
 
         public ActionResult ErroAoCadastrar()
+        {
+            return View();
+        }
+
+        public ActionResult ErroAoDeletar()
         {
             return View();
         }
