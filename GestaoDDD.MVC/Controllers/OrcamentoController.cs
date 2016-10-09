@@ -183,7 +183,7 @@ namespace GestaoDDD.MVC.Controllers
 
           var corpo = @"Olá " + orcamento.orc_nome_solicitante + " seu orçamento já está cadastrado em nosso sistema, fique atento que logo o prestador entrará em contato com você. Obrigado por nos escolher!" +
             "<br /><br /> Att, <br />";
-            
+
 
           var assunto = "Orçamento Enviado";
           _enviaEmail = new EnviaEmail();
@@ -212,7 +212,7 @@ namespace GestaoDDD.MVC.Controllers
                   "<br /> <a href=" + '\u0022' + "www.agilizaorcamentos.com.br/Orcamento/BuscaTrabalhos?usuarioId=" + prestador.pres_Id + '\u0022' + "><strong>Clique aqui</strong></a> para visualizar os orçamentos disponíveis para você. " +
                   "<br /><br /> Att, <br />" +
                   "Equipe Agiliza";
-                  
+
 
               var assuntoNotificacao = "Novo orçamento encontrado";
               _enviaEmail = new EnviaEmail();
@@ -335,25 +335,25 @@ namespace GestaoDDD.MVC.Controllers
 
     }
 
-        //verifica se um orçamento esta vinculado para poder excluir em seguida.
-        public bool VerificaOrcamentoAtribuido(string id )
-        {
-            var orcamento = _orcamentoApp.GetById(Convert.ToInt32(id));
-            if (orcamento.PrestadorFk.Count > 0)
-            {
-                //retorna true para orçamento vinculado 
-                return true;
-            }
-            else
-            {//retorna false senao possui nenhum orçamento vinculado.
-                return false;
-            }
-        }
+    //verifica se um orçamento esta vinculado para poder excluir em seguida.
+    public bool VerificaOrcamentoAtribuido(string id)
+    {
+      var orcamento = _orcamentoApp.GetById(Convert.ToInt32(id));
+      if (orcamento.PrestadorFk.Count > 0)
+      {
+        //retorna true para orçamento vinculado 
+        return true;
+      }
+      else
+      {//retorna false senao possui nenhum orçamento vinculado.
+        return false;
+      }
+    }
 
-        public ActionResult Deletar(int id)
-        {
-            //agora verifica na action result se pode excluir
-            var orcamento = _orcamentoApp.GetById(id);
+    public ActionResult Deletar(int id)
+    {
+      //agora verifica na action result se pode excluir
+      var orcamento = _orcamentoApp.GetById(id);
 
       if (orcamento.PrestadorFk != null)
         _msgRetorno = "Este orçamento foi comprado por um prestador, não é possível excluir.";
@@ -366,37 +366,34 @@ namespace GestaoDDD.MVC.Controllers
       return RedirectToAction("ListarTodos");
     }
 
-        //
-        // POST: /Orcamento/Delete/5
-        [HttpPost, ActionName("Deletar")]
-        [ValidateAntiForgeryToken]
-        public ActionResult ConfirmarDeletar(int id)
-        {
-            try
-            {
-                var orcamento = _orcamentoApp.GetById(id);
-                _orcamentoApp.Remove(orcamento);
-                return RedirectToAction("ListarTodos");
-            }
-            catch (Exception e)
-            {
-                var logVm = new LogViewModel();
-                logVm.Mensagem = e.Message;
-                logVm.Controller = "Orçamento";
-                logVm.View = "Deletar Orcamento";
-                var log = Mapper.Map<LogViewModel, Log>(logVm);
-                _logAppService.SaveOrUpdate(log);
-                return RedirectToAction("ErroAoDeletar");
-            }
-        }
+    //
+    // POST: /Orcamento/Delete/5
+    [HttpPost, ActionName("Deletar")]
+    [ValidateAntiForgeryToken]
+    public ActionResult ConfirmarDeletar(int id)
+    {
+      try
+      {
+        var orcamento = _orcamentoApp.GetById(id);
+        _orcamentoApp.Remove(orcamento);
+        return RedirectToAction("ListarTodos");
+      }
+      catch (Exception e)
+      {
+        var logVm = new LogViewModel();
+        logVm.Mensagem = e.Message;
+        logVm.Controller = "Orçamento";
+        logVm.View = "Deletar Orcamento";
+        var log = Mapper.Map<LogViewModel, Log>(logVm);
+        _logAppService.SaveOrUpdate(log);
+        return RedirectToAction("ErroAoDeletar");
+      }
+    }
 
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult ErroAoDeletar()
-        {
-            return View();
-        }
+    public ActionResult ErroAoDeletar()
+    {
+      return View();
+    }
 
     [Authorize(Roles = "Admin, Prestador")]
     public ActionResult BuscaTrabalhosIndex()
