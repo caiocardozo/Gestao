@@ -68,6 +68,12 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GestaoDDD.Infra.Data\GestaoDDD.Infra.Data.csproj">
+      <Project>{55a07ff1-137a-4fa1-ac2c-6a02ac82a29a}</Project>
+      <Name>GestaoDDD.Infra.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
