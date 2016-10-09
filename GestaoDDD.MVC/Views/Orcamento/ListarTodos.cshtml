@@ -11,6 +11,8 @@
     <link href="~/Content/themes/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/themes/jquery-ui.theme.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-ui-1.12.0.min.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Styles/sweetalert.css" rel="stylesheet" />
     <script>
         $(function () {
             $(".atribuirOrcamento").click(function () {
@@ -18,96 +20,97 @@
                 $("#modal").load("/Prestador/ListaPrestador/" + orc).attr("title", "Lista Prestadores").dialog({ width: 900, height: 600 });
             });
         });
+
+        function DeletarOrcamento(id) {
+            $.ajax({
+                type: 'POST',
+                url: '/Orcamento/VerificaOrcamentoAtribuido',
+                data: 'id=' + id,
+                dataType: 'html',
+                cache: false,
+                success: function (data) {
+                    if (data == "True") {
+                       swal("Este orçamento foi comprado por um prestador, não é possível excluir.", "", "error");
+                        } else {
+                        window.location.href = "/Orcamento/Deletar/"+id;
+                    }
+                }
+            });
+
+        };
     </script>
-    <div class="modal" id="modal">
+
+    <h4>Lista de orçamentos abertos</h4>
+
+    <div class="container text-danger text-center">
+        <strong>@msg</strong>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h4>Lista de orçamentos abertos</h4>
-                <div class="table-responsive">
-                    <div class="container" style="position:relative; left: 40%; color: #dc143c">
-                        <strong>@msg</strong>
-                    </div>
-                    <table id="mytable" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Descrição</th>
-                                <th>Endereço</th>
-                                <th>Prazo</th>
-                                <th>Solicitante</th>
-                                <th>Celular</th>
-                                <th>Serviço</th>
-                                <th>Editar</th>
-                                <th>Excluir</th>
-                                <th>Atribuir</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
+    <table id="mytable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Endereço</th>
+                <th>Prazo</th>
+                <th>Solicitante</th>
+                <th>Celular</th>
+                <th>Serviço</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+                <th>Atribuir</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
 
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.orc_descricao)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.orc_Endereco)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.orc_prazo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.orc_nome_solicitante)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.orc_telefone_solicitante)
-                                    </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orc_descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orc_Endereco)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orc_prazo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orc_nome_solicitante)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orc_telefone_solicitante)
+                    </td>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NomeServico)
-                                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeServico)
+                    </td>
 
 
-                                    <td class="text-center">
-                                        <p data-placement="top" data-toggle="tooltip" title="Editar">
-                                            <a href="~/Orcamento/Editar/@item.orc_Id" class="btn btn-primary btn-xs" title="Editar">
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                            </a>
-                                        </p>
-                                    </td>
+                    <td class="text-center">
+                        <p data-placement="top" data-toggle="tooltip" title="Editar">
+                            <a href="~/Orcamento/Editar/@item.orc_Id" class="btn btn-primary btn-xs" title="Editar">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </p>
+                    </td>
 
-                                    <td class="text-center">
-                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                            <a class="btn btn-danger btn-xs" href="~/Orcamento/Deletar/@item.orc_Id" data-toggle="modal" data-target="#delete" data-placement="top" rel="tooltip" data-title="Excluir">
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                            </a>
-                                        </p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                        <a class="atribuirOrcamento btn btn-danger btn-xs" data-matricula="@item.orc_Id" data-placement="top" rel="tooltip" data-title="Atribuir">
-                                            <span class="glyphicon glyphicon-share-alt"></span>
-                                        </a>
-                                            </p>
-</td>
-                                </tr>
-                                //MODAL DELETE
-                                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-hidden="false">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
+                    <td class="text-center">
+                        <p>
+                            <a class="btn btn-danger btn-xs" data-delete="@item.orc_Id" data-title="Excluir" onclick="DeletarOrcamento(@item.orc_Id);">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </p>
+                    </td>
+                    <td class="text-center">
+                        <p data-placement="top" data-toggle="tooltip" title="atribuir">
+                            <a class="atribuirOrcamento btn btn-danger btn-xs" data-matricula="@item.orc_Id" data-placement="top" rel="tooltip" data-title="Atribuir">
+                                <span class="glyphicon glyphicon-share-alt"></span>
+                            </a>
+                        </p>
+                    </td>
+                </tr>
+            }
 
-                                        </div>
-                                    </div>
-                                </div>
-                                //FIM MODAL DELETE
-                            }
+        </tbody>
 
-                        </tbody>
-
-                    </table>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </table>
+    <div class="clearfix"></div>

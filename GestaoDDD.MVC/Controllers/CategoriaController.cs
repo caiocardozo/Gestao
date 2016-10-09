@@ -119,7 +119,6 @@ namespace GestaoDDD.MVC.Controllers
         {
             try
             {
-
                 var categoria = _categoriaApp.GetById(id);
                 var categoriaVm = Mapper.Map<Categoria, CategoriaViewModel>(categoria);
                 return View(categoriaVm);

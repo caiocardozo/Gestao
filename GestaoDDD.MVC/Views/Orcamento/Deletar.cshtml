@@ -1,27 +1,55 @@
 ﻿@model GestaoDDD.Application.ViewModels.OrcamentoViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Deletar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title custom_align" id="Heading">Excluir</h4>
-    </div>
-    <div class="modal-body">
-        <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> Deseja realmente excluir o orçamento do Sr.  @Html.DisplayFor(model => model.orc_nome_solicitante)?</div>
-    </div>
-    <div class="modal-footer ">
-        <input type="hidden" name="id" />
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+<h2>Deletar orçamento</h2>
 
-            <input type="submit" value="Deletar" class="btn btn-primary" />
-            <a href="~/Prestador/ListarTodos" class="btn btn-default">
-                <span class="glyphicon glyphicon-remove"></span>
-            </a>
-        }
-    </div>
+<h3>Tem certeza que deseja apagar este orçamento?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.orc_descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orc_descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orc_Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orc_Endereco)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.orc_nome_solicitante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orc_nome_solicitante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orc_email_solicitante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orc_email_solicitante)
+        </dd>
+
+       </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <input type="button" value="Cancelar" class="btn btn-default" onclick="location.href='@Url.Action("ListarTodos", "Orcamento")'" />
+        </div>
+    }
 </div>

@@ -335,10 +335,25 @@ namespace GestaoDDD.MVC.Controllers
 
     }
 
+        //verifica se um orçamento esta vinculado para poder excluir em seguida.
+        public bool VerificaOrcamentoAtribuido(string id )
+        {
+            var orcamento = _orcamentoApp.GetById(Convert.ToInt32(id));
+            if (orcamento.PrestadorFk.Count > 0)
+            {
+                //retorna true para orçamento vinculado 
+                return true;
+            }
+            else
+            {//retorna false senao possui nenhum orçamento vinculado.
+                return false;
+            }
+        }
 
-    public ActionResult Deletar(int id)
-    {
-      var orcamento = _orcamentoApp.GetById(id);
+        public ActionResult Deletar(int id)
+        {
+            //agora verifica na action result se pode excluir
+            var orcamento = _orcamentoApp.GetById(id);
 
       if (orcamento.PrestadorFk != null)
         _msgRetorno = "Este orçamento foi comprado por um prestador, não é possível excluir.";
@@ -351,22 +366,37 @@ namespace GestaoDDD.MVC.Controllers
       return RedirectToAction("ListarTodos");
     }
 
-    //
-    // POST: /Orcamento/Delete/5
-    [HttpPost, ActionName("Deletar")]
-    [ValidateAntiForgeryToken]
-    public ActionResult ConfirmarDeletar(int id)
-    {
-      var adm_grupo = _orcamentoApp.GetById(id);
-      _orcamentoApp.Remove(adm_grupo);
+        //
+        // POST: /Orcamento/Delete/5
+        [HttpPost, ActionName("Deletar")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmarDeletar(int id)
+        {
+            try
+            {
+                var orcamento = _orcamentoApp.GetById(id);
+                _orcamentoApp.Remove(orcamento);
+                return RedirectToAction("ListarTodos");
+            }
+            catch (Exception e)
+            {
+                var logVm = new LogViewModel();
+                logVm.Mensagem = e.Message;
+                logVm.Controller = "Orçamento";
+                logVm.View = "Deletar Orcamento";
+                var log = Mapper.Map<LogViewModel, Log>(logVm);
+                _logAppService.SaveOrUpdate(log);
+                return RedirectToAction("ErroAoDeletar");
+            }
+        }
 
-      return RedirectToAction("Index");
-    }
+            return RedirectToAction("Index");
+        }
 
-    public ActionResult ErroAoCadastrar()
-    {
-      return View();
-    }
+        public ActionResult ErroAoDeletar()
+        {
+            return View();
+        }
 
     [Authorize(Roles = "Admin, Prestador")]
     public ActionResult BuscaTrabalhosIndex()
